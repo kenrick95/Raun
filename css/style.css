@@ -1,0 +1,54 @@
+body { font-family: Ubuntu, sans-serif; }
+
+tr.anon td { background: #eee; }
+
+td.date { font-weight: bold; font-size: 100%; padding: 10px 0px 10px 0px !important; }
+.changes { font-style: italic; }
+
+.user-trusted { color: #999999; }
+.user-login { color: #990000; }
+.user-anon { color: #FF0000; }
+
+.size-neg { color:#FF2050; white-space: nowrap; }
+.size-pos { color:#00B000; white-space: nowrap; }
+.size-null { color:#999; white-space: nowrap; }
+.size-large { font-weight: bold; white-space: nowrap; }
+
+.label { white-space: nowrap; }
+.content ul, .content ol {
+	margin: 0 0 0 1.5em; padding-left: 0em;
+}
+
+.new-entry { background:#f7dc6f !important; }
+.redirect { font-style: italic; }
+.revert { text-decoration: line-through; }
+.stat { font-size:x-small; vertical-align:top; font-weight: bold; color: #ccc; }
+
+.ns { width:16px !important; padding:0 !important; cursor:help; }
+.ns-0 { background: #C0C0C0 !important; } /* Artikel */
+.ns-2 { background: #2d89ef !important; } /* Pengguna */
+.ns-4 { background: #9b59b6 !important; } /* Wikipedia */
+.ns-6 { background: #ee1111 !important; } /* Berkas */
+.ns-8 { background: #ffee00 !important; } /* MediaWiki */
+.ns-10 { background: #e7ac2f !important; } /* Templat */
+.ns-12 { background: #ff0097 !important; } /* Bantuan */
+.ns-14 { background: #00a300 !important; } /* Kategori */
+.ns-100 { background: #2bfffd !important; } /* Portal */
+
+.ns-1 { background: #696969 !important; } /* Pembicaraan Artikel */
+.ns-3 { background: #2b5797 !important; } /* Pembicaraan Pengguna */
+.ns-5 { background: #623475 !important; } /* Pembicaraan Wikipedia */
+.ns-7 { background: #b91d47 !important; } /* Pembicaraan Berkas */
+.ns-9 { background: #c09100 !important; } /* Pembicaraan MediaWiki */
+.ns-11 { background: #da532c !important; } /* Pembicaraan Templat */
+.ns-13 { background: #b3006a !important; } /* Pembicaraan Bantuan */
+.ns-15 { background: #1e7145 !important; } /* Pembicaraan Kategori */
+.ns-101 { background: #00aba9 !important; } /* Pembicaraan Portal */
+
+
+.main {
+	margin-top:4em;
+}
+#def {
+	text-align:center;	
+}

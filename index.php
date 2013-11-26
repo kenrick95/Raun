@@ -192,6 +192,7 @@
 							<li>Wikipedia API</li>
 						</ul>
 					<p> Di luar lisensi kode dan ide yang telah disebutkan, kode proyek ini dilisensikan dengan lisensi MIT</p>
+					<p>Kode tersedia di <a href="https://github.com/kenrick95/Raun">github.com/kenrick95/Raun</a></p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>

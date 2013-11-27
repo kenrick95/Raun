@@ -37,15 +37,47 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Raun</a>
+				<a class="navbar-brand" href="#" style="min-width:6em;">Raun<span id="stat"></span></a>
 			</div>
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
 					<li><a href="#help" data-toggle="modal" data-target="#help"><span class="glyphicon glyphicon-question-sign"></span> Bantuan</a></li>
 					<li><a href="#about" data-toggle="modal" data-target="#about"><span class="glyphicon glyphicon-info-sign"></span> Tentang</a></li>
+					<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-wrench"></span>
+ Setelan <b class="caret"></b></a>
+						<div class="dropdown-menu keep-open">
+							<div style="padding:0 1em;">
+								Tampilkan:
+								<div class="checkbox">
+									<label>
+									<input type="checkbox" id="show_bot" class="config" value="true">
+										<span class="label label-info">Suntingan bot</span>
+									</label>
+								</div>
+								<div class="checkbox">
+									<label>
+									<input type="checkbox" id="show_anon" class="config" value="true">
+										<span class="label label-danger">Suntingan anon</span>
+									</label>
+								</div>
+								<div class="checkbox">
+									<label>
+									<input type="checkbox" id="show_minor" class="config" value="true">
+										<span class="label label-primary">Suntingan kecil</span>
+									</label>
+								</div>
+								<div class="checkbox">
+									<label>
+									<input type="checkbox" id="show_new" class="config" value="true">
+										<span class="label label-success">Halaman baru</span>
+									</label>
+								</div>
+							</div>
+						</div>
+					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a><span id="stat"></span></a></li>
 					<li style="padding:8px;"><button id="pause" class="btn btn-warning"><span class="glyphicon glyphicon-pause"></span> Pause</button></li>
 					<li><a title="Waktu, dalam UTC"><span class="glyphicon glyphicon-time"></span> <span id="tz"></span></a></li>
 				</ul>
@@ -87,7 +119,10 @@
 				</div>
 				<div class="modal-body">
 					<p class="lead"><b>ra&middot;un</b> <i>v cak</i> berkeliling; ronda; patroli;</p>
-					<p>Raun adalah alat untuk memantau perubahan terbaru Wikipedia bahasa Indonesia secara langsung (<i>live</i>). Setiap beberapa saat, Raun akan memuat perubahan terbaru tepat di depanmu secara otomatis. Anda dapat memause (menghentikan sementara) alat ini dengan mengeklik tombol "Pause". Setelah itu, Anda dapat melanjutkan alat ini dengan mengeklik tombol "Jalan!".
+					<p>Raun adalah alat untuk memantau perubahan terbaru Wikipedia bahasa Indonesia secara langsung (<i>live</i>). Setiap beberapa saat, Raun akan memuat perubahan terbaru tepat di depanmu secara otomatis.</p>
+					<p>Anda dapat memause (menghentikan sementara) alat ini dengan mengeklik tombol "Pause". Setelah itu, Anda dapat melanjutkan alat ini dengan mengeklik tombol "Jalan!".
+					</p>
+					<p>Selain itu, Anda juga dapat mengatur untuk menampilkan jenis suntingan apa saja yang Anda ingin lihat di bagian "Setelan".
 					</p>
 					<p>Legenda:
 					</p>
@@ -177,12 +212,8 @@
 					<p class="lead"><b>ra&middot;un</b> <i>v cak</i> berkeliling; ronda; patroli;</p>
 					<p>Raun adalah alat untuk memantau perubahan terbaru Wikipedia bahasa Indonesia secara langsung (<i>live</i>). Alat ini terinspirasi dari <a href="http://ivan.lanin.org/ronda">Ronda</a>, oleh Ivan Lanin. Proyek ini dimulai oleh <a href="http://kenrick95.org/">Kenrick</a> (<a href="http://id.wikipedia.org/wiki/Pengguna:Kenrick95">Pengguna:Kenrick95</a>).</p>
 					<p>
-						Fitur yang akan hadir:
+						<span class="label label-info">Informasi</span> Situs ini menggunakan <a href="https://id.wikipedia.org/wiki/Kuki_HTTP">kuki</a>. Data yang disimpan kuki akan otomatis dihapus jika Anda tidak mengunjungi situs ini dalam 30 hari.
 					</p>
-						<ul>
-							<li>Tanda bahwa sebuah suntingan dibuat oleh bot atau anon</li>
-							<li>Setelan (misalnya tampilkan yang bukan bot, ruang nama artikel saja, dll.)</li>
-						</ul>
 					<p>Kredit:
 					</p>
 						<ul>
@@ -191,7 +222,7 @@
 							<li>jQuery 1.10.2</li>
 							<li>Wikipedia API</li>
 						</ul>
-					<p> Di luar lisensi kode dan ide yang telah disebutkan, kode proyek ini dilisensikan dengan lisensi MIT</p>
+					<p>Di luar lisensi kode dan ide yang telah disebutkan, kode proyek ini dilisensikan dengan lisensi MIT</p>
 					<p>Kode tersedia di <a href="https://github.com/kenrick95/Raun">github.com/kenrick95/Raun</a></p>
 				</div>
 				<div class="modal-footer">

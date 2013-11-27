@@ -1,8 +1,10 @@
 body { font-family: Ubuntu, sans-serif; }
 
-tr.anon td { background: #eee; }
+/*.anon { background: #E8E8E8; }
+.bot { background: #d3e6fc; }
+.minor {  }*/
 
-td.date { font-weight: bold; font-size: 100%; padding: 10px 0px 10px 0px !important; }
+.date { font-weight: bold; font-size: 100%; padding: 10px 0px 10px 0px !important; }
 .changes { font-style: italic; }
 
 .user-trusted { color: #999999; }
@@ -20,6 +22,7 @@ td.date { font-weight: bold; font-size: 100%; padding: 10px 0px 10px 0px !import
 }
 
 .new-entry { background:#f7dc6f !important; }
+.new-art {  }
 .redirect { font-style: italic; }
 .revert { text-decoration: line-through; }
 .stat { font-size:x-small; vertical-align:top; font-weight: bold; color: #ccc; }

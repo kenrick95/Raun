@@ -359,7 +359,7 @@ $(document).ready(function () {
 						$('#main-table > tbody > tr#row-' + data[i]['rcid']).addClass("new-entry");
 						
 						
-						console.log(attr);
+						//console.log(attr);
 						show_art = true;
 						if (attr.indexOf("bot") >= 0) {
 							if (!config['show_bot']) {

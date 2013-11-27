@@ -12,7 +12,7 @@
 	
 	<!-- Bootstrap core CSS -->
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold&amp;subset=Latin">
-	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
 	
 	<link href="css/style.css" rel="stylesheet">
 	

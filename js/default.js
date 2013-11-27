@@ -357,16 +357,35 @@ $(document).ready(function () {
 						//$(msg).hide().appendTo("#main-table-body").slideDown('slow');
 						$("#main-table-body").prepend(msg);
 						$('#main-table > tbody > tr#row-' + data[i]['rcid']).addClass("new-entry");
-						if	(
-							((attr.indexOf("anon") >= 0) && (config['show_anon']))
-							|| ((attr.indexOf("bot") >= 0) && (config['show_bot']))
-							|| ((attr.indexOf("minor") >= 0) && (config['show_minor']))
-							|| ((attr.indexOf("new") >= 0) && (config['show_new']))
-							
-							)
-						{
+						
+						
+						console.log(attr);
+						show_art = true;
+						if (attr.indexOf("bot") >= 0) {
+							if (!config['show_bot']) {
+								show_art = false;	
+							}
+						}
+						if (attr.indexOf("minor") >= 0) {
+							if (!config['show_minor']) {
+								show_art = false;	
+							}
+						}
+						if (attr.indexOf("new-art") >= 0) {
+							if (!config['show_new']) {
+								show_art = false;	
+							}
+						}
+						if (attr.indexOf("anon") >= 0) {
+							if (!config['show_anon']) {
+								show_art = false;	
+							}
+						}
+						
+						if (show_art) {
 							sD('#main-table > tbody > tr#row-' + data[i]['rcid']);
 						}
+						
 						
 						
 					}

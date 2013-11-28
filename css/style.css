@@ -23,7 +23,7 @@ body { font-family: Ubuntu, sans-serif; }
 
 .new-entry { background:#f7dc6f !important; }
 .new-art {  }
-.redirect { font-style: italic; }
+.redirect {  }
 .revert { text-decoration: line-through; }
 .stat { font-size:x-small; vertical-align:top; font-weight: bold; color: #ccc; }
 
@@ -49,9 +49,7 @@ body { font-family: Ubuntu, sans-serif; }
 .ns-101 { background: #00aba9 !important; } /* Pembicaraan Portal */
 
 
-.main {
-	margin-top:4em;
-}
-#def {
-	text-align:center;	
-}
+.main { margin-top:4em; }
+#def { text-align:center; }
+
+#stat { font-style:italic; font-size:.8em; }

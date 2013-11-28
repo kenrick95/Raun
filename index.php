@@ -69,6 +69,12 @@
 								</div>
 								<div class="checkbox">
 									<label>
+									<input type="checkbox" id="show_redirect" class="config" value="true">
+										<span class="label label-warning">Halaman pengalihan</span>
+									</label>
+								</div>
+								<div class="checkbox">
+									<label>
 									<input type="checkbox" id="show_new" class="config" value="true">
 										<span class="label label-success">Halaman baru</span>
 									</label>
@@ -92,19 +98,21 @@
 			<div id="def">
 				<p class="lead"><b>ra&middot;un</b> <i>v cak</i> berkeliling; ronda; patroli;</p>
 			</div>
-			<table class="table" id="main-table">
-				<thead>
-					<tr>
-						<th colspan="2" class="col-lg-1 col-md-1 col-sm-1 col-xs-1" nowrap>Waktu (UTC)</th>
-						<th class="col-lg-5 col-md-5 col-sm-5 col-xs-5">Halaman</th>
-						<th class="col-lg-1 col-md-1 col-sm-1 col-xs-5">Pengguna</th>
-						<th class="col-lg-5 col-md-5 col-sm-5 col-xs-5">Keterangan</th>
-					</tr>
-				</thead>
-				<tbody id="main-table-body">
-				
-				</tbody>
-			</table>
+			<div class="table-responsive">
+				<table class="table" id="main-table">
+					<thead>
+						<tr>
+							<th colspan="2" class="col-lg-1 col-md-1 col-sm-1 col-xs-1" nowrap>Waktu (UTC)</th>
+							<th class="col-lg-5 col-md-5 col-sm-5 col-xs-5">Halaman</th>
+							<th class="col-lg-1 col-md-1 col-sm-1 col-xs-5">Pengguna</th>
+							<th class="col-lg-5 col-md-5 col-sm-5 col-xs-5">Keterangan</th>
+						</tr>
+					</thead>
+					<tbody id="main-table-body">
+					
+					</tbody>
+				</table>
+			</div>
 		</div>
 	
 	</div><!-- /.container -->

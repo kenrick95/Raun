@@ -2,7 +2,7 @@ pause = false;
 itu = 0;
 last_rcid = 0;
 gtz = 0;
-config = {show_bot: false, show_anon: true, show_new: true, show_minor:true};
+config = {show_bot: false, show_anon: true, show_new: true, show_minor:true, show_redirect:true};
 
 
 $(document).ready(function () {
@@ -100,20 +100,23 @@ $(document).ready(function () {
 	
 	$(document).on( "click", ".ns", function(){
 		$('#help').modal('show');
-		//console.log("a");
 	});
 	
 	function update_config() {
+		
 		createCookie("show_bot", $("#show_bot").prop( "checked" ), 30);
 		createCookie("show_anon", $("#show_anon").prop( "checked" ), 30);
 		createCookie("show_new", $("#show_new").prop( "checked" ), 30);
 		createCookie("show_minor", $("#show_minor").prop( "checked" ), 30);	
+		createCookie("show_redirect", $("#show_redirect").prop( "checked" ), 30);	
 		config = {
 			show_bot: $("#show_bot").prop( "checked" ),
 			show_anon: $("#show_anon").prop( "checked" ),
 			show_new: $("#show_new").prop( "checked" ),
-			show_minor:$("#show_minor").prop( "checked" )
+			show_minor:$("#show_minor").prop( "checked" ),
+			show_redirect:$("#show_redirect").prop( "checked" )
 		}
+		
 	}
 	
 	$(".config").change(function () {
@@ -122,36 +125,40 @@ $(document).ready(function () {
 			show_bot: $("#show_bot").prop( "checked" ),
 			show_anon: $("#show_anon").prop( "checked" ),
 			show_new: $("#show_new").prop( "checked" ),
-			show_minor:$("#show_minor").prop( "checked" )
+			show_minor:$("#show_minor").prop( "checked" ),
+			show_redirect:$("#show_redirect").prop( "checked" )
 		}
 		
-		if (new_config['show_bot'] && !config['show_bot']) {
-			sD(".bot");	
-		} else if (!new_config['show_bot'] && config['show_bot']) {
+		if (new_config['show_bot'] && !config['show_bot']) sD(".bot");
+		if (new_config['show_anon'] && !config['show_anon']) sD(".anon");
+		if (new_config['show_new'] && !config['show_new']) sD(".new-art");
+		if (new_config['show_minor'] && !config['show_minor']) sD(".minor");
+		if (new_config['show_redirect'] && !config['show_redirect']) sD(".redirect");
+		
+		if (!new_config['show_bot']) {
 			sU(".bot");
 		}
-		if (new_config['show_anon'] && !config['show_anon']) {
-			sD(".anon");	
-		} else if (!new_config['show_anon'] && config['show_anon']) {
+		if (!new_config['show_anon']) {
 			sU(".anon");
 		}
-		if (new_config['show_new'] && !config['show_new']) {
-			sD(".new-art");	
-		} else if (!new_config['show_new'] && config['show_new']) {
+		if (!new_config['show_new']) {
 			sU(".new-art");
 		}
-		if (new_config['show_minor'] && !config['show_minor']) {
-			sD(".minor");	
-		} else if (!new_config['show_minor'] && config['show_minor']) {
+		if (!new_config['show_minor']) {
 			sU(".minor");
+		}
+		if (!new_config['show_redirect']) {
+			sU(".redirect");
 		}
 		
 		update_config();
 	});
 	
 	function sD(elem) {
-	//  http://stackoverflow.com/questions/467336/jquery-how-to-use-slidedown-or-show-function-on-a-table-row
 		$(elem).show();
+		/* slow...
+	//  http://stackoverflow.com/questions/467336/jquery-how-to-use-slidedown-or-show-function-on-a-table-row
+		
 		$(elem).find('div').show();
 		$(elem)
 		.find('td')
@@ -162,9 +169,11 @@ $(document).ready(function () {
 			//console.log('b');
 			var $set = $(this);
 			$set.replaceWith($set.contents());
-		});
+		});*/
 	}
 	function sU(elem) {
+		$(elem).hide();
+		/* slow...
 	//  http://stackoverflow.com/questions/467336/jquery-how-to-use-slidedown-or-show-function-on-a-table-row
 		$(elem)
 		.find('td')
@@ -175,7 +184,7 @@ $(document).ready(function () {
 		
 			$(this).parent().parent().hide();
 		
-		});
+		});*/
 	}
 	
 	function ns(i) {
@@ -234,7 +243,7 @@ $(document).ready(function () {
 						tz = data[i]['timestamp'];
 						time = new Date(tz);
 						
-						comment = data[i]['parsedcomment'].replace(/\/wiki\//g, "http://id.wikipedia.org/wiki");
+						comment = data[i]['parsedcomment'].replace(/\"\/wiki\//g, "\"http://id.wikipedia.org/wiki/");
 						
 						attr = "";
 						
@@ -246,6 +255,9 @@ $(document).ready(function () {
 						}
 						if ("minor" in data[i]) {
 							attr += "minor ";
+						}
+						if ("redirect" in data[i]) {
+							attr += "redirect ";
 						}
 						if (data[i]['type'] == 'new') {
 							attr += "new-art ";
@@ -271,7 +283,6 @@ $(document).ready(function () {
 							+ "</td>"
 							
 							+ "<td>"
-							
 							+ "<a href=\""
 							+ "http://id.wikipedia.org/"
 							+ "w/index.php?title="
@@ -289,7 +300,6 @@ $(document).ready(function () {
 							+ " . . ";
 							
 						msg += "<span class=\"";
-						
 						if (s_diff > 0) {
 							msg += "size-pos";
 						} else if (s_diff < 0) {
@@ -300,16 +310,13 @@ $(document).ready(function () {
 						if (Math.abs(s_diff) > 500) {
 							msg += " size-large";
 						}
-						
 						msg += "\">";
 							
 						msg += "("
 							+ s_diff
 							+ ")";
-						
 							
 						msg += "</span>";
-						
 						msg += "</td>"
 							
 							+ "<td>"
@@ -322,12 +329,9 @@ $(document).ready(function () {
 							+ data[i]['user']
 							
 							+ "</a>"
-							
 							+ "</td>"
 							
 							+ "<td>";
-						
-						
 						if (data[i]['type'] == 'new') {
 							msg += "<span class=\"label label-success\" title=\"Halaman baru\">baru</span> ";
 						}
@@ -336,6 +340,9 @@ $(document).ready(function () {
 						}
 						if ("anon" in data[i]) {
 							msg += "<span class=\"label label-danger\" title=\"Suntingan pengguna anonim\">anon</span> ";
+						}
+						if ("redirect" in data[i]) {
+							msg += "<span class=\"label label-warning\" title=\"Halaman pengalihan\">alih</span> ";
 						}
 						if ("bot" in data[i]) {
 							msg += "<span class=\"label label-info\" title=\"Suntingan bot\">bot</span> ";
@@ -353,13 +360,10 @@ $(document).ready(function () {
 							 "</td>"
 							+ "</tr>\n";
 						
-						
-						//$(msg).hide().appendTo("#main-table-body").slideDown('slow');
 						$("#main-table-body").prepend(msg);
+						$('#main-table > tbody > tr#row-' + data[i]['rcid']).hide();
 						$('#main-table > tbody > tr#row-' + data[i]['rcid']).addClass("new-entry");
 						
-						
-						//console.log(attr);
 						show_art = true;
 						if (attr.indexOf("bot") >= 0) {
 							if (!config['show_bot']) {
@@ -368,7 +372,12 @@ $(document).ready(function () {
 						}
 						if (attr.indexOf("minor") >= 0) {
 							if (!config['show_minor']) {
-								show_art = false;	
+								show_art = false;
+							}
+						}
+						if (attr.indexOf("redirect") >= 0) {
+							if (!config['show_redirect']) {
+								show_art = false;
 							}
 						}
 						if (attr.indexOf("new-art") >= 0) {
@@ -382,7 +391,7 @@ $(document).ready(function () {
 							}
 						}
 						
-						if (show_art) {
+						if (show_art === true) {
 							sD('#main-table > tbody > tr#row-' + data[i]['rcid']);
 						}
 						
@@ -402,33 +411,31 @@ $(document).ready(function () {
 	
 	function init() {
 		if (readCookie("show_bot") == null) {
-			$("#show_bot").prop( "checked", true );
+			$("#show_bot").prop( "checked", false );
 			$("#show_anon").prop( "checked", true );
 			$("#show_new").prop( "checked", true );
 			$("#show_minor").prop( "checked", true );
+			$("#show_redirect").prop( "checked", true );
 			createCookie("show_bot", $("#show_bot").prop( "checked" ), 30);
 			createCookie("show_anon", $("#show_anon").prop( "checked" ), 30);
 			createCookie("show_new", $("#show_new").prop( "checked" ), 30);
 			createCookie("show_minor", $("#show_minor").prop( "checked" ), 30);
-			config = {
-				show_bot: $("#show_bot").prop( "checked" ),
-				show_anon: $("#show_anon").prop( "checked" ),
-				show_new: $("#show_new").prop( "checked" ),
-				show_minor:$("#show_minor").prop( "checked" )
-			}
+			createCookie("show_redirect", $("#show_redirect").prop( "checked" ), 30);
 		} else {
-			$("#show_bot").prop( "checked", readCookie("show_bot") );
-			$("#show_anon").prop( "checked", readCookie("show_anon") );
-			$("#show_new").prop( "checked", readCookie("show_new") );
-			$("#show_minor").prop( "checked", readCookie("show_minor") );
-			config = {
+			$("#show_bot").prop( "checked", readCookie("show_bot") == 'true' );
+			$("#show_anon").prop( "checked", readCookie("show_anon") == 'true' );
+			$("#show_new").prop( "checked", readCookie("show_new") == 'true' );
+			$("#show_minor").prop( "checked", readCookie("show_minor") == 'true' );
+			$("#show_redirect").prop( "checked", readCookie("show_redirect") == 'true' );
+			
+		}
+		config = {
 				show_bot: $("#show_bot").prop( "checked" ),
 				show_anon: $("#show_anon").prop( "checked" ),
 				show_new: $("#show_new").prop( "checked" ),
-				show_minor:$("#show_minor").prop( "checked" )
+				show_minor:$("#show_minor").prop( "checked" ),
+				show_redirect:$("#show_redirect").prop( "checked" )
 			}
-		}
-		
 		update(get_time() );
 		//update(iso_str());
 		timer();

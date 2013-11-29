@@ -37,17 +37,18 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#" style="min-width:6em;">Raun<span id="stat"></span></a>
+				<a class="navbar-brand" href="#about" data-toggle="modal" data-target="#about" style="min-width:6em; height:50px;">Raun<span id="stat"></span></a>
 			</div>
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
 					<li><a href="#help" data-toggle="modal" data-target="#help"><span class="glyphicon glyphicon-question-sign"></span> Bantuan</a></li>
-					<li><a href="#about" data-toggle="modal" data-target="#about"><span class="glyphicon glyphicon-info-sign"></span> Tentang</a></li>
 					<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-wrench"></span>
  Setelan <b class="caret"></b></a>
 						<div class="dropdown-menu keep-open">
 							<div style="padding:0 1em;">
+								<button id="pause" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pause"></span> Pause</button>
+								<hr>
 								Tampilkan:
 								<div class="checkbox">
 									<label>
@@ -82,10 +83,24 @@
 							</div>
 						</div>
 					</li>
+					
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li style="padding:8px;"><button id="pause" class="btn btn-warning"><span class="glyphicon glyphicon-pause"></span> Pause</button></li>
-					<li><a title="Waktu, dalam UTC"><span class="glyphicon glyphicon-time"></span> <span id="tz"></span></a></li>
+					<li style="padding:12.5px;"><script id='fbdvsdh'>(function(i){var f,s=document.getElementById(i);f=document.createElement('iframe');f.src='//api.flattr.com/button/view/?uid=kenrick95&button=compact&url='+encodeURIComponent(document.URL);f.title='Flattr';f.height=20;f.width=110;f.style.borderWidth=0;s.parentNode.insertBefore(f,s);})('fbdvsdh');</script></li>
+					<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-stats"></span>
+ Statistik <b class="caret"></b></a>
+						<div class="dropdown-menu keep-open">
+							<div style="padding:0 1em;">
+							<div title="Waktu, dalam UTC" style="text-align:center;">
+								<span class="glyphicon glyphicon-time"></span> <span id="tz"></span>
+							</div>
+							<div id="w_stat">
+								 <img src='img/loading.gif' style='width:16px; height:16px;'>
+							</div>
+							</div>
+						</div>
+					</li>
 				</ul>
 			</div><!--/.nav-collapse -->
 			

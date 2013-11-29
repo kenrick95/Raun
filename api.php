@@ -80,6 +80,7 @@ function statistics () {
 		return json_decode($data, true);
 		
 }
+
 function new_pages ($limit = 500) {
         global $settings;
 		
@@ -100,41 +101,35 @@ function new_pages ($limit = 500) {
 		return json_decode($data, true);
 }
 
+function user_stat($username) {
+	global $settings;
+		
+		if (empty($username)) {
+			return false;
+		}
+		
+        $url = $settings['wikiroot'] . "/w/api.php?action=query&format=json";
+		
+        $params = "action=query&list=users&usprop=blockinfo|groups|editcount|rights|registration|emailable|gender&ususers=". $username;
+		
+        $data = httpRequest($url, $params);
+		
+		if (empty($data)) {
+			throw new Exception("No data received from server. Check that API is enabled.");
+        }
+
+		return json_decode($data, true);
+
+}
+
 try {
 		global $settings;
-		/*if (isset($_POST['num_pages'])) {
+		if (isset($_POST['statistics'])) {
 			$statistics = statistics();
 			$statistics = $statistics['query']['statistics'];
 			echo json_encode($statistics);
 			
-		} else if (isset($_POST['hex'])) {
-			
-			$statistics = statistics();
-			$articles = $statistics['query']['statistics']['articles'];
-			
-			$X = $_POST['hex'];
-			$S = $articles;
-			$A = $S - $X;
-			$B = $A + 1;
-			
-			$data = new_pages($B);
-			$num_pages = sizeof ($data['query']['recentchanges']);
-			
-			$msg = array();
-			$msg['status'] = 'OK';
-			$msg['message'] = $data['query']['recentchanges'][$num_pages - 1];
-			
-			if ($num_pages != $B) {
-				$msg['status'] = 'Error';
-				$msg['message'] = 'Hanya dapat menentukan '.$num_pages .' halaman terbaru.';
-			}
-			echo json_encode($msg);
-			
-			#echo '<pre>' . print_r($data['query']['recentchanges'][$num_pages - 1], true) . '</pre>';
-			
-			
-			
-		} else if (isset($_POST['from'])) {*/
+		} else if (isset($_POST['from'])) {
 			
 			$limit = isset($_POST['limit']) ? $_POST['limit'] : '';
 			$from = isset($_POST['from']) ? $_POST['from'] : '';
@@ -143,7 +138,12 @@ try {
 			$rc = recent_changes($limit, $from, $to);
 			
 			echo json_encode($rc['query']['recentchanges']);
-		//}
+			
+		} else if (isset($_POST['user'])) {
+			$user_stat = user_stat();
+			$user_stat = $user_stat['query']['users'];
+			echo json_encode($user_stat);
+		}
 		
 } catch (Exception $e) {
 		die("FAILED: " . $e->getMessage());

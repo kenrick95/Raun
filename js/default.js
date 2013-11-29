@@ -210,6 +210,87 @@ $(document).ready(function () {
 		}
 	}
 	
+	function update_stat() {
+		//$("#w_stat").html(" <img src='img/loading.gif' style='width:16px; height:16px;'>");
+		$.ajax({
+			type: "POST",
+			url: "api.php",
+			data: {statistics: true},
+			dataType: "json",
+			success: function(data) {
+				msg = "";
+				
+				depth = data['edits'] * (data['pages'] - data['articles']) * (data['pages'] - data['articles']) / (data['articles'] * data['articles'] * data['pages']);
+				
+				msg += ""
+				+ "<dl class=\"dl-horizontal\">"
+				+ "<dt>"
+				+ "Halaman konten"
+				+ "</dt>"
+				+ "<dd>"
+				+ data['articles']
+				+ "</dd>"
+				
+				+ "<dt>"
+				+ "Jumlah halaman"
+				+ "</dt>"
+				+ "<dd>"
+				+ data['pages']
+				+ "</dd>"
+				
+				+ "<dt>"
+				+ "Jumlah berkas"
+				+ "</dt>"
+				+ "<dd>"
+				+ data['images']
+				+ "</dd>"
+				
+				+ "<dt>"
+				+ "Jumlah suntingan"
+				+ "</dt>"
+				+ "<dd>"
+				+ data['edits']
+				+ "</dd>"
+				
+				+ "<dt>"
+				+ "Kedalaman"
+				+ "</dt>"
+				+ "<dd>"
+				+ parseFloat(depth).toFixed(2)
+				+ "</dd>"
+				
+				+ "<dt>"
+				+ "Jumlah pengguna"
+				+ "</dt>"
+				+ "<dd>"
+				+ data['users']
+				+ "</dd>"
+				
+				+ "<dt>"
+				+ "Pengguna aktif"
+				+ "</dt>"
+				+ "<dd>"
+				+ data['activeusers']
+				+ "</dd>"
+				
+				+ "<dt>"
+				+ "Pengurus"
+				+ "</dt>"
+				+ "<dd>"
+				+ data['admins']
+				+ "</dd>"
+				
+				+ "</dl>";
+				
+				$("#w_stat").html(msg);
+			},
+			error:function (xhr, ajaxOptions, thrownError){
+				console.log(xhr.statusText);
+				$("#stat").html(" " + xhr.statusText);
+			}
+		});
+	}
+	
 	function update(tz) {
 		//update_config();
 		
@@ -217,7 +298,7 @@ $(document).ready(function () {
 		gtz = tz;
 		//$(".new-entry").removeClass("new-entry");
 		$("#stat").html(" <img src='img/loading.gif' style='width:16px; height:16px;'>");
-		
+		update_stat();
 		
 		$.ajax({
 			type: "POST",

@@ -80,13 +80,25 @@
 										<span class="label label-success">Halaman baru</span>
 									</label>
 								</div>
+								<div class="checkbox">
+									<label>
+									<input type="checkbox" id="show_editor" class="config" value="true">
+										<span class="label label-default">Suntingan editor</span>
+									</label>
+								</div>
+								<div class="checkbox">
+									<label>
+									<input type="checkbox" id="show_admin" class="config" value="true">
+										<span class="label label-info">Suntingan pengurus</span>
+									</label>
+								</div>
 							</div>
 						</div>
 					</li>
 					
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li style="padding:12.5px;"><script id='fbdvsdh'>(function(i){var f,s=document.getElementById(i);f=document.createElement('iframe');f.src='//api.flattr.com/button/view/?uid=kenrick95&button=compact&url='+encodeURIComponent(document.URL);f.title='Flattr';f.height=20;f.width=110;f.style.borderWidth=0;s.parentNode.insertBefore(f,s);})('fbdvsdh');</script></li>
+					<li style="padding:12.5px;"><script id='fbo6n0n'>(function(i){var f,s=document.getElementById(i);f=document.createElement('iframe');f.src='//api.flattr.com/button/view/?uid=kenrick95&button=compact&url=http%3A%2F%2Fraun.kenrick95.org%2F';f.title='Flattr';f.height=20;f.width=110;f.style.borderWidth=0;s.parentNode.insertBefore(f,s);})('fbo6n0n');</script></li>
 					<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-stats"></span>
  Statistik <b class="caret"></b></a>

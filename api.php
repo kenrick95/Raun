@@ -121,7 +121,36 @@ function user_stat($username) {
 		return json_decode($data, true);
 
 }
+function user_list($group = 'editor') {
+	global $settings;
+		
+		if (empty($group)) {
+			return false;
+		}
+		
+        $url = $settings['wikiroot'] . "/w/api.php?action=query&format=json";
+		
+        $params = "action=query&list=allusers&aulimit=500&augroup=".$group;
+		
+        $data = httpRequest($url, $params);
+		
+		if (empty($data)) {
+			throw new Exception("No data received from server. Check that API is enabled.");
+        }
 
+		return json_decode($data, true);
+	
+}
+/*
+
+how about when clicking, it shows:
+
+https://id.wikipedia.org/w/index.php?title=Pembicaraan%20Wikipedia:Pembatasan%20hak%20membuat%20artikel%20baru%20untuk%20pengguna%20anonim&diff=7503844&oldid=7503841&diffonly=true&action=render
+
+as a popover?
+as a Collapse accordion?
+
+*/
 try {
 		global $settings;
 		if (isset($_POST['statistics'])) {
@@ -139,10 +168,15 @@ try {
 			
 			echo json_encode($rc['query']['recentchanges']);
 			
-		} else if (isset($_POST['user'])) {
-			$user_stat = user_stat();
+		} else if (isset($_POST['username'])) {
+			$user_stat = user_stat($_POST['username']);
 			$user_stat = $user_stat['query']['users'];
 			echo json_encode($user_stat);
+			
+		} else if (isset($_POST['group'])) {
+			$user_list = user_list($_POST['group']);
+			$user_list = $user_list['query']['allusers'];
+			echo json_encode($user_list);
 		}
 		
 } catch (Exception $e) {

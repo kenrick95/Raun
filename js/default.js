@@ -2,7 +2,8 @@ pause = false;
 itu = 0;
 last_rcid = 0;
 gtz = 0;
-config = {show_bot: false, show_anon: true, show_new: true, show_minor:true, show_redirect:true};
+config = {show_bot: false, show_anon: true, show_new: true, show_minor:true, show_redirect:true, show_editor:true, show_admin:true};
+user_group = new Array();
 
 
 $(document).ready(function () {
@@ -15,6 +16,20 @@ $(document).ready(function () {
 	});
 	//End Twitter Bootstrap keep-open class
 	
+	function formatnum(nStr)
+	// http://www.mredkj.com/javascript/numberFormat.html
+	{
+		nStr += '';
+		x = nStr.split('.');
+		x1 = x[0];
+		x2 = x.length > 1 ? ',' + x[1] : '';
+		var rgx = /(\d+)(\d{3})/;
+		while (rgx.test(x1)) {
+			x1 = x1.replace(rgx, '$1' + '.' + '$2');
+		}
+		return x1 + x2;
+	}
+
 	//Create, Read, Erase Cookie
 	//source: http://www.quirksmode.org/js/cookies.html
 	function createCookie(name, value, days) {
@@ -109,12 +124,16 @@ $(document).ready(function () {
 		createCookie("show_new", $("#show_new").prop( "checked" ), 30);
 		createCookie("show_minor", $("#show_minor").prop( "checked" ), 30);	
 		createCookie("show_redirect", $("#show_redirect").prop( "checked" ), 30);	
+		createCookie("show_editor", $("#show_editor").prop( "checked" ), 30);	
+		createCookie("show_admin", $("#show_admin").prop( "checked" ), 30);	
 		config = {
 			show_bot: $("#show_bot").prop( "checked" ),
 			show_anon: $("#show_anon").prop( "checked" ),
 			show_new: $("#show_new").prop( "checked" ),
 			show_minor:$("#show_minor").prop( "checked" ),
-			show_redirect:$("#show_redirect").prop( "checked" )
+			show_redirect:$("#show_redirect").prop( "checked" ),
+			show_new: $("#show_editor").prop( "checked" ),
+			show_minor:$("#show_admin").prop( "checked" )
 		}
 		
 	}
@@ -126,7 +145,9 @@ $(document).ready(function () {
 			show_anon: $("#show_anon").prop( "checked" ),
 			show_new: $("#show_new").prop( "checked" ),
 			show_minor:$("#show_minor").prop( "checked" ),
-			show_redirect:$("#show_redirect").prop( "checked" )
+			show_redirect:$("#show_redirect").prop( "checked" ),
+			show_editor: $("#show_editor").prop( "checked" ),
+			show_admin:$("#show_admin").prop( "checked" )
 		}
 		
 		if (new_config['show_bot'] && !config['show_bot']) sD(".bot");
@@ -134,6 +155,8 @@ $(document).ready(function () {
 		if (new_config['show_new'] && !config['show_new']) sD(".new-art");
 		if (new_config['show_minor'] && !config['show_minor']) sD(".minor");
 		if (new_config['show_redirect'] && !config['show_redirect']) sD(".redirect");
+		if (new_config['show_editor'] && !config['show_editor']) sD(".editor");
+		if (new_config['show_admin'] && !config['show_admin']) sD(".admin");
 		
 		if (!new_config['show_bot']) {
 			sU(".bot");
@@ -149,6 +172,12 @@ $(document).ready(function () {
 		}
 		if (!new_config['show_redirect']) {
 			sU(".redirect");
+		}
+		if (!new_config['show_editor']) {
+			sU(".editor");
+		}
+		if (!new_config['show_admin']) {
+			sU(".admin");
 		}
 		
 		update_config();
@@ -209,6 +238,54 @@ $(document).ready(function () {
 			case 101: return "Pembicaraan Portal";
 		}
 	}
+
+	/*$(document).on( "click", ".username", function(event){
+		that = $(this);
+		event.preventDefault();
+		that.popover('destroy');
+		
+		$.ajax({
+			type: "POST",
+			url: "api.php",
+			data: {username: $(this).html()},
+			dataType: "json",
+			success: function(data) {
+				
+				that.attr('data-content', data['editcount']);
+				that.popover({content: function (){return $(this).data('content'); } });
+				that.popover('show');
+				
+				// still dont work :(
+			},
+			error:function (xhr, ajaxOptions, thrownError){
+				console.log(xhr.statusText);
+			}
+		});
+	});*/
+	
+	/*$('body').popover({
+		selector: '[rel=popover]'
+	});*/
+	
+	function user_list(group, after_func) {
+		$.ajax({
+			type: "POST",
+			url: "api.php",
+			data: {group: group},
+			dataType: "json",
+			success: function(data) {
+				user_group[group] = new Array();
+				for (var i=0; i<data.length; i++) {
+					user_group[group][data[i]['name'].toLowerCase()] = true;
+				}
+				user_group[group][-1] = data;
+				after_func();
+			},
+			error:function (xhr, ajaxOptions, thrownError){
+				console.log(xhr.statusText);
+			}
+		});	
+	}
 	
 	function update_stat() {
 		//$("#w_stat").html(" <img src='img/loading.gif' style='width:16px; height:16px;'>");
@@ -228,56 +305,56 @@ $(document).ready(function () {
 				+ "Halaman konten"
 				+ "</dt>"
 				+ "<dd>"
-				+ data['articles']
+				+ formatnum(data['articles'])
 				+ "</dd>"
 				
 				+ "<dt>"
 				+ "Jumlah halaman"
 				+ "</dt>"
 				+ "<dd>"
-				+ data['pages']
+				+ formatnum(data['pages'])
 				+ "</dd>"
 				
 				+ "<dt>"
 				+ "Jumlah berkas"
 				+ "</dt>"
 				+ "<dd>"
-				+ data['images']
+				+ formatnum(data['images'])
 				+ "</dd>"
 				
 				+ "<dt>"
 				+ "Jumlah suntingan"
 				+ "</dt>"
 				+ "<dd>"
-				+ data['edits']
+				+ formatnum(data['edits'])
 				+ "</dd>"
 				
 				+ "<dt>"
 				+ "Kedalaman"
 				+ "</dt>"
 				+ "<dd>"
-				+ parseFloat(depth).toFixed(2)
+				+ formatnum(parseFloat(depth).toFixed(4))
 				+ "</dd>"
 				
 				+ "<dt>"
 				+ "Jumlah pengguna"
 				+ "</dt>"
 				+ "<dd>"
-				+ data['users']
+				+ formatnum(data['users'])
 				+ "</dd>"
 				
 				+ "<dt>"
 				+ "Pengguna aktif"
 				+ "</dt>"
 				+ "<dd>"
-				+ data['activeusers']
+				+ formatnum(data['activeusers'])
 				+ "</dd>"
 				
 				+ "<dt>"
 				+ "Pengurus"
 				+ "</dt>"
 				+ "<dd>"
-				+ data['admins']
+				+ formatnum(data['admins'])
 				+ "</dd>"
 				
 				+ "</dl>";
@@ -343,7 +420,12 @@ $(document).ready(function () {
 						if (data[i]['type'] == 'new') {
 							attr += "new-art ";
 						}
-						
+						if (data[i]['user'].toLowerCase() in user_group['editor']) {
+							attr += "editor ";
+						}
+						if (data[i]['user'].toLowerCase() in user_group['sysop']) {
+							attr += "admin ";
+						}
 						
 						msg = "<tr id=\"row-" + data[i]['rcid'] + "\" class=\"" + attr + "\">"
 							
@@ -354,7 +436,6 @@ $(document).ready(function () {
 							+ "class=\"ns ns-"
 							+ data[i]['ns']
 							+ "\">"
-							+ "&nbsp;"
 							+ "</td>"
 							
 							+ "<td>"
@@ -398,10 +479,24 @@ $(document).ready(function () {
 							+ ")";
 							
 						msg += "</span>";
+						
 						msg += "</td>"
 							
 							+ "<td>"
-							+ "<a href=\""
+							+ "<a"
+							+ " class=\""
+							+ "username"
+							+ "\""
+							
+							/*+ " data-content=\""
+							+ "Loading"
+							+ "\""
+							
+							+ " rel=\""
+							+ "popover"
+							+ "\""*/
+							
+							+ " href=\""
 							+ "http://id.wikipedia.org/"
 							+ "wiki/Special:Contributions/"
 							+ data[i]['user']
@@ -427,6 +522,12 @@ $(document).ready(function () {
 						}
 						if ("bot" in data[i]) {
 							msg += "<span class=\"label label-info\" title=\"Suntingan bot\">bot</span> ";
+						}
+						if (data[i]['user'].toLowerCase() in user_group['editor']) {
+							msg += "<span class=\"label label-default\" title=\"Suntingan editor\">editor</span> ";
+						}
+						if (data[i]['user'].toLowerCase() in user_group['sysop']) {
+							msg += "<span class=\"label label-info\" title=\"Suntingan pengurus\">admin</span> ";
 						}
 						
 						msg += comment;
@@ -471,21 +572,34 @@ $(document).ready(function () {
 								show_art = false;	
 							}
 						}
+						if (attr.indexOf("admin") >= 0) {
+							if (!config['show_admin']) {
+								show_art = false;	
+							}
+						}
+						if (attr.indexOf("editor") >= 0) {
+							if (!config['show_editor']) {
+								show_art = false;	
+							}
+						}
 						
 						if (show_art === true) {
 							sD('#main-table > tbody > tr#row-' + data[i]['rcid']);
 						}
 						
 						
-						
 					}
-					setTimeout(function () { $(".new-entry").removeClass("new-entry"); }, 1000);
+					setTimeout(function () {
+						$(".new-entry").removeClass("new-entry");
+						//$(".anon").addClass("danger");
+					}, 1000);
 					setTimeout(function () { update(tz); }, 10000);
 				}
 			},
 			error:function (xhr, ajaxOptions, thrownError){
 				console.log(xhr.statusText);
 				$("#stat").html(" " + xhr.statusText);
+				setTimeout(function () { update(tz); }, 3000);
 			}
 		});
 	}
@@ -497,17 +611,23 @@ $(document).ready(function () {
 			$("#show_new").prop( "checked", true );
 			$("#show_minor").prop( "checked", true );
 			$("#show_redirect").prop( "checked", true );
+			$("#show_editor").prop( "checked", true );
+			$("#show_admin").prop( "checked", true );
 			createCookie("show_bot", $("#show_bot").prop( "checked" ), 30);
 			createCookie("show_anon", $("#show_anon").prop( "checked" ), 30);
 			createCookie("show_new", $("#show_new").prop( "checked" ), 30);
 			createCookie("show_minor", $("#show_minor").prop( "checked" ), 30);
 			createCookie("show_redirect", $("#show_redirect").prop( "checked" ), 30);
+			createCookie("show_editor", $("#show_editor").prop( "checked" ), 30);
+			createCookie("show_admin", $("#show_admin").prop( "checked" ), 30);
 		} else {
 			$("#show_bot").prop( "checked", readCookie("show_bot") == 'true' );
 			$("#show_anon").prop( "checked", readCookie("show_anon") == 'true' );
 			$("#show_new").prop( "checked", readCookie("show_new") == 'true' );
 			$("#show_minor").prop( "checked", readCookie("show_minor") == 'true' );
 			$("#show_redirect").prop( "checked", readCookie("show_redirect") == 'true' );
+			$("#show_editor").prop( "checked", readCookie("show_editor") == 'true' );
+			$("#show_admin").prop( "checked", readCookie("show_admin") == 'true' );
 			
 		}
 		config = {
@@ -515,11 +635,15 @@ $(document).ready(function () {
 				show_anon: $("#show_anon").prop( "checked" ),
 				show_new: $("#show_new").prop( "checked" ),
 				show_minor:$("#show_minor").prop( "checked" ),
-				show_redirect:$("#show_redirect").prop( "checked" )
+				show_redirect:$("#show_redirect").prop( "checked" ),
+				show_editor:$("#show_editor").prop( "checked" ),
+				show_admin:$("#show_admin").prop( "checked" )
 			}
-		update(get_time() );
+		
 		//update(iso_str());
 		timer();
+		user_list('editor', function () { user_list('sysop', function () { update(get_time() ); }); });
+		
 	}
 	
 	init();

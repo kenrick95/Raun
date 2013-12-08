@@ -3,12 +3,12 @@ Raun
 
 Tool to view Indonesian Wikipedia's Recent Changes, live.
 
-See it running at http://raun.kenrick95.org/
+See it running at https://tools.wmflabs.org/raun/
 
 ----
 [id]
 
-Lihat proyek ini di http://raun.kenrick95.org/
+Lihat proyek ini di https://tools.wmflabs.org/raun/
 
 ra·un v cak berkeliling; ronda; patroli;
 

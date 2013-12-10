@@ -1,6 +1,4 @@
 <?php
-
-
 $settings['wikiroot'] = "http://id.wikipedia.org/";
 $settings['cookiefile'] = "cookies.tmp";
 
@@ -9,7 +7,7 @@ function httpRequest($url, $post="") {
 
         $ch = curl_init();
         //Change the user agent below suitably
-        curl_setopt($ch, CURLOPT_USERAGENT, 'Kenrick-Tool/0.4');
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Kenrick-Tool/Raun');
         curl_setopt($ch, CURLOPT_URL, ($url));
         curl_setopt( $ch, CURLOPT_ENCODING, "UTF-8" );
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -141,18 +139,16 @@ function user_list($group = 'editor') {
 		return json_decode($data, true);
 	
 }
-/*
 
-how about when clicking, it shows:
-
-https://id.wikipedia.org/w/index.php?title=Pembicaraan%20Wikipedia:Pembatasan%20hak%20membuat%20artikel%20baru%20untuk%20pengguna%20anonim&diff=7503844&oldid=7503841&diffonly=true&action=render
-
-as a popover?
-as a Collapse accordion?
-
-*/
 try {
 		global $settings;
+		
+		if (isset($_POST['project']) && isset($_POST['language'])) {
+			if (in_array($_POST['project'], array('wikipedia', 'wikinews', 'wikibooks', 'wiktionary', 'wikiquote', 'wikivoyage', 'wikidata', 'wikimedia', 'wikiversity', 'wikisource', 'mediawiki'))) {
+				$settings['wikiroot'] = "http://" . $_POST['language'] . "." . $_POST['project'] . ".org/";	
+				
+			}
+		}
 		if (isset($_POST['statistics'])) {
 			$statistics = statistics();
 			$statistics = $statistics['query']['statistics'];
@@ -177,6 +173,7 @@ try {
 			$user_list = user_list($_POST['group']);
 			$user_list = $user_list['query']['allusers'];
 			echo json_encode($user_list);
+			
 		}
 		
 } catch (Exception $e) {

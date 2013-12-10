@@ -1,4 +1,12 @@
-<!DOCTYPE html>
+<?php
+ob_start();
+if (isset($_GET['locale'])) {
+	include "locale/locale-".$_GET['locale'].".php";
+} else {
+	include "locale/locale-id.php";
+}
+ob_end_clean();
+?><!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -11,7 +19,7 @@
 	<title>Raun</title>
 	
 	<!-- Bootstrap core CSS -->
-	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold&amp;subset=Latin">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu:regular,bold&amp;subset=Latin">
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	
 	<link href="css/style.css" rel="stylesheet">
@@ -41,55 +49,67 @@
 			</div>
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="#help" data-toggle="modal" data-target="#help"><span class="glyphicon glyphicon-question-sign"></span> Bantuan</a></li>
+					<li><a href="#help" data-toggle="modal" data-target="#help"><span class="glyphicon glyphicon-question-sign"></span> <?php echo $message['help']; ?></a></li>
 					<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-wrench"></span>
- Setelan <b class="caret"></b></a>
+ <?php echo $message['settings']; ?> <b class="caret"></b></a>
 						<div class="dropdown-menu keep-open">
 							<div style="padding:0 1em;">
-								<button id="pause" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pause"></span> Pause</button>
+								<button id="pause" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pause"></span> <?php echo $message['settings_pause']; ?></button>
 								<hr>
-								Tampilkan:
+								<form class="form-inline" role="form">
+									<div class="form-group">
+									<label class="sr-only" for="language"><?php echo $message['language']; ?></label>
+									<input type="text" class="form-control config" id="language" placeholder="<?php echo $message['language']; ?>" value="id">
+									</div>
+									<div class="form-group">
+									<label class="sr-only" for="project"><?php echo $message['project']; ?></label>
+									<input type="text" class="form-control config" id="project" placeholder="<?php echo $message['project']; ?>" value="wikipedia">
+									</div>
+								</form>
+								
+								<hr>
+								<?php echo $message['settings_show']; ?>:
 								<div class="checkbox">
 									<label>
 									<input type="checkbox" id="show_bot" class="config" value="true">
-										<span class="label label-info">Suntingan bot</span>
+										<span class="label label-info"><?php echo $message['settings_bot_edits']; ?></span>
 									</label>
 								</div>
 								<div class="checkbox">
 									<label>
 									<input type="checkbox" id="show_anon" class="config" value="true">
-										<span class="label label-danger">Suntingan anon</span>
+										<span class="label label-danger"><?php echo $message['settings_anon_edits']; ?></span>
 									</label>
 								</div>
 								<div class="checkbox">
 									<label>
 									<input type="checkbox" id="show_minor" class="config" value="true">
-										<span class="label label-primary">Suntingan kecil</span>
+										<span class="label label-primary"><?php echo $message['settings_minor_edits']; ?></span>
 									</label>
 								</div>
 								<div class="checkbox">
 									<label>
 									<input type="checkbox" id="show_redirect" class="config" value="true">
-										<span class="label label-warning">Halaman pengalihan</span>
+										<span class="label label-warning"><?php echo $message['settings_redirects']; ?></span>
 									</label>
 								</div>
 								<div class="checkbox">
 									<label>
 									<input type="checkbox" id="show_new" class="config" value="true">
-										<span class="label label-success">Halaman baru</span>
+										<span class="label label-success"><?php echo $message['settings_new_pages']; ?></span>
 									</label>
 								</div>
 								<div class="checkbox">
 									<label>
 									<input type="checkbox" id="show_editor" class="config" value="true">
-										<span class="label label-default">Suntingan editor</span>
+										<span class="label label-default"><?php echo $message['settings_editor_edits']; ?></span>
 									</label>
 								</div>
 								<div class="checkbox">
 									<label>
 									<input type="checkbox" id="show_admin" class="config" value="true">
-										<span class="label label-info">Suntingan pengurus</span>
+										<span class="label label-info"><?php echo $message['settings_admin_edits']; ?></span>
 									</label>
 								</div>
 							</div>
@@ -98,13 +118,14 @@
 					
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li style="padding:12.5px;"><script id='fbo6n0n'>(function(i){var f,s=document.getElementById(i);f=document.createElement('iframe');f.src='//api.flattr.com/button/view/?uid=kenrick95&button=compact&url=http%3A%2F%2Fraun.kenrick95.org%2F';f.title='Flattr';f.height=20;f.width=110;f.style.borderWidth=0;s.parentNode.insertBefore(f,s);})('fbo6n0n');</script></li>
+					<li style="padding:12.5px 7px;"><iframe src="http://ghbtns.com/github-btn.html?user=kenrick95&repo=Raun&type=watch&count=true"
+  allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe></li>
 					<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-stats"></span>
- Statistik <b class="caret"></b></a>
+ <?php echo $message['stat']; ?> <b class="caret"></b></a>
 						<div class="dropdown-menu keep-open">
 							<div style="padding:0 1em;">
-							<div title="Waktu, dalam UTC" style="text-align:center;">
+							<div title="<?php echo $message['time_utc']; ?>" style="text-align:center;">
 								<span class="glyphicon glyphicon-time"></span> <span id="tz"></span>
 							</div>
 							<div id="w_stat">
@@ -123,16 +144,16 @@
 	
 		<div class="main">
 			<div id="def">
-				<p class="lead"><b>ra&middot;un</b> <i>v cak</i> berkeliling; ronda; patroli;</p>
+				<p class="lead"><b>ra&middot;un</b> <i><?php echo $message['def_i']; ?></i> <?php echo $message['def_def']; ?></p>
 			</div>
 			<div class="table-responsive">
 				<table class="table" id="main-table">
 					<thead>
 						<tr>
-							<th colspan="2" class="col-lg-1 col-md-1 col-sm-1 col-xs-1" nowrap>Waktu (UTC)</th>
-							<th class="col-lg-5 col-md-5 col-sm-5 col-xs-5">Halaman</th>
-							<th class="col-lg-1 col-md-1 col-sm-1 col-xs-5">Pengguna</th>
-							<th class="col-lg-5 col-md-5 col-sm-5 col-xs-5">Keterangan</th>
+							<th colspan="2" class="col-lg-1 col-md-1 col-sm-1 col-xs-1" nowrap><?php echo $message['main_time_utc']; ?></th>
+							<th class="col-lg-5 col-md-5 col-sm-5 col-xs-5"><?php echo $message['main_page']; ?></th>
+							<th class="col-lg-1 col-md-1 col-sm-1 col-xs-5"><?php echo $message['main_user']; ?></th>
+							<th class="col-lg-5 col-md-5 col-sm-5 col-xs-5"><?php echo $message['main_info']; ?></th>
 						</tr>
 					</thead>
 					<tbody id="main-table-body">
@@ -150,86 +171,83 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="helpLabel">Tentang</h4>
+					<h4 class="modal-title" id="helpLabel"><?php echo $message['help']; ?></h4>
 				</div>
 				<div class="modal-body">
-					<p class="lead"><b>ra&middot;un</b> <i>v cak</i> berkeliling; ronda; patroli;</p>
-					<p>Raun adalah alat untuk memantau perubahan terbaru Wikipedia bahasa Indonesia secara langsung (<i>live</i>). Setiap beberapa saat, Raun akan memuat perubahan terbaru tepat di depanmu secara otomatis.</p>
-					<p>Anda dapat memause (menghentikan sementara) alat ini dengan mengeklik tombol "Pause". Setelah itu, Anda dapat melanjutkan alat ini dengan mengeklik tombol "Jalan!".
-					</p>
-					<p>Selain itu, Anda juga dapat mengatur untuk menampilkan jenis suntingan apa saja yang Anda ingin lihat di bagian "Setelan".
-					</p>
-					<p>Legenda:
-					</p>
+					<p class="lead"><b>ra&middot;un</b> <i><?php echo $message['def_i']; ?></i> <?php echo $message['def_def']; ?></p>
+					<p><?php echo $message['help_p1']; ?></p>
+					<p><?php echo $message['help_p2']; ?></p>
+					<p><?php echo $message['help_p3']; ?></p>
+					<p><?php echo $message['help_legend']; ?></p>
 						<table class="table">
 							<thead>
 								<tr>
-									<th>Warna</th>
-									<th>Ruang nama</th>
-									<th>Warna</th>
-									<th>Ruang nama</th>
+									<th><?php echo $message['color']; ?></th>
+									<th><?php echo $message['ns']; ?></th>
+									<th><?php echo $message['color']; ?></th>
+									<th><?php echo $message['ns']; ?></th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
 									<td class="ns-0">&#32;</td>
-									<td>Artikel</td>
+									<td><?php echo $message['ns0']; ?></td>
 									<td class="ns-1">&#32;</td>
-									<td>Pembicaraan Artikel</td>
+									<td><?php echo $message['ns1']; ?></td>
 								</tr>
 								<tr>
 									<td class="ns-2">&#32;</td>
-									<td>Pengguna</td>
+									<td><?php echo $message['ns2']; ?></td>
 									<td class="ns-3">&#32;</td>
-									<td>Pembicaraan Pengguna</td>
+									<td><?php echo $message['ns3']; ?></td>
 								</tr>
 								<tr>
 									<td class="ns-4">&#32;</td>
-									<td>Wikipedia</td>
+									<td><?php echo $message['ns4']; ?></td>
 									<td class="ns-5">&#32;</td>
-									<td>Pembicaraan Wikipedia</td>
+									<td><?php echo $message['ns5']; ?></td>
 								</tr>
 								<tr>
 									<td class="ns-6">&#32;</td>
-									<td>Berkas</td>
+									<td><?php echo $message['ns6']; ?></td>
 									<td class="ns-7">&#32;</td>
-									<td>Pembicaraan Berkas</td>
+									<td><?php echo $message['ns7']; ?></td>
 								</tr>
 								<tr>
 									<td class="ns-8">&#32;</td>
-									<td>MediaWiki</td>
+									<td><?php echo $message['ns8']; ?></td>
 									<td class="ns-9">&#32;</td>
-									<td>Pembicaraan MediaWiki</td>
+									<td><?php echo $message['ns9']; ?></td>
 								</tr>
 								<tr>
 									<td class="ns-10">&#32;</td>
-									<td>Templat</td>
+									<td><?php echo $message['ns10']; ?></td>
 									<td class="ns-11">&#32;</td>
-									<td>Pembicaraan Templat</td>
+									<td><?php echo $message['ns11']; ?></td>
 								</tr>
 								<tr>
 									<td class="ns-12">&#32;</td>
-									<td>Bantuan</td>
+									<td><?php echo $message['ns12']; ?></td>
 									<td class="ns-13">&#32;</td>
-									<td>Pembicaraan Bantuan</td>
+									<td><?php echo $message['ns13']; ?></td>
 								</tr>
 								<tr>
 									<td class="ns-14">&#32;</td>
-									<td>Kategori</td>
+									<td><?php echo $message['ns14']; ?></td>
 									<td class="ns-15">&#32;</td>
-									<td>Pembicaraan Kategori</td>
+									<td><?php echo $message['ns15']; ?></td>
 								</tr>
 								<tr>
 									<td class="ns-100">&#32;</td>
-									<td>Portal</td>
+									<td><?php echo $message['ns100']; ?></td>
 									<td class="ns-101">&#32;</td>
-									<td>Pembicaraan Portal</td>
+									<td><?php echo $message['ns101']; ?></td>
 								</tr>
 							</tbody>
 						</table>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $message['close']; ?></button>
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
@@ -241,27 +259,25 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="aboutLabel">Tentang</h4>
+					<h4 class="modal-title" id="aboutLabel"><?php echo $message['about']; ?></h4>
 				</div>
 				<div class="modal-body">
-					<p class="lead"><b>ra&middot;un</b> <i>v cak</i> berkeliling; ronda; patroli;</p>
-					<p>Raun adalah alat untuk memantau perubahan terbaru Wikipedia bahasa Indonesia secara langsung (<i>live</i>). Alat ini terinspirasi dari <a href="http://ivan.lanin.org/ronda">Ronda</a>, oleh Ivan Lanin. Proyek ini dimulai oleh <a href="http://kenrick95.org/">Kenrick</a> (<a href="http://id.wikipedia.org/wiki/Pengguna:Kenrick95">Pengguna:Kenrick95</a>).</p>
-					<p>
-						<span class="label label-info">Informasi</span> Situs ini menggunakan <a href="https://id.wikipedia.org/wiki/Kuki_HTTP">kuki</a>. Data yang disimpan kuki akan otomatis dihapus jika Anda tidak mengunjungi situs ini dalam 30 hari.
-					</p>
-					<p>Kredit:
+					<p class="lead"><b>ra&middot;un</b> <i><?php echo $message['def_i']; ?></i> <?php echo $message['def_def']; ?></p>
+					<p><?php echo $message['about_tool']; ?></p>
+					<p><span class="label label-info"><?php echo $message['information']; ?></span> <?php echo $message['about_cookie']; ?></p>
+					<p><?php echo $message['credit']; ?>:
 					</p>
 						<ul>
-							<li><a href="http://ivan.lanin.org/ronda">Ronda</a> (oleh Ivan Lanin)</li>
+							<li><a href="http://ivan.lanin.org/ronda">Ronda</a> (<?php echo $message['about_by']; ?> Ivan Lanin)</li>
 							<li>Twitter Bootstrap 3.0</li>
 							<li>jQuery 1.10.2</li>
 							<li>Wikipedia API</li>
 						</ul>
-					<p>Di luar lisensi kode dan ide yang telah disebutkan, kode proyek ini dilisensikan dengan lisensi MIT</p>
-					<p>Kode tersedia di <a href="https://github.com/kenrick95/Raun">github.com/kenrick95/Raun</a></p>
+					<p><?php echo $message['about_license']; ?></p>
+					<p><?php echo $message['about_github']; ?></p>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $message['close']; ?></button>
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
@@ -274,8 +290,10 @@
 	<script src="js/jquery-1.10.2.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	
-	
+	<script>
+		json_string = <?php echo json_encode($message, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP); ?>;
+		locale_obj = $.parseJSON(json_string);
+	</script>
 	<script src="js/default.js"></script>
-	
 </body>
 </html>

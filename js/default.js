@@ -1,8 +1,19 @@
-pause = false;
-itu = 0;
 last_rcid = 0;
 gtz = 0;
-config = {show_bot: false, show_anon: true, show_new: true, show_minor:true, show_redirect:true, show_editor:true, show_admin:true};
+config = {
+	show_bot: false,
+	show_anon: true,
+	show_new: true,
+	show_minor:true,
+	show_redirect:true,
+	show_editor:true,
+	show_admin:true,
+	pause: false,
+	timeout: 10000,
+	project: "wikipedia",
+	language: "id",
+	locale: "id"
+};
 user_group = new Array();
 
 
@@ -102,12 +113,12 @@ $(document).ready(function () {
 	// End Clock
 	
 	$("#pause").click(function () {
-		if (pause) {
-			pause = false;
+		if (config['pause']) {
+			config['pause'] = false;
 			update(gtz);
 			$("#pause").html("<span class=\"glyphicon glyphicon-pause\"></span> Pause");
 		} else {
-			pause = true;	
+			config['pause'] = true;	
 			$("#pause").html("<span class=\"glyphicon glyphicon-play\"></span> Jalan!");
 		}
 	});
@@ -116,7 +127,7 @@ $(document).ready(function () {
 	$(document).on( "click", ".ns", function(){
 		$('#help').modal('show');
 	});
-	
+
 	function update_config() {
 		
 		createCookie("show_bot", $("#show_bot").prop( "checked" ), 30);
@@ -126,15 +137,25 @@ $(document).ready(function () {
 		createCookie("show_redirect", $("#show_redirect").prop( "checked" ), 30);	
 		createCookie("show_editor", $("#show_editor").prop( "checked" ), 30);	
 		createCookie("show_admin", $("#show_admin").prop( "checked" ), 30);	
-		config = {
-			show_bot: $("#show_bot").prop( "checked" ),
-			show_anon: $("#show_anon").prop( "checked" ),
-			show_new: $("#show_new").prop( "checked" ),
-			show_minor:$("#show_minor").prop( "checked" ),
-			show_redirect:$("#show_redirect").prop( "checked" ),
-			show_new: $("#show_editor").prop( "checked" ),
-			show_minor:$("#show_admin").prop( "checked" )
+		
+		if (readCookie("language") != $("#language").val()) {
+			createCookie("language", $("#language").val(), 30);
+			window.location.reload();
 		}
+		if (readCookie("project") != $("#project").val()) {
+			createCookie("project", $("#project").val(), 30);
+			window.location.reload();
+		}
+		
+		config["show_bot"] = $("#show_bot").prop( "checked" );
+		config["show_anon"] = $("#show_anon").prop( "checked" );
+		config["show_new"] = $("#show_new").prop( "checked" );
+		config["show_minor"] = $("#show_minor").prop( "checked" );
+		config["show_redirect"] = $("#show_redirect").prop( "checked" );
+		config["show_editor"] = $("#show_editor").prop( "checked" );
+		config["show_admin"] = $("#show_admin").prop( "checked" );
+		config["language"] = $("#language").val();
+		config["project"] = $("#project").val();
 		
 	}
 	
@@ -185,37 +206,10 @@ $(document).ready(function () {
 	
 	function sD(elem) {
 		$(elem).show();
-		/* slow...
-	//  http://stackoverflow.com/questions/467336/jquery-how-to-use-slidedown-or-show-function-on-a-table-row
-		
-		$(elem).find('div').show();
-		$(elem)
-		.find('td')
-		.wrapInner('<div style="display: none;" />')
-		.parent()
-		.find('td > div')
-		.slideDown(700, function(){
-			//console.log('b');
-			var $set = $(this);
-			$set.replaceWith($set.contents());
-		});*/
 	}
 	function sU(elem) {
 		$(elem).hide();
-		/* slow...
-	//  http://stackoverflow.com/questions/467336/jquery-how-to-use-slidedown-or-show-function-on-a-table-row
-		$(elem)
-		.find('td')
-		.wrapInner('<div style="display: block;" />')
-		.parent()
-		.find('td > div')
-		.slideUp(700, function(){
-		
-			$(this).parent().parent().hide();
-		
-		});*/
 	}
-	
 	function ns(i) {
 		switch (i) {
 			case 0: return "Artikel";
@@ -238,42 +232,16 @@ $(document).ready(function () {
 			case 101: return "Pembicaraan Portal";
 		}
 	}
-
-	/*$(document).on( "click", ".username", function(event){
-		that = $(this);
-		event.preventDefault();
-		that.popover('destroy');
-		
-		$.ajax({
-			type: "POST",
-			url: "api.php",
-			data: {username: $(this).html()},
-			dataType: "json",
-			success: function(data) {
-				
-				that.attr('data-content', data['editcount']);
-				that.popover({content: function (){return $(this).data('content'); } });
-				that.popover('show');
-				
-				// still dont work :(
-			},
-			error:function (xhr, ajaxOptions, thrownError){
-				console.log(xhr.statusText);
-			}
-		});
-	});*/
-	
-	/*$('body').popover({
-		selector: '[rel=popover]'
-	});*/
 	
 	function user_list(group, after_func) {
+		$("#w_stat").html(" <img src='img/loading.gif' style='width:16px; height:16px;'>");
 		$.ajax({
 			type: "POST",
 			url: "api.php",
 			data: {group: group},
 			dataType: "json",
 			success: function(data) {
+				$("#w_stat").html();
 				user_group[group] = new Array();
 				for (var i=0; i<data.length; i++) {
 					user_group[group][data[i]['name'].toLowerCase()] = true;
@@ -288,11 +256,13 @@ $(document).ready(function () {
 	}
 	
 	function update_stat() {
-		//$("#w_stat").html(" <img src='img/loading.gif' style='width:16px; height:16px;'>");
 		$.ajax({
 			type: "POST",
 			url: "api.php",
-			data: {statistics: true},
+			data: {statistics: true,
+				project: config['project'],
+				language: config['language']
+			},
 			dataType: "json",
 			success: function(data) {
 				msg = "";
@@ -371,7 +341,7 @@ $(document).ready(function () {
 	function update(tz) {
 		//update_config();
 		
-		if (pause) return false;
+		if (config['pause']) return false;
 		gtz = tz;
 		//$(".new-entry").removeClass("new-entry");
 		$("#stat").html(" <img src='img/loading.gif' style='width:16px; height:16px;'>");
@@ -380,7 +350,11 @@ $(document).ready(function () {
 		$.ajax({
 			type: "POST",
 			url: "api.php",
-			data: {from: tz},
+			data: {
+				from: tz,
+				project: config['project'],
+				language: config['language']
+			},
 			dataType: "json",
 			success: function(data) {
 				//console.log(data);
@@ -401,7 +375,7 @@ $(document).ready(function () {
 						tz = data[i]['timestamp'];
 						time = new Date(tz);
 						
-						comment = data[i]['parsedcomment'].replace(/\"\/wiki\//g, "\"http://id.wikipedia.org/wiki/");
+						comment = data[i]['parsedcomment'].replace(/\"\/wiki\//g, "\"" + base_site + "wiki/" );
 						
 						attr = "";
 						
@@ -445,8 +419,10 @@ $(document).ready(function () {
 							+ "</td>"
 							
 							+ "<td>"
-							+ "<a href=\""
-							+ "http://id.wikipedia.org/"
+							+ "<a "
+							
+							+ "href=\""
+							+ base_site
 							+ "w/index.php?title="
 							+ data[i]['title']
 							+ "&diff="
@@ -459,7 +435,7 @@ $(document).ready(function () {
 							
 							+ "</a>"
 							
-							+ " . . ";
+							+ " <span style=\"white-space: nowrap;\">. .</span> ";
 							
 						msg += "<span class=\"";
 						if (s_diff > 0) {
@@ -488,16 +464,8 @@ $(document).ready(function () {
 							+ "username"
 							+ "\""
 							
-							/*+ " data-content=\""
-							+ "Loading"
-							+ "\""
-							
-							+ " rel=\""
-							+ "popover"
-							+ "\""*/
-							
 							+ " href=\""
-							+ "http://id.wikipedia.org/"
+							+ base_site
 							+ "wiki/Special:Contributions/"
 							+ data[i]['user']
 							+ "\">"
@@ -542,6 +510,7 @@ $(document).ready(function () {
 							 "</td>"
 							+ "</tr>\n";
 						
+																		
 						$("#main-table-body").prepend(msg);
 						$('#main-table > tbody > tr#row-' + data[i]['rcid']).hide();
 						$('#main-table > tbody > tr#row-' + data[i]['rcid']).addClass("new-entry");
@@ -591,9 +560,8 @@ $(document).ready(function () {
 					}
 					setTimeout(function () {
 						$(".new-entry").removeClass("new-entry");
-						//$(".anon").addClass("danger");
 					}, 1000);
-					setTimeout(function () { update(tz); }, 10000);
+					setTimeout(function () { update(tz); }, config['timeout']);
 				}
 			},
 			error:function (xhr, ajaxOptions, thrownError){
@@ -613,6 +581,10 @@ $(document).ready(function () {
 			$("#show_redirect").prop( "checked", true );
 			$("#show_editor").prop( "checked", true );
 			$("#show_admin").prop( "checked", true );
+			$("#language").val("id");
+			$("#project").val("wikipedia");
+			
+			
 			createCookie("show_bot", $("#show_bot").prop( "checked" ), 30);
 			createCookie("show_anon", $("#show_anon").prop( "checked" ), 30);
 			createCookie("show_new", $("#show_new").prop( "checked" ), 30);
@@ -620,6 +592,8 @@ $(document).ready(function () {
 			createCookie("show_redirect", $("#show_redirect").prop( "checked" ), 30);
 			createCookie("show_editor", $("#show_editor").prop( "checked" ), 30);
 			createCookie("show_admin", $("#show_admin").prop( "checked" ), 30);
+			createCookie("language", $("#language").val(), 30);
+			createCookie("project", $("#project").val(), 30);
 		} else {
 			$("#show_bot").prop( "checked", readCookie("show_bot") == 'true' );
 			$("#show_anon").prop( "checked", readCookie("show_anon") == 'true' );
@@ -628,6 +602,8 @@ $(document).ready(function () {
 			$("#show_redirect").prop( "checked", readCookie("show_redirect") == 'true' );
 			$("#show_editor").prop( "checked", readCookie("show_editor") == 'true' );
 			$("#show_admin").prop( "checked", readCookie("show_admin") == 'true' );
+			$("#language").val( readCookie("language") );
+			$("#project").val( readCookie("project") );
 			
 		}
 		config = {
@@ -637,10 +613,14 @@ $(document).ready(function () {
 				show_minor:$("#show_minor").prop( "checked" ),
 				show_redirect:$("#show_redirect").prop( "checked" ),
 				show_editor:$("#show_editor").prop( "checked" ),
-				show_admin:$("#show_admin").prop( "checked" )
+				show_admin:$("#show_admin").prop( "checked" ),
+				pause: false,
+				timeout: 10000,
+				project: $("#project").val(),
+				language: $("#language").val(),
+				locale: "id"
 			}
-		
-		//update(iso_str());
+		base_site = "http://" + config['language'] + "." + config['project'] + ".org/";
 		timer();
 		user_list('editor', function () { user_list('sysop', function () { update(get_time() ); }); });
 		

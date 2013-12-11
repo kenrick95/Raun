@@ -291,8 +291,9 @@ ob_end_clean();
 	<script src="js/bootstrap.min.js"></script>
 	
 	<script>
-		json_string = <?php echo json_encode($message, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP); ?>;
-		locale_obj = $.parseJSON(json_string);
+		var locale_obj = <?php echo json_encode($message, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP); ?>;
+		
+		console.log(locale_obj);
 	</script>
 	<script src="js/default.js"></script>
 </body>

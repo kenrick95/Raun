@@ -211,26 +211,7 @@ $(document).ready(function () {
 		$(elem).hide();
 	}
 	function ns(i) {
-		switch (i) {
-			case 0: return "Artikel";
-			case 1: return "Pembicaraan Artikel";
-			case 2: return "Pengguna";
-			case 3: return "Pembicaraan Pengguna";
-			case 4: return "Wikipedia";
-			case 5: return "Pembicaraan Wikipedia";
-			case 6: return "Berkas";
-			case 7: return "Pembicaraan Berkas";
-			case 8: return "MediaWiki";
-			case 9: return "Pembicaraan MediaWiki";
-			case 10: return "Templat";
-			case 11: return "Pembicaraan Templat";
-			case 12: return "Bantuan";
-			case 13: return "Pembicaraan Bantuan";
-			case 14: return "Kategori";
-			case 15: return "Pembicaraan Kategori";
-			case 100: return "Portal";
-			case 101: return "Pembicaraan Portal";
-		}
+		return locale_obj['ns' + i];
 	}
 	
 	function user_list(group, after_func) {
@@ -272,56 +253,56 @@ $(document).ready(function () {
 				msg += ""
 				+ "<dl class=\"dl-horizontal\">"
 				+ "<dt>"
-				+ "Halaman konten"
+				+ locale_obj['stat_articles']
 				+ "</dt>"
 				+ "<dd>"
 				+ formatnum(data['articles'])
 				+ "</dd>"
 				
 				+ "<dt>"
-				+ "Jumlah halaman"
+				+ locale_obj['stat_pages']
 				+ "</dt>"
 				+ "<dd>"
 				+ formatnum(data['pages'])
 				+ "</dd>"
 				
 				+ "<dt>"
-				+ "Jumlah berkas"
+				+ locale_obj['stat_files']
 				+ "</dt>"
 				+ "<dd>"
 				+ formatnum(data['images'])
 				+ "</dd>"
 				
 				+ "<dt>"
-				+ "Jumlah suntingan"
+				+ locale_obj['stat_edits']
 				+ "</dt>"
 				+ "<dd>"
 				+ formatnum(data['edits'])
 				+ "</dd>"
 				
 				+ "<dt>"
-				+ "Kedalaman"
+				+ locale_obj['stat_depth']
 				+ "</dt>"
 				+ "<dd>"
 				+ formatnum(parseFloat(depth).toFixed(4))
 				+ "</dd>"
 				
 				+ "<dt>"
-				+ "Jumlah pengguna"
+				+ locale_obj['stat_users']
 				+ "</dt>"
 				+ "<dd>"
 				+ formatnum(data['users'])
 				+ "</dd>"
 				
 				+ "<dt>"
-				+ "Pengguna aktif"
+				+ locale_obj['stat_active_users']
 				+ "</dt>"
 				+ "<dd>"
 				+ formatnum(data['activeusers'])
 				+ "</dd>"
 				
 				+ "<dt>"
-				+ "Pengurus"
+				+ locale_obj['stat_admins']
 				+ "</dt>"
 				+ "<dd>"
 				+ formatnum(data['admins'])
@@ -404,7 +385,9 @@ $(document).ready(function () {
 						msg = "<tr id=\"row-" + data[i]['rcid'] + "\" class=\"" + attr + "\">"
 							
 							+ "<td "
-							+ "title=\"Ruang nama: "
+							+ "title=\""
+							+ locale_obj['ns']
+							+ ": "
 							+ ns(data[i]['ns'])
 							+ "\" "
 							+ "class=\"ns ns-"
@@ -477,25 +460,25 @@ $(document).ready(function () {
 							
 							+ "<td>";
 						if (data[i]['type'] == 'new') {
-							msg += "<span class=\"label label-success\" title=\"Halaman baru\">baru</span> ";
+							msg += "<span class=\"label label-success\" title=\"" + locale_obj['settings_new_pages'] + "\">" + locale_obj['new'] + "</span> ";
 						}
 						if ("minor" in data[i]) {
-							msg += "<span class=\"label label-primary\" title=\"Suntingan kecil\">kecil</span> ";
+							msg += "<span class=\"label label-primary\" title=\"" + locale_obj['settings_minor_edits'] + "\">" + locale_obj['minor'] + "</span> ";
 						}
 						if ("anon" in data[i]) {
-							msg += "<span class=\"label label-danger\" title=\"Suntingan pengguna anonim\">anon</span> ";
+							msg += "<span class=\"label label-danger\" title=\"" + locale_obj['settings_anon_edits'] + "\">" + locale_obj['anon'] + "</span> ";
 						}
 						if ("redirect" in data[i]) {
-							msg += "<span class=\"label label-warning\" title=\"Halaman pengalihan\">alih</span> ";
+							msg += "<span class=\"label label-warning\" title=\"" + locale_obj['settings_redirects'] + "\">" + locale_obj['redirect'] + "</span> ";
 						}
 						if ("bot" in data[i]) {
-							msg += "<span class=\"label label-info\" title=\"Suntingan bot\">bot</span> ";
+							msg += "<span class=\"label label-info\" title=\"" + locale_obj['settings_bot_edits'] + "\">" + locale_obj['bot'] + "</span> ";
 						}
 						if (data[i]['user'].toLowerCase() in user_group['editor']) {
-							msg += "<span class=\"label label-default\" title=\"Suntingan editor\">editor</span> ";
+							msg += "<span class=\"label label-default\" title=\"" + locale_obj['settings_editor_edits'] + "\">" + locale_obj['editor'] + "</span> ";
 						}
 						if (data[i]['user'].toLowerCase() in user_group['sysop']) {
-							msg += "<span class=\"label label-info\" title=\"Suntingan pengurus\">admin</span> ";
+							msg += "<span class=\"label label-info\" title=\"" + locale_obj['settings_admin_edits'] + "\">" + locale_obj['admin'] + "</span> ";
 						}
 						
 						msg += comment;

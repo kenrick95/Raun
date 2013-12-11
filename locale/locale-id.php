@@ -60,11 +60,18 @@ $message['stat_edits'] = 'Jumlah suntingan';
 $message['stat_depth'] = 'Kedalaman';
 $message['stat_users'] = 'Jumlah pengguna';
 $message['stat_active_users'] = 'Pengguna aktif';
-$message['stat_admins'] = 'stat_content';
+$message['stat_admins'] = 'Jumlah pengurus';
 $message['separator_thousands'] = '.';
 $message['separator_decimals'] = ',';
 $message['settings_pause'] = 'Pause';
 $message['settings_run'] = 'Jalan!';
+$message['new'] = 'baru';
+$message['minor'] = 'kecil';
+$message['anon'] = 'anon';
+$message['redirect'] = 'alih';
+$message['bot'] = 'bot';
+$message['editor'] = 'editor';
+$message['admin'] = 'admin';
 
 
 

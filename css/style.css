@@ -53,3 +53,6 @@ body { font-family: Ubuntu, sans-serif; }
 #def { text-align:center; }
 
 #stat { font-style:italic; font-size:.8em; }
+.navbar-nav>li>.dropdown-menu { min-width:300px; }
+#settings-menu { width:100%; }
+#settings-menu td { padding:1em; width:50%; }

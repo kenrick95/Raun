@@ -12,7 +12,7 @@ config = {
 	timeout: 10000,
 	project: "wikipedia",
 	language: "id",
-	locale: "id"
+	locale: "en"
 };
 user_group = new Array();
 
@@ -138,14 +138,7 @@ $(document).ready(function () {
 		createCookie("show_editor", $("#show_editor").prop( "checked" ), 30);	
 		createCookie("show_admin", $("#show_admin").prop( "checked" ), 30);	
 		
-		if (readCookie("language") != $("#language").val()) {
-			createCookie("language", $("#language").val(), 30);
-			window.location.reload();
-		}
-		if (readCookie("project") != $("#project").val()) {
-			createCookie("project", $("#project").val(), 30);
-			window.location.reload();
-		}
+		
 		
 		config["show_bot"] = $("#show_bot").prop( "checked" );
 		config["show_anon"] = $("#show_anon").prop( "checked" );
@@ -156,6 +149,7 @@ $(document).ready(function () {
 		config["show_admin"] = $("#show_admin").prop( "checked" );
 		config["language"] = $("#language").val();
 		config["project"] = $("#project").val();
+		config["locale"] = $("#locale").val();
 		
 	}
 	
@@ -202,6 +196,17 @@ $(document).ready(function () {
 		}
 		
 		update_config();
+	});
+	$("#tool_config").submit(function () {
+		createCookie("locale", $("#locale").val(), 30);
+		createCookie("language", $("#language").val(), 30);
+		createCookie("project", $("#project").val(), 30);
+		
+		config["language"] = $("#language").val();
+		config["project"] = $("#project").val();
+		config["locale"] = $("#locale").val();
+		
+		window.location.href = window.location.href;
 	});
 	
 	function sD(elem) {
@@ -566,6 +571,7 @@ $(document).ready(function () {
 			$("#show_admin").prop( "checked", true );
 			$("#language").val("id");
 			$("#project").val("wikipedia");
+			$("#locale").val("en");
 			
 			
 			createCookie("show_bot", $("#show_bot").prop( "checked" ), 30);
@@ -577,6 +583,7 @@ $(document).ready(function () {
 			createCookie("show_admin", $("#show_admin").prop( "checked" ), 30);
 			createCookie("language", $("#language").val(), 30);
 			createCookie("project", $("#project").val(), 30);
+			createCookie("locale", $("#locale").val(), 30);
 		} else {
 			$("#show_bot").prop( "checked", readCookie("show_bot") == 'true' );
 			$("#show_anon").prop( "checked", readCookie("show_anon") == 'true' );
@@ -587,6 +594,7 @@ $(document).ready(function () {
 			$("#show_admin").prop( "checked", readCookie("show_admin") == 'true' );
 			$("#language").val( readCookie("language") );
 			$("#project").val( readCookie("project") );
+			$("#locale").val( readCookie("locale") );
 			
 		}
 		config = {
@@ -601,7 +609,7 @@ $(document).ready(function () {
 				timeout: 10000,
 				project: $("#project").val(),
 				language: $("#language").val(),
-				locale: "id"
+				locale: $("#locale").val()
 			}
 		base_site = "http://" + config['language'] + "." + config['project'] + ".org/";
 		timer();

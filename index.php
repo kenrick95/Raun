@@ -1,9 +1,50 @@
 <?php
 ob_start();
+$locale = "";
+$language = "";
+$project = "";
+
 if (isset($_GET['locale'])) {
-	include "locale/locale-".$_GET['locale'].".php";
+	if (file_exists("locale/locale-".$_GET['locale'].".php")) {
+		$locale = $_GET['locale'];
+		include "locale/locale-".$_GET['locale'].".php";
+	} else {
+		$locale = "en";
+		include "locale/locale-en.php";
+	}
 } else {
-	include "locale/locale-id.php";
+	if (isset($_COOKIE['locale'])) {
+		if (file_exists("locale/locale-".$_COOKIE['locale'].".php")) {
+			$locale = $_COOKIE['locale'];
+			include "locale/locale-".$_COOKIE['locale'].".php";
+		} else {
+			$locale = "en";
+			include "locale/locale-en.php";
+		}
+	} else {
+		$locale = "en";
+		include "locale/locale-en.php";
+	}
+}
+
+if (isset($_GET['language'])) {
+	$language = $_GET['language'];
+} else {
+	if (isset($_COOKIE['language'])) {
+		$language = $_COOKIE['language'];
+	} else {
+		$language = "id";
+	}
+}
+
+if (isset($_GET['project'])) {
+	$language = $_GET['project'];
+} else {
+	if (isset($_COOKIE['project'])) {
+		$language = $_COOKIE['project'];
+	} else {
+		$language = "wikipedia";
+	}
 }
 ob_end_clean();
 ?><!DOCTYPE html>
@@ -54,65 +95,78 @@ ob_end_clean();
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-wrench"></span>
  <?php echo $message['settings']; ?> <b class="caret"></b></a>
 						<div class="dropdown-menu keep-open">
-							<div style="padding:0 1em;">
-								<button id="pause" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pause"></span> <?php echo $message['settings_pause']; ?></button>
-								<hr>
-								<form class="form-inline" role="form">
-									<div class="form-group">
-									<label class="sr-only" for="language"><?php echo $message['language']; ?></label>
-									<input type="text" class="form-control config" id="language" placeholder="<?php echo $message['language']; ?>" value="id">
-									</div>
-									<div class="form-group">
-									<label class="sr-only" for="project"><?php echo $message['project']; ?></label>
-									<input type="text" class="form-control config" id="project" placeholder="<?php echo $message['project']; ?>" value="wikipedia">
-									</div>
-								</form>
+								<table id="settings-menu">
+									<tr style="vertical-align:top;">
+										<td>
+										<button id="pause" class="btn btn-warning"><span class="glyphicon glyphicon-pause"></span> <?php echo $message['settings_pause']; ?></button>
+										<hr>
+										<?php echo $message['settings_show']; ?>:
+										<div class="checkbox">
+											<label>
+											<input type="checkbox" id="show_bot" class="config" value="true">
+												<span class="label label-info"><?php echo $message['settings_bot_edits']; ?></span>
+											</label>
+										</div>
+										<div class="checkbox">
+											<label>
+											<input type="checkbox" id="show_anon" class="config" value="true">
+												<span class="label label-danger"><?php echo $message['settings_anon_edits']; ?></span>
+											</label>
+										</div>
+										<div class="checkbox">
+											<label>
+											<input type="checkbox" id="show_minor" class="config" value="true">
+												<span class="label label-primary"><?php echo $message['settings_minor_edits']; ?></span>
+											</label>
+										</div>
+										<div class="checkbox">
+											<label>
+											<input type="checkbox" id="show_redirect" class="config" value="true">
+												<span class="label label-warning"><?php echo $message['settings_redirects']; ?></span>
+											</label>
+										</div>
+										<div class="checkbox">
+											<label>
+											<input type="checkbox" id="show_new" class="config" value="true">
+												<span class="label label-success"><?php echo $message['settings_new_pages']; ?></span>
+											</label>
+										</div>
+										<div class="checkbox">
+											<label>
+											<input type="checkbox" id="show_editor" class="config" value="true">
+												<span class="label label-default"><?php echo $message['settings_editor_edits']; ?></span>
+											</label>
+										</div>
+										<div class="checkbox">
+											<label>
+											<input type="checkbox" id="show_admin" class="config" value="true">
+												<span class="label label-info"><?php echo $message['settings_admin_edits']; ?></span>
+											</label>
+										</div>
+									</td>
+										<td>
+										<form id="tool_config" role="form" method="get">
+										<?php echo $message['settings_tool']; ?>:
+											<div class="form-group">
+											<label for="locale"><?php echo $message['language']; ?></label>
+											<input type="text" class="form-control config_right" id="locale" placeholder="<?php echo $message['language']; ?>" value="<?php echo $locale; ?>">
+											</div>
+										<hr>
+										<?php echo $message['settings_wiki']; ?>:
+											<div class="form-group">
+											<label for="language"><?php echo $message['language']; ?></label>
+											<input type="text" class="form-control config_right" id="language" placeholder="<?php echo $message['language']; ?>" value="id">
+											</div>
+											<div class="form-group">
+											<label for="project"><?php echo $message['project']; ?></label>
+											<input type="text" class="form-control config_right" id="project" placeholder="<?php echo $message['project']; ?>" value="wikipedia">
+											</div>
+											<button type="submit" class="btn-primary btn"><?php echo $message['save']; ?></button>
+										</form>
+										</td>
+									</tr>
+								</table>
 								
-								<hr>
-								<?php echo $message['settings_show']; ?>:
-								<div class="checkbox">
-									<label>
-									<input type="checkbox" id="show_bot" class="config" value="true">
-										<span class="label label-info"><?php echo $message['settings_bot_edits']; ?></span>
-									</label>
-								</div>
-								<div class="checkbox">
-									<label>
-									<input type="checkbox" id="show_anon" class="config" value="true">
-										<span class="label label-danger"><?php echo $message['settings_anon_edits']; ?></span>
-									</label>
-								</div>
-								<div class="checkbox">
-									<label>
-									<input type="checkbox" id="show_minor" class="config" value="true">
-										<span class="label label-primary"><?php echo $message['settings_minor_edits']; ?></span>
-									</label>
-								</div>
-								<div class="checkbox">
-									<label>
-									<input type="checkbox" id="show_redirect" class="config" value="true">
-										<span class="label label-warning"><?php echo $message['settings_redirects']; ?></span>
-									</label>
-								</div>
-								<div class="checkbox">
-									<label>
-									<input type="checkbox" id="show_new" class="config" value="true">
-										<span class="label label-success"><?php echo $message['settings_new_pages']; ?></span>
-									</label>
-								</div>
-								<div class="checkbox">
-									<label>
-									<input type="checkbox" id="show_editor" class="config" value="true">
-										<span class="label label-default"><?php echo $message['settings_editor_edits']; ?></span>
-									</label>
-								</div>
-								<div class="checkbox">
-									<label>
-									<input type="checkbox" id="show_admin" class="config" value="true">
-										<span class="label label-info"><?php echo $message['settings_admin_edits']; ?></span>
-									</label>
-								</div>
-							</div>
 						</div>
 					</li>
 					
@@ -292,8 +346,6 @@ ob_end_clean();
 	
 	<script>
 		var locale_obj = <?php echo json_encode($message, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP); ?>;
-		
-		console.log(locale_obj);
 	</script>
 	<script src="js/default.js"></script>
 </body>

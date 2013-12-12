@@ -149,17 +149,17 @@ ob_end_clean();
 										<?php echo $message['settings_tool']; ?>:
 											<div class="form-group">
 											<label for="locale"><?php echo $message['language']; ?></label>
-											<input type="text" class="form-control config_right" id="locale" placeholder="<?php echo $message['language']; ?>" value="<?php echo $locale; ?>">
+											<input type="text" class="form-control config_right" name="locale" id="locale" placeholder="<?php echo $message['language']; ?>" value="<?php echo $locale; ?>">
 											</div>
 										<hr>
 										<?php echo $message['settings_wiki']; ?>:
 											<div class="form-group">
 											<label for="language"><?php echo $message['language']; ?></label>
-											<input type="text" class="form-control config_right" id="language" placeholder="<?php echo $message['language']; ?>" value="id">
+											<input type="text" class="form-control config_right" name="language" id="language" placeholder="<?php echo $message['language']; ?>" value="id">
 											</div>
 											<div class="form-group">
 											<label for="project"><?php echo $message['project']; ?></label>
-											<input type="text" class="form-control config_right" id="project" placeholder="<?php echo $message['project']; ?>" value="wikipedia">
+											<input type="text" class="form-control config_right" name="project" id="project" placeholder="<?php echo $message['project']; ?>" value="wikipedia">
 											</div>
 											<button type="submit" class="btn-primary btn"><?php echo $message['save']; ?></button>
 										</form>

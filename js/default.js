@@ -206,7 +206,6 @@ $(document).ready(function () {
 		config["project"] = $("#project").val();
 		config["locale"] = $("#locale").val();
 		
-		window.location.href = window.location.href;
 	});
 	
 	function sD(elem) {

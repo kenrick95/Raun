@@ -591,10 +591,15 @@ $(document).ready(function () {
 			$("#show_redirect").prop( "checked", readCookie("show_redirect") == 'true' );
 			$("#show_editor").prop( "checked", readCookie("show_editor") == 'true' );
 			$("#show_admin").prop( "checked", readCookie("show_admin") == 'true' );
-			$("#language").val( readCookie("language") );
-			$("#project").val( readCookie("project") );
-			$("#locale").val( readCookie("locale") );
-			
+			if (force['language'] === false) {
+				$("#language").val( readCookie("language") );
+			}
+			if (force['project'] === false) {
+				$("#project").val( readCookie("project") );
+			}
+			if (force['locale'] === false) {
+				$("#locale").val( readCookie("locale") );
+			}
 		}
 		config = {
 				show_bot: $("#show_bot").prop( "checked" ),

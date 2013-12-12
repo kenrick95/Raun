@@ -3,8 +3,12 @@ ob_start();
 $locale = "";
 $language = "";
 $project = "";
+$locale_force_get = false;
+$language_force_get = false;
+$project_force_get = false;
 
 if (isset($_GET['locale'])) {
+	$locale_force_get = true;
 	if (file_exists("locale/locale-".$_GET['locale'].".php")) {
 		$locale = $_GET['locale'];
 		include "locale/locale-".$_GET['locale'].".php";
@@ -28,6 +32,7 @@ if (isset($_GET['locale'])) {
 }
 
 if (isset($_GET['language'])) {
+	$language_force_get = true;
 	$language = $_GET['language'];
 } else {
 	if (isset($_COOKIE['language'])) {
@@ -38,12 +43,13 @@ if (isset($_GET['language'])) {
 }
 
 if (isset($_GET['project'])) {
-	$language = $_GET['project'];
+	$project_force_get = true;
+	$project = $_GET['project'];
 } else {
 	if (isset($_COOKIE['project'])) {
-		$language = $_COOKIE['project'];
+		$project = $_COOKIE['project'];
 	} else {
-		$language = "wikipedia";
+		$project = "wikipedia";
 	}
 }
 ob_end_clean();
@@ -155,11 +161,11 @@ ob_end_clean();
 										<?php echo $message['settings_wiki']; ?>:
 											<div class="form-group">
 											<label for="language"><?php echo $message['language']; ?></label>
-											<input type="text" class="form-control config_right" name="language" id="language" placeholder="<?php echo $message['language']; ?>" value="id">
+											<input type="text" class="form-control config_right" name="language" id="language" placeholder="<?php echo $message['language']; ?>" value="<?php echo $language; ?>">
 											</div>
 											<div class="form-group">
 											<label for="project"><?php echo $message['project']; ?></label>
-											<input type="text" class="form-control config_right" name="project" id="project" placeholder="<?php echo $message['project']; ?>" value="wikipedia">
+											<input type="text" class="form-control config_right" name="project" id="project" placeholder="<?php echo $message['project']; ?>" value="<?php echo $project; ?>">
 											</div>
 											<button type="submit" class="btn-primary btn"><?php echo $message['save']; ?></button>
 										</form>
@@ -346,6 +352,12 @@ ob_end_clean();
 	
 	<script>
 		var locale_obj = <?php echo json_encode($message, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP); ?>;
+		var force = {
+			locale: <?php echo $locale_force_get; ?>,
+			language: <?php echo $language_force_get; ?>,
+			project: <?php echo $project_force_get; ?>
+		};
+		console.log(force);
 	</script>
 	<script src="js/default.js"></script>
 </body>

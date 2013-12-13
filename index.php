@@ -353,9 +353,9 @@ ob_end_clean();
 	<script>
 		var locale_obj = <?php echo json_encode($message, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP); ?>;
 		var force = {
-			locale: <?php echo $locale_force_get; ?>,
-			language: <?php echo $language_force_get; ?>,
-			project: <?php echo $project_force_get; ?>
+			locale: <?php echo $locale_force_get ? 1 : 0; ?>,
+			language: <?php echo $language_force_get ? 1 : 0; ?>,
+			project: <?php echo $project_force_get ? 1 : 0; ?>
 		};
 		console.log(force);
 	</script>

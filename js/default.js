@@ -322,7 +322,211 @@ $(document).ready(function () {
 			}
 		});
 	}
-	
+	function displayMsg(data) {
+		len = data.length;
+		tz = gtz;
+		for (i = len-1; i>=0; i--) {
+			if (last_rcid >= data[i]['rcid']) {
+				continue;
+			} else {
+				last_rcid = data[i]['rcid'];
+			}
+			diff = (data[i]['newlen']-data[i]['oldlen']);
+			s_diff = diff > 0 ? "+" + diff : diff;
+			tz = data[i]['timestamp'];
+			gtz = tz;
+			time = new Date(tz);
+			
+			comment = data[i]['parsedcomment'].replace(/\"\/wiki\//g, "\"" + base_site + "wiki/" );
+			
+			attr = "";
+			
+			if ("anon" in data[i]) {
+				attr += "anon ";
+			}
+			if ("bot" in data[i]) {
+				attr += "bot ";
+			}
+			if ("minor" in data[i]) {
+				attr += "minor ";
+			}
+			if ("redirect" in data[i]) {
+				attr += "redirect ";
+			}
+			if (data[i]['type'] == 'new') {
+				attr += "new-art ";
+			}
+			if (data[i]['user'].toLowerCase() in user_group['editor']) {
+				attr += "editor ";
+			}
+			if (data[i]['user'].toLowerCase() in user_group['sysop']) {
+				attr += "admin ";
+			}
+			
+			msg = "<tr id=\"row-" + data[i]['rcid'] + "\" class=\"" + attr + "\">"
+				
+				+ "<td "
+				+ "title=\""
+				+ locale_obj['ns']
+				+ ": "
+				+ ns(data[i]['ns'])
+				+ "\" "
+				+ "class=\"ns ns-"
+				+ data[i]['ns']
+				+ "\">"
+				+ "</td>"
+				
+				+ "<td>"
+				+ pad( time.getUTCHours() )
+				+ ':' + pad( time.getUTCMinutes() )
+				+ ':' + pad( time.getUTCSeconds() )
+				+ "</td>"
+				
+				+ "<td>"
+				+ "<a "
+				
+				+ "href=\""
+				+ base_site
+				+ "w/index.php?title="
+				+ data[i]['title']
+				+ "&diff="
+				+ data[i]['revid']
+				+ "&oldid="
+				+ data[i]['old_revid']
+				+ "\">"
+				
+				+ data[i]['title']
+				
+				+ "</a>"
+				
+				+ " <span style=\"white-space: nowrap;\">. .</span> ";
+				
+			msg += "<span class=\"";
+			if (s_diff > 0) {
+				msg += "size-pos";
+			} else if (s_diff < 0) {
+				msg += "size-neg";
+			} else {
+				msg += "size-null";
+			}
+			if (Math.abs(s_diff) > 500) {
+				msg += " size-large";
+			}
+			msg += "\">";
+				
+			msg += "("
+				+ s_diff
+				+ ")";
+				
+			msg += "</span>";
+			
+			msg += "</td>"
+				
+				+ "<td>"
+				+ "<a"
+				+ " class=\""
+				+ "username"
+				+ "\""
+				
+				+ " href=\""
+				+ base_site
+				+ "wiki/Special:Contributions/"
+				+ data[i]['user']
+				+ "\">"
+				
+				+ data[i]['user']
+				
+				+ "</a>"
+				+ "</td>"
+				
+				+ "<td>";
+			if (data[i]['type'] == 'new') {
+				msg += "<span class=\"label label-success\" title=\"" + locale_obj['settings_new_pages'] + "\">" + locale_obj['new'] + "</span> ";
+			}
+			if ("minor" in data[i]) {
+				msg += "<span class=\"label label-primary\" title=\"" + locale_obj['settings_minor_edits'] + "\">" + locale_obj['minor'] + "</span> ";
+			}
+			if ("anon" in data[i]) {
+				msg += "<span class=\"label label-danger\" title=\"" + locale_obj['settings_anon_edits'] + "\">" + locale_obj['anon'] + "</span> ";
+			}
+			if ("redirect" in data[i]) {
+				msg += "<span class=\"label label-warning\" title=\"" + locale_obj['settings_redirects'] + "\">" + locale_obj['redirect'] + "</span> ";
+			}
+			if ("bot" in data[i]) {
+				msg += "<span class=\"label label-info\" title=\"" + locale_obj['settings_bot_edits'] + "\">" + locale_obj['bot'] + "</span> ";
+			}
+			if (data[i]['user'].toLowerCase() in user_group['editor']) {
+				msg += "<span class=\"label label-default\" title=\"" + locale_obj['settings_editor_edits'] + "\">" + locale_obj['editor'] + "</span> ";
+			}
+			if (data[i]['user'].toLowerCase() in user_group['sysop']) {
+				msg += "<span class=\"label label-info\" title=\"" + locale_obj['settings_admin_edits'] + "\">" + locale_obj['admin'] + "</span> ";
+			}
+			
+			msg += comment;
+			
+			if (data[i]['tags'] != "") {
+			msg += 
+				 " (Tag: <i>"
+				+ data[i]['tags']
+				+ "</i>)"
+			}
+			msg += 
+				 "</td>"
+				+ "</tr>\n";
+			
+															
+			$("#main-table-body").prepend(msg);
+			$('#main-table > tbody > tr#row-' + data[i]['rcid']).hide();
+			$('#main-table > tbody > tr#row-' + data[i]['rcid']).addClass("new-entry");
+			
+			show_art = true;
+			if (attr.indexOf("bot") >= 0) {
+				if (!config['show_bot']) {
+					show_art = false;	
+				}
+			}
+			if (attr.indexOf("minor") >= 0) {
+				if (!config['show_minor']) {
+					show_art = false;
+				}
+			}
+			if (attr.indexOf("redirect") >= 0) {
+				if (!config['show_redirect']) {
+					show_art = false;
+				}
+			}
+			if (attr.indexOf("new-art") >= 0) {
+				if (!config['show_new']) {
+					show_art = false;	
+				}
+			}
+			if (attr.indexOf("anon") >= 0) {
+				if (!config['show_anon']) {
+					show_art = false;	
+				}
+			}
+			if (attr.indexOf("admin") >= 0) {
+				if (!config['show_admin']) {
+					show_art = false;	
+				}
+			}
+			if (attr.indexOf("editor") >= 0) {
+				if (!config['show_editor']) {
+					show_art = false;	
+				}
+			}
+			
+			if (show_art === true) {
+				sD('#main-table > tbody > tr#row-' + data[i]['rcid']);
+			}
+			
+			
+		}
+		setTimeout(function () {
+			$(".new-entry").removeClass("new-entry");
+		}, 1000);
+		
+	}
 	function update(tz) {
 		//update_config();
 		
@@ -332,231 +536,58 @@ $(document).ready(function () {
 		$("#stat").html(" <img src='img/loading.gif' style='width:16px; height:16px;'>");
 		update_stat();
 		
-		$.ajax({
-			type: "POST",
-			url: "api.php",
-			data: {
-				from: tz,
-				project: config['project'],
-				language: config['language']
-			},
-			dataType: "json",
-			success: function(data) {
-				//console.log(data);
+			
+		if (!!window.EventSource) {
+			createCookie("rcfrom", gtz, 1);
+			var source = new EventSource('api-sse.php');
+			
+			source.addEventListener('message', function(e) {
 				$("#stat").html("");
-				if (data.length == 0) {
-					setTimeout(function () { update(tz); }, 10000);
-				} else {
-					len = data.length;
-					tz = tz;
-					for (i = len-1; i>=0; i--) {
-						if (last_rcid >= data[i]['rcid']) {
-							continue;
-						} else {
-							last_rcid = data[i]['rcid'];
-						}
-						diff = (data[i]['newlen']-data[i]['oldlen']);
-						s_diff = diff > 0 ? "+" + diff : diff;
-						tz = data[i]['timestamp'];
-						time = new Date(tz);
-						
-						comment = data[i]['parsedcomment'].replace(/\"\/wiki\//g, "\"" + base_site + "wiki/" );
-						
-						attr = "";
-						
-						if ("anon" in data[i]) {
-							attr += "anon ";
-						}
-						if ("bot" in data[i]) {
-							attr += "bot ";
-						}
-						if ("minor" in data[i]) {
-							attr += "minor ";
-						}
-						if ("redirect" in data[i]) {
-							attr += "redirect ";
-						}
-						if (data[i]['type'] == 'new') {
-							attr += "new-art ";
-						}
-						if (data[i]['user'].toLowerCase() in user_group['editor']) {
-							attr += "editor ";
-						}
-						if (data[i]['user'].toLowerCase() in user_group['sysop']) {
-							attr += "admin ";
-						}
-						
-						msg = "<tr id=\"row-" + data[i]['rcid'] + "\" class=\"" + attr + "\">"
-							
-							+ "<td "
-							+ "title=\""
-							+ locale_obj['ns']
-							+ ": "
-							+ ns(data[i]['ns'])
-							+ "\" "
-							+ "class=\"ns ns-"
-							+ data[i]['ns']
-							+ "\">"
-							+ "</td>"
-							
-							+ "<td>"
-							+ pad( time.getUTCHours() )
-							+ ':' + pad( time.getUTCMinutes() )
-							+ ':' + pad( time.getUTCSeconds() )
-							+ "</td>"
-							
-							+ "<td>"
-							+ "<a "
-							
-							+ "href=\""
-							+ base_site
-							+ "w/index.php?title="
-							+ data[i]['title']
-							+ "&diff="
-							+ data[i]['revid']
-							+ "&oldid="
-							+ data[i]['old_revid']
-							+ "\">"
-							
-							+ data[i]['title']
-							
-							+ "</a>"
-							
-							+ " <span style=\"white-space: nowrap;\">. .</span> ";
-							
-						msg += "<span class=\"";
-						if (s_diff > 0) {
-							msg += "size-pos";
-						} else if (s_diff < 0) {
-							msg += "size-neg";
-						} else {
-							msg += "size-null";
-						}
-						if (Math.abs(s_diff) > 500) {
-							msg += " size-large";
-						}
-						msg += "\">";
-							
-						msg += "("
-							+ s_diff
-							+ ")";
-							
-						msg += "</span>";
-						
-						msg += "</td>"
-							
-							+ "<td>"
-							+ "<a"
-							+ " class=\""
-							+ "username"
-							+ "\""
-							
-							+ " href=\""
-							+ base_site
-							+ "wiki/Special:Contributions/"
-							+ data[i]['user']
-							+ "\">"
-							
-							+ data[i]['user']
-							
-							+ "</a>"
-							+ "</td>"
-							
-							+ "<td>";
-						if (data[i]['type'] == 'new') {
-							msg += "<span class=\"label label-success\" title=\"" + locale_obj['settings_new_pages'] + "\">" + locale_obj['new'] + "</span> ";
-						}
-						if ("minor" in data[i]) {
-							msg += "<span class=\"label label-primary\" title=\"" + locale_obj['settings_minor_edits'] + "\">" + locale_obj['minor'] + "</span> ";
-						}
-						if ("anon" in data[i]) {
-							msg += "<span class=\"label label-danger\" title=\"" + locale_obj['settings_anon_edits'] + "\">" + locale_obj['anon'] + "</span> ";
-						}
-						if ("redirect" in data[i]) {
-							msg += "<span class=\"label label-warning\" title=\"" + locale_obj['settings_redirects'] + "\">" + locale_obj['redirect'] + "</span> ";
-						}
-						if ("bot" in data[i]) {
-							msg += "<span class=\"label label-info\" title=\"" + locale_obj['settings_bot_edits'] + "\">" + locale_obj['bot'] + "</span> ";
-						}
-						if (data[i]['user'].toLowerCase() in user_group['editor']) {
-							msg += "<span class=\"label label-default\" title=\"" + locale_obj['settings_editor_edits'] + "\">" + locale_obj['editor'] + "</span> ";
-						}
-						if (data[i]['user'].toLowerCase() in user_group['sysop']) {
-							msg += "<span class=\"label label-info\" title=\"" + locale_obj['settings_admin_edits'] + "\">" + locale_obj['admin'] + "</span> ";
-						}
-						
-						msg += comment;
-						
-						if (data[i]['tags'] != "") {
-						msg += 
-							 " (Tag: <i>"
-							+ data[i]['tags']
-							+ "</i>)"
-						}
-						msg += 
-							 "</td>"
-							+ "</tr>\n";
-						
-																		
-						$("#main-table-body").prepend(msg);
-						$('#main-table > tbody > tr#row-' + data[i]['rcid']).hide();
-						$('#main-table > tbody > tr#row-' + data[i]['rcid']).addClass("new-entry");
-						
-						show_art = true;
-						if (attr.indexOf("bot") >= 0) {
-							if (!config['show_bot']) {
-								show_art = false;	
-							}
-						}
-						if (attr.indexOf("minor") >= 0) {
-							if (!config['show_minor']) {
-								show_art = false;
-							}
-						}
-						if (attr.indexOf("redirect") >= 0) {
-							if (!config['show_redirect']) {
-								show_art = false;
-							}
-						}
-						if (attr.indexOf("new-art") >= 0) {
-							if (!config['show_new']) {
-								show_art = false;	
-							}
-						}
-						if (attr.indexOf("anon") >= 0) {
-							if (!config['show_anon']) {
-								show_art = false;	
-							}
-						}
-						if (attr.indexOf("admin") >= 0) {
-							if (!config['show_admin']) {
-								show_art = false;	
-							}
-						}
-						if (attr.indexOf("editor") >= 0) {
-							if (!config['show_editor']) {
-								show_art = false;	
-							}
-						}
-						
-						if (show_art === true) {
-							sD('#main-table > tbody > tr#row-' + data[i]['rcid']);
-						}
-						
-						
+				var data_obj = $.parseJSON(e.data);
+				//console.log("Got message");
+				//console.log(gtz);
+				//console.log(data_obj);
+				displayMsg(data_obj);
+			}, false);
+			source.addEventListener('open', function(e) {
+				// Connection was opened.
+				createCookie("rcfrom", gtz, 1);
+				//console.log("Connection opened");
+			}, false);
+			
+			source.addEventListener('error', function(e) {
+				//console.log("Connection error");
+				console.log(e);
+			}, false);
+		} else {
+			// Result to xhr polling :(
+			$.ajax({
+				type: "POST",
+				url: "api.php",
+				data: {
+					from: tz,
+					project: config['project'],
+					language: config['language']
+				},
+				dataType: "json",
+				success: function(data) {
+					//console.log(data);
+					$("#stat").html("");
+					if (data.length == 0) {
+						setTimeout(function () { update(tz); }, 10000);
+					} else {
+						displayMsg(data);
+						setTimeout(function () { update(tz); }, config['timeout']);
 					}
-					setTimeout(function () {
-						$(".new-entry").removeClass("new-entry");
-					}, 1000);
-					setTimeout(function () { update(tz); }, config['timeout']);
+				},
+				error:function (xhr, ajaxOptions, thrownError){
+					console.log(xhr.statusText);
+					$("#stat").html(" " + xhr.statusText);
+					setTimeout(function () { update(tz); }, 3000);
 				}
-			},
-			error:function (xhr, ajaxOptions, thrownError){
-				console.log(xhr.statusText);
-				$("#stat").html(" " + xhr.statusText);
-				setTimeout(function () { update(tz); }, 3000);
-			}
-		});
+			});
+		}
+		
 	}
 	
 	function init() {

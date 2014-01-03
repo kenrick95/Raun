@@ -357,7 +357,6 @@ ob_end_clean();
 			language: <?php echo $language_force_get ? 1 : 0; ?>,
 			project: <?php echo $project_force_get ? 1 : 0; ?>
 		};
-		console.log(force);
 	</script>
 	<script src="js/default.js"></script>
 </body>

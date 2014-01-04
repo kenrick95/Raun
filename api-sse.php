@@ -90,6 +90,7 @@ while(1) {
 			$settings['wikiroot'] = "http://" . $_COOKIE['language'] . "." . $_COOKIE['project'] . ".org/";	
 		}
 	}
+	// Recent changes
 	$limit = 500;
 	$from = isset($_COOKIE['rcfrom']) ? $_COOKIE['rcfrom'] : '';
 	$to = '';
@@ -98,6 +99,15 @@ while(1) {
 	echo "retry: 3000" . PHP_EOL;
 	echo "data: " . json_encode($rc['query']['recentchanges']) . PHP_EOL;
 	echo PHP_EOL;
+	
+	// Statistics
+	$statistics = statistics();
+	$statistics = $statistics['query']['statistics'];
+	
+	echo "event: statistics" . PHP_EOL;
+	echo "data: " . json_encode($statistics) . PHP_EOL;
+	echo PHP_EOL;
+	
 	ob_flush();
 	flush();
 	sleep(3);

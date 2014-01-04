@@ -239,7 +239,73 @@ $(document).ready(function () {
 			}
 		});	
 	}
-	
+	function displayStat(data) {
+		msg = "";
+		
+		depth = data['edits'] * (data['pages'] - data['articles']) * (data['pages'] - data['articles']) / (data['articles'] * data['articles'] * data['pages']);
+		
+		msg += ""
+		+ "<dl class=\"dl-horizontal\">"
+		+ "<dt>"
+		+ locale_obj['stat_articles']
+		+ "</dt>"
+		+ "<dd>"
+		+ formatnum(data['articles'])
+		+ "</dd>"
+		
+		+ "<dt>"
+		+ locale_obj['stat_pages']
+		+ "</dt>"
+		+ "<dd>"
+		+ formatnum(data['pages'])
+		+ "</dd>"
+		
+		+ "<dt>"
+		+ locale_obj['stat_files']
+		+ "</dt>"
+		+ "<dd>"
+		+ formatnum(data['images'])
+		+ "</dd>"
+		
+		+ "<dt>"
+		+ locale_obj['stat_edits']
+		+ "</dt>"
+		+ "<dd>"
+		+ formatnum(data['edits'])
+		+ "</dd>"
+		
+		+ "<dt>"
+		+ locale_obj['stat_depth']
+		+ "</dt>"
+		+ "<dd>"
+		+ formatnum(parseFloat(depth).toFixed(4))
+		+ "</dd>"
+		
+		+ "<dt>"
+		+ locale_obj['stat_users']
+		+ "</dt>"
+		+ "<dd>"
+		+ formatnum(data['users'])
+		+ "</dd>"
+		
+		+ "<dt>"
+		+ locale_obj['stat_active_users']
+		+ "</dt>"
+		+ "<dd>"
+		+ formatnum(data['activeusers'])
+		+ "</dd>"
+		
+		+ "<dt>"
+		+ locale_obj['stat_admins']
+		+ "</dt>"
+		+ "<dd>"
+		+ formatnum(data['admins'])
+		+ "</dd>"
+		
+		+ "</dl>";
+		
+		$("#w_stat").html(msg);
+	}
 	function update_stat() {
 		$.ajax({
 			type: "POST",
@@ -250,71 +316,7 @@ $(document).ready(function () {
 			},
 			dataType: "json",
 			success: function(data) {
-				msg = "";
-				
-				depth = data['edits'] * (data['pages'] - data['articles']) * (data['pages'] - data['articles']) / (data['articles'] * data['articles'] * data['pages']);
-				
-				msg += ""
-				+ "<dl class=\"dl-horizontal\">"
-				+ "<dt>"
-				+ locale_obj['stat_articles']
-				+ "</dt>"
-				+ "<dd>"
-				+ formatnum(data['articles'])
-				+ "</dd>"
-				
-				+ "<dt>"
-				+ locale_obj['stat_pages']
-				+ "</dt>"
-				+ "<dd>"
-				+ formatnum(data['pages'])
-				+ "</dd>"
-				
-				+ "<dt>"
-				+ locale_obj['stat_files']
-				+ "</dt>"
-				+ "<dd>"
-				+ formatnum(data['images'])
-				+ "</dd>"
-				
-				+ "<dt>"
-				+ locale_obj['stat_edits']
-				+ "</dt>"
-				+ "<dd>"
-				+ formatnum(data['edits'])
-				+ "</dd>"
-				
-				+ "<dt>"
-				+ locale_obj['stat_depth']
-				+ "</dt>"
-				+ "<dd>"
-				+ formatnum(parseFloat(depth).toFixed(4))
-				+ "</dd>"
-				
-				+ "<dt>"
-				+ locale_obj['stat_users']
-				+ "</dt>"
-				+ "<dd>"
-				+ formatnum(data['users'])
-				+ "</dd>"
-				
-				+ "<dt>"
-				+ locale_obj['stat_active_users']
-				+ "</dt>"
-				+ "<dd>"
-				+ formatnum(data['activeusers'])
-				+ "</dd>"
-				
-				+ "<dt>"
-				+ locale_obj['stat_admins']
-				+ "</dt>"
-				+ "<dd>"
-				+ formatnum(data['admins'])
-				+ "</dd>"
-				
-				+ "</dl>";
-				
-				$("#w_stat").html(msg);
+				displayStat(data);
 			},
 			error:function (xhr, ajaxOptions, thrownError){
 				console.log(xhr.statusText);
@@ -534,8 +536,6 @@ $(document).ready(function () {
 		gtz = tz;
 		//$(".new-entry").removeClass("new-entry");
 		$("#stat").html(" <img src='img/loading.gif' style='width:16px; height:16px;'>");
-		update_stat();
-		
 			
 		if (!!window.EventSource) {
 			createCookie("rcfrom", gtz, 1);
@@ -549,6 +549,13 @@ $(document).ready(function () {
 				//console.log(data_obj);
 				displayMsg(data_obj);
 			}, false);
+			source.addEventListener('statistics', function(e) {
+				$("#stat").html("");
+				var data_obj = $.parseJSON(e.data);
+				//console.log("Got stat!");
+				displayStat(data_obj);
+			}, false);
+			
 			source.addEventListener('open', function(e) {
 				// Connection was opened.
 				createCookie("rcfrom", gtz, 1);
@@ -560,6 +567,8 @@ $(document).ready(function () {
 				console.log(e);
 			}, false);
 		} else {
+			update_stat();
+			
 			// Result to xhr polling :(
 			$.ajax({
 				type: "POST",

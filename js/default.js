@@ -536,8 +536,9 @@ $(document).ready(function () {
 		gtz = tz;
 		//$(".new-entry").removeClass("new-entry");
 		$("#stat").html(" <img src='img/loading.gif' style='width:16px; height:16px;'>");
-			
-		if (!!window.EventSource) {
+		
+		if (false) {
+		//if (!!window.EventSource) {
 			createCookie("rcfrom", gtz, 1);
 			var source = new EventSource('api-sse.php');
 			

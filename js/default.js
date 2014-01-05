@@ -530,15 +530,14 @@ $(document).ready(function () {
 		
 	}
 	function update(tz) {
-		//update_config();
 		
 		if (config['pause']) return false;
 		gtz = tz;
-		//$(".new-entry").removeClass("new-entry");
 		$("#stat").html(" <img src='img/loading.gif' style='width:16px; height:16px;'>");
 		
-		if (false) {
-		//if (!!window.EventSource) {
+		//if (false) {
+		if (!!window.EventSource) {	
+		
 			createCookie("rcfrom", gtz, 1);
 			var source = new EventSource('api-sse.php');
 			
@@ -546,7 +545,6 @@ $(document).ready(function () {
 				$("#stat").html("");
 				var data_obj = $.parseJSON(e.data);
 				//console.log("Got message");
-				//console.log(gtz);
 				//console.log(data_obj);
 				displayMsg(data_obj);
 			}, false);

@@ -48,6 +48,8 @@ body { font-family: Ubuntu, sans-serif; }
 .ns-15 { background: #1e7145 !important; } /* Pembicaraan Kategori */
 .ns-101 { background: #00aba9 !important; } /* Pembicaraan Portal */
 
+.inactive { color: #999; }
+.inactive a { color: #999; }
 
 .main { margin-top:4em; }
 #def { text-align:center; }

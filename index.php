@@ -238,6 +238,7 @@ ob_end_clean();
 					<p><?php echo $message['help_p1']; ?></p>
 					<p><?php echo $message['help_p2']; ?></p>
 					<p><?php echo $message['help_p3']; ?></p>
+					<p><?php echo $message['help_p4']; ?></p>
 					<p><?php echo $message['help_legend']; ?></p>
 						<table class="table">
 							<thead>
@@ -328,7 +329,6 @@ ob_end_clean();
 					<p><?php echo $message['credit']; ?>:
 					</p>
 						<ul>
-							<li><a href="http://ivan.lanin.org/ronda">Ronda</a> (<?php echo $message['about_by']; ?> Ivan Lanin)</li>
 							<li>Twitter Bootstrap 3.0</li>
 							<li>jQuery 1.10.2</li>
 							<li>Wikipedia API</li>

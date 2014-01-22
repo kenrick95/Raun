@@ -306,7 +306,7 @@ $(document).ready(function () {
 		
 		$("#w_stat").html(msg);
 	}
-	function update_stat() {
+	function updateStat() {
 		$.ajax({
 			type: "POST",
 			url: "api.php",
@@ -364,6 +364,8 @@ $(document).ready(function () {
 			if (data[i]['user'].toLowerCase() in user_group['sysop']) {
 				attr += "admin ";
 			}
+			attr += "revid-" + data[i]['revid'] + " ";
+			$(".revid-" + data[i]['old_revid']).addClass("inactive");
 			
 			msg = "<tr id=\"row-" + data[i]['rcid'] + "\" class=\"" + attr + "\">"
 				
@@ -542,7 +544,7 @@ $(document).ready(function () {
 			var source = new EventSource('api-sse.php');
 			
 			source.addEventListener('message', function(e) {
-				$("#stat").html("");
+				if (config['pause']) return false;
 				var data_obj = $.parseJSON(e.data);
 				//console.log("Got message");
 				//console.log(data_obj);
@@ -566,7 +568,7 @@ $(document).ready(function () {
 				console.log(e);
 			}, false);
 		} else {
-			update_stat();
+			updateStat();
 			
 			// Result to xhr polling :(
 			$.ajax({

@@ -127,7 +127,15 @@ $(document).ready(function () {
 	$(document).on( "click", ".ns", function(){
 		$('#help').modal('show');
 	});
-
+	function update_tool_config() {
+		createCookie("locale", $("#locale").val(), 30);
+		createCookie("language", $("#language").val(), 30);
+		createCookie("project", $("#project").val(), 30);
+		
+		config["language"] = $("#language").val();
+		config["project"] = $("#project").val();
+		config["locale"] = $("#locale").val();
+	}
 	function update_config() {
 		
 		createCookie("show_bot", $("#show_bot").prop( "checked" ), 30);
@@ -147,9 +155,7 @@ $(document).ready(function () {
 		config["show_redirect"] = $("#show_redirect").prop( "checked" );
 		config["show_editor"] = $("#show_editor").prop( "checked" );
 		config["show_admin"] = $("#show_admin").prop( "checked" );
-		config["language"] = $("#language").val();
-		config["project"] = $("#project").val();
-		config["locale"] = $("#locale").val();
+		update_tool_config();
 		
 	}
 	
@@ -198,14 +204,7 @@ $(document).ready(function () {
 		update_config();
 	});
 	$("#tool_config").submit(function () {
-		createCookie("locale", $("#locale").val(), 30);
-		createCookie("language", $("#language").val(), 30);
-		createCookie("project", $("#project").val(), 30);
-		
-		config["language"] = $("#language").val();
-		config["project"] = $("#project").val();
-		config["locale"] = $("#locale").val();
-		
+		update_tool_config();
 	});
 	
 	function sD(elem) {
@@ -539,6 +538,7 @@ $(document).ready(function () {
 		
 		//if (false) {
 		if (!!window.EventSource) {	
+			update_tool_config();
 		
 			createCookie("rcfrom", gtz, 1);
 			var source = new EventSource('api-sse.php');

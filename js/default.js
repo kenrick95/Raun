@@ -8,6 +8,7 @@ config = {
 	show_redirect:true,
 	show_editor:true,
 	show_admin:true,
+	show_others:true,
 	pause: false,
 	timeout: 10000,
 	project: "wikipedia",
@@ -144,7 +145,8 @@ $(document).ready(function () {
 		createCookie("show_minor", $("#show_minor").prop( "checked" ), 30);	
 		createCookie("show_redirect", $("#show_redirect").prop( "checked" ), 30);	
 		createCookie("show_editor", $("#show_editor").prop( "checked" ), 30);	
-		createCookie("show_admin", $("#show_admin").prop( "checked" ), 30);	
+		createCookie("show_admin", $("#show_admin").prop( "checked" ), 30);		
+		createCookie("show_others", $("#show_others").prop( "checked" ), 30);	
 		
 		
 		
@@ -155,6 +157,7 @@ $(document).ready(function () {
 		config["show_redirect"] = $("#show_redirect").prop( "checked" );
 		config["show_editor"] = $("#show_editor").prop( "checked" );
 		config["show_admin"] = $("#show_admin").prop( "checked" );
+		config["show_others"] = $("#show_others").prop( "checked" );
 		update_tool_config();
 		
 	}
@@ -168,7 +171,9 @@ $(document).ready(function () {
 			show_minor:$("#show_minor").prop( "checked" ),
 			show_redirect:$("#show_redirect").prop( "checked" ),
 			show_editor: $("#show_editor").prop( "checked" ),
-			show_admin:$("#show_admin").prop( "checked" )
+			show_admin:$("#show_admin").prop( "checked" ),
+			show_others:$("#show_others").prop( "checked" )
+			
 		}
 		
 		if (new_config['show_bot'] && !config['show_bot']) sD(".bot");
@@ -178,6 +183,7 @@ $(document).ready(function () {
 		if (new_config['show_redirect'] && !config['show_redirect']) sD(".redirect");
 		if (new_config['show_editor'] && !config['show_editor']) sD(".editor");
 		if (new_config['show_admin'] && !config['show_admin']) sD(".admin");
+		if (new_config['show_others'] && !config['show_others']) sD(".others");
 		
 		if (!new_config['show_bot']) {
 			sU(".bot");
@@ -199,6 +205,9 @@ $(document).ready(function () {
 		}
 		if (!new_config['show_admin']) {
 			sU(".admin");
+		}
+		if (!new_config['show_others']) {
+			sU(".others");
 		}
 		
 		update_config();
@@ -363,6 +372,9 @@ $(document).ready(function () {
 			if (data[i]['user'].toLowerCase() in user_group['sysop']) {
 				attr += "admin ";
 			}
+			if (attr === "") {
+				attr = "others ";
+			}
 			attr += "revid-" + data[i]['revid'] + " ";
 			$(".revid-" + data[i]['old_revid']).addClass("inactive");
 			
@@ -518,6 +530,11 @@ $(document).ready(function () {
 					show_art = false;	
 				}
 			}
+			if (attr.indexOf("others") >= 0) {
+				if (!config['show_others']) {
+					show_art = false;	
+				}
+			}
 			
 			if (show_art === true) {
 				sD('#main-table > tbody > tr#row-' + data[i]['rcid']);
@@ -609,6 +626,7 @@ $(document).ready(function () {
 			$("#show_redirect").prop( "checked", true );
 			$("#show_editor").prop( "checked", true );
 			$("#show_admin").prop( "checked", true );
+			$("#show_others").prop( "checked", true );
 			$("#language").val("id");
 			$("#project").val("wikipedia");
 			$("#locale").val("en");
@@ -621,6 +639,7 @@ $(document).ready(function () {
 			createCookie("show_redirect", $("#show_redirect").prop( "checked" ), 30);
 			createCookie("show_editor", $("#show_editor").prop( "checked" ), 30);
 			createCookie("show_admin", $("#show_admin").prop( "checked" ), 30);
+			createCookie("show_others", $("#show_others").prop( "checked" ), 30);
 			createCookie("language", $("#language").val(), 30);
 			createCookie("project", $("#project").val(), 30);
 			createCookie("locale", $("#locale").val(), 30);
@@ -632,6 +651,7 @@ $(document).ready(function () {
 			$("#show_redirect").prop( "checked", readCookie("show_redirect") == 'true' );
 			$("#show_editor").prop( "checked", readCookie("show_editor") == 'true' );
 			$("#show_admin").prop( "checked", readCookie("show_admin") == 'true' );
+			$("#show_others").prop( "checked", readCookie("show_others") == 'true' );
 			if (force['language'] === false) {
 				$("#language").val( readCookie("language") );
 			}
@@ -650,6 +670,7 @@ $(document).ready(function () {
 				show_redirect:$("#show_redirect").prop( "checked" ),
 				show_editor:$("#show_editor").prop( "checked" ),
 				show_admin:$("#show_admin").prop( "checked" ),
+				show_others:$("#show_others").prop( "checked" ),
 				pause: false,
 				timeout: 10000,
 				project: $("#project").val(),

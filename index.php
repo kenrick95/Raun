@@ -149,6 +149,12 @@ ob_end_clean();
 												<span class="label label-info"><?php echo $message['settings_admin_edits']; ?></span>
 											</label>
 										</div>
+										<div class="checkbox">
+											<label>
+											<input type="checkbox" id="show_others" class="config" value="true">
+												<span class="label label-default"><?php echo $message['settings_other_edits']; ?></span>
+											</label>
+										</div>
 									</td>
 										<td>
 										<form id="tool_config" role="form" method="get">

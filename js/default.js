@@ -84,10 +84,11 @@ $(document).ready(function () {
 	
 	function get_time() {
 		var date = new Date();
-		return date.getUTCFullYear() +
+		date.setDate(date.getDate() - 1);
+		return ( date.getUTCFullYear() ) +
 		'-' + pad( date.getUTCMonth() + 1 ) +
-		'-' + pad( date.getUTCHours()-1 < 0 ? date.getUTCDate()-1 : date.getUTCDate() ) +
-		'T' + pad( date.getUTCHours()-1 < 0 ? date.getUTCHours()+23 : date.getUTCHours()-1 ) +
+		'-' + pad( date.getUTCDate() ) +
+		'T' + pad( date.getUTCHours() ) +
 		':' + pad( date.getUTCMinutes() ) +
 		':' + pad( date.getUTCSeconds() ) +
 		'Z';

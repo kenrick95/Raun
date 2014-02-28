@@ -16,7 +16,7 @@ config = {
 	locale: "en"
 };
 user_group = new Array();
-
+start_notif = false;
 
 $(document).ready(function () {
 	//Twitter Bootstrap keep-open class
@@ -337,6 +337,7 @@ $(document).ready(function () {
 		len = data.length;
 		tz = gtz;
 		for (i = len-1; i>=0; i--) {
+			if (i <= 5) start_notif = true;
 			if (last_rcid >= data[i]['rcid']) {
 				continue;
 			} else {
@@ -490,7 +491,7 @@ $(document).ready(function () {
 				 "</td>"
 				+ "</tr>\n";
 			
-															
+												
 			$("#main-table-body").prepend(msg);
 			$('#main-table > tbody > tr#row-' + data[i]['rcid']).hide();
 			$('#main-table > tbody > tr#row-' + data[i]['rcid']).addClass("new-entry");
@@ -539,6 +540,42 @@ $(document).ready(function () {
 			
 			if (show_art === true) {
 				sD('#main-table > tbody > tr#row-' + data[i]['rcid']);
+				
+				if (start_notif) {
+					var notif_title = "";
+					notif_title = "";
+					notif_title +=
+					"Raun: " 
+					+ data[i]['title']
+					+ " ("
+					+ s_diff
+					+ ")";
+					
+					var notif_msg = "";
+					notif_msg +=
+						""
+						+ pad( time.getUTCHours() )
+						+ ':' + pad( time.getUTCMinutes() )
+						+ ':' + pad( time.getUTCSeconds() )
+						+ "\t"
+						+ data[i]['title']
+						+ " . . "
+						+ "("
+						+ s_diff
+						+ ")"
+						+ "\n"
+						+ data[i]['user']
+						+ "\n"
+						+ data[i]['comment']
+					if (data[i]['tags'] != "") {
+					notif_msg +=
+						" (Tag: "
+						+ data[i]['tags']
+						+ ")";
+					}
+					
+					notif_show(notif_title, notif_msg);
+				}
 			}
 			
 			
@@ -567,6 +604,7 @@ $(document).ready(function () {
 				//console.log("Got message");
 				//console.log(data_obj);
 				displayMsg(data_obj);
+				start_notif = true;
 			}, false);
 			source.addEventListener('statistics', function(e) {
 				$("#stat").html("");
@@ -617,7 +655,40 @@ $(document).ready(function () {
 		}
 		
 	}
-	
+	// Web Notification
+	// tested in Firefox 28 Beta and Chrome 33
+	// 
+	// https://developer.mozilla.org/en-US/docs/WebAPI/Using_Web_Notifications#Browser_compatibility
+	// WORKAROUND FOR CHROME: ADD A BUTTON TO TRIGGER NOTIF_PERMISSION
+	// for now, let's bind it to p.lead click
+	$("p.lead").click(function () { notif_permission(); });
+	function notif_permission (callback) {
+		if (Notification && Notification.permission !== "granted") {
+			Notification.requestPermission(function (status) {
+				if (Notification.permission !== status) {
+					Notification.permission = status;
+				}
+			});
+		}
+		if(callback) callback();
+	}
+	function notif_show(title, message) {
+		//console.log(title);
+		//console.log(message);
+		
+		var ttl = title;
+		var msg = message;
+		if (Notification && Notification.permission === "granted") {
+		  var n = new Notification(title, {body: msg, tag: "Raun"});
+		} else if (Notification && Notification.permission !== "denied") {
+      		Notification.requestPermission(function (status) {
+				if (Notification.permission !== status) {
+				  Notification.permission = status;
+				}
+				var n = new Notification(title, {body: msg, tag: "Raun"});
+      		});
+		}
+	}
 	function init() {
 		if (readCookie("show_bot") == null) {
 			$("#show_bot").prop( "checked", false );
@@ -681,7 +752,7 @@ $(document).ready(function () {
 		base_site = "http://" + config['language'] + "." + config['project'] + ".org/";
 		timer();
 		user_list('editor', function () { user_list('sysop', function () { update(get_time() ); }); });
-		
+		notif_permission();
 	}
 	
 	init();

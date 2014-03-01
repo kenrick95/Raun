@@ -540,12 +540,13 @@ $(document).ready(function () {
 			
 			if (show_art === true) {
 				sD('#main-table > tbody > tr#row-' + data[i]['rcid']);
+				console.log(start_notif);
 				
 				if (start_notif) {
 					var notif_title = "";
 					notif_title = "";
 					notif_title +=
-					"Raun: " 
+					"[Raun] " 
 					+ data[i]['title']
 					+ " ("
 					+ s_diff
@@ -573,7 +574,6 @@ $(document).ready(function () {
 						+ data[i]['tags']
 						+ ")";
 					}
-					
 					notif_show(notif_title, notif_msg);
 				}
 			}
@@ -689,6 +689,32 @@ $(document).ready(function () {
       		});
 		}
 	}
+	// Page Visibility API
+	// https://developer.mozilla.org/en-US/docs/Web/Guide/User_experience/Using_the_Page_Visibility_API
+	// I think that no need for using this yet
+	var hidden, visibilityChange; 
+	if (typeof document.hidden !== "undefined") {
+		hidden = "hidden";
+		visibilityChange = "visibilitychange";
+	} else if (typeof document.mozHidden !== "undefined") {
+		hidden = "mozHidden";
+		visibilityChange = "mozvisibilitychange";
+	} else if (typeof document.msHidden !== "undefined") {
+		hidden = "msHidden";
+		visibilityChange = "msvisibilitychange";
+	} else if (typeof document.webkitHidden !== "undefined") {
+		hidden = "webkitHidden";
+		visibilityChange = "webkitvisibilitychange";
+	}
+	function handleVisibilityChange() {
+		if (document[hidden]) {
+			start_notif = true;
+		} else {
+			start_notif = false;
+		}
+	}
+	//document.addEventListener(visibilityChange, handleVisibilityChange, false);
+	
 	function init() {
 		if (readCookie("show_bot") == null) {
 			$("#show_bot").prop( "checked", false );

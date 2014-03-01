@@ -16,6 +16,7 @@ $message['settings_new_pages'] = 'Halaman baru';
 $message['settings_editor_edits'] = 'Suntingan editor';
 $message['settings_admin_edits'] = 'Suntingan pengurus';
 $message['settings_other_edits'] = 'Suntingan lainnya';
+$message['send_feedback'] = 'Kirim umpan balik';
 $message['time_utc'] = 'Waktu, dalam UTC';
 $message['def_i'] = 'v cak'; ## v: verba, cak: percakpan
 $message['def_def'] = 'berkeliling; ronda; patroli;';

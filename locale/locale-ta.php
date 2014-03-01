@@ -16,6 +16,7 @@ $message['settings_new_pages'] = 'புதிய பக்கங்கள்';
 $message['settings_editor_edits'] = 'பயனர் தொகுப்புகள்';
 $message['settings_admin_edits'] = 'நிருவாகி தொகுப்புகள்';
 $message['settings_other_edits'] = 'Other edits';
+$message['send_feedback'] = 'Send feedback';
 $message['time_utc'] = 'நேரம், ஒ.ச.நே';
 $message['def_i'] = 'வினைச்சொல்'; ## வி: வினைச்சொல், conv: உரையாடல்
 $message['def_def'] = 'ஆய்விடு; பாதுகாத்திடு; ரோந்திடு;';

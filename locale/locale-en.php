@@ -16,6 +16,7 @@ $message['settings_new_pages'] = 'New pages';
 $message['settings_editor_edits'] = 'Editor edits';
 $message['settings_admin_edits'] = 'Admin edits';
 $message['settings_other_edits'] = 'Other edits';
+$message['send_feedback'] = 'Send feedback';
 $message['time_utc'] = 'Time, in UTC';
 $message['def_i'] = 'v conv'; ## v: verb, conv: conversation
 $message['def_def'] = 'inspect; guard; patrol;';

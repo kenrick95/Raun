@@ -184,6 +184,7 @@ ob_end_clean();
 					
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
+					<li><a href="https://id.wikipedia.org/w/index.php?action=edit&preload=Pembicaraan_Pengguna%3AKenrick95%2FPreload%2Fen&editintro=Pembicaraan_Pengguna%3AKenrick95%2FEditintro&summary=&nosummary=&prefix=&minor=&section=new&title=Pembicaraan+Pengguna%3AKenrick95&uselang=en" target="_blank"><span class="glyphicon glyphicon-envelope"></span> <?php echo $message['send_feedback']; ?></a></li>
 					<li style="padding:12.5px 7px;"><iframe src="http://ghbtns.com/github-btn.html?user=kenrick95&repo=Raun&type=watch&count=true"
   allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe></li>
 					<li class="dropdown">

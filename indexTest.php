@@ -79,7 +79,7 @@ ob_end_clean();
 	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 	<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 	<![endif]-->
-<script type="text/javascript">
+<!--<script type="text/javascript">
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-49036729-2']);
 _gaq.push(['_trackPageview']);
@@ -90,7 +90,7 @@ ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'st
 
 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 })();
-</script>
+</script>-->
 
 </head>
 
@@ -377,6 +377,6 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 			project: <?php echo $project_force_get ? 1 : 0; ?>
 		};
 	</script>
-	<script src="js/default.js"></script>
+	<script src="js/raun-rewrite.js"></script>
 </body>
 </html>

@@ -540,7 +540,7 @@ $(document).ready(function () {
 			
 			if (show_art === true) {
 				sD('#main-table > tbody > tr#row-' + data[i]['rcid']);
-				console.log(start_notif);
+				//console.log(start_notif);
 				
 				if (start_notif) {
 					var notif_title = "";

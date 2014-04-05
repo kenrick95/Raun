@@ -366,7 +366,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 	<!-- Bootstrap core JavaScript
 	================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="js/jquery-1.10.2.min.js"></script>
+	<script src="js/jquery-2.1.0.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	
 	<script>

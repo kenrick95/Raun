@@ -51,14 +51,30 @@ Model.prototype.data = {
 	"stat": null
 };
 Model.prototype.init = function (view) {
-	this.getRCPolling(view);
+	var that = this;
+	this.data['user'] = new Array();
+	this.getUserPolling(view, 'sysop', function (view) {
+		that.getUserPolling(view, 'editor', function (view) {
+			if (that.canRun() === 1)
+				that.getRCSSE(view);
+			else
+				that.getRCPolling(view);
+		});
+	});
 }
-Model.prototype.getData = function () {
-	if (!this.config.run) return false;
+Model.prototype.canRun = function () {
+	/*
+	return:
+		int
+		0: don't run
+		1: support SSE, use SSE
+		2: use polling
+	*/
+	if (!this.config.run) return 0;
 	if (!!window.EventSource) {
-		return this.getDataSSE();
+		return 1;
 	} else {
-		return this.getDataPolling();
+		return 2;
 	}
 };
 // Polling
@@ -72,12 +88,13 @@ Model.prototype.getDataPolling = function (view, type, params, callback) {
 	var that =  this;
 	$.ajax({
 		type: "POST",
-		url: "api.php",
+		url: "api-rewrite.php",
 		data: sendData,
 		dataType: "json",
 		success: function(data) {
 			data['config'] = that.config;
 			data['params'] = params;
+			data['site'] = that.data;
 			var ret = view.displayData(type, data);
 			callback(ret, data, callback);
 		},
@@ -89,32 +106,56 @@ Model.prototype.getDataPolling = function (view, type, params, callback) {
 Model.prototype.getRCPolling = function (view) {
 	var that = this;
 	this.getDataPolling(view, 'rc', {from: 0, gtz:0, last_rcid:0}, function (ret, data, callback) {
-		setTimeout((function (ret, data, callback) {
+		function process (ret, data, callback) {
 			data.params.gtz = ret.gtz;
 			data.params.last_rcid = ret.last_rcid;
 			that.getDataPolling(view, 'rc', data.params, callback);
-		}(ret, data, callback)), 1000);
+		}
+		setTimeout(process.bind(this, ret, data, callback), 5000);
+		
 	});
 };
 Model.prototype.getLogPolling = function (view) {
 	this.getDataPolling(view, 'log');
 };
-Model.prototype.getUserPolling = function (view) {
-	this.getDataPolling(view, 'user');
+Model.prototype.getUserPolling = function (view, group, callback) {
+	var that = this;
+	var that_callback = callback;
+	this.getDataPolling(view, 'user', {group: group}, function (ret, data, callback) {
+		that.data['user'][data.params.group] = new Array();
+		for (var i=0; i<data.length; i++) {
+			that.data['user'][data.params.group][data[i]['name'].toLowerCase()] = true;
+		}
+		that.data['user'][data.params.group][-1] = data;
+		that_callback(view);
+	});
 };
 Model.prototype.getStatPolling = function (view) {
 	this.getDataPolling(view, 'statistics');
 };
 
 // Server-Sent Event (SSE)
-Model.prototype.getDataSSE = function (view, type) {
-	var source = new EventSource('api-sse.php');
+Model.prototype.getDataSSE = function (view, type, params, callback) {
+	var that = this;
+	var source = new EventSource('api-sse-rewrite.php');
 	source.addEventListener(type, function(e) {
-		view.displayData(type, e.data);
+		var data = JSON.parse(e.data);
+		data['config'] = that.config;
+		data['params'] = params;
+		data['site'] = that.data;
+		console.log(data);
+		var ret = view.displayData(type, data);
+		callback(ret, data, callback);
 	}, false);
 };
 Model.prototype.getRCSSE = function (view) {
-	this.getDataSSE(view, 'rc');
+	var that = this;
+	that.createCookie("rcfrom", 0, 1);
+	this.getDataSSE(view, 'rc', {gtz:0, last_rcid:0}, function (ret, data, callback) {
+		data.params.gtz = ret.gtz;
+		data.params.last_rcid = ret.last_rcid;
+		that.createCookie("rcfrom", ret.gtz, 1);
+	});
 };
 Model.prototype.getLogSSE = function (view) {
 	this.getDataSSE(view, 'log');
@@ -126,6 +167,33 @@ Model.prototype.getStatSSE = function (view) {
 	this.getDataSSE(view, 'statistics');
 };
 
+
+Model.prototype.createCookie = function (name, value, days) {
+	var expires;
+	if (days) {
+		var date = new Date();
+		date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+		expires = "; expires=" + date.toGMTString();
+	} else {
+		expires = "";
+	}
+	document.cookie = escape(name) + "=" + escape(value) + expires + "; path=/";
+}
+	
+Model.prototype.readCookie = function (name) {
+	var nameEQ = escape(name) + "=";
+	var ca = document.cookie.split(';');
+	for (var i = 0; i < ca.length; i++) {
+		var c = ca[i];
+		while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+		if (c.indexOf(nameEQ) === 0) return unescape(c.substring(nameEQ.length, c.length));
+	}
+	return null;
+}
+	
+Model.prototype.eraseCookie = function (name) {
+	this.createCookie(name, "", -1);
+}
 
 function View() {
 	
@@ -172,10 +240,10 @@ View.prototype.displayRC = function (data) {
 			attr += "redirect ";
 		if (data[i]['type'] == 'new')
 			attr += "new-art ";
-//		if (data[i]['user'].toLowerCase() in user_group['editor'])
-//			attr += "editor ";
-//		if (data[i]['user'].toLowerCase() in user_group['sysop'])
-//			attr += "admin ";
+		if (data[i]['user'].toLowerCase() in data['site']['user']['editor'])
+			attr += "editor ";
+		if (data[i]['user'].toLowerCase() in data['site']['user']['sysop'])
+			attr += "admin ";
 		if (attr === "")
 			attr = "others ";
 		attr += "revid-" + data[i]['revid'] + " ";
@@ -268,10 +336,10 @@ View.prototype.displayRC = function (data) {
 			msg += "<span class=\"label label-warning\" title=\"" + locale_obj['settings_redirects'] + "\">" + locale_obj['redirect'] + "</span> ";
 		if ("bot" in data[i])
 			msg += "<span class=\"label label-info\" title=\"" + locale_obj['settings_bot_edits'] + "\">" + locale_obj['bot'] + "</span> ";
-//		if (data[i]['user'].toLowerCase() in user_group['editor'])
-//			msg += "<span class=\"label label-default\" title=\"" + locale_obj['settings_editor_edits'] + "\">" + locale_obj['editor'] + "</span> ";
-//		if (data[i]['user'].toLowerCase() in user_group['sysop'])
-//			msg += "<span class=\"label label-info\" title=\"" + locale_obj['settings_admin_edits'] + "\">" + locale_obj['admin'] + "</span> ";
+		if (data[i]['user'].toLowerCase() in data['site']['user']['editor'])
+			msg += "<span class=\"label label-default\" title=\"" + locale_obj['settings_editor_edits'] + "\">" + locale_obj['editor'] + "</span> ";
+		if (data[i]['user'].toLowerCase() in data['site']['user']['sysop'])
+			msg += "<span class=\"label label-info\" title=\"" + locale_obj['settings_admin_edits'] + "\">" + locale_obj['admin'] + "</span> ";
 		
 		// Show comments
 		msg += comment;
@@ -308,15 +376,15 @@ View.prototype.displayRC = function (data) {
 		if (attr.indexOf("anon") >= 0)
 			if (!data.config['show']['anon'])
 				show_art = false;
-//		if (attr.indexOf("admin") >= 0)
-//			if (!data.config['show']['admin'])
-//				show_art = false;
-//		if (attr.indexOf("editor") >= 0)
-//			if (!data.config['show']['editor'])
-//				show_art = false;
-//		if (attr.indexOf("others") >= 0)
-//			if (!data.config['show']['others'])
-//				show_art = false;
+		if (attr.indexOf("admin") >= 0)
+			if (!data.config['show']['admin'])
+				show_art = false;
+		if (attr.indexOf("editor") >= 0)
+			if (!data.config['show']['editor'])
+				show_art = false;
+		if (attr.indexOf("others") >= 0)
+			if (!data.config['show']['others'])
+				show_art = false;
 		
 		if (show_art === true) {
 			this.showRC('#main-table > tbody > tr#row-' + data[i]['rcid']);
@@ -348,7 +416,7 @@ View.prototype.displayLog = function (data) {
 	console.log(data);
 };
 View.prototype.displayUser = function (data) {
-	console.log(data);
+	//console.log(data);
 };
 View.prototype.displayStat = function (data) {
 	console.log(data);

@@ -605,6 +605,7 @@ $(document).ready(function () {
 				//console.log(data_obj);
 				displayMsg(data_obj);
 				start_notif = true;
+				
 			}, false);
 			source.addEventListener('statistics', function(e) {
 				$("#stat").html("");

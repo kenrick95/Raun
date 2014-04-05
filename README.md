@@ -1,32 +1,39 @@
 Raun
 ====
 
+Tool to watch the recent changes of Wikimedia Foundation projects, live.
+
 See it running at https://tools.wmflabs.org/raun/
 
 ra·un v conv inspect; guard; patrol;
 
-Raun is a tool to watch the recent changes of Wikimedia Foundation projects in (near) real time. This tool is inspired from Ronda (http://ivan.lanin.org/ronda), by Ivan Lanin. This project is started by Kenrick (User:Kenrick95).
+Raun is a tool to watch the recent changes of Wikimedia Foundation projects in real time. This tool is inspired from Ronda, by Ivan Lanin. This project is started by Kenrick (User:Kenrick95).
 
+Credit:
 
-I realised that the original Raun was a mess. At first, I made it quickly (by quickly, I also mean without proper coding style) and just for fun before I publish it to the Indonesian Wikipedia community. Hosting it in GitHub, someone noticed it and asked for localisation; I quickly made it and hence this tool grew larger and larger, but now it has come to some point that the inconsistencies among the functions made me unproductive, hence I started to "rewrite" the tool. 
-
-
-How it works
---------
-This tool uses Server-Sent Events to receive data every some seconds (default is 3 seconds); if browser did not support this (for example IE 11), this tool will fall back to polling every some seconds (default is 5 seconds). The tool received data from WMF Project's API via a PHP page first before being passed to the JavaScript which parses and display it to the user.
-
-Limitations
---------
-Server-Sent Events and polling heavily uses server resources. Once I ever hosted this tool at my personal website and the whole website was down (due to exceeding the hosting bandwith limit) after some hours of using this tool. Hence, I hosted it at tools.wmflabs.org.
-
-Browser support
---------
-Browsers that is supported jQuery 2.1.10; and Bootstrap 3.0
-
-Credits & License
---------
+* Ronda (by Ivan Lanin)
 * Twitter Bootstrap 3.0
-* jQuery 2.1.0
+* jQuery 1.10.2
 * Wikipedia API
 
 Otherwise stated, this project source code is licensed under MIT License.
+
+----
+[id]
+
+Lihat proyek ini di https://tools.wmflabs.org/raun/
+
+ra·un v cak berkeliling; ronda; patroli;
+
+Raun adalah alat untuk memantau perubahan terbaru Wikipedia bahasa Indonesia secara langsung (live). Alat ini terinspirasi dari Ronda, oleh Ivan Lanin. Proyek ini dimulai oleh Kenrick (Pengguna:Kenrick95).
+
+Kredit:
+
+* Ronda (oleh Ivan Lanin)
+* Twitter Bootstrap 3.0
+* jQuery 1.10.2
+* Wikipedia API
+
+Di luar lisensi kode dan ide yang telah disebutkan, kode proyek ini dilisensikan dengan lisensi MIT
+
+

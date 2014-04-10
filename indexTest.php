@@ -196,9 +196,9 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 					
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="https://id.wikipedia.org/w/index.php?action=edit&preload=Pembicaraan_Pengguna%3AKenrick95%2FPreload%2Fen&editintro=Pembicaraan_Pengguna%3AKenrick95%2FEditintro&summary=&nosummary=&prefix=&minor=&section=new&title=Pembicaraan+Pengguna%3AKenrick95&uselang=en" target="_blank"><span class="glyphicon glyphicon-envelope"></span> <?php echo $message['send_feedback']; ?></a></li>
-					<li style="padding:12.5px 7px;"><iframe src="http://ghbtns.com/github-btn.html?user=kenrick95&repo=Raun&type=watch&count=true"
+					<li style="padding:12.5px 7px;"><iframe src="http://ghbtns.com/github-btn.html?user=kenrick95&amp;repo=Raun&amp;type=watch&amp;count=true"
   allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe></li>
+					<li><a href="https://id.wikipedia.org/w/index.php?action=edit&amp;preload=Pembicaraan_Pengguna%3AKenrick95%2FPreload%2Fen&editintro=Pembicaraan_Pengguna%3AKenrick95%2FEditintro&summary=&nosummary=&prefix=&minor=&section=new&title=Pembicaraan+Pengguna%3AKenrick95&uselang=en" target="_blank"><span class="glyphicon glyphicon-envelope"></span> <?php echo $message['send_feedback']; ?></a></li>
 					<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-stats"></span>
  <?php echo $message['stat']; ?> <b class="caret"></b></a>
@@ -361,13 +361,14 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
-
+	<div id="nanobar"></div>
 
 	<!-- Bootstrap core JavaScript
 	================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="js/jquery-2.1.0.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script src="js/nanobar.min.js"></script>
 	
 	<script>
 		var locale_obj = <?php echo json_encode($message, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP); ?>;

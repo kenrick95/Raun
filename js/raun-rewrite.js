@@ -109,6 +109,7 @@ Model.prototype.getDataPolling = function (view, type, params, callback) {
 };
 Model.prototype.getRCPolling = function (view) {
 	var that = this;
+	view.displayBar(50);
 	this.getDataPolling(view, 'rc', {from: 0, gtz:0, last_rcid:0}, function (ret, data, callback) {
 		function process (ret, data, callback) {
 			data.params.gtz = ret.gtz;
@@ -135,7 +136,13 @@ Model.prototype.getUserPolling = function (view, group, callback) {
 	});
 };
 Model.prototype.getStatPolling = function (view) {
-	this.getDataPolling(view, 'stat');
+	var that = this;
+	this.getDataPolling(view, 'stat', {method: 'stat'}, function (ret, data, callback) {
+		function process (ret, data, callback) {
+			that.getDataPolling(view, 'stat', data.params, callback);
+		}
+		setTimeout(process.bind(this, ret, data, callback), 5000);
+	});
 };
 
 // Server-Sent Event (SSE)
@@ -207,6 +214,12 @@ function View() {
 			event.stopPropagation();
 		}
 	});
+	// declaring Nanobar as global variable
+	var nanobarOptions = {bg: '#C0C0C0'};
+	window.nanobar = new Nanobar(nanobarOptions);
+}
+View.prototype.displayBar = function (pos) {
+	nanobar.go( pos );
 }
 View.prototype.displayData = function (type, data) {
 	switch(type) {
@@ -218,6 +231,7 @@ View.prototype.displayData = function (type, data) {
 	}
 };
 View.prototype.displayRC = function (data) {
+	this.displayBar(100);
 	
 	base_site = "http://" + data.config['language'] + "." + data.config['project'] + ".org/";
 	gtz = data.params.gtz;

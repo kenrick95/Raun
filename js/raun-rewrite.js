@@ -55,12 +55,16 @@ Model.prototype.init = function (view) {
 	this.data['user'] = new Array();
 	this.getUserPolling(view, 'sysop', function (view) {
 		that.getUserPolling(view, 'editor', function (view) {
-			if (that.canRun() === 1)
+			if (that.canRun() === 1) {
 				that.getRCSSE(view);
-			else
+				that.getStatSSE(view);
+			} else {
 				that.getRCPolling(view);
+				that.getStatPolling(view);
+			}
 		});
 	});
+	view.displayTime();
 }
 Model.prototype.canRun = function () {
 	/*
@@ -131,7 +135,7 @@ Model.prototype.getUserPolling = function (view, group, callback) {
 	});
 };
 Model.prototype.getStatPolling = function (view) {
-	this.getDataPolling(view, 'statistics');
+	this.getDataPolling(view, 'stat');
 };
 
 // Server-Sent Event (SSE)
@@ -145,7 +149,8 @@ Model.prototype.getDataSSE = function (view, type, params, callback) {
 		data['site'] = that.data;
 		console.log(data);
 		var ret = view.displayData(type, data);
-		callback(ret, data, callback);
+		if (!!callback)
+			callback(ret, data, callback);
 	}, false);
 };
 Model.prototype.getRCSSE = function (view) {
@@ -164,7 +169,7 @@ Model.prototype.getUserSSE = function (view) {
 	this.getDataSSE(view, 'user');
 };
 Model.prototype.getStatSSE = function (view) {
-	this.getDataSSE(view, 'statistics');
+	this.getDataSSE(view, 'stat');
 };
 
 
@@ -196,7 +201,12 @@ Model.prototype.eraseCookie = function (name) {
 }
 
 function View() {
-	
+	//Twitter Bootstrap keep-open class
+	$('.dropdown-menu').click(function(event){
+		if($(this).hasClass('keep-open')){
+			event.stopPropagation();
+		}
+	});
 }
 View.prototype.displayData = function (type, data) {
 	switch(type) {
@@ -394,7 +404,7 @@ View.prototype.displayRC = function (data) {
 	}
 	setTimeout(function () {
 		$(".new-entry").removeClass("new-entry");
-	}, 5000);
+	}, 1000);
 	return {'gtz': gtz, 'last_rcid': last_rcid};
 };
 View.prototype.showRC = function (elem) {
@@ -418,9 +428,106 @@ View.prototype.displayLog = function (data) {
 View.prototype.displayUser = function (data) {
 	//console.log(data);
 };
+View.prototype.formatnum = function (nStr) {
+// http://www.mredkj.com/javascript/numberFormat.html
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? locale_obj['separator_decimals'] + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+	x1 = x1.replace(rgx, '$1' + locale_obj['separator_thousands'] + '$2');
+	}
+	return x1 + x2;
+}
+
 View.prototype.displayStat = function (data) {
-	console.log(data);
+	//console.log(data);
+	msg = "";
+	
+	depth = data['edits'] * (data['pages'] - data['articles']) * (data['pages'] - data['articles']) / (data['articles'] * data['articles'] * data['pages']);
+	
+	msg += ""
+	+ "<dl class=\"dl-horizontal\">"
+	+ "<dt>"
+	+ locale_obj['stat_articles']
+	+ "</dt>"
+	+ "<dd>"
+	+ this.formatnum(data['articles'])
+	+ "</dd>"
+	
+	+ "<dt>"
+	+ locale_obj['stat_pages']
+	+ "</dt>"
+	+ "<dd>"
+	+ this.formatnum(data['pages'])
+	+ "</dd>"
+	
+	+ "<dt>"
+	+ locale_obj['stat_files']
+	+ "</dt>"
+	+ "<dd>"
+	+ this.formatnum(data['images'])
+	+ "</dd>"
+	
+	+ "<dt>"
+	+ locale_obj['stat_edits']
+	+ "</dt>"
+	+ "<dd>"
+	+ this.formatnum(data['edits'])
+	+ "</dd>"
+	
+	+ "<dt>"
+	+ locale_obj['stat_depth']
+	+ "</dt>"
+	+ "<dd>"
+	+ this.formatnum(parseFloat(depth).toFixed(4))
+	+ "</dd>"
+	
+	+ "<dt>"
+	+ locale_obj['stat_users']
+	+ "</dt>"
+	+ "<dd>"
+	+ this.formatnum(data['users'])
+	+ "</dd>"
+	
+	+ "<dt>"
+	+ locale_obj['stat_active_users']
+	+ "</dt>"
+	+ "<dd>"
+	+ this.formatnum(data['activeusers'])
+	+ "</dd>"
+	
+	+ "<dt>"
+	+ locale_obj['stat_admins']
+	+ "</dt>"
+	+ "<dd>"
+	+ this.formatnum(data['admins'])
+	+ "</dd>"
+	
+	+ "</dl>";
+	
+	$("#w_stat").html(msg);
 };
+
+View.prototype.displayTime = function () {
+	function pad(number) {
+		if ( number < 10 )
+			return '0' + number;
+		return number;
+	}
+	var date = new Date();
+	var timeStr = date.getUTCFullYear() +
+		'-' + pad( date.getUTCMonth() + 1 ) +
+		'-' + pad( date.getUTCDate() ) +
+		' ' + pad( date.getUTCHours() ) +
+		':' + pad( date.getUTCMinutes() ) +
+		':' + pad( date.getUTCSeconds() ) +
+		' UTC';
+	$("#tz").html(timeStr);
+	var that = this;
+	setTimeout(function () { that.displayTime() }, 1000);
+}
 
 function Controller(model, view) {
 	this.view = view;

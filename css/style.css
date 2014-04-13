@@ -1,4 +1,4 @@
-body { font-family: Ubuntu, sans-serif; }
+body { font-family: 'Ubuntu', sans-serif; }
 
 /*.anon { background: #E8E8E8; }
 .bot { background: #d3e6fc; }
@@ -19,6 +19,9 @@ body { font-family: Ubuntu, sans-serif; }
 .label { white-space: nowrap; }
 .content ul, .content ol {
 	margin: 0 0 0 1.5em; padding-left: 0em;
+}
+.nowrap {
+    white-space: nowrap;
 }
 
 .new-entry { background:#f7dc6f !important; }
@@ -53,6 +56,7 @@ body { font-family: Ubuntu, sans-serif; }
 
 .main { margin-top:4em; }
 #def { text-align:center; }
+.navbar-brand {min-width:6em; height:50px; font-weight: bold;}
 
 #stat { font-style:italic; font-size:.8em; }
 .navbar-nav>li>.dropdown-menu { min-width:300px; }

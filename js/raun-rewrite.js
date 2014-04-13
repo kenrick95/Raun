@@ -214,6 +214,10 @@ function View() {
     // declaring Nanobar as global variable
     var nanobarOptions = {bg: '#C0C0C0'};
     window.nanobar = new Nanobar(nanobarOptions);
+    // Bind .ns to show help
+    $(document).on("click", ".ns", function () {
+        $('#help').modal('show');
+    });
 }
 View.prototype.displayBar = function (pos) {
     nanobar.go(pos);
@@ -240,7 +244,8 @@ View.prototype.displayRC = function (data) {
     var last_rcid = data.params.last_rcid;
     var len = data.length;
     var tz = gtz;
-    var i, diff, s_diff, comment, attr, time, msg, show_art;
+    var i, j, diff, s_diff, comment, attr, time, show_art;
+    var cell, row, spaceElem, diffElem, linkElem, diffClass, userElem, spanElem;
     for (i = len - 1; i >= 0; i--) {
         if (last_rcid >= data[i].rcid) {
             continue;
@@ -264,110 +269,134 @@ View.prototype.displayRC = function (data) {
         if (data.site.user.sysop.hasOwnProperty(data[i].user.toLowerCase())) {attr += "admin "; }
         if (attr === "") {attr = "others "; }
         attr += "revid-" + data[i].revid + " ";
+
         // "Deprecate" the old rows
         $(".revid-" + data[i].old_revid).addClass("inactive");
-        msg = "<tr id=\"row-" + data[i].rcid + "\" class=\"" + attr + "\">"
-            // Color, namespace
-            + "<td "
-            + "title=\""
-            + locale_obj.ns
-            + ": "
-            + this.ns(data[i].ns)
-            + "\" "
-            + "class=\"ns ns-"
-            + data[i].ns
-            + "\">"
-            + "</td>"
-            // Edit time
-            + "<td>"
-            + this.pad(time.getUTCHours())
+
+        row = document.createElement("tr");
+        row.setAttribute("class", attr);
+        row.setAttribute("id", "row-" + data[i].rcid);
+
+        cell = [];
+        cell[0] = document.createElement("td");
+        cell[0].setAttribute("class", "ns ns-" + data[i].ns);
+        cell[0].setAttribute("title", locale_obj.ns);
+
+        cell[1] = document.createElement("td");
+        cell[1].textContent = this.pad(time.getUTCHours())
             + ':' + this.pad(time.getUTCMinutes())
-            + ':' + this.pad(time.getUTCSeconds())
-            + "</td>"
-            // Link to diff
-            + "<td>"
-            + "<a "
-            + "href=\""
-            + base_site
+            + ':' + this.pad(time.getUTCSeconds());
+
+        cell[2] = document.createElement("td");
+        linkElem = document.createElement("a");
+        linkElem.setAttribute("href", base_site
             + "w/index.php?title="
             + data[i].title
             + "&diff="
             + data[i].revid
             + "&oldid="
-            + data[i].old_revid
-            + "\">"
-            + data[i].title
-            + "</a>"
-            + " <span style=\"white-space: nowrap;\">. .</span> ";
-        // Diff size
-        msg += "<span class=\"";
+            + data[i].old_revid);
+        linkElem.textContent = data[i].title;
+        spaceElem = document.createElement("span");
+        spaceElem.setAttribute("class", "nowrap");
+        spaceElem.textContent = " . . ";
+        diffElem = document.createElement("span");
         if (s_diff > 0) {
-            msg += "size-pos";
+            diffClass = "size-pos";
         } else if (s_diff < 0) {
-            msg += "size-neg";
+            diffClass = "size-neg";
         } else {
-            msg += "size-null";
+            diffClass = "size-null";
         }
         if (Math.abs(s_diff) > 500) {
-            msg += " size-large";
+            diffClass += " size-large";
         }
-        msg += "\">";
-        msg += "("
-            + s_diff
-            + ")";
-        msg += "</span>";
-        msg += "</td>"
-        // Editing user
-            + "<td>"
-            + "<a"
-            + " class=\""
-            + "username"
-            + "\""
-            // href
-            + " href=\""
-            + base_site
+        diffElem.setAttribute("class", diffClass);
+        diffElem.textContent = "(" + s_diff + ")";
+        cell[2].appendChild(linkElem);
+        cell[2].appendChild(spaceElem);
+        cell[2].appendChild(diffElem);
+
+        cell[3] = document.createElement("td");
+        userElem = document.createElement("a");
+        userElem.setAttribute("class", "username");
+        userElem.setAttribute("href", base_site
             + "wiki/Special:Contributions/"
-            + data[i].user
-            + "\">"
-            // visible
-            + data[i].user
-            + "</a>"
-            + "</td>"
-        // Show labels
-            + "<td>";
+            + data[i].user);
+        userElem.textContent = data[i].user;
+        cell[3].appendChild(userElem);
+
+        cell[4] = document.createElement("td");
         if (data[i].type === 'new') {
-            msg += "<span class=\"label label-success\" title=\"" + locale_obj.settings_new_pages + "\">" + locale_obj['new'] + "</span> ";
+            spanElem = document.createElement("span");
+            spanElem.setAttribute("class", "label label-success");
+            spanElem.setAttribute("title", locale_obj.settings_new_pages);
+            spanElem.textContent = locale_obj['new'];
+            cell[4].appendChild(spanElem);
+            cell[4].insertAdjacentHTML('beforeend', " ");
         }
         if (data[i].hasOwnProperty('minor')) {
-            msg += "<span class=\"label label-primary\" title=\"" + locale_obj.settings_minor_edits + "\">" + locale_obj.minor + "</span> ";
+            spanElem = document.createElement("span");
+            spanElem.setAttribute("class", "label label-primary");
+            spanElem.setAttribute("title", locale_obj.settings_minor_edits);
+            spanElem.textContent = locale_obj.minor;
+            cell[4].appendChild(spanElem);
+            cell[4].insertAdjacentHTML('beforeend', " ");
         }
         if (data[i].hasOwnProperty('anon')) {
-            msg += "<span class=\"label label-danger\" title=\"" + locale_obj.settings_anon_edits + "\">" + locale_obj.anon + "</span> ";
+            spanElem = document.createElement("span");
+            spanElem.setAttribute("class", "label label-danger");
+            spanElem.setAttribute("title", locale_obj.settings_anon_edits);
+            spanElem.textContent = locale_obj.anon;
+            cell[4].appendChild(spanElem);
+            cell[4].insertAdjacentHTML('beforeend', " ");
         }
         if (data[i].hasOwnProperty('redirect')) {
-            msg += "<span class=\"label label-warning\" title=\"" + locale_obj.settings_redirects + "\">" + locale_obj.redirect + "</span> ";
+            spanElem = document.createElement("span");
+            spanElem.setAttribute("class", "label label-warning");
+            spanElem.setAttribute("title", locale_obj.settings_redirects);
+            spanElem.textContent = locale_obj.redirect;
+            cell[4].appendChild(spanElem);
+            cell[4].insertAdjacentHTML('beforeend', " ");
         }
         if (data[i].hasOwnProperty('bot')) {
-            msg += "<span class=\"label label-info\" title=\"" + locale_obj.settings_bot_edits + "\">" + locale_obj.bot + "</span> ";
+            spanElem = document.createElement("span");
+            spanElem.setAttribute("class", "label label-info");
+            spanElem.setAttribute("title", locale_obj.settings_bot_edits);
+            spanElem.textContent = locale_obj.bot;
+            cell[4].appendChild(spanElem);
+            cell[4].insertAdjacentHTML('beforeend', " ");
         }
         if (data.site.user.editor.hasOwnProperty(data[i].user.toLowerCase())) {
-            msg += "<span class=\"label label-default\" title=\"" + locale_obj.settings_editor_edits + "\">" + locale_obj.editor + "</span> ";
+            spanElem = document.createElement("span");
+            spanElem.setAttribute("class", "label label-default");
+            spanElem.setAttribute("title", locale_obj.settings_editor_edits);
+            spanElem.textContent = locale_obj.editor;
+            cell[4].appendChild(spanElem);
+            cell[4].insertAdjacentHTML('beforeend', " ");
         }
         if (data.site.user.sysop.hasOwnProperty(data[i].user.toLowerCase())) {
-            msg += "<span class=\"label label-info\" title=\"" + locale_obj.settings_admin_edits + "\">" + locale_obj.admin + "</span> ";
+            spanElem = document.createElement("span");
+            spanElem.setAttribute("class", "label label-info");
+            spanElem.setAttribute("title", locale_obj.settings_admin_edits);
+            spanElem.textContent = locale_obj.admin;
+            cell[4].appendChild(spanElem);
+            cell[4].insertAdjacentHTML('beforeend', " ");
         }
         // Show comments
-        msg += comment;
+        cell[4].insertAdjacentHTML('beforeend', comment);
         // Show tags
-        if (data[i].tags !== "") {
-            msg += " (Tag: <i>"
+        if (data[i].tags.length > 0) {
+            cell[4].insertAdjacentHTML('beforeend', " (Tag: <i>"
                 + data[i].tags
-                + "</i>)";
+                + "</i>)");
         }
-        msg += "</td>"
-            + "</tr>\n";
-        // add row to the table; don't show yet     
-        $("#main-table-body").prepend(msg);
+        for (j = 0; j < 5; j++) {
+            row.appendChild(cell[j]);
+        }
+
+        // add row to the table; don't show yet 
+        $("#main-table-body").prepend(row);
         $('#main-table > tbody > tr#row-' + data[i].rcid).hide();
         $('#main-table > tbody > tr#row-' + data[i].rcid).addClass("new-entry");
         // show article
@@ -418,6 +447,7 @@ View.prototype.displayRC = function (data) {
     }
     setTimeout(function () {
         $(".new-entry").removeClass("new-entry");
+        $("div[style*='100%'], .nanobarbar").hide();
     }, 1000);
     return {'gtz': gtz, 'last_rcid': last_rcid};
 };

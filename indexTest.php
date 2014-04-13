@@ -53,15 +53,15 @@ if (isset($_GET['project'])) {
     }
 }
 ob_end_clean();
-?><!DOCTYPE html>
+?><!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="img/favicon.png">
+    <meta name="description" content="Raun: watch the recent changes of Wikimedia Foundation projects, live.">
+    <meta name="author" content="Kenrick">
+    <!-- <link rel="shortcut icon" href="img/favicon.png"> -->
     
     <title>Raun</title>
     
@@ -70,10 +70,7 @@ ob_end_clean();
     <link href="//cdn.jsdelivr.net/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
     
     <link href="css/style.css" rel="stylesheet">
-    
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    
+
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -91,9 +88,7 @@ ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'st
 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 })();
 </script>-->
-
 </head>
-
 <body>
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
@@ -104,7 +99,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#about" data-toggle="modal" data-target="#about" style="min-width:6em; height:50px;">Raun<span id="stat"></span></a>
+                <a class="navbar-brand" href="#about" data-toggle="modal" data-target="#about">ra&middot;un<span id="stat"></span></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
@@ -113,91 +108,88 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-wrench"></span>
  <?php echo $message['settings']; ?> <b class="caret"></b></a>
                         <div class="dropdown-menu keep-open">
-                                <table id="settings-menu">
-                                    <tr style="vertical-align:top;">
-                                        <td>
-                                        <button id="pause" class="btn btn-warning"><span class="glyphicon glyphicon-pause"></span> <?php echo $message['settings_pause']; ?></button>
-                                        <hr>
-                                        <?php echo $message['settings_show']; ?>:
-                                        <div class="checkbox">
-                                            <label>
-                                            <input type="checkbox" id="show_bot" class="config" value="true">
-                                                <span class="label label-info"><?php echo $message['settings_bot_edits']; ?></span>
-                                            </label>
+                            <table id="settings-menu">
+                                <tr style="vertical-align:top;">
+                                    <td>
+                                    <button id="pause" class="btn btn-warning"><span class="glyphicon glyphicon-pause"></span> <?php echo $message['settings_pause']; ?></button>
+                                    <hr>
+                                    <?php echo $message['settings_show']; ?>:
+                                    <div class="checkbox">
+                                        <label>
+                                        <input type="checkbox" id="show_bot" class="config" value="true">
+                                            <span class="label label-info"><?php echo $message['settings_bot_edits']; ?></span>
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                        <input type="checkbox" id="show_anon" class="config" value="true">
+                                            <span class="label label-danger"><?php echo $message['settings_anon_edits']; ?></span>
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                        <input type="checkbox" id="show_minor" class="config" value="true">
+                                            <span class="label label-primary"><?php echo $message['settings_minor_edits']; ?></span>
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                        <input type="checkbox" id="show_redirect" class="config" value="true">
+                                            <span class="label label-warning"><?php echo $message['settings_redirects']; ?></span>
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                        <input type="checkbox" id="show_new" class="config" value="true">
+                                            <span class="label label-success"><?php echo $message['settings_new_pages']; ?></span>
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                        <input type="checkbox" id="show_editor" class="config" value="true">
+                                            <span class="label label-default"><?php echo $message['settings_editor_edits']; ?></span>
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                        <input type="checkbox" id="show_admin" class="config" value="true">
+                                            <span class="label label-info"><?php echo $message['settings_admin_edits']; ?></span>
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                        <input type="checkbox" id="show_others" class="config" value="true">
+                                            <span class="label label-default"><?php echo $message['settings_other_edits']; ?></span>
+                                        </label>
+                                    </div>
+                                </td>
+                                    <td>
+                                    <form id="tool_config" role="form" method="get">
+                                    <?php echo $message['settings_tool']; ?>:
+                                        <div class="form-group">
+                                        <label for="locale"><?php echo $message['language']; ?></label>
+                                        <input type="text" class="form-control config_right" name="locale" id="locale" placeholder="<?php echo $message['language']; ?>" value="<?php echo $locale; ?>">
                                         </div>
-                                        <div class="checkbox">
-                                            <label>
-                                            <input type="checkbox" id="show_anon" class="config" value="true">
-                                                <span class="label label-danger"><?php echo $message['settings_anon_edits']; ?></span>
-                                            </label>
+                                    <hr>
+                                    <?php echo $message['settings_wiki']; ?>:
+                                        <div class="form-group">
+                                        <label for="language"><?php echo $message['language']; ?></label>
+                                        <input type="text" class="form-control config_right" name="language" id="language" placeholder="<?php echo $message['language']; ?>" value="<?php echo $language; ?>">
                                         </div>
-                                        <div class="checkbox">
-                                            <label>
-                                            <input type="checkbox" id="show_minor" class="config" value="true">
-                                                <span class="label label-primary"><?php echo $message['settings_minor_edits']; ?></span>
-                                            </label>
+                                        <div class="form-group">
+                                        <label for="project"><?php echo $message['project']; ?></label>
+                                        <input type="text" class="form-control config_right" name="project" id="project" placeholder="<?php echo $message['project']; ?>" value="<?php echo $project; ?>">
                                         </div>
-                                        <div class="checkbox">
-                                            <label>
-                                            <input type="checkbox" id="show_redirect" class="config" value="true">
-                                                <span class="label label-warning"><?php echo $message['settings_redirects']; ?></span>
-                                            </label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label>
-                                            <input type="checkbox" id="show_new" class="config" value="true">
-                                                <span class="label label-success"><?php echo $message['settings_new_pages']; ?></span>
-                                            </label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label>
-                                            <input type="checkbox" id="show_editor" class="config" value="true">
-                                                <span class="label label-default"><?php echo $message['settings_editor_edits']; ?></span>
-                                            </label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label>
-                                            <input type="checkbox" id="show_admin" class="config" value="true">
-                                                <span class="label label-info"><?php echo $message['settings_admin_edits']; ?></span>
-                                            </label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label>
-                                            <input type="checkbox" id="show_others" class="config" value="true">
-                                                <span class="label label-default"><?php echo $message['settings_other_edits']; ?></span>
-                                            </label>
-                                        </div>
+                                        <button type="submit" class="btn-primary btn"><?php echo $message['save']; ?></button>
+                                    </form>
                                     </td>
-                                        <td>
-                                        <form id="tool_config" role="form" method="get">
-                                        <?php echo $message['settings_tool']; ?>:
-                                            <div class="form-group">
-                                            <label for="locale"><?php echo $message['language']; ?></label>
-                                            <input type="text" class="form-control config_right" name="locale" id="locale" placeholder="<?php echo $message['language']; ?>" value="<?php echo $locale; ?>">
-                                            </div>
-                                        <hr>
-                                        <?php echo $message['settings_wiki']; ?>:
-                                            <div class="form-group">
-                                            <label for="language"><?php echo $message['language']; ?></label>
-                                            <input type="text" class="form-control config_right" name="language" id="language" placeholder="<?php echo $message['language']; ?>" value="<?php echo $language; ?>">
-                                            </div>
-                                            <div class="form-group">
-                                            <label for="project"><?php echo $message['project']; ?></label>
-                                            <input type="text" class="form-control config_right" name="project" id="project" placeholder="<?php echo $message['project']; ?>" value="<?php echo $project; ?>">
-                                            </div>
-                                            <button type="submit" class="btn-primary btn"><?php echo $message['save']; ?></button>
-                                        </form>
-                                        </td>
-                                    </tr>
-                                </table>
-                                
+                                </tr>
+                            </table>
                         </div>
                     </li>
-                    
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li style="padding:12.5px 7px;"><iframe src="http://ghbtns.com/github-btn.html?user=kenrick95&amp;repo=Raun&amp;type=watch&amp;count=true"
-  allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe></li>
+                    <li><a href="https://github.com/Kenrick95/Raun" target="_blank"><span class="glyphicon glyphicon-cutlery"></span> Fork on GitHub</a></li>
                     <li><a href="https://id.wikipedia.org/w/index.php?action=edit&amp;preload=Pembicaraan_Pengguna%3AKenrick95%2FPreload%2Fen&editintro=Pembicaraan_Pengguna%3AKenrick95%2FEditintro&summary=&nosummary=&prefix=&minor=&section=new&title=Pembicaraan+Pengguna%3AKenrick95&uselang=en" target="_blank"><span class="glyphicon glyphicon-envelope"></span> <?php echo $message['send_feedback']; ?></a></li>
                     <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-stats"></span>
@@ -361,10 +353,6 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-    <div id="nanobar"></div>
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="//cdn.jsdelivr.net/jquery/2.1.0/jquery.min.js"></script>
     <script src="//cdn.jsdelivr.net/bootstrap/3.0.2/js/bootstrap.min.js"></script>

@@ -97,6 +97,7 @@ while(1) {
 	
 	$rc = recent_changes($limit, $from, $to);
 	echo "retry: 3000" . PHP_EOL;
+	echo "event: rc" . PHP_EOL;
 	echo "data: " . json_encode($rc['query']['recentchanges']) . PHP_EOL;
 	echo PHP_EOL;
 	
@@ -104,7 +105,7 @@ while(1) {
 	$statistics = statistics();
 	$statistics = $statistics['query']['statistics'];
 	
-	echo "event: statistics" . PHP_EOL;
+	echo "event: stat" . PHP_EOL;
 	echo "data: " . json_encode($statistics) . PHP_EOL;
 	echo PHP_EOL;
 	

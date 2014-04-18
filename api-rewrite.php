@@ -98,27 +98,6 @@ function new_pages ($limit = 500) {
 
 		return json_decode($data, true);
 }
-
-function user_stat($username) {
-	global $settings;
-		
-		if (empty($username)) {
-			return false;
-		}
-		
-        $url = $settings['wikiroot'] . "/w/api.php?action=query&format=json";
-		
-        $params = "action=query&list=users&usprop=blockinfo|groups|editcount|rights|registration|emailable|gender&ususers=". $username;
-		
-        $data = httpRequest($url, $params);
-		
-		if (empty($data)) {
-			throw new Exception("No data received from server. Check that API is enabled.");
-        }
-
-		return json_decode($data, true);
-
-}
 function user_list($group = 'editor') {
 	global $settings;
 		
@@ -143,37 +122,40 @@ function user_list($group = 'editor') {
 try {
 		global $settings;
 		
+		// check type
+		if (!isset($_POST['type'])) {
+			throw new Exception("Please specify the type");
+		}
+		// check project & language
 		if (isset($_POST['project']) && isset($_POST['language'])) {
 			if (in_array($_POST['project'], array('wikipedia', 'wikinews', 'wikibooks', 'wiktionary', 'wikiquote', 'wikivoyage', 'wikidata', 'wikimedia', 'wikiversity', 'wikisource', 'mediawiki'))) {
-				$settings['wikiroot'] = "http://" . $_POST['language'] . "." . $_POST['project'] . ".org/";	
-				
+				$settings['wikiroot'] = "http://" . $_POST['language'] . "." . $_POST['project'] . ".org/";
 			}
 		}
-		if (isset($_POST['statistics'])) {
-			$statistics = statistics();
-			$statistics = $statistics['query']['statistics'];
-			echo json_encode($statistics);
-			
-		} else if (isset($_POST['from'])) {
-			
-			$limit = isset($_POST['limit']) ? $_POST['limit'] : '';
-			$from = isset($_POST['from']) ? $_POST['from'] : '';
-			$to = isset($_POST['to']) ? $_POST['to'] : '';
-			
-			$rc = recent_changes($limit, $from, $to);
-			
-			echo json_encode($rc['query']['recentchanges']);
-			
-		} else if (isset($_POST['username'])) {
-			$user_stat = user_stat($_POST['username']);
-			$user_stat = $user_stat['query']['users'];
-			echo json_encode($user_stat);
-			
-		} else if (isset($_POST['group'])) {
-			$user_list = user_list($_POST['group']);
-			$user_list = $user_list['query']['allusers'];
-			echo json_encode($user_list);
-			
+		switch ($_POST['type']) {
+			case 'rc':
+				$limit = isset($_POST['limit']) ? $_POST['limit'] : '';
+				$from = isset($_POST['from']) ? $_POST['from'] : '';
+				$to = isset($_POST['to']) ? $_POST['to'] : '';
+				
+				$rc = recent_changes($limit, $from, $to);
+				
+				echo json_encode($rc['query']['recentchanges']);
+			break;
+			case 'log':
+				// None yet
+				throw new Exception("Feature not implemented");
+			break;
+			case 'user':
+				$user_list = user_list($_POST['group']);
+				$user_list = $user_list['query']['allusers'];
+				echo json_encode($user_list);
+			break;
+			case 'stat':
+				$statistics = statistics();
+				$statistics = $statistics['query']['statistics'];
+				echo json_encode($statistics);
+			break;
 		}
 		
 } catch (Exception $e) {

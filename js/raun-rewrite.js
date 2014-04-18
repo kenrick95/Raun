@@ -1,5 +1,5 @@
 /*jslint sloppy: true, plusplus:true, browser: true, unparam:true, vars:true, continue:true */
-/*global console, locale_obj, nanobar, Nanobar, escape, unescape, EventSource, $, jQuery, clearInterval: false, clearTimeout: false, document: false, event: false, frames: false, history: false, Image: false, location: false, name: false, navigator: false, Option: false, parent: false, screen: false, setInterval: false, setTimeout: false, window: false, XMLHttpRequest: false */
+/*global force, console, locale_obj, locale_msg, nanobar, Nanobar, escape, unescape, EventSource, $, jQuery, clearInterval: false, clearTimeout: false, document: false, event: false, frames: false, history: false, Image: false, location: false, name: false, navigator: false, Option: false, parent: false, screen: false, setInterval: false, setTimeout: false, window: false, XMLHttpRequest: false */
 /*
 Raun-rewrite.js
 
@@ -20,12 +20,12 @@ Definition
 ** "user" is the user list
 ** "stat" is the project statistics
 
-* "run", the tools is running (opposite of "pause")
-* "notification", involves starting the Web Notification API
+// [disabled] * "run", the tools is running (opposite of "pause")
+// [not yet implemented] * "notification", involves starting the Web Notification API
 
-* "get" invokes ajax call
+* "get" invokes ajax call or getting data from local storage
 * "display" involves manipulating data shown in screen
-
+* "update" involves manipulating the data in the temporary memory, local storage, or cookie
 
 */
 function Model() {
@@ -50,10 +50,42 @@ Model.prototype.config = {
 };
 Model.prototype.data = {
     "user": null,
-    "stat": null
+    "stat": null,
+    "filter": ["bot", "anon", "new", "minor", "redirect", "editor", "admin", "others"],
 };
 Model.prototype.init = function (view) {
     var that = this;
+    // Settings
+    if (force.language === 0) {
+        view.displaySettings({"language": this.readCookie("language")});
+    } else {
+        this.createCookie("language", $("#language").val(), 30);
+    }
+    if (force.project === 0) {
+        view.displaySettings({"project": this.readCookie("project")});
+    } else {
+        this.createCookie("project", $("#project").val(), 30);
+    }
+    if (force.locale === 0) {
+        view.displaySettings({"locale": this.readCookie("locale")});
+    } else {
+        this.createCookie("locale", $("#locale").val(), 30);
+    }
+    // LocalStorage get data, if not exists, store default data
+    var temp = JSON.parse(localStorage.getItem("config"));
+    var keys, disp = [];
+    if (temp) {
+        this.config = temp;
+        for (keys in this.data.filter) {
+            if (this.data.filter.hasOwnProperty(keys)) {
+                disp[this.data.filter[keys]] = this.config.show[this.data.filter[keys]];
+            }
+        }
+        view.displayFilter(disp);
+    } else {
+        localStorage.setItem("config", this.config);
+    }
+
     this.data.user = [];
     this.getUserPolling(view, 'sysop', function (view) {
         that.getUserPolling(view, 'editor', function (view) {
@@ -91,7 +123,7 @@ Model.prototype.getDataPolling = function (view, type, params, callback) {
     sendData.project = this.config.project;
     sendData.language = this.config.language;
     sendData.type = type;
-    console.log(sendData);
+    // console.log(sendData);
     $.ajax({
         type: "POST",
         url: "api-rewrite.php",
@@ -178,8 +210,55 @@ Model.prototype.getUserSSE = function (view) {
 Model.prototype.getStatSSE = function (view) {
     this.getDataSSE(view, 'stat');
 };
+Model.prototype.getFilter = function (property) {
+    return $("#show_" + property).prop("checked");
+};
+Model.prototype.updateFilter = function (view) {
+    var new_config = {
+        "show": {
+            "bot": this.getFilter("bot"),
+            "anon": this.getFilter("anon"),
+            "new": this.getFilter("new"),
+            "minor": this.getFilter("minor"),
+            "redirect": this.getFilter("redirect"),
+            "editor": this.getFilter("editor"),
+            "admin": this.getFilter("admin"),
+            "others": this.getFilter("others"),
+        }
+    };
+    var keys;
+    for (keys in this.data.filter) {
+        if (this.data.filter.hasOwnProperty(keys)) {
+            if (new_config.show[this.data.filter[keys]] && !this.config.show[this.data.filter[keys]]) {
+                if (this.data.filter[keys] === "new") {
+                    view.showRC(".new-art");
+                } else {
+                    view.showRC("." + this.data.filter[keys]);
+                }
+            }
+        }
+    }
+    for (keys in this.data.filter) {
+        if (this.data.filter.hasOwnProperty(keys)) {
+            if (!new_config.show[this.data.filter[keys]]) {
+                if (this.data.filter[keys] === "new") {
+                    view.hideRC(".new-art");
+                } else {
+                    view.hideRC("." + this.data.filter[keys]);
+                }
+            }
+        }
+    }
+    // Update the data
+    for (keys in this.data.filter) {
+        if (this.data.filter.hasOwnProperty(keys)) {
+            this.config.show[this.data.filter[keys]] = new_config.show[this.data.filter[keys]];
+        }
+    }
+    // Store the data
+    localStorage.setItem("config", JSON.stringify(this.config));
 
-
+};
 Model.prototype.createCookie = function (name, value, days) {
     var expires, date;
     if (days) {
@@ -211,9 +290,11 @@ function View() {
             event.stopPropagation();
         }
     });
+
     // declaring Nanobar as global variable
     var nanobarOptions = {bg: '#C0C0C0'};
     window.nanobar = new Nanobar(nanobarOptions);
+
     // Bind .ns to show help
     $(document).on("click", ".ns", function () {
         $('#help').modal('show');
@@ -278,16 +359,20 @@ View.prototype.displayRC = function (data) {
         row.setAttribute("id", "row-" + data[i].rcid);
 
         cell = [];
-        cell[0] = document.createElement("td");
+        // Create cells
+        for (j = 0; j < 5; j++) {
+            cell[j] = document.createElement("td");
+        }
+        // Cell 0: Namespace
         cell[0].setAttribute("class", "ns ns-" + data[i].ns);
-        cell[0].setAttribute("title", locale_obj.ns);
+        cell[0].setAttribute("title", locale_msg('ns') + ": " + this.ns(data[i].ns));
 
-        cell[1] = document.createElement("td");
+        // Cell 1: Time
         cell[1].textContent = this.pad(time.getUTCHours())
             + ':' + this.pad(time.getUTCMinutes())
             + ':' + this.pad(time.getUTCSeconds());
 
-        cell[2] = document.createElement("td");
+        // Cell 2: Article (and diff)
         linkElem = document.createElement("a");
         linkElem.setAttribute("href", base_site
             + "w/index.php?title="
@@ -297,9 +382,11 @@ View.prototype.displayRC = function (data) {
             + "&oldid="
             + data[i].old_revid);
         linkElem.textContent = data[i].title;
+
         spaceElem = document.createElement("span");
         spaceElem.setAttribute("class", "nowrap");
         spaceElem.textContent = " . . ";
+
         diffElem = document.createElement("span");
         if (s_diff > 0) {
             diffClass = "size-pos";
@@ -313,11 +400,12 @@ View.prototype.displayRC = function (data) {
         }
         diffElem.setAttribute("class", diffClass);
         diffElem.textContent = "(" + s_diff + ")";
+
         cell[2].appendChild(linkElem);
         cell[2].appendChild(spaceElem);
         cell[2].appendChild(diffElem);
 
-        cell[3] = document.createElement("td");
+        // Cell 3: User
         userElem = document.createElement("a");
         userElem.setAttribute("class", "username");
         userElem.setAttribute("href", base_site
@@ -326,71 +414,74 @@ View.prototype.displayRC = function (data) {
         userElem.textContent = data[i].user;
         cell[3].appendChild(userElem);
 
-        cell[4] = document.createElement("td");
+        // Cell 4: Information
         if (data[i].type === 'new') {
             spanElem = document.createElement("span");
             spanElem.setAttribute("class", "label label-success");
-            spanElem.setAttribute("title", locale_obj.settings_new_pages);
-            spanElem.textContent = locale_obj['new'];
+            spanElem.setAttribute("title", locale_msg('settings_new_pages'));
+            spanElem.textContent = locale_msg('new');
             cell[4].appendChild(spanElem);
             cell[4].insertAdjacentHTML('beforeend', " ");
         }
         if (data[i].hasOwnProperty('minor')) {
             spanElem = document.createElement("span");
             spanElem.setAttribute("class", "label label-primary");
-            spanElem.setAttribute("title", locale_obj.settings_minor_edits);
-            spanElem.textContent = locale_obj.minor;
+            spanElem.setAttribute("title", locale_msg('settings_minor_edits'));
+            spanElem.textContent = locale_msg('minor');
             cell[4].appendChild(spanElem);
             cell[4].insertAdjacentHTML('beforeend', " ");
         }
         if (data[i].hasOwnProperty('anon')) {
             spanElem = document.createElement("span");
             spanElem.setAttribute("class", "label label-danger");
-            spanElem.setAttribute("title", locale_obj.settings_anon_edits);
-            spanElem.textContent = locale_obj.anon;
+            spanElem.setAttribute("title", locale_msg('settings_anon_edits'));
+            spanElem.textContent = locale_msg('anon');
             cell[4].appendChild(spanElem);
             cell[4].insertAdjacentHTML('beforeend', " ");
         }
         if (data[i].hasOwnProperty('redirect')) {
             spanElem = document.createElement("span");
             spanElem.setAttribute("class", "label label-warning");
-            spanElem.setAttribute("title", locale_obj.settings_redirects);
-            spanElem.textContent = locale_obj.redirect;
+            spanElem.setAttribute("title", locale_msg('settings_redirects'));
+            spanElem.textContent = locale_msg('redirect');
             cell[4].appendChild(spanElem);
             cell[4].insertAdjacentHTML('beforeend', " ");
         }
         if (data[i].hasOwnProperty('bot')) {
             spanElem = document.createElement("span");
             spanElem.setAttribute("class", "label label-info");
-            spanElem.setAttribute("title", locale_obj.settings_bot_edits);
-            spanElem.textContent = locale_obj.bot;
+            spanElem.setAttribute("title", locale_msg('settings_bot_edits'));
+            spanElem.textContent = locale_msg('bot');
             cell[4].appendChild(spanElem);
             cell[4].insertAdjacentHTML('beforeend', " ");
         }
         if (data.site.user.editor.hasOwnProperty(data[i].user.toLowerCase())) {
             spanElem = document.createElement("span");
             spanElem.setAttribute("class", "label label-default");
-            spanElem.setAttribute("title", locale_obj.settings_editor_edits);
-            spanElem.textContent = locale_obj.editor;
+            spanElem.setAttribute("title", locale_msg('settings_editor_edits'));
+            spanElem.textContent = locale_msg('editor');
             cell[4].appendChild(spanElem);
             cell[4].insertAdjacentHTML('beforeend', " ");
         }
         if (data.site.user.sysop.hasOwnProperty(data[i].user.toLowerCase())) {
             spanElem = document.createElement("span");
             spanElem.setAttribute("class", "label label-info");
-            spanElem.setAttribute("title", locale_obj.settings_admin_edits);
-            spanElem.textContent = locale_obj.admin;
+            spanElem.setAttribute("title", locale_msg('settings_admin_edits'));
+            spanElem.textContent = locale_msg('admin');
             cell[4].appendChild(spanElem);
             cell[4].insertAdjacentHTML('beforeend', " ");
         }
         // Show comments
         cell[4].insertAdjacentHTML('beforeend', comment);
+
         // Show tags
         if (data[i].tags.length > 0) {
             cell[4].insertAdjacentHTML('beforeend', " (Tag: <i>"
                 + data[i].tags
                 + "</i>)");
         }
+
+        // Insert all cell to row
         for (j = 0; j < 5; j++) {
             row.appendChild(cell[j]);
         }
@@ -458,7 +549,7 @@ View.prototype.hideRC = function (elem) {
     $(elem).hide();
 };
 View.prototype.ns = function (i) {
-    return locale_obj['ns' + i];
+    return locale_msg('ns' + i);
 };
 View.prototype.pad = function (number) {
     if (number < 10) {
@@ -478,76 +569,57 @@ View.prototype.formatnum = function (nStr) {
     nStr += '';
     var x = nStr.split('.');
     var x1 = x[0];
-    var x2 = x.length > 1 ? locale_obj.separator_decimals + x[1] : '';
+    var x2 = x.length > 1 ? locale_msg('separator_decimals') + x[1] : '';
     var rgx = /(\d+)(\d{3})/;
     while (rgx.test(x1)) {
-        x1 = x1.replace(rgx, '$1' + locale_obj.separator_thousands + '$2');
+        x1 = x1.replace(rgx, '$1' + locale_msg('separator_thousands') + '$2');
     }
     return x1 + x2;
 };
 View.prototype.displayStat = function (data) {
     //console.log(data);
-    var msg = "";
+    var msg, i, j = 0;
     // calc depth
     var depth = data.edits * (data.pages - data.articles) * (data.pages - data.articles) / (data.articles * data.articles * data.pages);
     // construct message
-    msg += "<dl class=\"dl-horizontal\">"
-        + "<dt>"
-        + locale_obj.stat_articles
-        + "</dt>"
-        + "<dd>"
-        + this.formatnum(data.articles)
-        + "</dd>"
-        // pages
-        + "<dt>"
-        + locale_obj.stat_pages
-        + "</dt>"
-        + "<dd>"
-        + this.formatnum(data.pages)
-        + "</dd>"
-        // images
-        + "<dt>"
-        + locale_obj.stat_files
-        + "</dt>"
-        + "<dd>"
-        + this.formatnum(data.images)
-        + "</dd>"
-        // edits
-        + "<dt>"
-        + locale_obj.stat_edits
-        + "</dt>"
-        + "<dd>"
-        + this.formatnum(data.edits)
-        + "</dd>"
-        // depths
-        + "<dt>"
-        + locale_obj.stat_depth
-        + "</dt>"
-        + "<dd>"
-        + this.formatnum(parseFloat(depth).toFixed(4))
-        + "</dd>"
-        // users
-        + "<dt>"
-        + locale_obj.stat_users
-        + "</dt>"
-        + "<dd>"
-        + this.formatnum(data.users)
-        + "</dd>"
-        // active users
-        + "<dt>"
-        + locale_obj.stat_active_users
-        + "</dt>"
-        + "<dd>"
-        + this.formatnum(data.activeusers)
-        + "</dd>"
-        // admins
-        + "<dt>"
-        + locale_obj.stat_admins
-        + "</dt>"
-        + "<dd>"
-        + this.formatnum(data.admins)
-        + "</dd>"
-        + "</dl>";
+    msg = document.createElement("dl");
+    msg.setAttribute("class", "dl-horizontal");
+    var dtElem = [];
+    for (i = 0; i < 8; i++) {
+        dtElem[i] = document.createElement("dt");
+    }
+
+    dtElem[0].textContent = locale_msg('stat_articles');
+    dtElem[1].textContent = locale_msg('stat_pages');
+    dtElem[2].textContent = locale_msg('stat_files');
+    dtElem[3].textContent = locale_msg('stat_edits');
+    dtElem[4].textContent = locale_msg('stat_depth');
+    dtElem[5].textContent = locale_msg('stat_users');
+    dtElem[6].textContent = locale_msg('stat_active_users');
+    dtElem[7].textContent = locale_msg('stat_admins');
+
+    var ddElem = [];
+    for (i = 0; i < 8; i++) {
+        ddElem[i] = document.createElement("dd");
+    }
+
+    ddElem[0].textContent = this.formatnum(data.articles);
+    ddElem[1].textContent = this.formatnum(data.pages);
+    ddElem[2].textContent = this.formatnum(data.images);
+    ddElem[3].textContent = this.formatnum(data.edits);
+    ddElem[4].textContent = this.formatnum(parseFloat(depth).toFixed(4));
+    ddElem[5].textContent = this.formatnum(data.users);
+    ddElem[6].textContent = this.formatnum(data.activeusers);
+    ddElem[7].textContent = this.formatnum(data.admins);
+
+    for (i = 0; i < 16; i++) {
+        if (i % 2 === 0) {
+            msg.appendChild(dtElem[j]);
+        } else {
+            msg.appendChild(ddElem[j]);
+            j++;
+        }
+    }
     $("#w_stat").html(msg);
 };
 
@@ -570,12 +642,33 @@ View.prototype.displayTime = function () {
     var that = this;
     setTimeout(function () { that.displayTime(); }, 1000);
 };
+View.prototype.displaySettings = function (obj) {
+    var keys;
+    for (keys in obj) {
+        if (obj.hasOwnProperty(keys)) {
+            $("#" + keys).val(obj[keys]);
+        }
+    }
+};
+View.prototype.displayFilter = function (obj) {
+    var keys;
+    for (keys in obj) {
+        if (obj.hasOwnProperty(keys)) {
+            $("#show_" + keys).prop("checked", obj[keys] === true);
+        }
+    }
+};
 function Controller(model, view) {
     this.view = view;
     this.model = model;
 }
 Controller.prototype.init = function () {
+    var that = this;
     this.model.init(this.view);
+    $(".config").change(function () {
+        that.model.updateFilter(that.view);
+    });
 };
+
 var raunController = new Controller(new Model(), new View());
 raunController.init();

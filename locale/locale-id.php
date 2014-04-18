@@ -1,6 +1,7 @@
 <?php
 $message = array();
 $message['help'] = 'Bantuan';
+$message['filter'] = 'Saringan';
 $message['settings'] = 'Setelan';
 $message['language'] = 'Bahasa';
 $message['project'] = 'Proyek';
@@ -26,7 +27,7 @@ $message['main_user'] = 'Pengguna';
 $message['main_info'] = 'Keterangan';
 $message['help_p1'] = 'Raun adalah alat untuk memantau perubahan terbaru Wikipedia bahasa Indonesia secara langsung (<i>live</i>). Setiap beberapa saat, Raun akan memuat perubahan terbaru tepat di depan Anda secara otomatis.';
 $message['help_p2'] = 'Anda dapat menjeda (menghentikan sementara) alat ini dengan mengeklik tombol "Jeda". Setelah itu, Anda dapat melanjutkan alat ini dengan mengeklik tombol "Jalan!".';
-$message['help_p3'] = 'Selain itu, Anda juga dapat mengatur untuk menampilkan jenis suntingan apa saja yang Anda ingin lihat di bagian "Setelan".';
+$message['help_p3'] = 'Anda dapat menyaring suntingan yang Anda ingin lihat di "Saringan", dan pengaturan proyek wiki, bahasa wiki, dan bahasa alat ini di "Setelan"';
 $message['help_p4'] = 'Baris dengan tulisan berwarna abu-abu berarti terdapat suntingan lain yang lebih baru di halaman tersebut.';
 $message['help_legend'] = 'Legenda:';
 $message['color'] = 'Warna';

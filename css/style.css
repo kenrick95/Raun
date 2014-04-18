@@ -1,9 +1,5 @@
 body { font-family: 'Ubuntu', sans-serif; }
 
-/*.anon { background: #E8E8E8; }
-.bot { background: #d3e6fc; }
-.minor {  }*/
-
 .date { font-weight: bold; font-size: 100%; padding: 10px 0px 10px 0px !important; }
 .changes { font-style: italic; }
 
@@ -30,26 +26,26 @@ body { font-family: 'Ubuntu', sans-serif; }
 .revert { text-decoration: line-through; }
 .stat { font-size:x-small; vertical-align:top; font-weight: bold; color: #ccc; }
 
-.ns { width:16px !important; padding:0 !important; cursor:help; }
-.ns-0 { background: #C0C0C0 !important; } /* Artikel */
-.ns-2 { background: #2d89ef !important; } /* Pengguna */
-.ns-4 { background: #9b59b6 !important; } /* Wikipedia */
-.ns-6 { background: #ee1111 !important; } /* Berkas */
+.ns { width:18.1px; padding:0 !important; cursor:help; box-sizing:content-box;}
+.ns-0 { background: #C0C0C0 !important; } /* Article */
+.ns-2 { background: #2d89ef !important; } /* User */
+.ns-4 { background: #9b59b6 !important; } /* Project */
+.ns-6 { background: #ee1111 !important; } /* File */
 .ns-8 { background: #ffee00 !important; } /* MediaWiki */
-.ns-10 { background: #e7ac2f !important; } /* Templat */
-.ns-12 { background: #ff0097 !important; } /* Bantuan */
-.ns-14 { background: #00a300 !important; } /* Kategori */
+.ns-10 { background: #e7ac2f !important; } /* Template */
+.ns-12 { background: #ff0097 !important; } /* Help */
+.ns-14 { background: #00a300 !important; } /* Category */
 .ns-100 { background: #2bfffd !important; } /* Portal */
 
-.ns-1 { background: #696969 !important; } /* Pembicaraan Artikel */
-.ns-3 { background: #2b5797 !important; } /* Pembicaraan Pengguna */
-.ns-5 { background: #623475 !important; } /* Pembicaraan Wikipedia */
-.ns-7 { background: #b91d47 !important; } /* Pembicaraan Berkas */
-.ns-9 { background: #c09100 !important; } /* Pembicaraan MediaWiki */
-.ns-11 { background: #da532c !important; } /* Pembicaraan Templat */
-.ns-13 { background: #b3006a !important; } /* Pembicaraan Bantuan */
-.ns-15 { background: #1e7145 !important; } /* Pembicaraan Kategori */
-.ns-101 { background: #00aba9 !important; } /* Pembicaraan Portal */
+.ns-1 { background: #696969 !important; } /* Article Talk */
+.ns-3 { background: #2b5797 !important; } /* User Talk */
+.ns-5 { background: #623475 !important; } /* Project Talk */
+.ns-7 { background: #b91d47 !important; } /* File Talk */
+.ns-9 { background: #c09100 !important; } /* MediaWiki Talk */
+.ns-11 { background: #da532c !important; } /* Template Talk */
+.ns-13 { background: #b3006a !important; } /* Help Talk */
+.ns-15 { background: #1e7145 !important; } /* Category Talk */
+.ns-101 { background: #00aba9 !important; } /* Portal Talk */
 
 .inactive { color: #999; }
 .inactive a { color: #999; }
@@ -59,6 +55,11 @@ body { font-family: 'Ubuntu', sans-serif; }
 .navbar-brand {min-width:6em; height:50px; font-weight: bold;}
 
 #stat { font-style:italic; font-size:.8em; }
-.navbar-nav>li>.dropdown-menu { min-width:300px; }
-#settings-menu { width:100%; }
-#settings-menu td { padding:1em; width:50%; }
+.navbar-nav>li>.dropdown-menu { min-width:250px; padding:1em; }
+#stat-content { padding:0 1em; }
+#time-wrapper { text-align:center; }
+.loading {width:16px; height:16px;}
+#main-table{
+    border-collapse:collapse;
+    empty-cells: show;
+}

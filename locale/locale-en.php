@@ -1,6 +1,7 @@
 <?php
 $message = array();
 $message['help'] = 'Help';
+$message['filter'] = 'Filter';
 $message['settings'] = 'Settings';
 $message['language'] = 'Language';
 $message['project'] = 'Project';
@@ -26,7 +27,7 @@ $message['main_user'] = 'User';
 $message['main_info'] = 'Information';
 $message['help_p1'] = 'Raun is a tool to patrol the recent changes of Wikimedia Foundation Project wikis in real time. After a while, Raun will load the recent changes and show it in front of you automatically.';
 $message['help_p2'] = 'You can pause this tool by clicking "Pause". And after that, you can run it again by clicking "Run!".';
-$message['help_p3'] = 'Besides that, you can also filter the edits you want to see under "Settings".';
+$message['help_p3'] = 'You can filter the edits you want to see under "Filter", and change the wiki project or language, or even the locale of this tool under "Settings".';
 $message['help_p4'] = 'Rows with grey text colour means there are other newer edit(s) on that page.';
 $message['help_legend'] = 'Legend:';
 $message['color'] = 'Color';

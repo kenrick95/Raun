@@ -1,6 +1,7 @@
 <?php
 $message = array();
 $message['help'] = 'உதவி';
+$message['filter'] = 'Filter';
 $message['settings'] = 'அமைப்புகள்';
 $message['language'] = 'மொழி';
 $message['project'] = 'திட்டம்';
@@ -26,7 +27,8 @@ $message['main_user'] = 'பயனர்';
 $message['main_info'] = 'தகவல்';
 $message['help_p1'] = 'Raun கருவி விக்கிமீடிய நிறுவனத்தினது விக்கிகளின் அண்மைய மாற்றங்களை நிகழ்நேரத்தில் ரோந்திட பயன்படும் கருவியாகும். தானாகவே இக்கருவி சிறுநேர இடைவேளியில் அண்மைய மாற்றங்களை புதுப்பித்து உங்களுக்கு காட்டும்.';
 $message['help_p2'] = 'நீங்கள் தற்காலிகமாக கருவியினை நிறுத்திட "நிறுத்து" பொத்தானை சொடுக்கவும். அதன்பிறகு மீண்டும் கருவி இயங்க "இயங்கு!" பொத்தானை சொடுக்கவும்.';
-$message['help_p3'] = 'அதைத் தவிர, நீங்கள் தொகுப்புகளை வடிகட்டலாம்.';
+// $message['help_p3'] = 'அதைத் தவிர, நீங்கள் தொகுப்புகளை வடிகட்டலாம்.';
+$message['help_p3'] = 'You can filter the edits you want to see under "Filter", and change the wiki project or language, or even the locale of this tool under "Settings".';
 $message['help_p4'] = 'Rows with grey text colour means there are other newer edit(s) on that page.';
 $message['help_legend'] = 'உரைகூற்று:';
 $message['color'] = 'நிறம்';

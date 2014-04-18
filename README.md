@@ -5,7 +5,7 @@ See it running at https://tools.wmflabs.org/raun/
 
 ra·un v conv inspect; guard; patrol;
 
-Raun is a tool to watch the recent changes of Wikimedia Foundation projects in (near) real time. This tool is inspired from Ronda (http://ivan.lanin.org/ronda), by Ivan Lanin. This project is started by Kenrick (User:Kenrick95).
+Raun is a tool to watch the recent changes of Wikimedia Foundation projects in (near) real time. This tool is inspired from Ronda (http://ivan.lanin.org/ronda), by @ivanlanin. This project is started by Kenrick (User:Kenrick95).
 
 
 I realised that the original Raun was a mess. At first, I made it quickly (by quickly, I also mean without proper coding style) and just for fun before I publish it to the Indonesian Wikipedia community. Hosting it in GitHub, someone noticed it and asked for localisation; I quickly made it and hence this tool grew larger and larger, but now it has come to some point that the inconsistencies among the functions made me unproductive, hence I started to "rewrite" the tool. 
@@ -25,8 +25,9 @@ Browsers that is supported jQuery 2.1.10; and Bootstrap 3.0
 
 Credits & License
 --------
-* Twitter Bootstrap 3.0
+* Twitter Bootstrap 3.0.2
 * jQuery 2.1.0
 * Wikipedia API
+* Nanobar 0.0.6
 
 Otherwise stated, this project source code is licensed under MIT License.

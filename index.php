@@ -242,7 +242,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
                 <div class="modal-body">
                     <p class="lead"><b>ra&middot;un</b> <i><?php echo $I18N->msg( 'def_i' ); ?></i> <?php echo $I18N->msg( 'def_def' ); ?></p>
                     <p><?php echo $I18N->msg( 'help_p1' ); ?></p>
-                    <!-- <p><?php echo $I18N->msg( 'help_p2' ); ?></p> -->
+                    <!-- <p><?php /* echo $I18N->msg( 'help_p2' ); */ ?></p> -->
                     <p><?php echo $I18N->msg( 'help_p3' ); ?></p>
                     <p><?php echo $I18N->msg( 'help_p4' ); ?></p>
                     <p><?php echo $I18N->msg( 'help_legend' ); ?></p>
@@ -330,7 +330,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
                 </div>
                 <div class="modal-body">
                     <p class="lead"><b>ra&middot;un</b> <i><?php echo $I18N->msg( 'def_i' ); ?></i> <?php echo $I18N->msg( 'def_def' ); ?></p>
-                    <p><?php echo $I18N->msg( 'about_tool' ); ?></p>
+                    <p><?php echo $I18N->msg( 'about_tool',  array('variables' => array( '<a href="http://ivan.lanin.org/ronda">Ronda</a>', 'Ivan Lanin', '<a href="http://kenrick95.org/">Kenrick</a> (<a href="http://en.wikipedia.org/wiki/User:Kenrick95">User:Kenrick95</a>)' ), 'parsemag' => true ) ); ?></p>
                     <p><span class="label label-info"><?php echo $I18N->msg( 'information' ); ?></span> <?php echo $I18N->msg( 'about_cookie' ); ?></p>
                     <p><?php echo $I18N->msg( 'credit' ); ?>:
                     </p>
@@ -341,8 +341,8 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
                             <li>Nanobar 0.0.6</li>
                         </ul>
                     <p><?php echo $I18N->msg( 'about_license' ); ?></p>
-                    <p><?php echo $I18N->msg( 'about_github' ); ?></p>
-                    <p><a href="https://id.wikipedia.org/w/index.php?action=edit&amp;preload=Pembicaraan_Pengguna%3AKenrick95%2FPreload%2Fen&editintro=Pembicaraan_Pengguna%3AKenrick95%2FEditintro&summary=&nosummary=&prefix=&minor=&section=new&title=Pembicaraan+Pengguna%3AKenrick95&uselang=en" target="_blank"><span class="glyphicon glyphicon-envelope"></span> <?php echo $I18N->msg( 'send_feedback' ); ?></a>
+                    <p><?php echo $I18N->msg( 'about_github' ,  array('variables' => array( '<a href="https://github.com/kenrick95/Raun">github.com/kenrick95/Raun</a>' ), 'parsemag' => true ) ); ?></p>
+                    <p><a href="https://id.wikipedia.org/w/index.php?action=edit&amp;preload=Pembicaraan_Pengguna%3AKenrick95%2FPreload%2Fen&amp;editintro=Pembicaraan_Pengguna%3AKenrick95%2FEditintro&amp;summary=&amp;nosummary=&amp;prefix=&amp;minor=&amp;section=new&amp;title=Pembicaraan+Pengguna%3AKenrick95&amp;uselang=en" target="_blank"><span class="glyphicon glyphicon-envelope"></span> <?php echo $I18N->msg( 'send_feedback' ); ?></a>
                     </p>
                 </div>
                 <div class="modal-footer">

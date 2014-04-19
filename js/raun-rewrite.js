@@ -178,9 +178,16 @@ Model.prototype.getStatPolling = function (view) {
 };
 
 // Server-Sent Event (SSE)
+Model.prototype.source = null;
+Model.prototype.initSSE = function () {
+    this.source = new EventSource('api-sse-rewrite.php');
+    this.source.addEventListener('error', function (e) {
+        console.log(e);
+    }, false);
+};
 Model.prototype.getDataSSE = function (view, type, params, callback) {
-    var that = this, source = new EventSource('api-sse-rewrite.php');
-    source.addEventListener(type, function (e) {
+    var that = this;
+    this.source.addEventListener(type, function (e) {
         var data = JSON.parse(e.data), ret;
         data.config = that.config;
         data.params = params;
@@ -194,6 +201,7 @@ Model.prototype.getDataSSE = function (view, type, params, callback) {
 };
 Model.prototype.getRCSSE = function (view) {
     var that = this;
+    this.initSSE();
     that.createCookie("rcfrom", 0, 1);
     this.getDataSSE(view, 'rc', {gtz: 0, last_rcid: 0}, function (ret, data, callback) {
         data.params.gtz = ret.gtz;

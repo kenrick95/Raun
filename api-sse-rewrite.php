@@ -1,6 +1,7 @@
 <?php
 header("Content-Type: text/event-stream\n\n");
 header('Cache-Control: no-cache');
+set_time_limit(0);
 
 $settings['wikiroot'] = "http://id.wikipedia.org/";
 $settings['cookiefile'] = "cookies.tmp";
@@ -82,6 +83,7 @@ function statistics () {
 	
 }
 
+echo "retry: 1000" . PHP_EOL;
 while(1) {
 	global $settings;
 	
@@ -96,7 +98,6 @@ while(1) {
 	$to = '';
 	
 	$rc = recent_changes($limit, $from, $to);
-	echo "retry: 3000" . PHP_EOL;
 	echo "event: rc" . PHP_EOL;
 	echo "data: " . json_encode($rc['query']['recentchanges']) . PHP_EOL;
 	echo PHP_EOL;

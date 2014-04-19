@@ -96,12 +96,17 @@ while(1) {
 	$limit = 500;
 	$from = isset($_COOKIE['rcfrom']) ? $_COOKIE['rcfrom'] : '';
 	$to = '';
+	echo "event: debug" . PHP_EOL;
+	echo "data: " . json_encode($from). PHP_EOL;
+	echo PHP_EOL;
 	
 	$rc = recent_changes($limit, $from, $to);
 	echo "event: rc" . PHP_EOL;
 	echo "data: " . json_encode($rc['query']['recentchanges']) . PHP_EOL;
 	echo PHP_EOL;
 	
+
+
 	// Statistics
 	$statistics = statistics();
 	$statistics = $statistics['query']['statistics'];

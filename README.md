@@ -21,11 +21,11 @@ Server-Sent Events and polling heavily uses server resources. Once I ever hosted
 
 Browser support
 --------
-Browsers that is supported jQuery 2.1.10; and Bootstrap 3.0
+Browsers that is supported jQuery 2; and Bootstrap 3.1.1
 
 Credits & License
 --------
-* [Bootstrap](https://github.com/twbs/bootstrap) 3.0.2
+* [Bootstrap](https://github.com/twbs/bootstrap) 3.1.1
 * [jQuery](https://github.com/jquery/jquery) 2.1.0
 * Wikimedia API
 * [Nanobar](https://github.com/jacoborus/nanobar) 0.0.6

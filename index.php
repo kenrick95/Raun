@@ -18,7 +18,9 @@ if (isset($_GET['locale'])) {
     }
 }
 // [Need Krinkle/inuition to run: Remember to change it to correct path]
-require_once( 'intuition/ToolStart.php' );
+# $IntuitionStartFile = 'intuition/ToolStart.php';
+$IntuitionStartFile = '/data/project/intuition/src/Intuition/ToolStart.php';
+require_once( $IntuitionStartFile );
 $I18N = new TsIntuition( array(
   'domain' => 'raun',
   'lang' => $locale,
@@ -61,7 +63,7 @@ ob_end_clean();
     
     <!-- Bootstrap core CSS -->
     <link href='//fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
-    <link href="//cdn.jsdelivr.net/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.jsdelivr.net/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
     
     <link href="css/style.css" rel="stylesheet">
 
@@ -335,7 +337,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
                     <p><?php echo $I18N->msg( 'credit' ); ?>:
                     </p>
                         <ul>
-                            <li>Bootstrap 3.0.2</li>
+                            <li>Bootstrap 3.1.1</li>
                             <li>jQuery 2.1.0</li>
                             <li>Wikimedia API</li>
                             <li>Nanobar 0.0.6</li>
@@ -353,9 +355,9 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
     </div><!-- /.modal -->
     <!-- JavaScript files -->
     <script src="//cdn.jsdelivr.net/jquery/2.1.0/jquery.min.js"></script>
-    <script src="//cdn.jsdelivr.net/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+    <script src="//cdn.jsdelivr.net/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script src="//cdn.jsdelivr.net/nanobar/0.0.6/nanobar.min.js"></script>
-    <script src="intuition/public_html/load.php?env=standalone"></script>
+    <script src="//tools.wmflabs.org/intuition/load.php?env=standalone"></script>
     <script>
     intuition.load("raun", "<?php echo $locale; ?>");
     function locale_msg(msg) {

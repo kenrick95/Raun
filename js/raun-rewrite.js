@@ -34,7 +34,7 @@ function Model() {
 Model.prototype.config = {
     "show": {
         "bot": false,
-        "anon": false,
+        "anon": true,
         "new": true,
         "minor": true,
         "redirect": true,
@@ -57,34 +57,43 @@ Model.prototype.init = function (view) {
     var that = this;
     // Settings
     if (force.language === 0) {
+        if (this.readCookie("language") === null) {
+            this.createCookie("language", this.config.language, 30);
+        }
         view.displaySettings({"language": this.readCookie("language")});
     } else {
         this.createCookie("language", $("#language").val(), 30);
     }
     if (force.project === 0) {
+        if (this.readCookie("project") === null) {
+            this.createCookie("project", this.config.project, 30);
+        }
         view.displaySettings({"project": this.readCookie("project")});
     } else {
         this.createCookie("project", $("#project").val(), 30);
     }
     if (force.locale === 0) {
+        if (this.readCookie("locale") === null) {
+            this.createCookie("locale", this.config.locale, 30);
+        }
         view.displaySettings({"locale": this.readCookie("locale")});
     } else {
         this.createCookie("locale", $("#locale").val(), 30);
     }
     // LocalStorage get data, if not exists, store default data
-    var temp = JSON.parse(localStorage.getItem("config"));
+    var temp_string = localStorage.getItem("config");
     var keys, disp = [];
-    if (temp) {
-        this.config = temp;
-        for (keys in this.data.filter) {
-            if (this.data.filter.hasOwnProperty(keys)) {
-                disp[this.data.filter[keys]] = this.config.show[this.data.filter[keys]];
-            }
-        }
-        view.displayFilter(disp);
+    if (temp_string) {
+        this.config = JSON.parse(temp_string);
     } else {
-        localStorage.setItem("config", this.config);
+        localStorage.setItem("config", JSON.stringify(this.config));
     }
+    for (keys in this.data.filter) {
+        if (this.data.filter.hasOwnProperty(keys)) {
+            disp[this.data.filter[keys]] = this.config.show[this.data.filter[keys]];
+        }
+    }
+    view.displayFilter(disp);
 
     this.data.user = [];
     this.getUserPolling(view, 'sysop', function (view) {
@@ -208,7 +217,7 @@ Model.prototype.getRCSSE = function (view) {
         data.params.last_rcid = ret.last_rcid;
         that.createCookie("rcfrom", ret.gtz, 1);
     });
-    this.getDataSSE(view, 'debug');
+    //this.getDataSSE(view, 'debug');
 };
 Model.prototype.getLogSSE = function (view) {
     this.getDataSSE(view, 'log');

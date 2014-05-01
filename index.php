@@ -18,8 +18,8 @@ if (isset($_GET['locale'])) {
     }
 }
 // [Need Krinkle/inuition to run: Remember to change it to correct path]
-# $IntuitionStartFile = 'intuition/ToolStart.php';
-$IntuitionStartFile = '/data/project/intuition/src/Intuition/ToolStart.php';
+$IntuitionStartFile = 'intuition/ToolStart.php';
+#$IntuitionStartFile = '/data/project/intuition/src/Intuition/ToolStart.php';
 require_once( $IntuitionStartFile );
 $I18N = new TsIntuition( array(
   'domain' => 'raun',
@@ -341,8 +341,18 @@ ob_end_clean();
                         </ul>
                     <p><?php echo $I18N->msg( 'about_license' ); ?></p>
                     <p><?php echo $I18N->msg( 'about_github' ,  array('variables' => array( '<a href="https://github.com/kenrick95/Raun">github.com/kenrick95/Raun</a>' ), 'parsemag' => true ) ); ?></p>
-                    <p><a href="https://id.wikipedia.org/w/index.php?action=edit&amp;preload=Pembicaraan_Pengguna%3AKenrick95%2FPreload%2Fen&amp;editintro=Pembicaraan_Pengguna%3AKenrick95%2FEditintro&amp;summary=&amp;nosummary=&amp;prefix=&amp;minor=&amp;section=new&amp;title=Pembicaraan+Pengguna%3AKenrick95&amp;uselang=en" target="_blank"><span class="glyphicon glyphicon-envelope"></span> <?php echo $I18N->msg( 'send_feedback' ); ?></a>
+                    <p><a class="btn btn-info" href="https://id.wikipedia.org/w/index.php?action=edit&amp;preload=Pembicaraan_Pengguna%3AKenrick95%2FPreload%2Fen&amp;editintro=Pembicaraan_Pengguna%3AKenrick95%2FEditintro&amp;summary=&amp;nosummary=&amp;prefix=&amp;minor=&amp;section=new&amp;title=Pembicaraan+Pengguna%3AKenrick95&amp;uselang=en" target="_blank"><span class="glyphicon glyphicon-envelope"></span> <?php echo $I18N->msg( 'send_feedback' ); ?></a>
                     </p>
+                    <!-- Donate -->
+                    <form class="pp-donate" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+                        <input type="hidden" name="cmd" value="_donations">
+                        <input type="hidden" name="business" value="kenrick95@gmail.com">
+                        <input type="hidden" name="item_name" value="Donation to Kenrick (@kenrick95)">
+                        <input type="hidden" name="no_note" value="0">
+                        <button name="submit" class="btn btn-primary"><img src="img/icon_pp.svg"> Donate</button>
+                        <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+                    </form>
+                    <!-- /.Donate -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $I18N->msg( 'close' ); ?></button>

@@ -20,6 +20,8 @@ body { font-family: 'Ubuntu', sans-serif; }
     white-space: nowrap;
 }
 
+.combined { background:#fff; }
+.combined-child { background:#f2f2f2; display:none;}
 .new-entry { background:#f7dc6f !important; }
 .new-art {  }
 .redirect {  }

@@ -317,6 +317,12 @@ function View() {
     $(document).on("click", ".ns", function () {
         $('#help').modal('show');
     });
+
+    // Bind .combined to show individual entries
+    $(document).on("click", ".combined", function () {
+        var pageid = $(this).data("pageid");
+        $(".pageid-" + pageid + ":not(.combined)").toggle();
+    });
 }
 View.prototype.displayBar = function (pos) {
     nanobar.go(pos);
@@ -344,7 +350,7 @@ View.prototype.displayRC = function (data) {
     var len = data.length;
     var tz = gtz;
     var i, j, diff, s_diff, comment, attr, time, show_art;
-    var cell, row, spaceElem, diffElem, linkElem, diffClass, userElem, spanElem;
+    var cell, row, combined, combined_diff, spaceElem, diffElem, linkElem, diffClass, userElem, spanElem;
     for (i = len - 1; i >= 0; i--) {
         if (last_rcid >= data[i].rcid) {
             continue;
@@ -367,13 +373,13 @@ View.prototype.displayRC = function (data) {
         if (data.site.user.editor.hasOwnProperty(data[i].user.toLowerCase())) {attr += "editor "; }
         if (data.site.user.sysop.hasOwnProperty(data[i].user.toLowerCase())) {attr += "admin "; }
         if (attr === "") {attr = "others "; }
+        attr += "new-entry ";
         attr += "revid-" + data[i].revid + " ";
-
-        // "Deprecate" the old rows
-        $(".revid-" + data[i].old_revid).addClass("inactive");
+        attr += "pageid-" + data[i].pageid + " ";
 
         row = document.createElement("tr");
         row.setAttribute("class", attr);
+        row.setAttribute("style", "display: none;");
         row.setAttribute("id", "row-" + data[i].rcid);
 
         cell = [];
@@ -504,10 +510,55 @@ View.prototype.displayRC = function (data) {
             row.appendChild(cell[j]);
         }
 
-        // add row to the table; don't show yet 
-        $("#main-table-body").prepend(row);
-        $('#main-table > tbody > tr#row-' + data[i].rcid).hide();
-        $('#main-table > tbody > tr#row-' + data[i].rcid).addClass("new-entry");
+        $(row).data("diff", diff);
+
+        // Combined row
+        if ($(".revid-" + data[i].old_revid).length > 0) {
+            $(row).data("oldest_revid", $(".pageid-" + data[i].pageid).last().data("oldest_revid"));
+            // "Deprecate" the old rows
+            $(".revid-" + data[i].old_revid).addClass("inactive");
+            $(".revid-" + data[i].old_revid + ".inactive.combined").remove();
+            // add a "combined row"
+            combined = row.cloneNode(true);
+            combined.removeAttribute("id");
+            combined.removeAttribute("style");
+            combined.setAttribute("class", combined.getAttribute("class") + "combined");
+            cell = combined.childNodes;
+            cell[1].textContent += "";
+            cell[2].childNodes[0].setAttribute("href", cell[2].childNodes[0].getAttribute("href").replace(/oldid=[0-9]*/, "oldid=" + $(row).data("oldest_revid")));
+            combined_diff = diff + this.calculateDiff(".pageid-" + data[i].pageid);
+
+            if (combined_diff > 0) {
+                diffClass = "size-pos";
+            } else if (combined_diff < 0) {
+                diffClass = "size-neg";
+            } else {
+                diffClass = "size-null";
+            }
+            if (Math.abs(s_diff) > 500) {
+                diffClass += " size-large";
+            }
+            cell[2].childNodes[2].setAttribute("class", diffClass);
+            cell[2].childNodes[2].textContent = "(" + (combined_diff > 0 ? "+" : "") + combined_diff + ")";
+            cell[3].textContent = locale_msg('combined_entries');
+            cell[4].textContent = "";
+            for (j = 0; j < 5; j++) {
+                combined.replaceChild(combined.childNodes[j], cell[j]);
+            }
+            $(".pageid-" + data[i].pageid).addClass("combined-child");
+            $(row).addClass("combined-child");
+            $(combined).data("pageid", data[i].pageid);
+
+            $("#main-table-body").prepend($(".pageid-" + data[i].pageid));
+            $("#main-table-body").prepend(row);
+            $("#main-table-body").prepend(combined);
+        } else {
+            // add row to the table
+            $(row).data("oldest_revid", data[i].old_revid);
+            $("#main-table-body").prepend(row);
+        }
+
+
         // show article
         show_art = true;
         if (attr.indexOf("bot") >= 0) {
@@ -551,7 +602,7 @@ View.prototype.displayRC = function (data) {
             }
         }
         if (show_art === true) {
-            this.showRC('#main-table > tbody > tr#row-' + data[i].rcid);
+            this.showRC('#main-table > tbody > tr#row-' + data[i].rcid + ":not(.combined-child)");
         }
     }
     setTimeout(function () {
@@ -559,6 +610,13 @@ View.prototype.displayRC = function (data) {
         $("div[style*='100%'], .nanobarbar").hide();
     }, 1000);
     return {'gtz': gtz, 'last_rcid': last_rcid};
+};
+View.prototype.calculateDiff = function (elem) {
+    var diff = 0;
+    $(elem).each(function (index) {
+        diff += parseInt($(this).data("diff"), 10);
+    });
+    return diff;
 };
 View.prototype.showRC = function (elem) {
     $(elem).show();

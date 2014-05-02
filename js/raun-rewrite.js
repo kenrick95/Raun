@@ -159,7 +159,7 @@ Model.prototype.getRCPolling = function (view) {
             data.params.last_rcid = ret.last_rcid;
             that.getDataPolling(view, 'rc', data.params, callback);
         }
-        setTimeout(process.bind(this, ret, data, callback), 5000);
+        setTimeout(process.bind(this, ret, data, callback), 3000);
     });
 };
 Model.prototype.getLogPolling = function (view) {
@@ -182,7 +182,7 @@ Model.prototype.getStatPolling = function (view) {
         function process(ret, data, callback) {
             that.getDataPolling(view, 'stat', data.params, callback);
         }
-        setTimeout(process.bind(this, ret, data, callback), 5000);
+        setTimeout(process.bind(this, ret, data, callback), 3000);
     });
 };
 
@@ -607,8 +607,9 @@ View.prototype.displayRC = function (data) {
     }
     setTimeout(function () {
         $(".new-entry").removeClass("new-entry");
-        $("div[style*='100%'], .nanobarbar").hide();
+        $("div[style*='100%'].nanobarbar").hide();
     }, 1000);
+    $("#main-table-loading").remove();
     return {'gtz': gtz, 'last_rcid': last_rcid};
 };
 View.prototype.calculateDiff = function (elem) {

@@ -3,32 +3,35 @@ body { font-family: 'Ubuntu', sans-serif; }
 .date { font-weight: bold; font-size: 100%; padding: 10px 0px 10px 0px !important; }
 .changes { font-style: italic; }
 
-.user-trusted { color: #999999; }
-.user-login { color: #990000; }
-.user-anon { color: #FF0000; }
+.user-trusted { color: #999; }
+.user-login { color: #900; }
+.user-anon { color: #f00; }
 
-.size-neg { color:#FF2050; white-space: nowrap; }
-.size-pos { color:#00B000; white-space: nowrap; }
+.size-neg { color:#ff2050; white-space: nowrap; }
+.size-pos { color:#00b000; white-space: nowrap; }
 .size-null { color:#999; white-space: nowrap; }
 .size-large { font-weight: bold; white-space: nowrap; }
 
 .label { white-space: nowrap; }
-.content ul, .content ol {
-	margin: 0 0 0 1.5em; padding-left: 0em;
-}
-.nowrap {
-    white-space: nowrap;
-}
+.content ul, .content ol { margin: 0 0 0 1.5em; padding-left: 0em; }
+.nowrap { white-space: nowrap;}
 
-.combined { background:#fff; }
-.combined-child { background:#f2f2f2; display:none;}
 .new-entry { background:#f7dc6f !important; }
-.new-art {  }
+/*.new-art {  }
 .redirect {  }
-.revert { text-decoration: line-through; }
+.revert { text-decoration: line-through; }*/
+.inactive { color: #999; }
+.inactive a { color: #999; }
+.combined { background:#fff; cursor:pointer;}
+.combined-child { background:#f2f2f2; display:none;}
+
+.main { margin-top:4em; }
+.navbar-brand {min-width:6em; height:50px; font-weight: bold;}
+.navbar-nav>li>.dropdown-menu { min-width:250px; padding:1em;}
+.loading {width:16px; height:16px;}
 .stat { font-size:x-small; vertical-align:top; font-weight: bold; color: #ccc; }
 
-.ns { width:18.1px; padding:0 !important; cursor:help; box-sizing:content-box;}
+.ns { width:16px; min-width:16px; padding:0 !important; cursor:help; box-sizing:content-box;}
 .ns-0 { background: #C0C0C0 !important; } /* Article */
 .ns-2 { background: #2d89ef !important; } /* User */
 .ns-4 { background: #9b59b6 !important; } /* Project */
@@ -49,19 +52,9 @@ body { font-family: 'Ubuntu', sans-serif; }
 .ns-15 { background: #1e7145 !important; } /* Category Talk */
 .ns-101 { background: #00aba9 !important; } /* Portal Talk */
 
-.inactive { color: #999; }
-.inactive a { color: #999; }
-
-.main { margin-top:4em; }
 #def { text-align:center; }
-.navbar-brand {min-width:6em; height:50px; font-weight: bold;}
-
 #stat { font-style:italic; font-size:.8em; }
-.navbar-nav>li>.dropdown-menu { min-width:250px; padding:1em; }
 #stat-content { padding:0 1em; }
 #time-wrapper { text-align:center; }
-.loading {width:16px; height:16px;}
-#main-table{
-    border-collapse:collapse;
-    empty-cells: show;
-}
+#main-table{ border-collapse:collapse; empty-cells: show; }
+#main-table-loading { text-align:center; }

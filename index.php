@@ -6,6 +6,7 @@ $project = "";
 $locale_force_get = false;
 $language_force_get = false;
 $project_force_get = false;
+$title_info = "";
 
 if (isset($_GET['locale'])) {
     $locale_force_get = true;
@@ -19,7 +20,7 @@ if (isset($_GET['locale'])) {
 }
 // [Need Krinkle/inuition to run: Remember to change it to correct path]
 $IntuitionStartFile = 'intuition/ToolStart.php';
-#$IntuitionStartFile = '/data/project/intuition/src/Intuition/ToolStart.php';
+$IntuitionStartFile = '/data/project/intuition/src/Intuition/ToolStart.php';
 require_once( $IntuitionStartFile );
 $I18N = new TsIntuition( array(
   'domain' => 'raun',
@@ -48,6 +49,7 @@ if (isset($_GET['project'])) {
         $project = "wikipedia";
     }
 }
+$title_info = ": $language.$project ($locale)";
 ob_end_clean();
 ?><!doctype html>
 <html lang="en">
@@ -58,13 +60,12 @@ ob_end_clean();
     <meta name="description" content="Raun: watch the recent changes of Wikimedia Foundation projects, live.">
     <meta name="author" content="Kenrick">
     <!-- <link rel="shortcut icon" href="img/favicon.png"> -->
-    
-    <title>Raun</title>
-    
-    <!-- Bootstrap core CSS -->
+
+    <title>ra&middot;un<?php echo $title_info; ?></title>
+
+    <!-- CSS -->
     <link href='//fonts.googleapis.com/css?family=Ubuntu:400,700' rel='stylesheet' type='text/css'>
     <link href="//cdn.jsdelivr.net/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-    
     <link href="css/style.css" rel="stylesheet">
 <?php
     if (stripos("tools.wmflabs.org", $_SERVER["SERVER_NAME"]) !== false) {
@@ -74,7 +75,6 @@ ob_end_clean();
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
         ga('create', 'UA-49036729-2', 'wmflabs.org');
         ga('send', 'pageview');
     </script>
@@ -194,7 +194,7 @@ ob_end_clean();
                                     <span class="glyphicon glyphicon-time"></span> <span id="tz"></span>
                                 </div>
                                 <div id="w_stat">
-                                     <img src='img/loading.gif' class="loading">
+                                    <img src='img/loading.gif' class="loading" alt="loading">
                                 </div>
                             </div>
                         </div>
@@ -204,9 +204,8 @@ ob_end_clean();
             
         </div>
     </div>
-    
+
     <div class="container">
-    
         <div class="main">
             <div id="def">
                 <p class="lead"><b>ra&middot;un</b> <i><?php echo $I18N->msg( 'def_i' ); ?></i> <?php echo $I18N->msg( 'def_def' ); ?></p>
@@ -215,21 +214,22 @@ ob_end_clean();
                 <table class="table" id="main-table">
                     <thead>
                         <tr>
-                            <th colspan="2" class="col-lg-1 col-md-1 col-sm-1 col-xs-1" nowrap><?php echo $I18N->msg( 'main_time_utc' ); ?></th>
+                            <th colspan="2" class="col-lg-1 col-md-1 col-sm-1 col-xs-1 nowrap"><?php echo $I18N->msg( 'main_time_utc' ); ?></th>
                             <th class="col-lg-5 col-md-5 col-sm-5 col-xs-5"><?php echo $I18N->msg( 'main_page' ); ?></th>
                             <th class="col-lg-1 col-md-1 col-sm-1 col-xs-5"><?php echo $I18N->msg( 'main_user' ); ?></th>
                             <th class="col-lg-5 col-md-5 col-sm-5 col-xs-5"><?php echo $I18N->msg( 'main_info' ); ?></th>
                         </tr>
                     </thead>
                     <tbody id="main-table-body">
-                    
+                        <tr>
+                            <td colspan="5" id="main-table-loading"><img src='img/loading.gif' class="loading" alt="loading"></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-    
     </div><!-- /.container -->
-    
+
     <!-- Modal: Help -->
     <div class="modal fade" id="help" tabindex="-1" role="dialog" aria-labelledby="helpLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -349,8 +349,8 @@ ob_end_clean();
                         <input type="hidden" name="business" value="kenrick95@gmail.com">
                         <input type="hidden" name="item_name" value="Donation to Kenrick (@kenrick95)">
                         <input type="hidden" name="no_note" value="0">
-                        <button name="submit" class="btn btn-primary"><img src="img/icon_pp.svg"> Donate</button>
-                        <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+                        <button name="submit" class="btn btn-primary"><img src="img/icon_pp.svg" alt="Donate"> Donate</button>
+                        <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" style="width:1px;height:1px">
                     </form>
                     <!-- /.Donate -->
                 </div>

@@ -83,7 +83,7 @@ function statistics () {
 	
 }
 
-echo "retry: 3000" . PHP_EOL;
+echo "retry: 5000" . PHP_EOL;
 while(1) {
 	global $settings;
 	
@@ -117,7 +117,7 @@ while(1) {
 	
 	ob_flush();
 	flush();
-	sleep(3);
+	sleep(5);
 
 }
 ?>

@@ -20,7 +20,7 @@ if (isset($_GET['locale'])) {
 }
 // [Need Krinkle/inuition to run: Remember to change it to correct path]
 $IntuitionStartFile = 'intuition/ToolStart.php';
-$IntuitionStartFile = '/data/project/intuition/src/Intuition/ToolStart.php';
+#$IntuitionStartFile = '/data/project/intuition/src/Intuition/ToolStart.php';
 require_once( $IntuitionStartFile );
 $I18N = new TsIntuition( array(
   'domain' => 'raun',

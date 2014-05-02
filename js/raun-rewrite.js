@@ -515,19 +515,28 @@ View.prototype.displayRC = function (data) {
         // Combined row
         if ($(".revid-" + data[i].old_revid).length > 0) {
             $(row).data("oldest_revid", $(".pageid-" + data[i].pageid).last().data("oldest_revid"));
+
             // "Deprecate" the old rows
             $(".revid-" + data[i].old_revid).addClass("inactive");
+
+            // Remove old combined row
             $(".revid-" + data[i].old_revid + ".inactive.combined").remove();
+
             // add a "combined row"
             combined = row.cloneNode(true);
             combined.removeAttribute("id");
             combined.removeAttribute("style");
             combined.setAttribute("class", combined.getAttribute("class") + "combined");
+
+            // Construct the combined row
             cell = combined.childNodes;
             cell[1].textContent += "";
-            cell[2].childNodes[0].setAttribute("href", cell[2].childNodes[0].getAttribute("href").replace(/oldid=[0-9]*/, "oldid=" + $(row).data("oldest_revid")));
+            if (parseInt($(row).data("oldest_revid"), 10) === 0) {
+                cell[2].childNodes[0].setAttribute("href", base_site + "wiki/" + data[i].title);
+            } else {
+                cell[2].childNodes[0].setAttribute("href", cell[2].childNodes[0].getAttribute("href").replace(/oldid=[0-9]*/, "oldid=" + $(row).data("oldest_revid")));
+            }
             combined_diff = diff + this.calculateDiff(".pageid-" + data[i].pageid);
-
             if (combined_diff > 0) {
                 diffClass = "size-pos";
             } else if (combined_diff < 0) {
@@ -545,16 +554,18 @@ View.prototype.displayRC = function (data) {
             for (j = 0; j < 5; j++) {
                 combined.replaceChild(combined.childNodes[j], cell[j]);
             }
+
             $(".pageid-" + data[i].pageid).addClass("combined-child");
             $(row).addClass("combined-child");
             $(combined).data("pageid", data[i].pageid);
 
+            // add row to the table
             $("#main-table-body").prepend($(".pageid-" + data[i].pageid));
             $("#main-table-body").prepend(row);
             $("#main-table-body").prepend(combined);
         } else {
-            // add row to the table
             $(row).data("oldest_revid", data[i].old_revid);
+            // add row to the table
             $("#main-table-body").prepend(row);
         }
 

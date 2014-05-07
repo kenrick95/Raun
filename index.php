@@ -10,10 +10,10 @@ $title_info = "";
 
 if (isset($_GET['locale'])) {
     $locale_force_get = true;
-    $locale = $_GET['locale'];
+    $locale = htmlspecialchars($_GET['locale']);
 } else {
     if (isset($_COOKIE['locale'])) {
-        $locale = $_COOKIE['locale'];
+        $locale = htmlspecialchars($_COOKIE['locale']);
     } else {
         $locale = "en";
     }
@@ -25,15 +25,16 @@ require_once( $IntuitionStartFile );
 $I18N = new TsIntuition( array(
   'domain' => 'raun',
   'lang' => $locale,
+  'suppressbrackets' => true,
 ) );
 
 
 if (isset($_GET['language'])) {
     $language_force_get = true;
-    $language = $_GET['language'];
+    $language = htmlspecialchars($_GET['language']);
 } else {
     if (isset($_COOKIE['language'])) {
-        $language = $_COOKIE['language'];
+        $language = htmlspecialchars($_COOKIE['language']);
     } else {
         $language = "id";
     }
@@ -41,10 +42,10 @@ if (isset($_GET['language'])) {
 
 if (isset($_GET['project'])) {
     $project_force_get = true;
-    $project = $_GET['project'];
+    $project = htmlspecialchars($_GET['project']);
 } else {
     if (isset($_COOKIE['project'])) {
-        $project = $_COOKIE['project'];
+        $project = htmlspecialchars($_COOKIE['project']);
     } else {
         $project = "wikipedia";
     }
@@ -52,7 +53,7 @@ if (isset($_GET['project'])) {
 $title_info = ": $language.$project ($locale)";
 ob_end_clean();
 ?><!doctype html>
-<html lang="en">
+<html dir="<?php echo $I18N->getDir(); ?>" lang="<?php echo $locale; ?>">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -92,7 +93,7 @@ ob_end_clean();
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#about" data-toggle="modal" data-target="#about">ra&middot;un<span id="stat"></span></a>
+                <a class="navbar-brand">ra&middot;un<span id="stat"></span></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
@@ -158,16 +159,10 @@ ob_end_clean();
                     </li>
                     <li class="dropdown">
                     <!-- Settings -->
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-wrench"></span>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span>
  <?php echo $I18N->msg( 'settings' ); ?> <b class="caret"></b></a>
                         <div class="dropdown-menu keep-open">
                             <form id="tool_config" role="form" method="get">
-                            <?php echo $I18N->msg( 'settings_tool' ); ?>:
-                                <div class="form-group">
-                                <label for="locale"><?php echo $I18N->msg( 'language' ); ?></label>
-                                <input type="text" class="form-control config_right" name="locale" id="locale" placeholder="<?php echo $I18N->msg( 'language' ); ?>" value="<?php echo $locale; ?>">
-                                </div>
-                            <hr>
                             <?php echo $I18N->msg( 'settings_wiki' ); ?>:
                                 <div class="form-group">
                                 <label for="language"><?php echo $I18N->msg( 'language' ); ?></label>
@@ -177,13 +172,25 @@ ob_end_clean();
                                 <label for="project"><?php echo $I18N->msg( 'project' ); ?></label>
                                 <input type="text" class="form-control config_right" name="project" id="project" placeholder="<?php echo $I18N->msg( 'project' ); ?>" value="<?php echo $project; ?>">
                                 </div>
-                                <button type="submit" class="btn-primary btn"><?php echo $I18N->msg( 'save' ); ?></button>
                             </form>
+                            <hr>
+                            <?php echo $I18N->msg( 'settings_tool' ); ?>:
+                                <div class="form-group">
+                                <label for="locale"><?php echo $I18N->msg( 'language' ); ?></label>
+                                <input type="text" class="form-control config_right" name="locale" id="locale" placeholder="<?php echo $I18N->msg( 'language' ); ?>" value="<?php echo $locale; ?>">
+                                </div>
+                                <button type="submit" class="btn-primary btn"><?php echo $I18N->msg( 'save' ); ?></button>
+                            <!--<hr>
+                                <?php
+                                // Translation promotion
+                                echo $I18N->getPromoBox();
+                                ?>-->
                         </div>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="https://github.com/Kenrick95/Raun" target="_blank"><span class="glyphicon glyphicon-cutlery"></span> <?php echo $I18N->msg( 'fork' ); ?></a></li>
+                    <li><a href="#about" data-toggle="modal" data-target="#about"><span class="glyphicon glyphicon-info-sign"></span> <?php echo $I18N->msg( 'about' ); ?></a></li>
+                    <!--<li><a href="https://github.com/Kenrick95/Raun" target="_blank"><span class="glyphicon glyphicon-cutlery"></span> <?php echo $I18N->msg( 'fork' ); ?></a></li>-->
                     <li class="dropdown">
                     <!-- Statistics -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-stats"></span>
@@ -214,10 +221,10 @@ ob_end_clean();
                 <table class="table" id="main-table">
                     <thead>
                         <tr>
-                            <th colspan="2" class="col-lg-1 col-md-1 col-sm-1 col-xs-1 nowrap"><?php echo $I18N->msg( 'main_time_utc' ); ?></th>
-                            <th class="col-lg-5 col-md-5 col-sm-5 col-xs-5"><?php echo $I18N->msg( 'main_page' ); ?></th>
-                            <th class="col-lg-1 col-md-1 col-sm-1 col-xs-5"><?php echo $I18N->msg( 'main_user' ); ?></th>
-                            <th class="col-lg-5 col-md-5 col-sm-5 col-xs-5"><?php echo $I18N->msg( 'main_info' ); ?></th>
+                            <th colspan="2" class="col-lg-1 col-md-1 col-sm-1 col-xs-1 nowrap"><span class="glyphicon glyphicon-time"></span> <?php echo $I18N->msg( 'main_time_utc' ); ?></th>
+                            <th class="col-lg-5 col-md-5 col-sm-5 col-xs-5"><span class="glyphicon glyphicon-file"></span> <?php echo $I18N->msg( 'main_page' ); ?></th>
+                            <th class="col-lg-1 col-md-1 col-sm-1 col-xs-5 nowrap"><span class="glyphicon glyphicon-user"></span> <?php echo $I18N->msg( 'main_user' ); ?></th>
+                            <th class="col-lg-5 col-md-5 col-sm-5 col-xs-5"><span class="glyphicon glyphicon-tags"></span> <?php echo $I18N->msg( 'main_info' ); ?></th>
                         </tr>
                     </thead>
                     <tbody id="main-table-body">
@@ -353,6 +360,12 @@ ob_end_clean();
                         <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" style="width:1px;height:1px">
                     </form>
                     <!-- /.Donate -->
+                    <!-- don't show yet, need to move to locale cookie management by intuition
+                    <br>
+                    <?php
+                    // Translation promotion
+                    echo $I18N->getPromoBox();
+                    ?>-->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $I18N->msg( 'close' ); ?></button>

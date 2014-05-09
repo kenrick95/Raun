@@ -544,7 +544,7 @@ View.prototype.displayRC = function (data) {
             } else {
                 diffClass = "size-null";
             }
-            if (Math.abs(s_diff) > 500) {
+            if (Math.abs(combined_diff) > 500) {
                 diffClass += " size-large";
             }
             cell[2].childNodes[2].setAttribute("class", diffClass);

@@ -57,4 +57,8 @@ body { font-family: 'Ubuntu', sans-serif; }
 #stat-content { padding:0 1em; }
 #time-wrapper { text-align:center; }
 #main-table{ border-collapse:collapse; empty-cells: show; }
+#main-table-body td{
+    word-break:break-all;
+    word-wrap:break-word;
+}
 #main-table-loading { text-align:center; }

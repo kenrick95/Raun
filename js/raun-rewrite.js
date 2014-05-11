@@ -55,6 +55,7 @@ Model.prototype.data = {
 };
 Model.prototype.init = function (view) {
     var that = this;
+
     // Settings
     if (force.language === 0) {
         if (this.readCookie("language") === null) {
@@ -80,6 +81,7 @@ Model.prototype.init = function (view) {
     } else {
         this.createCookie("locale", $("#locale").val(), 30);
     }
+
     // LocalStorage get data, if not exists, store default data
     var temp_string = localStorage.getItem("config");
     var keys, disp = [];
@@ -349,8 +351,7 @@ View.prototype.displayRC = function (data) {
     var last_rcid = data.params.last_rcid;
     var len = data.length;
     var tz = gtz;
-    var i, j, diff, s_diff, comment, attr, time, show_art;
-    var cell, row, combined, combined_diff, spaceElem, diffElem, linkElem, diffClass, userElem, spanElem;
+    var i, j, diff, s_diff, comment, attr, time, show_art, cell, row, combined, combined_diff, spaceElem, diffElem, linkElem, diffClass, userElem, spanElem;
     for (i = len - 1; i >= 0; i--) {
         if (last_rcid >= data[i].rcid) {
             continue;

@@ -20,7 +20,7 @@ if (isset($_GET['locale'])) {
 }
 // [Need Krinkle/inuition to run: Remember to change it to correct path]
 $IntuitionStartFile = 'intuition/ToolStart.php';
-#$IntuitionStartFile = '/data/project/intuition/src/Intuition/ToolStart.php';
+$IntuitionStartFile = '/data/project/intuition/src/Intuition/ToolStart.php';
 require_once( $IntuitionStartFile );
 $I18N = new TsIntuition( array(
   'domain' => 'raun',
@@ -172,7 +172,6 @@ ob_end_clean();
                                 <label for="project"><?php echo $I18N->msg( 'project' ); ?></label>
                                 <input type="text" class="form-control config_right" name="project" id="project" placeholder="<?php echo $I18N->msg( 'project' ); ?>" value="<?php echo $project; ?>">
                                 </div>
-                            </form>
                             <hr>
                             <?php echo $I18N->msg( 'settings_tool' ); ?>:
                                 <div class="form-group">
@@ -185,6 +184,7 @@ ob_end_clean();
                                 // Translation promotion
                                 echo $I18N->getPromoBox();
                                 ?>-->
+                            </form>
                         </div>
                     </li>
                 </ul>
@@ -223,8 +223,8 @@ ob_end_clean();
                         <tr>
                             <th colspan="2" class="col-lg-1 col-md-1 col-sm-1 col-xs-1 nowrap"><span class="glyphicon glyphicon-time"></span> <?php echo $I18N->msg( 'main_time_utc' ); ?></th>
                             <th class="col-lg-5 col-md-5 col-sm-5 col-xs-5"><span class="glyphicon glyphicon-file"></span> <?php echo $I18N->msg( 'main_page' ); ?></th>
-                            <th class="col-lg-1 col-md-1 col-sm-1 col-xs-5 nowrap"><span class="glyphicon glyphicon-user"></span> <?php echo $I18N->msg( 'main_user' ); ?></th>
-                            <th class="col-lg-5 col-md-5 col-sm-5 col-xs-5"><span class="glyphicon glyphicon-tags"></span> <?php echo $I18N->msg( 'main_info' ); ?></th>
+                            <th class="col-lg-2 col-md-2 col-sm-2 col-xs-2 nowrap"><span class="glyphicon glyphicon-user"></span> <?php echo $I18N->msg( 'main_user' ); ?></th>
+                            <th class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><span class="glyphicon glyphicon-tags"></span> <?php echo $I18N->msg( 'main_info' ); ?></th>
                         </tr>
                     </thead>
                     <tbody id="main-table-body">

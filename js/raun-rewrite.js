@@ -57,35 +57,38 @@ Model.prototype.init = function (view) {
     var that = this;
 
     // Settings
-    if (force.language === 0) {
+    if (parseInt(force.language, 10) === 0) {
         if (this.readCookie("language") === null) {
             this.createCookie("language", this.config.language, 30);
         }
         view.displaySettings({"language": this.readCookie("language")});
     } else {
         this.createCookie("language", $("#language").val(), 30);
+        this.config.language = $("#language").val();
     }
-    if (force.project === 0) {
+    if (parseInt(force.project, 10) === 0) {
         if (this.readCookie("project") === null) {
             this.createCookie("project", this.config.project, 30);
         }
         view.displaySettings({"project": this.readCookie("project")});
     } else {
         this.createCookie("project", $("#project").val(), 30);
+        this.config.project = $("#project").val();
     }
-    if (force.locale === 0) {
+    if (parseInt(force.locale, 10) === 0) {
         if (this.readCookie("locale") === null) {
             this.createCookie("locale", this.config.locale, 30);
         }
         view.displaySettings({"locale": this.readCookie("locale")});
     } else {
         this.createCookie("locale", $("#locale").val(), 30);
+        this.config.locale = $("#locale").val();
     }
 
     // LocalStorage get data, if not exists, store default data
     var temp_string = localStorage.getItem("config");
     var keys, disp = [];
-    if (temp_string) {
+    if (temp_string && !force.locale && !force.language && !force.project) {
         this.config = JSON.parse(temp_string);
     } else {
         localStorage.setItem("config", JSON.stringify(this.config));

@@ -7,6 +7,8 @@ $settings['wikiroot'] = "http://id.wikipedia.org/";
 $settings['cookiefile'] = "cookies.tmp";
 include("api-main.php");
 
+$last_rcid = 0;
+
 echo "retry: 5000" . PHP_EOL;
 while(1) {
     global $settings;
@@ -24,8 +26,20 @@ while(1) {
     $to = '';
     
     $rc = recent_changes($limit, $from, $to);
+    $rc_parsed = $rc['query']['recentchanges'];
+    $rc_sent = Array();
+
+    // Some processing first for not sending full chunk of data all the time
+    for ($i = 0; $i < sizeof($rc_parsed); $i++) {
+        if ($rc_parsed[$i]["rcid"] < $last_rcid) {
+            break;
+        }
+        $rc_sent[$i] = $rc_parsed[$i];
+    }
+    $last_rcid = $rc_parsed[0]["rcid"];
+
     echo "event: rc" . PHP_EOL;
-    echo "data: " . json_encode($rc['query']['recentchanges']) . PHP_EOL;
+    echo "data: " . json_encode($rc_sent) . PHP_EOL;
     echo PHP_EOL;
 
 

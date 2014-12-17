@@ -80,22 +80,25 @@ Model.prototype.init = function (view) {
     var that = this;
 
     // Settings
+    that.config.run = true;
     function setConfig(param) {
         if (parseInt(force[param], 10) === 0) {
             if (that.readCookie(param) === null) {
                 that.createCookie(param, that.config[param], 30);
-                // that.config.run = false;
             }
             view.displaySettings({param: that.readCookie(param)});
+
+            // Run only if the parameters are set by GET
+            that.config.run = false;
         } else {
             that.createCookie(param, $("#" + param).val(), 30);
             that.config[param] = $("#" + param).val();
-            // that.config.run = true;
         }
     }
     setConfig("language");
     setConfig("project");
     setConfig("locale");
+
 
     // LocalStorage get data, if not exists, store default data
     var temp_string = localStorage.getItem("config");
@@ -505,7 +508,7 @@ function View() {
     });
 
     // Show landing modal on unforced config
-    if (parseInt(force.language, 10) === 0) {
+    if (parseInt(force.language, 10) === 0 || parseInt(force.project, 10) === 0 || parseInt(force.locale, 10) === 0) {
         $("#landing").modal("show");
     }
 

@@ -257,28 +257,14 @@ if (stripos("tools.wmflabs.org", $_SERVER["SERVER_NAME"]) !== false) {
     </div>
 
     <div class="container">
-        <div class="main">
-            <div id="def">
-                <p class="lead"><b>ra&middot;un</b> <i><?php echo $I18N->msg( 'def_i' ); ?></i> <?php echo $I18N->msg( 'def_def' ); ?></p>
-            </div>
-            <div class="table-responsive">
-                <table class="table" id="main-table">
-                    <thead>
-                        <tr>
-                            <th colspan="2" class="col-lg-1 col-md-1 col-sm-1 col-xs-1 nowrap"><span class="glyphicon glyphicon-time"></span> <?php echo $I18N->msg( 'main_time_utc' ); ?></th>
-                            <th class="col-lg-5 col-md-5 col-sm-5 col-xs-5"><span class="glyphicon glyphicon-file"></span> <?php echo $I18N->msg( 'main_page' ); ?></th>
-                            <th class="col-lg-2 col-md-2 col-sm-2 col-xs-2 nowrap"><span class="glyphicon glyphicon-user"></span> <?php echo $I18N->msg( 'main_user' ); ?></th>
-                            <th class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><span class="glyphicon glyphicon-tags"></span> <?php echo $I18N->msg( 'main_info' ); ?></th>
-                        </tr>
-                    </thead>
-                    <tbody id="main-table-body">
-                        <tr>
-                            <td colspan="5" id="main-table-loading"><img src='img/loading.gif' class="loading" alt="loading"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="main list-group">
+            <div id="main-table-loading"><img src='img/loading.gif' class="loading" alt="loading"></div>
         </div>
+        <footer>
+            <b>ra&middot;un</b>
+            <br>
+            <?php echo $I18N->msg( 'about_github' ,  array('variables' => array( '<a href="https://github.com/kenrick95/Raun">github.com/kenrick95/Raun</a>' ), 'parsemag' => true ) ); ?>    
+        </footer>
     </div><!-- /.container -->
 
     <!-- Modal: Landing -->
@@ -315,11 +301,11 @@ if (stripos("tools.wmflabs.org", $_SERVER["SERVER_NAME"]) !== false) {
                                 <input type="text" class="form-control config_right" name="userlang" id="locale" placeholder="<?php echo $I18N->msg( 'language' ); ?>" value="<?php echo $locale; ?>">
                             </div>
                         </div>
-                    <!--<hr>
+                        <hr>
                         <?php
                         // Translation promotion
                         echo $I18N->getPromoBox();
-                        ?>-->
+                        ?>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn-primary btn btn-lg">Go!</button>
@@ -346,66 +332,46 @@ if (stripos("tools.wmflabs.org", $_SERVER["SERVER_NAME"]) !== false) {
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th><?php echo $I18N->msg( 'color' ); ?></th>
-                                    <th><?php echo $I18N->msg( 'ns' ); ?></th>
-                                    <th><?php echo $I18N->msg( 'color' ); ?></th>
-                                    <th><?php echo $I18N->msg( 'ns' ); ?></th>
+                                    <th><?php echo $I18N->msg( 'color' ); ?>: <?php echo $I18N->msg( 'ns' ); ?></th>
+                                    <th><?php echo $I18N->msg( 'color' ); ?>: <?php echo $I18N->msg( 'ns' ); ?></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="ns-0">&#32;</td>
-                                    <td><?php echo $I18N->msg( 'ns0' ); ?></td>
-                                    <td class="ns-1">&#32;</td>
-                                    <td><?php echo $I18N->msg( 'ns1' ); ?></td>
+                                    <td class="ns-help ns-0"><?php echo $I18N->msg( 'ns0' ); ?></td>
+                                    <td class="ns-help ns-1"><?php echo $I18N->msg( 'ns1' ); ?></td>
                                 </tr>
                                 <tr>
-                                    <td class="ns-2">&#32;</td>
-                                    <td><?php echo $I18N->msg( 'ns2' ); ?></td>
-                                    <td class="ns-3">&#32;</td>
-                                    <td><?php echo $I18N->msg( 'ns3' ); ?></td>
+                                    <td class="ns-help ns-2"><?php echo $I18N->msg( 'ns2' ); ?></td>
+                                    <td class="ns-help ns-3"><?php echo $I18N->msg( 'ns3' ); ?></td>
                                 </tr>
                                 <tr>
-                                    <td class="ns-4">&#32;</td>
-                                    <td><?php echo $I18N->msg( 'ns4' ); ?></td>
-                                    <td class="ns-5">&#32;</td>
-                                    <td><?php echo $I18N->msg( 'ns5' ); ?></td>
+                                    <td class="ns-help ns-4"><?php echo $I18N->msg( 'ns4' ); ?></td>
+                                    <td class="ns-help ns-5"><?php echo $I18N->msg( 'ns5' ); ?></td>
                                 </tr>
                                 <tr>
-                                    <td class="ns-6">&#32;</td>
-                                    <td><?php echo $I18N->msg( 'ns6' ); ?></td>
-                                    <td class="ns-7">&#32;</td>
-                                    <td><?php echo $I18N->msg( 'ns7' ); ?></td>
+                                    <td class="ns-help ns-6"><?php echo $I18N->msg( 'ns6' ); ?></td>
+                                    <td class="ns-help ns-7"><?php echo $I18N->msg( 'ns7' ); ?></td>
                                 </tr>
                                 <tr>
-                                    <td class="ns-8">&#32;</td>
-                                    <td><?php echo $I18N->msg( 'ns8' ); ?></td>
-                                    <td class="ns-9">&#32;</td>
-                                    <td><?php echo $I18N->msg( 'ns9' ); ?></td>
+                                    <td class="ns-help ns-8"><?php echo $I18N->msg( 'ns8' ); ?></td>
+                                    <td class="ns-help ns-9"><?php echo $I18N->msg( 'ns9' ); ?></td>
                                 </tr>
                                 <tr>
-                                    <td class="ns-10">&#32;</td>
-                                    <td><?php echo $I18N->msg( 'ns10' ); ?></td>
-                                    <td class="ns-11">&#32;</td>
-                                    <td><?php echo $I18N->msg( 'ns11' ); ?></td>
+                                    <td class="ns-help ns-10"><?php echo $I18N->msg( 'ns10' ); ?></td>
+                                    <td class="ns-help ns-11"><?php echo $I18N->msg( 'ns11' ); ?></td>
                                 </tr>
                                 <tr>
-                                    <td class="ns-12">&#32;</td>
-                                    <td><?php echo $I18N->msg( 'ns12' ); ?></td>
-                                    <td class="ns-13">&#32;</td>
-                                    <td><?php echo $I18N->msg( 'ns13' ); ?></td>
+                                    <td class="ns-help ns-12"><?php echo $I18N->msg( 'ns12' ); ?></td>
+                                    <td class="ns-help ns-13"><?php echo $I18N->msg( 'ns13' ); ?></td>
                                 </tr>
                                 <tr>
-                                    <td class="ns-14">&#32;</td>
-                                    <td><?php echo $I18N->msg( 'ns14' ); ?></td>
-                                    <td class="ns-15">&#32;</td>
-                                    <td><?php echo $I18N->msg( 'ns15' ); ?></td>
+                                    <td class="ns-help ns-14"><?php echo $I18N->msg( 'ns14' ); ?></td>
+                                    <td class="ns-help ns-15"><?php echo $I18N->msg( 'ns15' ); ?></td>
                                 </tr>
                                 <tr>
-                                    <td class="ns-100">&#32;</td>
-                                    <td><?php echo $I18N->msg( 'ns100' ); ?></td>
-                                    <td class="ns-101">&#32;</td>
-                                    <td><?php echo $I18N->msg( 'ns101' ); ?></td>
+                                    <td class="ns-help ns-100"><?php echo $I18N->msg( 'ns100' ); ?></td>
+                                    <td class="ns-help ns-101"><?php echo $I18N->msg( 'ns101' ); ?></td>
                                 </tr>
                             </tbody>
                         </table>

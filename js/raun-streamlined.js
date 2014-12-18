@@ -497,9 +497,9 @@ function View() {
     window.nanobar = new Nanobar(nanobarOptions);
 
     // Bind .ns to show help
-    $(document).on("click", ".ns", function () {
-        $('#help').modal('show');
-    });
+    // $(document).on("click", ".ns", function () {
+    //     $('#help').modal('show');
+    // });
 
     // Bind .combined to show individual entries
     $(document).on("click", ".combined", function () {
@@ -566,7 +566,7 @@ View.prototype.displayData = function (type, data) {
  * @todo  Method is too long: separate this into more modular!
  */
 View.prototype.displayRC = function (data) {
-    console.log(data);
+    // console.log(data);
     this.displayBar(100);
 
     var base_site = "//" + data.config.language + "." + data.config.project + ".org/";
@@ -575,7 +575,9 @@ View.prototype.displayRC = function (data) {
     var len = data.length;
     var tz = gtz;
 
-    var i, j, diff, s_diff, comment, attr, time, show_art, cell, row, combined, combined_diff, spaceElem, diffElem, linkElem, diffClass, userElem;
+    var i, j, diff, s_diff, comment, attr, time, show_art, cell, card, cardBody, combined,
+        timeIcon, tagIcon, userIcon, timeContent,
+        combined_diff, spaceElem, diffElem, linkElem, diffClass, userElem;
 
     for (i = len - 1; i >= 0; i--) {
         if (last_rcid >= data[i].rcid) {
@@ -600,32 +602,50 @@ View.prototype.displayRC = function (data) {
         if (data.site.user.sysop.hasOwnProperty(data[i].user.toLowerCase())) {attr += "admin "; }
         if (attr === "") {attr = "others "; }
 
-        attr += "new-entry ";
+        attr += "new-entry card list-group-item ";
         attr += "revid-" + data[i].revid + " ";
         attr += "pageid-" + data[i].pageid + " ";
+        attr += "ns ns-" + data[i].ns + " ";
 
-        // Create row
-        row = document.createElement("tr");
-        row.setAttribute("class", attr);
-        row.setAttribute("style", "display: none;");
-        row.setAttribute("id", "row-" + data[i].rcid);
+        // Create card
+        card = document.createElement("div");
+        card.setAttribute("class", attr);
+        card.setAttribute("style", "display: none;");
+        card.setAttribute("id", "card-" + data[i].rcid);
+
+        // cardBody = document.createElement("div");
+        // cardBody.setAttribute("class", "panel-body");
 
         // Create cells
         cell = [];
-        for (j = 0; j < 5; j++) {
-            cell[j] = document.createElement("td");
+        for (j = 1; j < 5; j++) {
+            cell[j] = document.createElement("div");
         }
 
-        // Cell 0: Namespace
-        cell[0].setAttribute("class", "ns ns-" + data[i].ns);
-        cell[0].setAttribute("title", locale_msg('ns') + ": " + this.ns(data[i].ns));
+        // Diff
+        diffElem = document.createElement("span");
 
-        // Cell 1: Time
-        cell[1].textContent = this.pad(time.getUTCHours())
-            + ':' + this.pad(time.getUTCMinutes())
-            + ':' + this.pad(time.getUTCSeconds());
+        diff = (data[i].newlen - data[i].oldlen);
+        s_diff = diff;
+        if (diff > 0) {
+            diffClass = "size-pos";
+            s_diff = "+" + diff;
+        } else if (diff < 0) {
+            diffClass = "size-neg";
+        } else {
+            diffClass = "size-null";
+        }
+        if (Math.abs(diff) > 500) {
+            diffClass += " size-large";
+        }
+        diffClass += " badge";
+        diffElem.setAttribute("class", diffClass);
+        diffElem.textContent = s_diff;
+        card.appendChild(diffElem);
 
-        // Cell 2: Article (and diff)
+        // Cell 1: Article (and diff)
+        cell[1].setAttribute("class", "list-group-item-heading link");
+
         // Article link
         linkElem = document.createElement("a");
         linkElem.setAttribute("href", base_site
@@ -642,40 +662,71 @@ View.prototype.displayRC = function (data) {
         spaceElem.setAttribute("class", "nowrap");
         spaceElem.textContent = " . . ";
 
-        // Diff
-        diffElem = document.createElement("span");
+        cell[1].appendChild(linkElem);
 
-        diff = (data[i].newlen - data[i].oldlen);
-        s_diff = diff;
+        // Cell 2: Time
+        cell[2].setAttribute("class", "list-group-item-text time");
 
-        if (diff > 0) {
-            diffClass = "size-pos";
-            s_diff = "+" + diff;
-        } else if (diff < 0) {
-            diffClass = "size-neg";
-        } else {
-            diffClass = "size-null";
-        }
-        if (Math.abs(diff) > 500) {
-            diffClass += " size-large";
-        }
-        diffElem.setAttribute("class", diffClass);
-        diffElem.textContent = "(" + s_diff + ")";
+        // Icon
+        timeIcon = document.createElement("span");
+        timeIcon.setAttribute("class", "glyphicon glyphicon-time");
+        timeIcon.setAttribute("title", locale_msg('main_time_utc'));
 
-        cell[2].appendChild(linkElem);
+        // Space
+        spaceElem = document.createElement("span");
+        spaceElem.setAttribute("class", "nowrap");
+        spaceElem.textContent = " ";
+
+        // Content
+        timeContent = document.createElement("span");
+        timeContent.textContent = this.pad(time.getUTCHours())
+            + ':' + this.pad(time.getUTCMinutes())
+            + ':' + this.pad(time.getUTCSeconds());
+
+        cell[2].appendChild(timeIcon);
         cell[2].appendChild(spaceElem);
-        cell[2].appendChild(diffElem);
+        cell[2].appendChild(timeContent);
 
         // Cell 3: User
+        cell[3].setAttribute("class", "list-group-item-text user");
+
+        // Icon
+        userIcon = document.createElement("span");
+        userIcon.setAttribute("class", "glyphicon glyphicon-user");
+        userIcon.setAttribute("title", locale_msg('main_user'));
+
+        // Space
+        spaceElem = document.createElement("span");
+        spaceElem.setAttribute("class", "nowrap");
+        spaceElem.textContent = " ";
+
         userElem = document.createElement("a");
         userElem.setAttribute("class", "username");
         userElem.setAttribute("href", base_site
             + "wiki/Special:Contributions/"
             + data[i].user);
         userElem.textContent = data[i].user;
+
+        cell[3].appendChild(userIcon);
+        cell[3].appendChild(spaceElem);
         cell[3].appendChild(userElem);
 
         // Cell 4: Information
+        cell[4].setAttribute("class", "list-group-item-text info");
+
+        // Icon
+        tagIcon = document.createElement("span");
+        tagIcon.setAttribute("class", "glyphicon glyphicon-tags");
+        tagIcon.setAttribute("title", locale_msg('main_info'));
+
+        // Space
+        spaceElem = document.createElement("span");
+        spaceElem.setAttribute("class", "nowrap");
+        spaceElem.textContent = " ";
+
+        cell[4].appendChild(tagIcon);
+        cell[4].appendChild(spaceElem);
+
         if (data[i].type === 'new') {
             cell[4].appendChild(this.createLabel("label-success", locale_msg('settings_new_pages'), locale_msg('new')));
             cell[4].insertAdjacentHTML('beforeend', " ");
@@ -714,36 +765,36 @@ View.prototype.displayRC = function (data) {
                 + "</i>)");
         }
 
-        // Insert all cell to row
-        for (j = 0; j < 5; j++) {
-            row.appendChild(cell[j]);
+        // Insert all cell to card
+        for (j = 1; j < 5; j++) {
+            card.appendChild(cell[j]);
         }
+        // card.appendChild(cardBody);
 
-        $(row).data("diff", diff);
+        $(card).data("diff", diff);
 
-        // Combined row
+        // Combined card
         if ($(".revid-" + data[i].old_revid).length > 0) {
-            $(row).data("oldest_revid", $(".pageid-" + data[i].pageid).last().data("oldest_revid"));
+            $(card).data("oldest_revid", $(".pageid-" + data[i].pageid).last().data("oldest_revid"));
 
-            // "Deprecate" the old rows
+            // "Deprecate" the old cards
             $(".revid-" + data[i].old_revid).addClass("inactive");
 
-            // Remove old combined row
+            // Remove old combined card
             $(".revid-" + data[i].old_revid + ".inactive.combined").remove();
 
-            // add a "combined row"
-            combined = row.cloneNode(true);
+            // add a "combined card"
+            combined = card.cloneNode(true);
             combined.removeAttribute("id");
             combined.removeAttribute("style");
             combined.setAttribute("class", combined.getAttribute("class") + "combined");
 
-            // Construct the combined row
+            // Construct the combined card
             cell = combined.childNodes;
-            cell[1].textContent += "";
-            if (parseInt($(row).data("oldest_revid"), 10) === 0) {
-                cell[2].childNodes[0].setAttribute("href", base_site + "wiki/" + data[i].title);
+            if (parseInt($(card).data("oldest_revid"), 10) === 0) {
+                cell[1].setAttribute("href", base_site + "wiki/" + data[i].title);
             } else {
-                cell[2].childNodes[0].setAttribute("href", cell[2].childNodes[0].getAttribute("href").replace(/oldid=[0-9]*/, "oldid=" + $(row).data("oldest_revid")));
+                cell[1].setAttribute("href", cell[1].childNodes[0].getAttribute("href").replace(/oldid=[0-9]*/, "oldid=" + $(card).data("oldest_revid")));
             }
             combined_diff = diff + this.calculateDiff(".pageid-" + data[i].pageid);
             if (combined_diff > 0) {
@@ -756,8 +807,10 @@ View.prototype.displayRC = function (data) {
             if (Math.abs(combined_diff) > 500) {
                 diffClass += " size-large";
             }
-            cell[2].childNodes[2].setAttribute("class", diffClass);
-            cell[2].childNodes[2].textContent = "(" + (combined_diff > 0 ? "+" : "") + combined_diff + ")";
+            diffClass += " badge";
+            cell[0].setAttribute("class", diffClass);
+            cell[0].textContent = (combined_diff > 0 ? "+" : "") + combined_diff;
+
             cell[3].textContent = locale_msg('combined_entries');
             cell[4].textContent = "";
             for (j = 0; j < 5; j++) {
@@ -765,17 +818,17 @@ View.prototype.displayRC = function (data) {
             }
 
             $(".pageid-" + data[i].pageid).addClass("combined-child");
-            $(row).addClass("combined-child");
+            $(card).addClass("combined-child");
             $(combined).data("pageid", data[i].pageid);
 
-            // add row to the table
-            $("#main-table-body").prepend($(".pageid-" + data[i].pageid));
-            $("#main-table-body").prepend(row);
-            $("#main-table-body").prepend(combined);
+            // add card to the table
+            $(".main").prepend($(".pageid-" + data[i].pageid));
+            $(".main").prepend(card);
+            $(".main").prepend(combined);
         } else {
-            $(row).data("oldest_revid", data[i].old_revid);
-            // add row to the table
-            $("#main-table-body").prepend(row);
+            $(card).data("oldest_revid", data[i].old_revid);
+            // add card to the table
+            $(".main").prepend(card);
         }
 
 
@@ -822,7 +875,7 @@ View.prototype.displayRC = function (data) {
             }
         }
         if (show_art === true) {
-            this.showRC('#main-table > tbody > tr#row-' + data[i].rcid + ":not(.combined-child)");
+            this.showRC('#card-' + data[i].rcid + ":not(.combined-child)");
         }
     }
     setTimeout(function () {

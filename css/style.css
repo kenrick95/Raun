@@ -7,9 +7,9 @@ body { font-family: 'Ubuntu', sans-serif; }
 .user-login { color: #900; }
 .user-anon { color: #f00; }
 
-.size-neg { color:#ff2050; white-space: nowrap; }
-.size-pos { color:#00b000; white-space: nowrap; }
-.size-null { color:#999; white-space: nowrap; }
+.size-neg { color: white; background-color:#ff2050; white-space: nowrap; }
+.size-pos { color: white; background-color:#00b000; white-space: nowrap; }
+.size-null { color: white; background-color:#999; white-space: nowrap; }
 .size-large { font-weight: bold; white-space: nowrap; }
 
 .label { white-space: nowrap; }
@@ -31,34 +31,43 @@ body { font-family: 'Ubuntu', sans-serif; }
 .loading {width:16px; height:16px;}
 .stat { font-size:x-small; vertical-align:top; font-weight: bold; color: #ccc; }
 
-.ns { width:16px; min-width:16px; padding:0 !important; cursor:help; box-sizing:content-box;}
-.ns-0 { background: #C0C0C0 !important; } /* Article */
-.ns-2 { background: #2d89ef !important; } /* User */
-.ns-4 { background: #9b59b6 !important; } /* Project */
-.ns-6 { background: #ee1111 !important; } /* File */
-.ns-8 { background: #ffee00 !important; } /* MediaWiki */
-.ns-10 { background: #e7ac2f !important; } /* Template */
-.ns-12 { background: #ff0097 !important; } /* Help */
-.ns-14 { background: #00a300 !important; } /* Category */
-.ns-100 { background: #2bfffd !important; } /* Portal */
+.ns { border-left-width: 4px; border-left-style: solid; }
+.ns-help { border-left-width: 10px; border-left-style: solid; }
+.ns-0 { border-left-color: #C0C0C0 !important; } /* Article */
+.ns-2 { border-left-color: #2d89ef !important; } /* User */
+.ns-4 { border-left-color: #9b59b6 !important; } /* Project */
+.ns-6 { border-left-color: #ee1111 !important; } /* File */
+.ns-8 { border-left-color: #ffee00 !important; } /* MediaWiki */
+.ns-10 { border-left-color: #e7ac2f !important; } /* Template */
+.ns-12 { border-left-color: #ff0097 !important; } /* Help */
+.ns-14 { border-left-color: #00a300 !important; } /* Category */
+.ns-100 { border-left-color: #2bfffd !important; } /* Portal */
 
-.ns-1 { background: #696969 !important; } /* Article Talk */
-.ns-3 { background: #2b5797 !important; } /* User Talk */
-.ns-5 { background: #623475 !important; } /* Project Talk */
-.ns-7 { background: #b91d47 !important; } /* File Talk */
-.ns-9 { background: #c09100 !important; } /* MediaWiki Talk */
-.ns-11 { background: #da532c !important; } /* Template Talk */
-.ns-13 { background: #b3006a !important; } /* Help Talk */
-.ns-15 { background: #1e7145 !important; } /* Category Talk */
-.ns-101 { background: #00aba9 !important; } /* Portal Talk */
+.ns-1 { border-left-color: #696969 !important; } /* Article Talk */
+.ns-3 { border-left-color: #2b5797 !important; } /* User Talk */
+.ns-5 { border-left-color: #623475 !important; } /* Project Talk */
+.ns-7 { border-left-color: #b91d47 !important; } /* File Talk */
+.ns-9 { border-left-color: #c09100 !important; } /* MediaWiki Talk */
+.ns-11 { border-left-color: #da532c !important; } /* Template Talk */
+.ns-13 { border-left-color: #b3006a !important; } /* Help Talk */
+.ns-15 { border-left-color: #1e7145 !important; } /* Category Talk */
+.ns-101 { border-left-color: #00aba9 !important; } /* Portal Talk */
 
 #def { text-align:center; }
 #stat { font-style:italic; font-size:.8em; }
 #stat-content { padding:0 1em; }
 #time-wrapper { text-align:center; }
-#main-table{ border-collapse:collapse; empty-cells: show; }
-#main-table-body td{
-    word-break:break-all;
-    word-wrap:break-word;
+
+#main-table-loading {
+    width: 100%;
+    text-align: center;
 }
-#main-table-loading { text-align:center; }
+.card {
+    margin: 10px;
+    border-radius: 4px;
+}
+.combined-child {
+    margin-top: -10px;
+    border-radius: 0px;
+}
+footer { text-align: center; }

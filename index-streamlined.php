@@ -71,17 +71,6 @@ ob_end_clean();
     <link href='//fonts.googleapis.com/css?family=Ubuntu:400,700' rel='stylesheet' type='text/css'>
     <link href="//cdn.jsdelivr.net/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <?php
-    /**
-     * Headroom.js CSS fix for Bootstrap 3
-     * @author Raghav Khunger <http://stackoverflow.com/a/20671771/917957>
-     */
-    ?>
-    <style type="text/css">
-    .headroom {position: fixed;top: 0;left: 0;right: 0;transition: all .2s ease-in-out;}
-    .headroom--unpinned {top: -46px;}
-    .headroom--pinned {top: 0;}
-    </style>
 <?php
 // Google Analytics
 if (stripos("tools.wmflabs.org", $_SERVER["SERVER_NAME"]) !== false) {
@@ -398,8 +387,8 @@ if (stripos("tools.wmflabs.org", $_SERVER["SERVER_NAME"]) !== false) {
                     <p><?php echo $I18N->msg( 'credit' ); ?>:
                     </p>
                         <ul>
-                            <li>Bootstrap 3.1.1</li>
-                            <li>jQuery 2.1.0</li>
+                            <li>Bootstrap 3.3.1</li>
+                            <li>jQuery 2.1.1</li>
                             <li>Wikimedia API</li>
                             <li>Nanobar 0.0.6</li>
                             <li>Headroom.js 0.7.0</li>
@@ -432,7 +421,7 @@ if (stripos("tools.wmflabs.org", $_SERVER["SERVER_NAME"]) !== false) {
     </div><!-- /.modal -->
 
     <!-- JavaScript files -->
-    <script src="//cdn.jsdelivr.net/g/jquery@2.1,bootstrap@3.1.1,nanobar@0.0.6,headroomjs@0.7.0"></script>
+    <script src="//cdn.jsdelivr.net/g/jquery@2.1.1,bootstrap@3.3.1,nanobar@0.0.6,headroomjs@0.7.0"></script>
     <script src="//tools.wmflabs.org/intuition/load.php?env=standalone"></script>
     <script>
     intuition.load("raun", "<?php echo $locale; ?>");

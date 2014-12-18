@@ -65,6 +65,7 @@ Model.prototype.data = {
     "user": null,
     "stat": null,
     "filter": ["bot", "anon", "new", "minor", "redirect", "editor", "admin", "others"],
+    "filter-class": ["bot", "anon", "new-art", "minor", "redirect", "editor", "admin", "others"]
 };
 
 /**
@@ -370,34 +371,20 @@ Model.prototype.updateFilter = function (view) {
             "others": this.getFilter("others"),
         }
     };
-    var keys;
-    for (keys in this.data.filter) {
-        if (this.data.filter.hasOwnProperty(keys)) {
-            if (new_config.show[this.data.filter[keys]] && !this.config.show[this.data.filter[keys]]) {
-                if (this.data.filter[keys] === "new") {
-                    view.showRC(".new-art");
-                } else {
-                    view.showRC("." + this.data.filter[keys]);
-                }
-            }
+    var len = this.data.filter.length, j;
+    for (j = 0; j < len; j++) {
+        if (new_config.show[this.data.filter[j]] && !this.config.show[this.data.filter[j]]) {
+            view.hideRC("." + this.data['filter-class'][j]);
         }
     }
-    for (keys in this.data.filter) {
-        if (this.data.filter.hasOwnProperty(keys)) {
-            if (!new_config.show[this.data.filter[keys]]) {
-                if (this.data.filter[keys] === "new") {
-                    view.hideRC(".new-art");
-                } else {
-                    view.hideRC("." + this.data.filter[keys]);
-                }
-            }
+    for (j = 0; j < len; j++) {
+        if (!new_config.show[this.data.filter[j]]) {
+            view.hideRC("." + this.data['filter-class'][j]);
         }
     }
     // Update the data
-    for (keys in this.data.filter) {
-        if (this.data.filter.hasOwnProperty(keys)) {
-            this.config.show[this.data.filter[keys]] = new_config.show[this.data.filter[keys]];
-        }
+    for (j = 0; j < len; j++) {
+        this.config.show[this.data.filter[j]] = new_config.show[this.data.filter[j]];
     }
     // Store the data
     localStorage.setItem("config", JSON.stringify(this.config));
@@ -478,7 +465,6 @@ Model.prototype.eraseCookie = function (name) {
  * Constructor contains hacks on view:
  * - Twitter Bootstrap keep-open class
  * - Declaring Nanobar as global variable
- * - Bind .ns to show help
  * - Bind .combined to show individual entries
  * - Show landing modal on unforced config
  * - Bind header to Headroomjs
@@ -496,15 +482,10 @@ function View() {
     var nanobarOptions = {bg: '#ddd'};
     window.nanobar = new Nanobar(nanobarOptions);
 
-    // Bind .ns to show help
-    // $(document).on("click", ".ns", function () {
-    //     $('#help').modal('show');
-    // });
-
     // Bind .combined to show individual entries
     $(document).on("click", ".combined", function () {
         var pageid = $(this).data("pageid");
-        $(".pageid-" + pageid + ":not(.combined)").slideToggle();
+        $(".pageid-" + pageid + ":not(.combined)").toggle();
     });
 
     // Show landing modal on unforced config
@@ -575,9 +556,9 @@ View.prototype.displayRC = function (data) {
     var len = data.length;
     var tz = gtz;
 
-    var i, j, diff, s_diff, comment, attr, time, show_art, cell, card, cardBody, combined,
+    var i, j, diff, s_diff, comment, attr, time, show_art, cell, card, combined,
         timeIcon, tagIcon, userIcon, timeContent,
-        combined_diff, spaceElem, diffElem, linkElem, diffClass, userElem;
+        combined_diff, diffElem, linkElem, diffClass, userElem;
 
     for (i = len - 1; i >= 0; i--) {
         if (last_rcid >= data[i].rcid) {
@@ -612,9 +593,6 @@ View.prototype.displayRC = function (data) {
         card.setAttribute("class", attr);
         card.setAttribute("style", "display: none;");
         card.setAttribute("id", "card-" + data[i].rcid);
-
-        // cardBody = document.createElement("div");
-        // cardBody.setAttribute("class", "panel-body");
 
         // Create cells
         cell = [];
@@ -658,11 +636,6 @@ View.prototype.displayRC = function (data) {
             + data[i].old_revid);
         linkElem.textContent = data[i].title;
 
-        // Space
-        spaceElem = document.createElement("span");
-        spaceElem.setAttribute("class", "nowrap");
-        spaceElem.textContent = " . . ";
-
         cell[1].appendChild(linkElem);
 
         // Cell 2: Time
@@ -673,11 +646,6 @@ View.prototype.displayRC = function (data) {
         timeIcon.setAttribute("class", "glyphicon glyphicon-time");
         timeIcon.setAttribute("title", locale_msg('main_time_utc'));
 
-        // Space
-        spaceElem = document.createElement("span");
-        spaceElem.setAttribute("class", "nowrap");
-        spaceElem.textContent = " ";
-
         // Content
         timeContent = document.createElement("span");
         timeContent.textContent = this.pad(time.getUTCHours())
@@ -685,7 +653,7 @@ View.prototype.displayRC = function (data) {
             + ':' + this.pad(time.getUTCSeconds());
 
         cell[2].appendChild(timeIcon);
-        cell[2].appendChild(spaceElem);
+        cell[2].insertAdjacentHTML('beforeend', " ");
         cell[2].appendChild(timeContent);
 
         // Cell 3: User
@@ -696,11 +664,6 @@ View.prototype.displayRC = function (data) {
         userIcon.setAttribute("class", "glyphicon glyphicon-user");
         userIcon.setAttribute("title", locale_msg('main_user'));
 
-        // Space
-        spaceElem = document.createElement("span");
-        spaceElem.setAttribute("class", "nowrap");
-        spaceElem.textContent = " ";
-
         userElem = document.createElement("a");
         userElem.setAttribute("class", "username");
         userElem.setAttribute("href", base_site
@@ -709,7 +672,7 @@ View.prototype.displayRC = function (data) {
         userElem.textContent = data[i].user;
 
         cell[3].appendChild(userIcon);
-        cell[3].appendChild(spaceElem);
+        cell[3].insertAdjacentHTML('beforeend', " ");
         cell[3].appendChild(userElem);
 
         // Cell 4: Information
@@ -720,13 +683,8 @@ View.prototype.displayRC = function (data) {
         tagIcon.setAttribute("class", "glyphicon glyphicon-tags");
         tagIcon.setAttribute("title", locale_msg('main_info'));
 
-        // Space
-        spaceElem = document.createElement("span");
-        spaceElem.setAttribute("class", "nowrap");
-        spaceElem.textContent = " ";
-
         cell[4].appendChild(tagIcon);
-        cell[4].appendChild(spaceElem);
+        cell[4].insertAdjacentHTML('beforeend', " ");
 
         if (data[i].type === 'new') {
             cell[4].appendChild(this.createLabel("label-success", locale_msg('settings_new_pages'), locale_msg('new')));
@@ -770,7 +728,6 @@ View.prototype.displayRC = function (data) {
         for (j = 1; j < 5; j++) {
             card.appendChild(cell[j]);
         }
-        // card.appendChild(cardBody);
 
         $(card).data("diff", diff);
 
@@ -838,44 +795,12 @@ View.prototype.displayRC = function (data) {
 
         // show article
         show_art = true;
-        if (attr.indexOf("bot") >= 0) {
-            if (!data.config.show.bot) {
+        for (j = 0; j < data.site.filter.length; j++) {
+            if (attr.indexOf(data.site['filter-class'][j]) >= 0 && !data.config.show[data.site.filter[j]]) {
                 show_art = false;
             }
-        }
-        if (attr.indexOf("minor") >= 0) {
-            if (!data.config.show.minor) {
-                show_art = false;
-            }
-        }
-        if (attr.indexOf("redirect") >= 0) {
-            if (!data.config.show.redirect) {
-                show_art = false;
-            }
-        }
-        if (attr.indexOf("new-art") >= 0) {
-            if (!data.config.show.new) {
-                show_art = false;
-            }
-        }
-        if (attr.indexOf("anon") >= 0) {
-            if (!data.config.show.anon) {
-                show_art = false;
-            }
-        }
-        if (attr.indexOf("admin") >= 0) {
-            if (!data.config.show.admin) {
-                show_art = false;
-            }
-        }
-        if (attr.indexOf("editor") >= 0) {
-            if (!data.config.show.editor) {
-                show_art = false;
-            }
-        }
-        if (attr.indexOf("others") >= 0) {
-            if (!data.config.show.others) {
-                show_art = false;
+            if (!show_art) {
+                break;
             }
         }
         if (show_art === true) {

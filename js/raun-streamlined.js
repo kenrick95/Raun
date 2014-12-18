@@ -104,8 +104,9 @@ Model.prototype.init = function (view) {
     // LocalStorage get data, if not exists, store default data
     var temp_string = localStorage.getItem("config");
     var keys, disp = [];
-    if (temp_string && !force.locale && !force.language && !force.project) {
+    if (temp_string && force.locale && force.language && force.project) {
         this.config = JSON.parse(temp_string);
+        that.config.run = true;
     } else {
         localStorage.setItem("config", JSON.stringify(this.config));
     }
@@ -115,6 +116,18 @@ Model.prototype.init = function (view) {
         }
     }
     view.displayFilter(disp);
+
+    // Quick hack to prevent error when user closes landing modal
+    $('#landing').on('hide.bs.modal', function (e) {
+        that.config.run = true;
+        if (that.canRun() === 1) {
+            that.getRCSSE(view);
+            that.getStatSSE(view);
+        } else if (that.canRun() === 2) {
+            that.getRCPolling(view);
+            that.getStatPolling(view);
+        }
+    });
 
     this.data.user = [];
     /*
@@ -134,6 +147,8 @@ Model.prototype.init = function (view) {
         });
     });
     view.displayTime();
+
+
     return;
 };
 
@@ -491,6 +506,7 @@ function View() {
     // Show landing modal on unforced config
     if (parseInt(force.language, 10) === 0 || parseInt(force.project, 10) === 0 || parseInt(force.locale, 10) === 0) {
         $("#landing").modal("show");
+
     }
 
     // Bind header to Headroomjs

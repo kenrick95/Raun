@@ -271,11 +271,15 @@ Model.prototype.source = null;
  * @description initialize Server-Sent Events by creating the EventSource
  * @return {None}
  */
-Model.prototype.initSSE = function () {
+Model.prototype.initSSE = function (view) {
+    var that = this;
     this.createCookie("rcfrom", "", 1);
     this.source = new EventSource('api-sse-rewrite.php');
     this.source.addEventListener('error', function (e) {
         console.error(e);
+        // Switch to Polling if SSE fails
+        that.getRCPolling(view);
+        that.getStatPolling(view);
     }, false);
 };
 
@@ -310,7 +314,7 @@ Model.prototype.getDataSSE = function (view, type, params, callback) {
  */
 Model.prototype.getRCSSE = function (view) {
     var that = this;
-    this.initSSE();
+    this.initSSE(view);
     this.getDataSSE(view, 'rc', {gtz: 0, last_rcid: 0}, function (ret, data, callback) {
         data.params.gtz = ret.gtz;
         data.params.last_rcid = ret.last_rcid;

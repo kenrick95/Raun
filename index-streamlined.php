@@ -261,7 +261,7 @@ if (stripos("tools.wmflabs.org", $_SERVER["SERVER_NAME"]) !== false) {
             <div id="main-table-loading"><img src='img/loading.gif' class="loading" alt="loading"></div>
         </div>
         <footer>
-            <b>ra&middot;un</b>
+            <b>ra&middot;un</b>&nbsp;<i><?php echo $I18N->msg( 'def_i' ); ?></i>&nbsp;<?php echo $I18N->msg( 'def_def' ); ?>
             <br>
             <?php echo $I18N->msg( 'about_github' ,  array('variables' => array( '<a href="https://github.com/kenrick95/Raun">github.com/kenrick95/Raun</a>' ), 'parsemag' => true ) ); ?>    
         </footer>

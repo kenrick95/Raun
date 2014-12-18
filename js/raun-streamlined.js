@@ -504,7 +504,7 @@ function View() {
     // Bind .combined to show individual entries
     $(document).on("click", ".combined", function () {
         var pageid = $(this).data("pageid");
-        $(".pageid-" + pageid + ":not(.combined)").toggle();
+        $(".pageid-" + pageid + ":not(.combined)").slideToggle();
     });
 
     // Show landing modal on unforced config
@@ -618,7 +618,8 @@ View.prototype.displayRC = function (data) {
 
         // Create cells
         cell = [];
-        for (j = 1; j < 5; j++) {
+        cell[1] = document.createElement("h4");
+        for (j = 2; j < 5; j++) {
             cell[j] = document.createElement("div");
         }
 
@@ -819,6 +820,9 @@ View.prototype.displayRC = function (data) {
 
             $(".pageid-" + data[i].pageid).addClass("combined-child");
             $(card).addClass("combined-child");
+            if ($(".pageid-" + data[i].pageid + ".combined-child").is(":visible")) {
+                $(card).show();
+            }
             $(combined).data("pageid", data[i].pageid);
 
             // add card to the table

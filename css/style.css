@@ -10,17 +10,16 @@ body { font-family: 'Ubuntu', sans-serif; }
 .size-neg { color: white; background-color:#D9534F; white-space: nowrap; }
 .size-pos { color: white; background-color:#5CB85C; white-space: nowrap; }
 .size-null { color: white; background-color:#999; white-space: nowrap; }
-.size-large { font-weight: bolder; white-space: nowrap; }
 
 .label { white-space: nowrap; }
 .content ul, .content ol { margin: 0 0 0 1.5em; padding-left: 0em; }
 .nowrap { white-space: nowrap;}
 
-.new-entry { background:#f7dc6f !important; }
+.new-entry { background-color:#ffdc00 !important; }
 .inactive { color: #999; }
 .inactive a { color: #999; }
-.combined { background:#fff; cursor:pointer;}
-.combined-child { background:#f2f2f2; display:none;}
+.combined { background-color:#fff; cursor:pointer;}
+.combined-child { background-color:#f2f2f2; display:none;}
 
 .main { margin-top:50px; padding-top: 1em; }
 .navbar-brand {min-width:6em; height:50px; font-weight: bold;}
@@ -57,6 +56,10 @@ body { font-family: 'Ubuntu', sans-serif; }
 
 #main-table-loading { width: 100%; text-align: center;}
 .card { margin: 10px; border-radius: 4px; }
+.link { }
+.time { display: inline-block; margin-right: 1em; }
+.user { display: inline-block; }
+.info { }
 .combined-child { margin-top: -10px; border-radius: 0px;}
 footer { border-top: 1px solid #DDD; padding: 1em; text-align: center; }
 

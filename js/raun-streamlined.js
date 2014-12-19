@@ -21,7 +21,6 @@
  * Current ISSUES:
  * - Reliance on DOM for storing/ getting data of entry (row) --> Slow performance
  * - User list is limited to 500 entries per API request
- * - Make a landing page (welcome message)
  * 
  */
 
@@ -379,18 +378,12 @@ Model.prototype.getFilter = function (property) {
  */
 Model.prototype.updateFilter = function (view) {
     var new_config = {
-        "show": {
-            "bot": this.getFilter("bot"),
-            "anon": this.getFilter("anon"),
-            "new": this.getFilter("new"),
-            "minor": this.getFilter("minor"),
-            "redirect": this.getFilter("redirect"),
-            "editor": this.getFilter("editor"),
-            "admin": this.getFilter("admin"),
-            "others": this.getFilter("others"),
-        }
+        "show": {}
     };
     var len = this.data.filter.length, j;
+    for (j = 0; j < len; j++) {
+        new_config.show[this.data.filter[j]] = this.getFilter(this.data.filter[j]);
+    }
     for (j = 0; j < len; j++) {
         if (new_config.show[this.data.filter[j]] && !this.config.show[this.data.filter[j]]) {
             view.hideRC("." + this.data['filter-class'][j]);
@@ -577,7 +570,7 @@ View.prototype.displayRC = function (data) {
     var tz = gtz;
 
     var i, j, diff, s_diff, comment, attr, time, show_art, cell, card, combined,
-        timeIcon, tagIcon, userIcon, timeContent,
+        timeIcon, tagIcon, userIcon, timeContent, caret,
         combined_diff, diffElem, linkElem, diffClass, userElem;
 
     for (i = len - 1; i >= 0; i--) {
@@ -633,9 +626,6 @@ View.prototype.displayRC = function (data) {
             diffClass = "size-neg";
         } else {
             diffClass = "size-null";
-        }
-        if (Math.abs(diff) > 500) {
-            diffClass += " size-large";
         }
         diffClass += " badge";
         diffElem.setAttribute("class", diffClass);
@@ -744,6 +734,12 @@ View.prototype.displayRC = function (data) {
                 + "</i>)");
         }
 
+        // Don't show the cell if nothing is inside
+        if (cell[4].textContent === " ") {
+            cell[4] = document.createElement("div");
+            cell[4].setAttribute("class", "list-group-item-text info");
+        }
+
         // Insert all cell to card
         for (j = 1; j < 5; j++) {
             card.appendChild(cell[j]);
@@ -782,15 +778,18 @@ View.prototype.displayRC = function (data) {
             } else {
                 diffClass = "size-null";
             }
-            if (Math.abs(combined_diff) > 500) {
-                diffClass += " size-large";
-            }
             diffClass += " badge";
             cell[0].setAttribute("class", diffClass);
             cell[0].textContent = (combined_diff > 0 ? "+" : "") + combined_diff;
 
-            cell[3].textContent = locale_msg('combined_entries');
-            cell[4].textContent = "";
+            cell[3].textContent = "";
+            cell[4].setAttribute("class", "list-group-item-text info btn-link");
+            cell[4].textContent = locale_msg('combined_entries');
+            // Icon
+            caret = document.createElement("span");
+            caret.setAttribute("class", "caret");
+            cell[4].appendChild(caret);
+
             for (j = 0; j < 5; j++) {
                 combined.replaceChild(combined.childNodes[j], cell[j]);
             }

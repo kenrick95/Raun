@@ -383,6 +383,6 @@ ob_end_clean();
         project: <?php echo $project_force_get ? 1 : 0; ?>,
     };
     </script>
-    <script src="js/raun-streamlined.js"></script>
+    <script src="js/raun-rewrite.js"></script>
 </body>
 </html>

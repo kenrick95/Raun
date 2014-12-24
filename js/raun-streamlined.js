@@ -172,7 +172,7 @@ Model.prototype.getDataPolling = function (view, type, params, callback) {
     // console.log(sendData);
     $.ajax({
         type: "POST",
-        url: "api-rewrite.php",
+        url: "api-polling.php",
         data: sendData,
         dataType: "json",
         success: function (data) {
@@ -273,7 +273,7 @@ Model.prototype.source = null;
 Model.prototype.initSSE = function (view) {
     var that = this;
     this.createCookie("rcfrom", "", 1);
-    this.source = new EventSource('api-sse-rewrite.php');
+    this.source = new EventSource('api-sse.php');
     this.source.addEventListener('error', function (e) {
         console.error(e);
         // Switch to Polling if SSE fails

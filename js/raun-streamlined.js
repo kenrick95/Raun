@@ -198,15 +198,26 @@ Model.prototype.getRCPolling = function (view) {
     var that = this;
     view.displayBar(50);
     this.getDataPolling(view, 'rc', {from: 0, gtz: 0, last_rcid: 0}, function (ret, data, callback) {
-        function process(ret, data, callback) {
+        setTimeout(function process(ret, data, callback) {
+            var date = new Date(ret.gtz);
+            data.params.from = date.getUTCFullYear()
+                + that.pad(date.getUTCMonth() + 1)
+                + that.pad(date.getUTCDate())
+                + that.pad(date.getUTCHours())
+                + that.pad(date.getUTCMinutes())
+                + that.pad(date.getUTCSeconds());//yyyymmddhhmmss
             data.params.gtz = ret.gtz;
             data.params.last_rcid = ret.last_rcid;
             that.getDataPolling(view, 'rc', data.params, callback);
-        }
-        setTimeout(process.bind(this, ret, data, callback), 5000);
+        }.bind(that, ret, data, callback), 5000);
     });
 };
-
+Model.prototype.pad = function (number) {
+    if (number < 10) {
+        return '0' + number;
+    }
+    return number;
+};
 /**
  * Model: Polling: getLogPolling
  * @description Supposed to get Log from WMF API, but still unsure yet, i.e. unused
@@ -248,10 +259,9 @@ Model.prototype.getUserPolling = function (view, group, callback) {
 Model.prototype.getStatPolling = function (view) {
     var that = this;
     this.getDataPolling(view, 'stat', {method: 'stat'}, function (ret, data, callback) {
-        function process(ret, data, callback) {
+        setTimeout(function process(ret, data, callback) {
             that.getDataPolling(view, 'stat', data.params, callback);
-        }
-        setTimeout(process.bind(this, ret, data, callback), 3000);
+        }.bind(that, ret, data, callback), 5000);
     });
 };
 
@@ -418,7 +428,7 @@ Model.prototype.canRun = function () {
         return 0;
     }
     if (!!window.EventSource) {
-        return 1;
+        return 2; // force browser that supports SSE to fallback to polling, because of slow loading issue.
     }
     return 2;
 };

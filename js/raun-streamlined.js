@@ -396,7 +396,7 @@ Model.prototype.updateFilter = function (view) {
     }
     for (j = 0; j < len; j++) {
         if (new_config.show[this.data.filter[j]] && !this.config.show[this.data.filter[j]]) {
-            view.hideRC("." + this.data['filter-class'][j]);
+            view.showRC("." + this.data['filter-class'][j]);
         }
     }
     for (j = 0; j < len; j++) {

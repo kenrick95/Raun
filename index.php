@@ -6,13 +6,22 @@
  * @author Kenrick <contact@kenrick95.org>
  * @license MIT License <http://opensource.org/licenses/MIT>
  */
+function redirectToHTTP() {
+    // disable HTTPS, data stream does not support https yet.
+    if ($_SERVER['HTTP_X_FORWARDED_PROTO'] == "https") {
+        $redirect = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+        header("Location: $redirect");
+    }
+}
+redirectToHTTP();
+
 ob_start();
 $locale = ""; $language = ""; $project = "";
 $locale_force_get = false; $language_force_get = false; $project_force_get = false;
 $title_info = "";
 // [Need Krinkle/inuition to run: Remember to change it to correct path]
 $IntuitionStartFile = 'intuition/ToolStart.php';
-# $IntuitionStartFile = '/data/project/intuition/src/Intuition/ToolStart.php';
+$IntuitionStartFile = '/data/project/intuition/src/Intuition/ToolStart.php';
 
 // Intuition initialization
 require_once($IntuitionStartFile);
@@ -421,7 +430,7 @@ if (stripos("tools.wmflabs.org", $_SERVER["SERVER_NAME"]) !== false) {
     </div><!-- /.modal -->
 
     <!-- JavaScript files -->
-    <script src="//cdn.jsdelivr.net/g/jquery@2.1.1,bootstrap@3.1.1,nanobar@0.0.6,headroomjs@0.7.0"></script>
+    <script src="//cdn.jsdelivr.net/g/jquery@2.1.1,bootstrap@3.1.1,nanobar@0.0.6,headroomjs@0.7.0,socket.io-client@0.9.17"></script>
     <script src="//tools.wmflabs.org/intuition/load.php?env=standalone"></script>
     <script>
     intuition.load("raun", "<?php echo $locale; ?>");

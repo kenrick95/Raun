@@ -142,8 +142,9 @@ Model.prototype.init = function (view) {
     $('#landing').on('hide.bs.modal', function (e) {
         that.config.run = true;
         if (that.canRun() === 1) {
-            that.getRCOnce(view);
-            that.getRCStream(view);
+            that.getRCOnce(view, function (view) {
+                that.getRCStream(view);
+            });
             that.getStatPolling(view);
         } else if (that.canRun() === 2) {
             that.getRCPolling(view);
@@ -160,8 +161,9 @@ Model.prototype.init = function (view) {
     this.getUserPolling(view, 'sysop', function (view) {
         that.getUserPolling(view, 'editor', function (view) {
             if (that.canRun() === 1) {
-                that.getRCOnce(view);
-                that.getRCStream(view); // socket.io will nicely update, but not the old RCs, take from API?
+                that.getRCOnce(view, function (view) {
+                    that.getRCStream(view);
+                });
                 that.getStatPolling(view);
             } else if (that.canRun() === 2) {
                 that.getRCPolling(view);
@@ -236,9 +238,13 @@ Model.prototype.getRCPolling = function (view) {
         }.bind(that, ret, data, callback), 5000);
     });
 };
-Model.prototype.getRCOnce = function (view) {
+Model.prototype.getRCOnce = function (view, callback) {
     view.displayBar(50);
-    this.getDataPolling(view, 'rc', {from: 0, gtz: 0, last_rcid: 0}, function() {} );
+    this.getDataPolling(view, 'rc', {from: 0, gtz: 0, last_rcid: 0}, function(callback) {
+        if (!!callback) {
+            callback();
+        }
+    } );
 };
 Model.prototype.pad = function (number) {
     if (number < 10) {

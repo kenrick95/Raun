@@ -6,13 +6,22 @@
  * @author Kenrick <contact@kenrick95.org>
  * @license MIT License <http://opensource.org/licenses/MIT>
  */
+function redirectToHTTP() {
+    // disable HTTPS, data stream does not support https yet.
+    if ($_SERVER['HTTP_X_FORWARDED_PROTO'] == "https") {
+        $redirect = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+        header("Location: $redirect");
+    }
+}
+redirectToHTTP();
+
 ob_start();
 $locale = ""; $language = ""; $project = "";
 $locale_force_get = false; $language_force_get = false; $project_force_get = false;
 $title_info = "";
 // [Need Krinkle/inuition to run: Remember to change it to correct path]
 $IntuitionStartFile = 'intuition/ToolStart.php';
-# $IntuitionStartFile = '/data/project/intuition/src/Intuition/ToolStart.php';
+$IntuitionStartFile = '/data/project/intuition/src/Intuition/ToolStart.php';
 
 // Intuition initialization
 require_once($IntuitionStartFile);

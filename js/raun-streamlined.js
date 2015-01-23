@@ -783,6 +783,7 @@ View.prototype.displayRCStream = function (data) {
         // Note: in the "stream", there is no "pageid"
         data.newlen = data.length.new;
         data.oldlen = data.length.old;
+        data.timestamp *= 1000; // the timestamp should be longer (for ms)
 
         this.displaySingleRC(data);
         setTimeout(function () {
@@ -823,6 +824,8 @@ View.prototype.displayRC = function (data) {
         data[i].server_url = base_site;
         data[i].site = data.site;
         data[i].config = data.config;
+        if (data[i].hasOwnProperty('bot')) { data[i].bot = true; }
+        if (data[i].hasOwnProperty('minor')) { data[i].minor = true; }
 
         this.displaySingleRC(data[i]);
     }

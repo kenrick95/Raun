@@ -421,7 +421,7 @@ if (stripos("tools.wmflabs.org", $_SERVER["SERVER_NAME"]) !== false) {
     </div><!-- /.modal -->
 
     <!-- JavaScript files -->
-    <script src="//cdn.jsdelivr.net/g/jquery@2.1.1,bootstrap@3.1.1,nanobar@0.0.6,headroomjs@0.7.0"></script>
+    <script src="//cdn.jsdelivr.net/g/jquery@2.1.1,bootstrap@3.1.1,nanobar@0.0.6,headroomjs@0.7.0,socket.io-client@0.9.17"></script>
     <script src="//tools.wmflabs.org/intuition/load.php?env=standalone"></script>
     <script>
     intuition.load("raun", "<?php echo $locale; ?>");

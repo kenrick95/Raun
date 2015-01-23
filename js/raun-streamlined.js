@@ -1,5 +1,5 @@
 /*jslint sloppy: true, plusplus:true, browser: true, unparam:true, vars:true, continue:true */
-/*global force, console, locale_obj, locale_msg, nanobar, Nanobar, Headroom, escape, unescape, EventSource, $, jQuery, clearInterval: false, clearTimeout: false, document: false, event: false, frames: false, history: false, Image: false, location: false, name: false, navigator: false, Option: false, parent: false, screen: false, setInterval: false, setTimeout: false, window: false, XMLHttpRequest: false */
+/*global force, console, locale_obj, locale_msg, nanobar, Nanobar, Headroom, escape, unescape, io, $, jQuery, clearInterval: false, clearTimeout: false, document: false, event: false, frames: false, history: false, Image: false, location: false, name: false, navigator: false, Option: false, parent: false, screen: false, setInterval: false, setTimeout: false, window: false, XMLHttpRequest: false */
 /**
  * Raun-streamlined.js
  *
@@ -24,6 +24,15 @@
  * 
  */
 
+String.prototype.hashCode = function () {
+    var h = 0, i = 0, l = this.length;
+    if (l === 0) return h;
+    for (; i < l; i++) {
+        h = ((h << 5) - h) + this.charCodeAt(i);
+        h |= 0; // Convert to 32bit integer
+    }
+    return h;
+};
 
 /**
  * Model
@@ -78,6 +87,7 @@ Model.prototype.data = {
  */
 Model.prototype.init = function (view) {
     var that = this;
+    var site_config = {};
 
     // Settings
     that.config.run = true;
@@ -87,12 +97,15 @@ Model.prototype.init = function (view) {
                 that.createCookie(param, that.config[param], 30);
             }
             view.displaySettings({param: that.readCookie(param)});
+            site_config[param] = that.readCookie(param);
 
             // Run only if the parameters are set by GET
             that.config.run = false;
         } else {
             that.createCookie(param, $("#" + param).val(), 30);
+
             that.config[param] = $("#" + param).val();
+            site_config[param] = that.config[param];
         }
     }
     setConfig("language");
@@ -103,10 +116,19 @@ Model.prototype.init = function (view) {
     // LocalStorage get data, if not exists, store default data
     var temp_string = localStorage.getItem("config");
     var keys, disp = [];
+
+    
+
     if (temp_string && force.locale && force.language && force.project) {
         this.config = JSON.parse(temp_string);
         that.config.run = true;
+        this.config.language = site_config.language;
+        this.config.locale = site_config.locale;
+        this.config.project = site_config.project;
     } else {
+        this.config.language = site_config.language;
+        this.config.locale = site_config.locale;
+        this.config.project = site_config.project;
         localStorage.setItem("config", JSON.stringify(this.config));
     }
     for (keys in this.data.filter) {
@@ -120,8 +142,9 @@ Model.prototype.init = function (view) {
     $('#landing').on('hide.bs.modal', function (e) {
         that.config.run = true;
         if (that.canRun() === 1) {
-            that.getRCSSE(view);
-            that.getStatSSE(view);
+            that.getRCOnce(view);
+            that.getRCStream(view);
+            that.getStatPolling(view);
         } else if (that.canRun() === 2) {
             that.getRCPolling(view);
             that.getStatPolling(view);
@@ -137,8 +160,9 @@ Model.prototype.init = function (view) {
     this.getUserPolling(view, 'sysop', function (view) {
         that.getUserPolling(view, 'editor', function (view) {
             if (that.canRun() === 1) {
-                that.getRCSSE(view);
-                that.getStatSSE(view);
+                that.getRCOnce(view);
+                that.getRCStream(view); // socket.io will nicely update, but not the old RCs, take from API?
+                that.getStatPolling(view);
             } else if (that.canRun() === 2) {
                 that.getRCPolling(view);
                 that.getStatPolling(view);
@@ -212,6 +236,10 @@ Model.prototype.getRCPolling = function (view) {
         }.bind(that, ret, data, callback), 5000);
     });
 };
+Model.prototype.getRCOnce = function (view) {
+    view.displayBar(50);
+    this.getDataPolling(view, 'rc', {from: 0, gtz: 0, last_rcid: 0}, function() {} );
+};
 Model.prototype.pad = function (number) {
     if (number < 10) {
         return '0' + number;
@@ -265,103 +293,28 @@ Model.prototype.getStatPolling = function (view) {
     });
 };
 
-/*
- * Model: Server-Sent Event (SSE)
- */
-
 /**
- * Model: Server-Sent Event (SSE): SSE Property
- * @type {Object}
+ * Model: Socket.io
  */
-Model.prototype.source = null;
-
-/**
- * Model: Server-Sent Event (SSE): initSSE
- * @description initialize Server-Sent Events by creating the EventSource
- * @return {None}
- */
-Model.prototype.initSSE = function (view) {
+Model.prototype.initStream = function () {
+    var socket = io.connect('stream.wikimedia.org/rc');
     var that = this;
-    this.createCookie("rcfrom", "", 1);
-    this.source = new EventSource('api-sse.php');
-    this.source.addEventListener('error', function (e) {
-        console.error(e);
-        // Switch to Polling if SSE fails
-        that.getRCPolling(view);
-        that.getStatPolling(view);
-    }, false);
-};
 
-/**
- * Model: Server-Sent Event (SSE): getDataSSE
- * @description General method to call for getting data from SSE stream
- * @param  {Object}   view
- * @param  {String}   type
- * @param  {Object}   params
- * @param  {Function} callback
- * @return {None}
- */
-Model.prototype.getDataSSE = function (view, type, params, callback) {
-    var that = this;
-    this.source.addEventListener(type, function (e) {
-        var data = JSON.parse(e.data), ret;
-        data.config = that.config;
-        data.params = params;
-        data.site = that.data;
-        ret = view.displayData(type, data);
-        if (!!callback) {
-            callback(ret, data, callback);
-        }
-    }, false);
-};
-
-/**
- * Model: Server-Sent Event (SSE): getRCSSE
- * @description Create parameters for calling getDataSSE and do some post-processing
- * @param  {Object} view
- * @return {None}
- */
-Model.prototype.getRCSSE = function (view) {
-    var that = this;
-    this.initSSE(view);
-    this.getDataSSE(view, 'rc', {gtz: 0, last_rcid: 0}, function (ret, data, callback) {
-        data.params.gtz = ret.gtz;
-        data.params.last_rcid = ret.last_rcid;
-        that.createCookie("rcfrom", ret.gtz, 1);
+    socket.on('connect', function () {
+        socket.emit('subscribe', that.config.language + "." + that.config.project + '.org'); //test
     });
-    //this.getDataSSE(view, 'debug');
-};
 
-/**
- * Model: Server-Sent Event (SSE): getLogSSE
- * @description Not used
- * @param  {Object} view
- * @return {None}
- */
-Model.prototype.getLogSSE = function (view) {
-    this.getDataSSE(view, 'log');
+    return socket;
 };
-
-/**
- * Model: Server-Sent Event (SSE): getUserSSE
- * @description Not used
- * @param  {Object} view
- * @return {None}
- */
-Model.prototype.getUserSSE = function (view) {
-    this.getDataSSE(view, 'user');
+Model.prototype.getRCStream = function (view) {
+    var socket = this.initStream();
+    var that = this;
+    socket.on('change', function (data) {
+        data.config = that.config;
+        data.site = that.data;
+        view.displayData("rcstream", data);
+    });
 };
-
-/**
- * Model: Server-Sent Event (SSE): getStatSSE
- * @description Not used
- * @param  {Object} view
- * @return {None}
- */
-Model.prototype.getStatSSE = function (view) {
-    this.getDataSSE(view, 'stat');
-};
-
 
 /*
  * Model: Filter
@@ -413,6 +366,7 @@ Model.prototype.updateFilter = function (view) {
 
 };
 
+
 /**
  * Model: Others
  * @description Other functions needed for the model to work
@@ -427,8 +381,8 @@ Model.prototype.canRun = function () {
     if (!this.config.run) {
         return 0;
     }
-    if (!!window.EventSource) {
-        return 2; // force browser that supports SSE to fallback to polling, because of slow loading issue.
+    if (!!window.io) {
+        return 1;
     }
     return 2;
 };
@@ -550,6 +504,8 @@ View.prototype.displayData = function (type, data) {
     switch (type) {
     case "rc":
         return this.displayRC(data);
+    case "rcstream":
+        return this.displayRCStream(data);
     case "log":
         return this.displayLog(data);
     case "user":
@@ -561,7 +517,277 @@ View.prototype.displayData = function (type, data) {
         break;
     }
 };
+View.prototype.displaySingleRC = function (data) {
+    var j;
+    var comment = data.parsedcomment.replace(/\"\/wiki\//g, "\"" + data.server_url + "wiki/");
+    data.pageid = data.title.hashCode(); // "stream" data does not have pageid, generate one from title
 
+    // Attribute of the row
+    var attr = "";
+    if (data.hasOwnProperty('anon')) {attr += "anon "; } // TODO: "stream" data does not have this property
+    if (data.hasOwnProperty('bot') && !!data.bot) {attr += "bot "; }
+    if (data.hasOwnProperty('minor') && !!data.minor) {attr += "minor "; }
+    if (data.hasOwnProperty('redirect') || data.type === "redirect") {attr += "redirect "; }
+    if (data.hasOwnProperty('new') || data.type === "new") {attr += "new-art "; }
+    if (data.site.user.editor.hasOwnProperty(data.user.toLowerCase())) {attr += "editor "; }
+    if (data.site.user.sysop.hasOwnProperty(data.user.toLowerCase())) {attr += "admin "; }
+    if (attr === "") {attr = "others "; }
+
+    attr += "new-entry card list-group-item ";
+    attr += "pageid-" + data.pageid + " ";
+    attr += "revid-" + data.revid + " ";
+    attr += "ns ns-" + data.ns + " ";
+
+    // Create card
+    var card = document.createElement("div");
+    card.setAttribute("class", attr);
+    card.setAttribute("style", "display: none;");
+    card.setAttribute("id", "card-" + data.rcid);
+
+    // Create cells
+    var cell = [];
+    cell[1] = document.createElement("h4");
+    for (j = 2; j < 5; j++) {
+        cell[j] = document.createElement("div");
+    }
+
+    // Diff
+    var diffElem = document.createElement("span");
+
+    var diff = (data.newlen - data.oldlen);
+    var s_diff = diff;
+    var diffClass = "badge ";
+    if (diff > 0) {
+        diffClass += "size-pos";
+        s_diff = "+" + diff;
+    } else if (diff < 0) {
+        diffClass += "size-neg";
+    } else {
+        diffClass += "size-null";
+    }
+    diffElem.setAttribute("class", diffClass);
+    diffElem.textContent = s_diff;
+    card.appendChild(diffElem);
+
+    // Cell 1: Article (and diff)
+    cell[1].setAttribute("class", "list-group-item-heading link");
+
+    // Article link
+    var linkElem = document.createElement("a");
+    linkElem.setAttribute("href", data.server_url
+        + "w/index.php?title="
+        + data.title
+        + "&diff="
+        + data.revid
+        + "&oldid="
+        + data.old_revid);
+    linkElem.textContent = data.title;
+
+    cell[1].appendChild(linkElem);
+
+    // Cell 2: Time
+    cell[2].setAttribute("class", "list-group-item-text time");
+
+    // Icon
+    var timeIcon = document.createElement("span");
+    timeIcon.setAttribute("class", "glyphicon glyphicon-time");
+    timeIcon.setAttribute("title", locale_msg('main_time_utc'));
+
+    // Content
+    var time = new Date(data.timestamp);
+    var timeContent = document.createElement("span");
+    timeContent.textContent = this.pad(time.getUTCHours())
+        + ':' + this.pad(time.getUTCMinutes())
+        + ':' + this.pad(time.getUTCSeconds());
+
+    cell[2].appendChild(timeIcon);
+    cell[2].insertAdjacentHTML('beforeend', " ");
+    cell[2].appendChild(timeContent);
+
+    // Cell 3: User
+    cell[3].setAttribute("class", "list-group-item-text user");
+
+    // Icon
+    var userIcon = document.createElement("span");
+    userIcon.setAttribute("class", "glyphicon glyphicon-user");
+    userIcon.setAttribute("title", locale_msg('main_user'));
+
+    var userElem = document.createElement("a");
+    userElem.setAttribute("class", "username");
+    userElem.setAttribute("href", data.server_url
+        + "wiki/Special:Contributions/"
+        + data.user);
+    userElem.textContent = data.user;
+
+    cell[3].appendChild(userIcon);
+    cell[3].insertAdjacentHTML('beforeend', " ");
+    cell[3].appendChild(userElem);
+
+    // Cell 4: Information
+    cell[4].setAttribute("class", "list-group-item-text info");
+
+    // Icon
+    var tagIcon = document.createElement("span");
+    tagIcon.setAttribute("class", "glyphicon glyphicon-tags");
+    tagIcon.setAttribute("title", locale_msg('main_info'));
+
+    cell[4].appendChild(tagIcon);
+    cell[4].insertAdjacentHTML('beforeend', " ");
+
+    if (data.type === 'new') {
+        cell[4].appendChild(this.createLabel("label-success", locale_msg('settings_new_pages'), locale_msg('new')));
+        cell[4].insertAdjacentHTML('beforeend', " ");
+    }
+    if (data.hasOwnProperty('minor') && !!data.minor) {
+        cell[4].appendChild(this.createLabel("label-primary", locale_msg('settings_minor_edits'), locale_msg('minor')));
+        cell[4].insertAdjacentHTML('beforeend', " ");
+    }
+    if (data.hasOwnProperty('anon')) { // TODO: "stream" data does not have this property
+        cell[4].appendChild(this.createLabel("label-danger", locale_msg('settings_anon_edits'), locale_msg('anon')));
+        cell[4].insertAdjacentHTML('beforeend', " ");
+    }
+    if (data.hasOwnProperty('redirect') || data.type === "redirect") {
+        cell[4].appendChild(this.createLabel("label-warning", locale_msg('settings_redirects'), locale_msg('redirect')));
+        cell[4].insertAdjacentHTML('beforeend', " ");
+    }
+    if (data.hasOwnProperty('bot') && !!data.bot) {
+        cell[4].appendChild(this.createLabel("label-info", locale_msg('settings_bot_edits'), locale_msg('bot')));
+        cell[4].insertAdjacentHTML('beforeend', " ");
+    }
+    if (data.site.user.editor.hasOwnProperty(data.user.toLowerCase())) {
+        cell[4].appendChild(this.createLabel("label-default", locale_msg('settings_editor_edits'), locale_msg('editor')));
+        cell[4].insertAdjacentHTML('beforeend', " ");
+    }
+    if (data.site.user.sysop.hasOwnProperty(data.user.toLowerCase())) {
+        cell[4].appendChild(this.createLabel("label-info", locale_msg('settings_admin_edits'), locale_msg('admin')));
+        cell[4].insertAdjacentHTML('beforeend', " ");
+    }
+    // Show comments
+    cell[4].insertAdjacentHTML('beforeend', comment);
+
+    // Show tags
+    if (data.hasOwnProperty("tags") && data.tags.length > 0) {
+        cell[4].insertAdjacentHTML('beforeend', " (Tag: <i>"
+            + data.tags
+            + "</i>)");
+    }
+
+    // Don't show the cell if nothing is inside
+    if (cell[4].textContent === " ") {
+        cell[4] = document.createElement("div");
+        cell[4].setAttribute("class", "list-group-item-text info");
+    }
+
+    // Insert all cell to card
+    for (j = 1; j < 5; j++) {
+        card.appendChild(cell[j]);
+    }
+
+    $(card).data("diff", diff);
+
+    // Combined card
+    if ($(".revid-" + data.old_revid).length > 0) {
+        $(card).data("oldest_revid", $(".pageid-" + data.pageid).last().data("oldest_revid"));
+
+        // "Deprecate" the old cards
+        $(".revid-" + data.old_revid).addClass("inactive");
+
+        // Remove old combined card
+        $(".revid-" + data.old_revid + ".inactive.combined").remove();
+
+        // add a "combined card"
+        var combined = card.cloneNode(true);
+        combined.removeAttribute("id");
+        combined.removeAttribute("style");
+        combined.setAttribute("class", combined.getAttribute("class") + "combined");
+
+        // Construct the combined card
+        cell = combined.childNodes;
+        if (parseInt($(card).data("oldest_revid"), 10) === 0) {
+            cell[1].setAttribute("href", data.server_url + "wiki/" + data.title);
+        } else {
+            cell[1].setAttribute("href", cell[1].childNodes[0].getAttribute("href").replace(/oldid=[0-9]*/, "oldid=" + $(card).data("oldest_revid")));
+        }
+        var combined_diff = diff + this.calculateDiff(".pageid-" + data.pageid);
+        if (combined_diff > 0) {
+            diffClass = "size-pos";
+        } else if (combined_diff < 0) {
+            diffClass = "size-neg";
+        } else {
+            diffClass = "size-null";
+        }
+        diffClass += " badge";
+        cell[0].setAttribute("class", diffClass);
+        cell[0].textContent = (combined_diff > 0 ? "+" : "") + combined_diff;
+
+        cell[3].textContent = "";
+        cell[4].setAttribute("class", "list-group-item-text info btn-link");
+        cell[4].textContent = locale_msg('combined_entries');
+        // Icon
+        var caret = document.createElement("span");
+        caret.setAttribute("class", "caret");
+        cell[4].appendChild(caret);
+
+        for (j = 0; j < 5; j++) {
+            combined.replaceChild(combined.childNodes[j], cell[j]);
+        }
+
+        $(".pageid-" + data.pageid).addClass("combined-child");
+        $(card).addClass("combined-child");
+        if ($(".pageid-" + data.pageid + ".combined-child").is(":visible")) {
+            $(card).show();
+        }
+        $(combined).data("pageid", data.pageid);
+
+        // add card to the table
+        $(".main").prepend($(".pageid-" + data.pageid));
+        $(".main").prepend(card);
+        $(".main").prepend(combined);
+    } else {
+        $(card).data("oldest_revid", data.old_revid);
+        // add card to the table
+        $(".main").prepend(card);
+    }
+
+
+    // show article
+    var show_art = true;
+    for (j = 0; j < data.site.filter.length; j++) {
+        if (attr.indexOf(data.site['filter-class'][j]) >= 0 && !data.config.show[data.site.filter[j]]) {
+            show_art = false;
+        }
+        if (!show_art) {
+            break;
+        }
+    }
+    if (show_art === true) {
+        this.showRC('#card-' + data.rcid + ":not(.combined-child)");
+    }
+};
+
+View.prototype.displayRCStream = function (data) {
+    // console.log(data);
+    if (data.type === "edit" || data.type === "new" || data.type === "redirect") {
+        data.rcid = data.id;
+        data.revid = data.revision.new;
+        data.old_revid = data.revision.old;
+        data.parsedcomment = data.comment;
+        data.server_url = "//" + data.server_name + "/";
+        data.ns = data.namespace;
+        // Note: in the "stream", there is no "pageid"
+        data.newlen = data.length.new;
+        data.oldlen = data.length.old;
+
+        this.displaySingleRC(data);
+        setTimeout(function () {
+            $(".new-entry").removeClass("new-entry");
+            $("div[style*='100%'].nanobarbar").hide();
+            //update headroom on data display
+            this.headroom.init();
+        }.bind(this), 1000);
+        $("#main-table-loading").remove();
+    }
+};
 /**
  * View: displayRC
  * @description Parse RC data, constructs a nice row containing columns of namespace, time, page title, page editor, diffs, label, edit summary, and tags.
@@ -579,262 +805,20 @@ View.prototype.displayRC = function (data) {
     var len = data.length;
     var tz = gtz;
 
-    var i, j, diff, s_diff, comment, attr, time, show_art, cell, card, combined,
-        timeIcon, tagIcon, userIcon, timeContent, caret,
-        combined_diff, diffElem, linkElem, diffClass, userElem;
+    var i;
 
     for (i = len - 1; i >= 0; i--) {
         if (last_rcid >= data[i].rcid) {
             continue;
         }
         last_rcid = data[i].rcid;
-
         tz = data[i].timestamp;
         gtz = tz;
-        time = new Date(tz);
+        data[i].server_url = base_site;
+        data[i].site = data.site;
+        data[i].config = data.config;
 
-        comment = data[i].parsedcomment.replace(/\"\/wiki\//g, "\"" + base_site + "wiki/");
-
-        // Attribute of the row
-        attr = "";
-        if (data[i].hasOwnProperty('anon')) {attr += "anon "; }
-        if (data[i].hasOwnProperty('bot')) {attr += "bot "; }
-        if (data[i].hasOwnProperty('minor')) {attr += "minor "; }
-        if (data[i].hasOwnProperty('redirect')) {attr += "redirect "; }
-        if (data[i].hasOwnProperty('new')) {attr += "new-art "; }
-        if (data.site.user.editor.hasOwnProperty(data[i].user.toLowerCase())) {attr += "editor "; }
-        if (data.site.user.sysop.hasOwnProperty(data[i].user.toLowerCase())) {attr += "admin "; }
-        if (attr === "") {attr = "others "; }
-
-        attr += "new-entry card list-group-item ";
-        attr += "revid-" + data[i].revid + " ";
-        attr += "pageid-" + data[i].pageid + " ";
-        attr += "ns ns-" + data[i].ns + " ";
-
-        // Create card
-        card = document.createElement("div");
-        card.setAttribute("class", attr);
-        card.setAttribute("style", "display: none;");
-        card.setAttribute("id", "card-" + data[i].rcid);
-
-        // Create cells
-        cell = [];
-        cell[1] = document.createElement("h4");
-        for (j = 2; j < 5; j++) {
-            cell[j] = document.createElement("div");
-        }
-
-        // Diff
-        diffElem = document.createElement("span");
-
-        diff = (data[i].newlen - data[i].oldlen);
-        s_diff = diff;
-        if (diff > 0) {
-            diffClass = "size-pos";
-            s_diff = "+" + diff;
-        } else if (diff < 0) {
-            diffClass = "size-neg";
-        } else {
-            diffClass = "size-null";
-        }
-        diffClass += " badge";
-        diffElem.setAttribute("class", diffClass);
-        diffElem.textContent = s_diff;
-        card.appendChild(diffElem);
-
-        // Cell 1: Article (and diff)
-        cell[1].setAttribute("class", "list-group-item-heading link");
-
-        // Article link
-        linkElem = document.createElement("a");
-        linkElem.setAttribute("href", base_site
-            + "w/index.php?title="
-            + data[i].title
-            + "&diff="
-            + data[i].revid
-            + "&oldid="
-            + data[i].old_revid);
-        linkElem.textContent = data[i].title;
-
-        cell[1].appendChild(linkElem);
-
-        // Cell 2: Time
-        cell[2].setAttribute("class", "list-group-item-text time");
-
-        // Icon
-        timeIcon = document.createElement("span");
-        timeIcon.setAttribute("class", "glyphicon glyphicon-time");
-        timeIcon.setAttribute("title", locale_msg('main_time_utc'));
-
-        // Content
-        timeContent = document.createElement("span");
-        timeContent.textContent = this.pad(time.getUTCHours())
-            + ':' + this.pad(time.getUTCMinutes())
-            + ':' + this.pad(time.getUTCSeconds());
-
-        cell[2].appendChild(timeIcon);
-        cell[2].insertAdjacentHTML('beforeend', " ");
-        cell[2].appendChild(timeContent);
-
-        // Cell 3: User
-        cell[3].setAttribute("class", "list-group-item-text user");
-
-        // Icon
-        userIcon = document.createElement("span");
-        userIcon.setAttribute("class", "glyphicon glyphicon-user");
-        userIcon.setAttribute("title", locale_msg('main_user'));
-
-        userElem = document.createElement("a");
-        userElem.setAttribute("class", "username");
-        userElem.setAttribute("href", base_site
-            + "wiki/Special:Contributions/"
-            + data[i].user);
-        userElem.textContent = data[i].user;
-
-        cell[3].appendChild(userIcon);
-        cell[3].insertAdjacentHTML('beforeend', " ");
-        cell[3].appendChild(userElem);
-
-        // Cell 4: Information
-        cell[4].setAttribute("class", "list-group-item-text info");
-
-        // Icon
-        tagIcon = document.createElement("span");
-        tagIcon.setAttribute("class", "glyphicon glyphicon-tags");
-        tagIcon.setAttribute("title", locale_msg('main_info'));
-
-        cell[4].appendChild(tagIcon);
-        cell[4].insertAdjacentHTML('beforeend', " ");
-
-        if (data[i].type === 'new') {
-            cell[4].appendChild(this.createLabel("label-success", locale_msg('settings_new_pages'), locale_msg('new')));
-            cell[4].insertAdjacentHTML('beforeend', " ");
-        }
-        if (data[i].hasOwnProperty('minor')) {
-            cell[4].appendChild(this.createLabel("label-primary", locale_msg('settings_minor_edits'), locale_msg('minor')));
-            cell[4].insertAdjacentHTML('beforeend', " ");
-        }
-        if (data[i].hasOwnProperty('anon')) {
-            cell[4].appendChild(this.createLabel("label-danger", locale_msg('settings_anon_edits'), locale_msg('anon')));
-            cell[4].insertAdjacentHTML('beforeend', " ");
-        }
-        if (data[i].hasOwnProperty('redirect')) {
-            cell[4].appendChild(this.createLabel("label-warning", locale_msg('settings_redirects'), locale_msg('redirect')));
-            cell[4].insertAdjacentHTML('beforeend', " ");
-        }
-        if (data[i].hasOwnProperty('bot')) {
-            cell[4].appendChild(this.createLabel("label-info", locale_msg('settings_bot_edits'), locale_msg('bot')));
-            cell[4].insertAdjacentHTML('beforeend', " ");
-        }
-        if (data.site.user.editor.hasOwnProperty(data[i].user.toLowerCase())) {
-            cell[4].appendChild(this.createLabel("label-default", locale_msg('settings_editor_edits'), locale_msg('editor')));
-            cell[4].insertAdjacentHTML('beforeend', " ");
-        }
-        if (data.site.user.sysop.hasOwnProperty(data[i].user.toLowerCase())) {
-            cell[4].appendChild(this.createLabel("label-info", locale_msg('settings_admin_edits'), locale_msg('admin')));
-            cell[4].insertAdjacentHTML('beforeend', " ");
-        }
-        // Show comments
-        cell[4].insertAdjacentHTML('beforeend', comment);
-
-        // Show tags
-        if (data[i].tags.length > 0) {
-            cell[4].insertAdjacentHTML('beforeend', " (Tag: <i>"
-                + data[i].tags
-                + "</i>)");
-        }
-
-        // Don't show the cell if nothing is inside
-        if (cell[4].textContent === " ") {
-            cell[4] = document.createElement("div");
-            cell[4].setAttribute("class", "list-group-item-text info");
-        }
-
-        // Insert all cell to card
-        for (j = 1; j < 5; j++) {
-            card.appendChild(cell[j]);
-        }
-
-        $(card).data("diff", diff);
-
-        // Combined card
-        if ($(".revid-" + data[i].old_revid).length > 0) {
-            $(card).data("oldest_revid", $(".pageid-" + data[i].pageid).last().data("oldest_revid"));
-
-            // "Deprecate" the old cards
-            $(".revid-" + data[i].old_revid).addClass("inactive");
-
-            // Remove old combined card
-            $(".revid-" + data[i].old_revid + ".inactive.combined").remove();
-
-            // add a "combined card"
-            combined = card.cloneNode(true);
-            combined.removeAttribute("id");
-            combined.removeAttribute("style");
-            combined.setAttribute("class", combined.getAttribute("class") + "combined");
-
-            // Construct the combined card
-            cell = combined.childNodes;
-            if (parseInt($(card).data("oldest_revid"), 10) === 0) {
-                cell[1].setAttribute("href", base_site + "wiki/" + data[i].title);
-            } else {
-                cell[1].setAttribute("href", cell[1].childNodes[0].getAttribute("href").replace(/oldid=[0-9]*/, "oldid=" + $(card).data("oldest_revid")));
-            }
-            combined_diff = diff + this.calculateDiff(".pageid-" + data[i].pageid);
-            if (combined_diff > 0) {
-                diffClass = "size-pos";
-            } else if (combined_diff < 0) {
-                diffClass = "size-neg";
-            } else {
-                diffClass = "size-null";
-            }
-            diffClass += " badge";
-            cell[0].setAttribute("class", diffClass);
-            cell[0].textContent = (combined_diff > 0 ? "+" : "") + combined_diff;
-
-            cell[3].textContent = "";
-            cell[4].setAttribute("class", "list-group-item-text info btn-link");
-            cell[4].textContent = locale_msg('combined_entries');
-            // Icon
-            caret = document.createElement("span");
-            caret.setAttribute("class", "caret");
-            cell[4].appendChild(caret);
-
-            for (j = 0; j < 5; j++) {
-                combined.replaceChild(combined.childNodes[j], cell[j]);
-            }
-
-            $(".pageid-" + data[i].pageid).addClass("combined-child");
-            $(card).addClass("combined-child");
-            if ($(".pageid-" + data[i].pageid + ".combined-child").is(":visible")) {
-                $(card).show();
-            }
-            $(combined).data("pageid", data[i].pageid);
-
-            // add card to the table
-            $(".main").prepend($(".pageid-" + data[i].pageid));
-            $(".main").prepend(card);
-            $(".main").prepend(combined);
-        } else {
-            $(card).data("oldest_revid", data[i].old_revid);
-            // add card to the table
-            $(".main").prepend(card);
-        }
-
-
-        // show article
-        show_art = true;
-        for (j = 0; j < data.site.filter.length; j++) {
-            if (attr.indexOf(data.site['filter-class'][j]) >= 0 && !data.config.show[data.site.filter[j]]) {
-                show_art = false;
-            }
-            if (!show_art) {
-                break;
-            }
-        }
-        if (show_art === true) {
-            this.showRC('#card-' + data[i].rcid + ":not(.combined-child)");
-        }
+        this.displaySingleRC(data[i]);
     }
     setTimeout(function () {
         $(".new-entry").removeClass("new-entry");

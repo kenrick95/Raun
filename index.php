@@ -8,7 +8,7 @@
  */
 function redirectToHTTP() {
     // disable HTTPS, data stream does not support https yet.
-    if ($_SERVER['HTTP_X_FORWARDED_PROTO'] == "https") {
+    if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == "https") {
         $redirect = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
         header("Location: $redirect");
     }

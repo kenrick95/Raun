@@ -240,9 +240,9 @@ Model.prototype.getRCPolling = function (view) {
 };
 Model.prototype.getRCOnce = function (view, callback) {
     view.displayBar(50);
-    this.getDataPolling(view, 'rc', {from: 0, gtz: 0, last_rcid: 0}, function(callback) {
-        if (!!callback) {
-            callback();
+    this.getDataPolling(view, 'rc', {from: 0, gtz: 0, last_rcid: 0}, function() {
+        if (typeof(callback) === "function") {
+            callback(view);
         }
     } );
 };

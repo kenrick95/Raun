@@ -267,7 +267,7 @@ if (stripos("tools.wmflabs.org", $_SERVER["SERVER_NAME"]) !== false) {
 
     <!-- Modal: Landing -->
     <div class="modal fade" id="landing" tabindex="-1" role="dialog" aria-labelledby="helpLabel" aria-hidden="true">
-        <form id="tool_config" class="form-horizontal" role="form" method="get">
+        <form id="landing_config" class="form-horizontal" role="form" method="get">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -279,24 +279,24 @@ if (stripos("tools.wmflabs.org", $_SERVER["SERVER_NAME"]) !== false) {
                     <p class="lead">Choose your preference and see it in action!</p>
                     <?php echo $I18N->msg( 'settings_wiki' ); ?>:
                         <div class="form-group">
-                            <label for="language" class="col-sm-2 control-label"><?php echo $I18N->msg( 'language' ); ?></label>
+                            <label for="landing_language" class="col-sm-2 control-label"><?php echo $I18N->msg( 'language' ); ?></label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control config_right" name="language" id="language" placeholder="<?php echo $I18N->msg( 'language' ); ?>" value="<?php echo $language; ?>">
+                                <input type="text" class="form-control config_right" name="language" id="landing_language" placeholder="<?php echo $I18N->msg( 'language' ); ?>" value="<?php echo $language; ?>">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="project" class="col-sm-2 control-label"><?php echo $I18N->msg( 'project' ); ?></label>
+                            <label for="landing_project" class="col-sm-2 control-label"><?php echo $I18N->msg( 'project' ); ?></label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control config_right" name="project" id="project" placeholder="<?php echo $I18N->msg( 'project' ); ?>" value="<?php echo $project; ?>">
+                                <input type="text" class="form-control config_right" name="project" id="landing_project" placeholder="<?php echo $I18N->msg( 'project' ); ?>" value="<?php echo $project; ?>">
                             </div>
                         </div>
                     <hr>
                     <?php echo $I18N->msg( 'settings_tool' ); ?>:
                         <div class="form-group">
-                            <label for="locale" class="col-sm-2 control-label"><?php echo $I18N->msg( 'language' ); ?></label>
+                            <label for="landing_locale" class="col-sm-2 control-label"><?php echo $I18N->msg( 'language' ); ?></label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control config_right" name="userlang" id="locale" placeholder="<?php echo $I18N->msg( 'language' ); ?>" value="<?php echo $locale; ?>">
+                                <input type="text" class="form-control config_right" name="userlang" id="landing_locale" placeholder="<?php echo $I18N->msg( 'language' ); ?>" value="<?php echo $locale; ?>">
                             </div>
                         </div>
                         <hr>

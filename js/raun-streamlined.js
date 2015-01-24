@@ -498,6 +498,18 @@ function View() {
 View.prototype.displayBar = function (pos) {
     nanobar.go(pos);
 };
+/**
+ * View: isAnon
+ * @description "stream" data does not provide the functionality, determine if it is anon user from its username
+ * @param  {String} username
+ * @return {Boolean} true if the username is IP
+ */
+View.prototype.isAnon = function(username) {
+    // http://stackoverflow.com/a/5865849
+    // http://stackoverflow.com/a/17871737
+    return (username.search(/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/) > -1)
+        || (username.search(/(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))/i) > -1);
+}
 
 /**
  * View: displayData
@@ -784,6 +796,9 @@ View.prototype.displayRCStream = function (data) {
         data.newlen = data.length.new;
         data.oldlen = data.length.old;
         data.timestamp *= 1000; // the timestamp should be longer (for ms)
+        if (this.isAnon(data.user)) {
+            data.anon = true;
+        }
 
         this.displaySingleRC(data);
         setTimeout(function () {

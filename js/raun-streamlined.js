@@ -542,7 +542,7 @@ View.prototype.displaySingleRC = function (data) {
 
     // Attribute of the row
     var attr = "";
-    if (data.hasOwnProperty('anon')) {attr += "anon "; } // TODO: "stream" data does not have this property
+    if (data.hasOwnProperty('anon')) {attr += "anon "; }
     if (data.hasOwnProperty('bot') && !!data.bot) {attr += "bot "; }
     if (data.hasOwnProperty('minor') && !!data.minor) {attr += "minor "; }
     if (data.hasOwnProperty('redirect') || data.type === "redirect") {attr += "redirect "; }
@@ -727,14 +727,14 @@ View.prototype.displaySingleRC = function (data) {
             cell[1].setAttribute("href", cell[1].childNodes[0].getAttribute("href").replace(/oldid=[0-9]*/, "oldid=" + $(card).data("oldest_revid")));
         }
         var combined_diff = diff + this.calculateDiff(".pageid-" + data.pageid);
+        diffClass = "badge";
         if (combined_diff > 0) {
-            diffClass = "size-pos";
+            diffClass += " size-pos";
         } else if (combined_diff < 0) {
-            diffClass = "size-neg";
+            diffClass += " size-neg";
         } else {
-            diffClass = "size-null";
+            diffClass += " size-null";
         }
-        diffClass += " badge";
         cell[0].setAttribute("class", diffClass);
         cell[0].textContent = (combined_diff > 0 ? "+" : "") + combined_diff;
 
@@ -782,14 +782,21 @@ View.prototype.displaySingleRC = function (data) {
         this.showRC('#card-' + data.rcid + ":not(.combined-child)");
     }
 };
-
+/**
+* Prevent XSS attack done via edit summary.
+*/
+View.prototype.stringCleaner = function (value) {
+    var lt = /</g, gt = />/g, ap = /'/g, ic = /"/g;
+    value = value.toString().replace(lt, "&lt;").replace(gt, "&gt;").replace(ap, "&#39;").replace(ic, "&#34;");
+    return value;
+};
 View.prototype.displayRCStream = function (data) {
     // console.log(data);
     if (data.type === "edit" || data.type === "new" || data.type === "redirect") {
         data.rcid = data.id;
         data.revid = data.revision.new;
         data.old_revid = data.revision.old;
-        data.parsedcomment = data.comment;
+        data.parsedcomment = this.stringCleaner(data.comment);
         data.server_url = "//" + data.server_name + "/";
         data.ns = data.namespace;
         // Note: in the "stream", there is no "pageid"

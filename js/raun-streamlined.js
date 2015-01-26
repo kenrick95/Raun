@@ -240,9 +240,9 @@ Model.prototype.getRCPolling = function (view) {
 };
 Model.prototype.getRCOnce = function (view, callback) {
     view.displayBar(50);
-    this.getDataPolling(view, 'rc', {from: 0, gtz: 0, last_rcid: 0}, function(callback) {
-        if (!!callback) {
-            callback();
+    this.getDataPolling(view, 'rc', {from: 0, gtz: 0, last_rcid: 0}, function() {
+        if (typeof(callback) === "function") {
+            callback(view);
         }
     } );
 };
@@ -498,6 +498,18 @@ function View() {
 View.prototype.displayBar = function (pos) {
     nanobar.go(pos);
 };
+/**
+ * View: isAnon
+ * @description "stream" data does not provide the functionality, determine if it is anon user from its username
+ * @param  {String} username
+ * @return {Boolean} true if the username is IP
+ */
+View.prototype.isAnon = function(username) {
+    // http://stackoverflow.com/a/5865849
+    // http://stackoverflow.com/a/17871737
+    return (username.search(/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/) > -1)
+        || (username.search(/(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))/i) > -1);
+}
 
 /**
  * View: displayData
@@ -530,7 +542,7 @@ View.prototype.displaySingleRC = function (data) {
 
     // Attribute of the row
     var attr = "";
-    if (data.hasOwnProperty('anon')) {attr += "anon "; } // TODO: "stream" data does not have this property
+    if (data.hasOwnProperty('anon')) {attr += "anon "; }
     if (data.hasOwnProperty('bot') && !!data.bot) {attr += "bot "; }
     if (data.hasOwnProperty('minor') && !!data.minor) {attr += "minor "; }
     if (data.hasOwnProperty('redirect') || data.type === "redirect") {attr += "redirect "; }
@@ -715,14 +727,14 @@ View.prototype.displaySingleRC = function (data) {
             cell[1].setAttribute("href", cell[1].childNodes[0].getAttribute("href").replace(/oldid=[0-9]*/, "oldid=" + $(card).data("oldest_revid")));
         }
         var combined_diff = diff + this.calculateDiff(".pageid-" + data.pageid);
+        diffClass = "badge";
         if (combined_diff > 0) {
-            diffClass = "size-pos";
+            diffClass += " size-pos";
         } else if (combined_diff < 0) {
-            diffClass = "size-neg";
+            diffClass += " size-neg";
         } else {
-            diffClass = "size-null";
+            diffClass += " size-null";
         }
-        diffClass += " badge";
         cell[0].setAttribute("class", diffClass);
         cell[0].textContent = (combined_diff > 0 ? "+" : "") + combined_diff;
 
@@ -770,19 +782,30 @@ View.prototype.displaySingleRC = function (data) {
         this.showRC('#card-' + data.rcid + ":not(.combined-child)");
     }
 };
-
+/**
+* Prevent XSS attack done via edit summary.
+*/
+View.prototype.stringCleaner = function (value) {
+    var lt = /</g, gt = />/g, ap = /'/g, ic = /"/g;
+    value = value.toString().replace(lt, "&lt;").replace(gt, "&gt;").replace(ap, "&#39;").replace(ic, "&#34;");
+    return value;
+};
 View.prototype.displayRCStream = function (data) {
     // console.log(data);
     if (data.type === "edit" || data.type === "new" || data.type === "redirect") {
         data.rcid = data.id;
         data.revid = data.revision.new;
         data.old_revid = data.revision.old;
-        data.parsedcomment = data.comment;
+        data.parsedcomment = this.stringCleaner(data.comment);
         data.server_url = "//" + data.server_name + "/";
         data.ns = data.namespace;
         // Note: in the "stream", there is no "pageid"
         data.newlen = data.length.new;
         data.oldlen = data.length.old;
+        data.timestamp *= 1000; // the timestamp should be longer (for ms)
+        if (this.isAnon(data.user)) {
+            data.anon = true;
+        }
 
         this.displaySingleRC(data);
         setTimeout(function () {
@@ -823,6 +846,8 @@ View.prototype.displayRC = function (data) {
         data[i].server_url = base_site;
         data[i].site = data.site;
         data[i].config = data.config;
+        if (data[i].hasOwnProperty('bot')) { data[i].bot = true; }
+        if (data[i].hasOwnProperty('minor')) { data[i].minor = true; }
 
         this.displaySingleRC(data[i]);
     }

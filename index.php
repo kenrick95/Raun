@@ -1,7 +1,7 @@
 <?php
 /**
  * Raun
- * index-streamlined.php
+ * index.php
  * 
  * @author Kenrick <contact@kenrick95.org>
  * @license MIT License <http://opensource.org/licenses/MIT>
@@ -21,7 +21,7 @@ $locale_force_get = false; $language_force_get = false; $project_force_get = fal
 $title_info = "";
 // [Need Krinkle/inuition to run: Remember to change it to correct path]
 $IntuitionStartFile = 'intuition/ToolStart.php';
-$IntuitionStartFile = '/data/project/intuition/src/Intuition/ToolStart.php';
+# $IntuitionStartFile = '/data/project/intuition/src/Intuition/ToolStart.php';
 
 // Intuition initialization
 require_once($IntuitionStartFile);
@@ -228,11 +228,11 @@ if (stripos("tools.wmflabs.org", $_SERVER["SERVER_NAME"]) !== false) {
                         <?php echo $I18N->msg( 'about' ); ?>
                     </a>
                     </li>
-                    <li class="dropdown">
+                    <li class="dropdown" id="stat-container-menu">
                     <?php
                     // Statistics
                     ?>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <a href="#" class="dropdown-toggle stop-toggle" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-stats"></span>
                             <?php echo $I18N->msg( 'stat' ); ?>
                             <b class="caret"></b>
@@ -254,9 +254,10 @@ if (stripos("tools.wmflabs.org", $_SERVER["SERVER_NAME"]) !== false) {
         </div>
     </div>
 
-    <div class="container">
-        <div class="main list-group">
-            <div id="main-table-loading"><img src='img/loading.gif' class="loading" alt="loading"></div>
+    <div id="main-container" class="container">
+        <div id="main-table-loading"><img src='img/loading.gif' class="loading" alt="loading"></div>
+        <div class="main list-group col-xs-12 col-sm-12 col-md-12 col-lg-9">
+            
         </div>
         <footer>
             <b>ra&middot;un</b>&nbsp;<i><?php echo $I18N->msg( 'def_i' ); ?></i>&nbsp;<?php echo $I18N->msg( 'def_def' ); ?>

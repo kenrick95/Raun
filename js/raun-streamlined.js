@@ -23,17 +23,6 @@
  * - User list is limited to 500 entries per API request
  * 
  */
-
-String.prototype.hashCode = function () {
-    var h = 0, i = 0, l = this.length;
-    if (l === 0) return h;
-    for (; i < l; i++) {
-        h = ((h << 5) - h) + this.charCodeAt(i);
-        h |= 0; // Convert to 32bit integer
-    }
-    return h;
-};
-
 /**
  * Model
  * @class
@@ -117,7 +106,7 @@ Model.prototype.init = function (view) {
     var temp_string = localStorage.getItem("config");
     var keys, disp = [];
 
-    
+
 
     if (temp_string && force.locale && force.language && force.project) {
         this.config = JSON.parse(temp_string);
@@ -401,15 +390,16 @@ Model.prototype.canRun = function () {
  * @return {None}
  */
 Model.prototype.createCookie = function (name, value, days) {
-    var expires, date;
-    if (days) {
-        date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        expires = "; expires=" + date.toGMTString();
-    } else {
-        expires = "";
-    }
-    document.cookie = escape(name) + "=" + escape(value) + expires + "; path=/";
+    localStorage.setItem(name, value);
+    // var expires, date;
+    // if (days) {
+    //     date = new Date();
+    //     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    //     expires = "; expires=" + date.toGMTString();
+    // } else {
+    //     expires = "";
+    // }
+    // document.cookie = escape(name) + "=" + escape(value) + expires + "; path=/";
 };
 
 /**
@@ -419,13 +409,14 @@ Model.prototype.createCookie = function (name, value, days) {
  * @return {None}
  */
 Model.prototype.readCookie = function (name) {
-    var nameEQ = escape(name) + "=", ca = document.cookie.split(';'), i, c;
-    for (i = 0; i < ca.length; i++) {
-        c = ca[i];
-        while (c.charAt(0) === ' ') {c = c.substring(1, c.length); }
-        if (c.indexOf(nameEQ) === 0) {return unescape(c.substring(nameEQ.length, c.length)); }
-    }
-    return null;
+    return localStorage.getItem(name);
+    // var nameEQ = escape(name) + "=", ca = document.cookie.split(';'), i, c;
+    // for (i = 0; i < ca.length; i++) {
+    //     c = ca[i];
+    //     while (c.charAt(0) === ' ') {c = c.substring(1, c.length); }
+    //     if (c.indexOf(nameEQ) === 0) {return unescape(c.substring(nameEQ.length, c.length)); }
+    // }
+    // return null;
 };
 
 /**
@@ -435,7 +426,8 @@ Model.prototype.readCookie = function (name) {
  * @return {None}
  */
 Model.prototype.eraseCookie = function (name) {
-    this.createCookie(name, "", -1);
+    localStorage.removeItem(name);
+    // this.createCookie(name, "", -1);
 };
 
 
@@ -473,8 +465,34 @@ function View() {
     // Show landing modal on unforced config
     if (parseInt(force.language, 10) === 0 || parseInt(force.project, 10) === 0 || parseInt(force.locale, 10) === 0) {
         $("#landing").modal("show");
-
     }
+
+    // // Statistics positioning on resize
+    // function onresize() {
+    //     function prevDeft(e) {
+    //         e.preventDefault();
+    //     }
+    //     function toggle() {
+    //         $(this).dropdown('toggle');
+    //     }
+    //     function notToggle(e) {
+    //         console.log(e);
+    //         e.stopPropagation();
+    //     }
+    //     if (window.innerWidth >= 1200) {
+    //         // lg, show at side
+    //         $("#stat-container-menu").addClass("open");
+    //         //$(document).on("hide.bs.dropdown", prevDeft);
+    //         $(document).on("click", ":not(.stop-toggle)", notToggle);
+    //         //$(document).on("click", ".dropdown-toggle", toggle);
+    //     } else {
+    //         // xs, sm, md: hide to menu
+    //         $("#stat-container-menu").removeClass("open");
+    //         //$(document).off("hide.bs.dropdown", prevDeft);
+    //         $(document).off("click", ":not(.stop-toggle)", notToggle);
+    //     }
+    // }
+    // $(window).resize(onresize());
 
     // Bind header to Headroomjs
     // grab an element
@@ -504,12 +522,12 @@ View.prototype.displayBar = function (pos) {
  * @param  {String} username
  * @return {Boolean} true if the username is IP
  */
-View.prototype.isAnon = function(username) {
+View.prototype.isAnon = function (username) {
     // http://stackoverflow.com/a/5865849
     // http://stackoverflow.com/a/17871737
     return (username.search(/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/) > -1)
         || (username.search(/(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))/i) > -1);
-}
+};
 
 /**
  * View: displayData
@@ -536,8 +554,13 @@ View.prototype.displayData = function (type, data) {
     }
 };
 View.prototype.displaySingleRC = function (data) {
-    var j;
-    var comment = data.parsedcomment.replace(/\"\/wiki\//g, "\"" + data.server_url + "wiki/");
+    var j, comment;
+    if (!!data.parsedcomment) {
+        comment = data.parsedcomment.replace(/\"\/wiki\//g, "\"" + data.server_url + "wiki/");
+    } else {
+        comment = '';
+    }
+
     data.pageid = data.title.hashCode(); // "stream" data does not have pageid, generate one from title
 
     // Attribute of the row
@@ -660,7 +683,7 @@ View.prototype.displaySingleRC = function (data) {
         cell[4].appendChild(this.createLabel("label-primary", locale_msg('settings_minor_edits'), locale_msg('minor')));
         cell[4].insertAdjacentHTML('beforeend', " ");
     }
-    if (data.hasOwnProperty('anon')) { // TODO: "stream" data does not have this property
+    if (data.hasOwnProperty('anon')) {
         cell[4].appendChild(this.createLabel("label-danger", locale_msg('settings_anon_edits'), locale_msg('anon')));
         cell[4].insertAdjacentHTML('beforeend', " ");
     }
@@ -1105,6 +1128,19 @@ Controller.prototype.init = function () {
         that.model.updateFilter(that.view);
     });
 };
+
+String.prototype.hashCode = function () {
+    /*ignore jslint start*/
+    var h = 0, i = 0, l = this.length;
+    if (l === 0) return h;
+    for (; i < l; i++) {
+        h = ((h << 5) - h) + this.charCodeAt(i);
+        h |= 0; // Convert to 32bit integer
+    }
+    return h;
+    /*ignore jslint end*/ 
+};
+
 
 var raunController = new Controller(new Model(), new View());
 raunController.init();

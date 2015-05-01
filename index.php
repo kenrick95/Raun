@@ -13,15 +13,15 @@ function redirectToHTTP() {
         header("Location: $redirect");
     }
 }
-redirectToHTTP();
+// redirectToHTTP();
 
 ob_start();
 $locale = ""; $language = ""; $project = "";
 $locale_force_get = false; $language_force_get = false; $project_force_get = false;
 $title_info = "";
 // [Need Krinkle/inuition to run: Remember to change it to correct path]
-$IntuitionStartFile = 'intuition/ToolStart.php';
-# $IntuitionStartFile = '/data/project/intuition/src/Intuition/ToolStart.php';
+# $IntuitionStartFile = 'intuition/ToolStart.php';
+$IntuitionStartFile = '/data/project/intuition/src/Intuition/ToolStart.php';
 
 // Intuition initialization
 require_once($IntuitionStartFile);

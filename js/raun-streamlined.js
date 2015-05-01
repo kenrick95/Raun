@@ -745,9 +745,9 @@ View.prototype.displaySingleRC = function (data) {
         // Construct the combined card
         cell = combined.childNodes;
         if (parseInt($(card).data("oldest_revid"), 10) === 0) {
-            cell[1].setAttribute("href", data.server_url + "wiki/" + data.title);
+            cell[1].childNodes[0].setAttribute("href", data.server_url + "wiki/" + data.title);
         } else {
-            cell[1].setAttribute("href", cell[1].childNodes[0].getAttribute("href").replace(/oldid=[0-9]*/, "oldid=" + $(card).data("oldest_revid")));
+            cell[1].childNodes[0].setAttribute("href", cell[1].childNodes[0].getAttribute("href").replace(/oldid=[0-9]*/, "oldid=" + $(card).data("oldest_revid")));
         }
         var combined_diff = diff + this.calculateDiff(".pageid-" + data.pageid);
         diffClass = "badge";

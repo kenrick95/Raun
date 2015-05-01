@@ -1,0 +1,126 @@
+// New user account
+{
+	"comment": "",
+	"wiki": "idwiki",
+	"server_name": "id.wikipedia.org",
+	"server_url": "http://id.wikipedia.org",
+	"title": "Pengguna:Bonggong30",
+	"log_id": 4640821,
+	"timestamp": 1421997599,
+	"server_script_path": "/w",
+	"namespace": 2,
+	"log_params": {
+		"userid": 650530
+	},
+	"log_type": "newusers",
+	"user": "Bonggong30",
+	"bot": false,
+	"log_action_comment": "New user account",
+	"type": "log",
+	"id": 13790788,
+	"log_action": "create"
+}
+
+// New page
+{
+	"comment": "←Membuat halaman berisi '''Zain al ma'arif'' adalah seorang seniman yang bergerak di bidang musik dan rupa'",
+	"wiki": "idwiki",
+	"server_name": "id.wikipedia.org",
+	"title": "Pembicaraan Pengguna:Zain al ma'arif",
+	"timestamp": 1421997625,
+	"server_script_path": "/w",
+	"namespace": 3,
+	"server_url": "http://id.wikipedia.org",
+	"length": {
+		"new": 81,
+		"old": null
+	},
+	"user": "Zain al ma'arif",
+	"bot": false,
+	"patrolled": false,
+	"type": "new",
+	"id": 13790790,
+	"minor": false,
+	"revision": {
+		"new": 8398773,
+		"old": null
+	}
+}
+
+// Edit page
+{
+	"comment": "/* Bab Sanctuary */",
+	"wiki": "idwiki",
+	"server_name": "id.wikipedia.org",
+	"title": "Saint Seiya",
+	"timestamp": 1421997681,
+	"server_script_path": "/w",
+	"namespace": 0,
+	"server_url": "http://id.wikipedia.org",
+	"length": {
+		"new": 29551,
+		"old": 29484
+	},
+	"user": "180.241.193.27",
+	"bot": false,
+	"patrolled": false,
+	"type": "edit",
+	"id": 13790793,
+	"minor": false,
+	"revision": {
+		"new": 8398774,
+		"old": 8375757
+	}
+}
+
+// Review page
+{
+	"comment": "[Akurasi: Terperiksa]",
+	"wiki": "idwiki",
+	"server_name": "id.wikipedia.org",
+	"server_url": "http://id.wikipedia.org",
+	"title": "Suparni Parto",
+	"log_id": 4640826,
+	"timestamp": 1421997714,
+	"server_script_path": "/w",
+	"namespace": 0,
+	"log_params": [
+		"8385357",
+		"0",
+		"20150116171935"
+	],
+	"log_type": "review",
+	"user": "JohnThorne",
+	"bot": false,
+	"log_action_comment": "meninjau satu versi dari [[Suparni Parto]]: [Akurasi: Terperiksa]",
+	"type": "log",
+	"id": null,
+	"log_action": "approve-i"
+}
+
+// Abuse filter
+{
+	"comment": "",
+	"wiki": "idwiki",
+	"server_name": "id.wikipedia.org",
+	"server_url": "http://id.wikipedia.org",
+	"title": "Aksi Cepat Tanggap",
+	"log_id": 0,
+	"timestamp": 1421999406,
+	"server_script_path": "/w",
+	"namespace": 0,
+	"log_params": {
+		"action": "edit",
+		"filter": 26,
+		"log": 97356,
+		"actions": "warn"
+	},
+	"log_type": "abusefilter",
+	"user": "Aksicepattanggap",
+	"bot": false,
+	"log_action_comment": "Aksicepattanggap memicu [[Istimewa:Filter penyalahgunaan/26|filter 26]], melakukan tindakan \"edit\" terhadap [[Aksi Cepat Tanggap]]. Tindakan yang dilakukan: Waspada ([[Istimewa:Catatan penyalahgunaan/97356|rincian]])",
+	"type": "log",
+	"id": null,
+	"log_action": "hit"
+}
+

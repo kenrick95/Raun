@@ -6,21 +6,13 @@
  * @author Kenrick <contact@kenrick95.org>
  * @license MIT License <http://opensource.org/licenses/MIT>
  */
-function redirectToHTTP() {
-    // disable HTTPS, data stream does not support https yet.
-    if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == "https") {
-        $redirect = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-        header("Location: $redirect");
-    }
-}
-// redirectToHTTP();
 
 ob_start();
 $locale = ""; $language = ""; $project = "";
 $locale_force_get = false; $language_force_get = false; $project_force_get = false;
 $title_info = "";
 // [Need Krinkle/inuition to run: Remember to change it to correct path]
-# $IntuitionStartFile = 'intuition/ToolStart.php';
+$IntuitionStartFile = 'intuition/ToolStart.php';
 $IntuitionStartFile = '/data/project/intuition/src/Intuition/ToolStart.php';
 
 // Intuition initialization
@@ -80,6 +72,7 @@ ob_end_clean();
     <link href='//fonts.googleapis.com/css?family=Ubuntu:400,700' rel='stylesheet' type='text/css'>
     <link href="//cdn.jsdelivr.net/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+
 <?php
 // Google Analytics
 if (stripos("tools.wmflabs.org", $_SERVER["SERVER_NAME"]) !== false) {

@@ -59,10 +59,13 @@ body { font-family: 'Ubuntu', sans-serif; }
 .card { margin: 10px; border-radius: 4px; }
 .link { }
 .time { display: inline-block; margin-right: 1em; }
-.user { display: inline-block; }
+.user { display: inline-block; margin-right: 1em; }
+.ores-score { display: inline-block; }
 .info { }
 .combined-child { margin-top: -10px; border-radius: 0px;}
 footer { clear:both; border-top: 1px solid #DDD; padding: 1em; text-align: center; }
+
+.ores-alert { background: #fddddd;}
 
 /**
 * Headroom.js CSS fix for Bootstrap 3

@@ -62,7 +62,8 @@ Model.prototype.data = {
     "user": null,
     "stat": null,
     "filter": ["bot", "anon", "new", "minor", "redirect", "editor", "admin", "others"],
-    "filter-class": ["bot", "anon", "new-art", "minor", "redirect", "editor", "admin", "others"]
+    "filter-class": ["bot", "anon", "new-art", "minor", "redirect", "editor", "admin", "others"],
+    "ores-language": ['en', 'pt', 'fa', 'tr']
 };
 
 /**
@@ -230,10 +231,10 @@ Model.prototype.getRCPolling = function (view) {
 Model.prototype.getRCOnce = function (view, callback) {
     view.displayBar(50);
     this.getDataPolling(view, 'rc', {from: 0, gtz: 0, last_rcid: 0}, function() {
-        if (typeof(callback) === "function") {
+        if (typeof callback === "function") {
             callback(view);
         }
-    } );
+    });
 };
 Model.prototype.pad = function (number) {
     if (number < 10) {
@@ -285,6 +286,33 @@ Model.prototype.getStatPolling = function (view) {
         setTimeout(function process(ret, data, callback) {
             that.getDataPolling(view, 'stat', data.params, callback);
         }.bind(that, ret, data, callback), 5000);
+    });
+};
+
+Model.prototype.getORESOnce = function (view, revid) {
+    if (this.data['ores-language'].indexOf(this.config.language) === -1) {
+        console.error("Not available on this language");
+        return false;
+    }
+    var wiki = this.config.language;
+    if (this.config.project === "wikipedia") {
+        wiki += "wiki";
+    } else {
+        console.error("Not available on this project");
+        return false;
+    }
+
+    $.ajax({
+        type: "GET",
+        url: "http://ores.wmflabs.org/scores/" + wiki + "/reverted/" + revid,
+        dataType: "json",
+        crossDomain: true,
+        success: function (data) {
+            view.displayORES(data[revid].reverted, revid);
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.error(xhr);
+        }
     });
 };
 
@@ -570,14 +598,19 @@ View.prototype.displaySingleRC = function (data) {
     if (data.hasOwnProperty('minor') && !!data.minor) {attr += "minor "; }
     if (data.hasOwnProperty('redirect') || data.type === "redirect") {attr += "redirect "; }
     if (data.hasOwnProperty('new') || data.type === "new") {attr += "new-art "; }
-    if (data.site.user.editor.hasOwnProperty(data.user.toLowerCase())) {attr += "editor "; }
-    if (data.site.user.sysop.hasOwnProperty(data.user.toLowerCase())) {attr += "admin "; }
+    if (data.userhidden === undefined) {
+        if (data.site.user.editor.hasOwnProperty(data.user.toLowerCase())) {attr += "editor "; }
+        if (data.site.user.sysop.hasOwnProperty(data.user.toLowerCase())) {attr += "admin "; }
+    }
     if (attr === "") {attr = "others "; }
 
     attr += "new-entry card list-group-item ";
     attr += "pageid-" + data.pageid + " ";
     attr += "revid-" + data.revid + " ";
     attr += "ns ns-" + data.ns + " ";
+
+    // sorry I'm breaking the rules :P
+    raunController.model.getORESOnce(this, data.revid);
 
     // Create card
     var card = document.createElement("div");
@@ -646,23 +679,25 @@ View.prototype.displaySingleRC = function (data) {
     cell[2].appendChild(timeContent);
 
     // Cell 3: User
-    cell[3].setAttribute("class", "list-group-item-text user");
+    if (data.userhidden === undefined) {
+        cell[3].setAttribute("class", "list-group-item-text user");
 
-    // Icon
-    var userIcon = document.createElement("span");
-    userIcon.setAttribute("class", "glyphicon glyphicon-user");
-    userIcon.setAttribute("title", locale_msg('main_user'));
+        // Icon
+        var userIcon = document.createElement("span");
+        userIcon.setAttribute("class", "glyphicon glyphicon-user");
+        userIcon.setAttribute("title", locale_msg('main_user'));
 
-    var userElem = document.createElement("a");
-    userElem.setAttribute("class", "username");
-    userElem.setAttribute("href", data.server_url
-        + "wiki/Special:Contributions/"
-        + data.user);
-    userElem.textContent = data.user;
+        var userElem = document.createElement("a");
+        userElem.setAttribute("class", "username");
+        userElem.setAttribute("href", data.server_url
+            + "wiki/Special:Contributions/"
+            + data.user);
+        userElem.textContent = data.user;
 
-    cell[3].appendChild(userIcon);
-    cell[3].insertAdjacentHTML('beforeend', " ");
-    cell[3].appendChild(userElem);
+        cell[3].appendChild(userIcon);
+        cell[3].insertAdjacentHTML('beforeend', " ");
+        cell[3].appendChild(userElem);
+    }
 
     // Cell 4: Information
     cell[4].setAttribute("class", "list-group-item-text info");
@@ -695,14 +730,17 @@ View.prototype.displaySingleRC = function (data) {
         cell[4].appendChild(this.createLabel("label-info", locale_msg('settings_bot_edits'), locale_msg('bot')));
         cell[4].insertAdjacentHTML('beforeend', " ");
     }
-    if (data.site.user.editor.hasOwnProperty(data.user.toLowerCase())) {
-        cell[4].appendChild(this.createLabel("label-default", locale_msg('settings_editor_edits'), locale_msg('editor')));
-        cell[4].insertAdjacentHTML('beforeend', " ");
+    if (data.userhidden === undefined) {
+        if (data.site.user.editor.hasOwnProperty(data.user.toLowerCase())) {
+            cell[4].appendChild(this.createLabel("label-default", locale_msg('settings_editor_edits'), locale_msg('editor')));
+            cell[4].insertAdjacentHTML('beforeend', " ");
+        }
+        if (data.site.user.sysop.hasOwnProperty(data.user.toLowerCase())) {
+            cell[4].appendChild(this.createLabel("label-info", locale_msg('settings_admin_edits'), locale_msg('admin')));
+            cell[4].insertAdjacentHTML('beforeend', " ");
+        }
     }
-    if (data.site.user.sysop.hasOwnProperty(data.user.toLowerCase())) {
-        cell[4].appendChild(this.createLabel("label-info", locale_msg('settings_admin_edits'), locale_msg('admin')));
-        cell[4].insertAdjacentHTML('beforeend', " ");
-    }
+
     // Show comments
     cell[4].insertAdjacentHTML('beforeend', comment);
 
@@ -883,6 +921,28 @@ View.prototype.displayRC = function (data) {
     $("#main-table-loading").remove();
 
     return {'gtz': gtz, 'last_rcid': last_rcid};
+};
+
+View.prototype.displayORES = function (data, revid) {
+    if (data.reverted.probability.true >= 0.8 && data.reverted.prediction && !data.reverted.error) {
+        $(".revid-" + revid).addClass("ores-alert");
+    }
+
+    var oresScore = document.createElement("div");
+    oresScore.setAttribute("class", "list-group-item-text ores-score");
+
+    // Icon
+    var oresIcon = document.createElement("span");
+    oresIcon.setAttribute("class", "glyphicon glyphicon-scale");
+
+    var oresElem = document.createElement("span");
+    oresElem.textContent = (data.reverted.probability.true * 100).toFixed(2) + "%";
+
+    oresScore.appendChild(oresIcon);
+    oresScore.insertAdjacentHTML('beforeend', " ");
+    oresScore.appendChild(oresElem);
+
+    $(oresScore).insertAfter(".revid-" + revid + "> .user");
 };
 
 /**

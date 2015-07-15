@@ -304,11 +304,11 @@ Model.prototype.getORESOnce = function (view, revid) {
 
     $.ajax({
         type: "GET",
-        url: "http://ores.wmflabs.org/scores/" + wiki + "/reverted/" + revid,
-        dataType: "json",
+        url: "http://ores.wmflabs.org/scores/" + wiki + "/reverted/" + revid + "/",
+        dataType: "jsonp",
         crossDomain: true,
         success: function (data) {
-            view.displayORES(data[revid].reverted, revid);
+            view.displayORES(data[revid], revid);
         },
         error: function (xhr, ajaxOptions, thrownError) {
             console.error(xhr);
@@ -924,25 +924,28 @@ View.prototype.displayRC = function (data) {
 };
 
 View.prototype.displayORES = function (data, revid) {
-    if (data.reverted.probability.true >= 0.8 && data.reverted.prediction && !data.reverted.error) {
-        $(".revid-" + revid).addClass("ores-alert");
+    if (!data.error) {
+        if (data.probability.true >= 0.8 && data.prediction) {
+            $(".revid-" + revid + ":not(.combined)").addClass("ores-alert");
+        }
+
+        var oresScore = document.createElement("div");
+        oresScore.setAttribute("class", "list-group-item-text ores-score");
+
+        // Icon
+        var oresIcon = document.createElement("span");
+        oresIcon.setAttribute("class", "glyphicon glyphicon-fire");
+
+        var oresElem = document.createElement("span");
+        oresElem.textContent = (data.probability.true * 100).toFixed(2) + "%";
+
+        oresScore.appendChild(oresIcon);
+        oresScore.insertAdjacentHTML('beforeend', " ");
+        oresScore.appendChild(oresElem);
+
+        $(oresScore).insertAfter(".revid-" + revid + ":not(.combined) > .user");
     }
 
-    var oresScore = document.createElement("div");
-    oresScore.setAttribute("class", "list-group-item-text ores-score");
-
-    // Icon
-    var oresIcon = document.createElement("span");
-    oresIcon.setAttribute("class", "glyphicon glyphicon-scale");
-
-    var oresElem = document.createElement("span");
-    oresElem.textContent = (data.reverted.probability.true * 100).toFixed(2) + "%";
-
-    oresScore.appendChild(oresIcon);
-    oresScore.insertAdjacentHTML('beforeend', " ");
-    oresScore.appendChild(oresElem);
-
-    $(oresScore).insertAfter(".revid-" + revid + "> .user");
 };
 
 /**

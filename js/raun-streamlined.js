@@ -63,7 +63,8 @@ Model.prototype.data = {
     "stat": null,
     "filter": ["bot", "anon", "new", "minor", "redirect", "editor", "admin", "others"],
     "filter-class": ["bot", "anon", "new-art", "minor", "redirect", "editor", "admin", "others"],
-    "ores-language": ['en', 'pt', 'fa', 'tr']
+    "ores-language": ['en', 'pt', 'fa', 'tr'],
+    "ores-supported": null
 };
 
 /**
@@ -163,6 +164,7 @@ Model.prototype.init = function (view) {
     });
     view.displayTime();
 
+    this.tryORES(this.config.language + "wiki");
 
     return;
 };
@@ -289,18 +291,48 @@ Model.prototype.getStatPolling = function (view) {
     });
 };
 
+Model.prototype.tryORES = function (project) {
+    // var that = this;
+    if (this.data['ores-supported'] === null) {
+        /*$.ajax({
+            type: "GET",
+            url: "//ores.wmflabs.org/scores/" + project + "/reverted/",
+            dataType: "jsonp",
+            crossDomain: true,
+            success: function (data) {
+                if (data.error.code === "not found") {
+                    that.data['ores-supported'] = false;
+                } else {
+                    that.data['ores-supported'] = true;
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                // dunno why status code defaults to 404
+                if (xhr.status === 404) {
+                    that.data['ores-supported'] = false;
+                } else if (xhr.status === 400) {
+                    that.data['ores-supported'] = true;
+                }
+            }
+        });*/
+        if (this.data['ores-language'].indexOf(this.config.language) === -1) {
+            console.error("Not available on this language");
+            this.data['ores-supported'] = false;
+            return false;
+        }
+        if (this.config.project !== "wikipedia") {
+            console.error("Not available on this project");
+            this.data['ores-supported'] = false;
+            return false;
+        }
+        this.data['ores-supported'] = true;
+        return true;
+    }
+    return this.data['ores-supported'];
+};
+
 Model.prototype.getORESOnce = function (view, revid) {
-    if (this.data['ores-language'].indexOf(this.config.language) === -1) {
-        console.error("Not available on this language");
-        return false;
-    }
-    var wiki = this.config.language;
-    if (this.config.project === "wikipedia") {
-        wiki += "wiki";
-    } else {
-        console.error("Not available on this project");
-        return false;
-    }
+    var wiki = this.config.language + "wiki";
 
     $.ajax({
         type: "GET",
@@ -610,7 +642,9 @@ View.prototype.displaySingleRC = function (data) {
     attr += "ns ns-" + data.ns + " ";
 
     // sorry I'm breaking the rules :P
-    raunController.model.getORESOnce(this, data.revid);
+    if (raunController.model.data['ores-supported'] === true) {
+        raunController.model.getORESOnce(this, data.revid);
+    }
 
     // Create card
     var card = document.createElement("div");
@@ -925,7 +959,7 @@ View.prototype.displayRC = function (data) {
 
 View.prototype.displayORES = function (data, revid) {
     if (!data.error) {
-        if (data.probability.true >= 0.8 && data.prediction) {
+        if (Math.round(data.probability.true * 100) >= 80 && data.prediction) {
             $(".revid-" + revid + ":not(.combined)").addClass("ores-alert");
         }
 
@@ -962,7 +996,7 @@ View.prototype.displayORES = function (data, revid) {
                     }
                     // console.log(revid, pageid_class, total, number, average);
                 });
-                if (data.probability.true >= 0.8 && data.prediction) {
+                if (Math.round(average * 100) >= 80 && data.prediction) {
                     $(".revid-" + revid + ".combined").addClass("ores-alert");
                 }
 

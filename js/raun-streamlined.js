@@ -937,7 +937,7 @@ View.prototype.displayORES = function (data, revid) {
         oresIcon.setAttribute("class", "glyphicon glyphicon-fire");
 
         var oresElem = document.createElement("span");
-        oresElem.textContent = (data.probability.true * 100).toFixed(2) + "%";
+        oresElem.textContent = Math.round(data.probability.true * 100) + "%";
         $(".revid-" + revid + ":not(.combined)").data("ores-score", data.probability.true);
 
         oresScore.appendChild(oresIcon);
@@ -974,7 +974,7 @@ View.prototype.displayORES = function (data, revid) {
                 oresIconCombined.setAttribute("class", "glyphicon glyphicon-fire");
 
                 var oresElemCombined = document.createElement("span");
-                oresElemCombined.textContent = (average * 100).toFixed(2) + "%";
+                oresElemCombined.textContent = Math.round(average * 100) + "%";
 
                 oresScoreCombined.appendChild(oresIconCombined);
                 oresScoreCombined.insertAdjacentHTML('beforeend', " ");

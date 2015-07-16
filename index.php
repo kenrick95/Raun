@@ -13,7 +13,7 @@ $locale_force_get = false; $language_force_get = false; $project_force_get = fal
 $title_info = "";
 // [Need Krinkle/inuition to run: Remember to change it to correct path]
 $IntuitionStartFile = 'intuition/ToolStart.php';
-$IntuitionStartFile = '/data/project/intuition/src/Intuition/ToolStart.php';
+# $IntuitionStartFile = '/data/project/intuition/src/Intuition/ToolStart.php';
 
 // Intuition initialization
 require_once($IntuitionStartFile);

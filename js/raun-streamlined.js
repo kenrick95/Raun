@@ -938,12 +938,52 @@ View.prototype.displayORES = function (data, revid) {
 
         var oresElem = document.createElement("span");
         oresElem.textContent = (data.probability.true * 100).toFixed(2) + "%";
+        $(".revid-" + revid + ":not(.combined)").data("ores-score", data.probability.true);
 
         oresScore.appendChild(oresIcon);
         oresScore.insertAdjacentHTML('beforeend', " ");
         oresScore.appendChild(oresElem);
 
         $(oresScore).insertAfter(".revid-" + revid + ":not(.combined) > .user");
+
+        if ($(".revid-" + revid).hasClass("combined")) {
+            // average of children scores
+            setTimeout(function () {
+                // Hack to make sure the children values are available upon checking
+                var pageid_class = $(".revid-" + revid + ".combined").attr("class").split(" ").filter(function (value) {
+                    return (value.indexOf("pageid") === 0);
+                })[0], total = 0, number = 0, average = 0, current = null;
+                $("." + pageid_class + ".combined-child").each(function () {
+                    current = parseFloat($(this).data("ores-score"), 10);
+                    if (!isNaN(current)) { // skip counting if not a number
+                        total += current;
+                        number += 1;
+                        average = total / number;
+                    }
+                    // console.log(revid, pageid_class, total, number, average);
+                });
+                if (data.probability.true >= 0.8 && data.prediction) {
+                    $(".revid-" + revid + ".combined").addClass("ores-alert");
+                }
+
+                var oresScoreCombined = document.createElement("div");
+                oresScoreCombined.setAttribute("class", "list-group-item-text ores-score");
+
+                // Icon
+                var oresIconCombined = document.createElement("span");
+                oresIconCombined.setAttribute("class", "glyphicon glyphicon-fire");
+
+                var oresElemCombined = document.createElement("span");
+                oresElemCombined.textContent = (average * 100).toFixed(2) + "%";
+
+                oresScoreCombined.appendChild(oresIconCombined);
+                oresScoreCombined.insertAdjacentHTML('beforeend', " ");
+                oresScoreCombined.appendChild(oresElemCombined);
+
+                $(oresScoreCombined).insertAfter(".revid-" + revid + ".combined > .user");
+            }, 1000);
+        }
+
     }
 
 };

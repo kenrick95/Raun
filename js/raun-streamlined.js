@@ -1,5 +1,5 @@
 /*jslint sloppy: true, plusplus:true, browser: true, unparam:true, vars:true, continue:true */
-/*global force, console, locale_obj, locale_msg, nanobar, Nanobar, Headroom, escape, unescape, io, $, jQuery, clearInterval: false, clearTimeout: false, document: false, event: false, frames: false, history: false, Image: false, location: false, name: false, navigator: false, Option: false, parent: false, screen: false, setInterval: false, setTimeout: false, window: false, XMLHttpRequest: false */
+/*global force, locale_obj, locale_msg, nanobar, Nanobar, Headroom, $, jQuery, io */
 /**
  * Raun-streamlined.js
  *
@@ -83,16 +83,16 @@ Model.prototype.init = function (view) {
     that.config.run = true;
     function setConfig(param) {
         if (parseInt(force[param], 10) === 0) {
-            if (that.readCookie(param) === null) {
-                that.createCookie(param, that.config[param], 30);
+            if (that.getStorage(param) === null) {
+                that.setStorage(param, that.config[param], 30);
             }
-            view.displaySettings({param: that.readCookie(param)});
-            site_config[param] = that.readCookie(param);
+            view.displaySettings({param: that.getStorage(param)});
+            site_config[param] = that.getStorage(param);
 
             // Run only if the parameters are set by GET
             that.config.run = false;
         } else {
-            that.createCookie(param, $("#" + param).val(), 30);
+            that.setStorage(param, $("#" + param).val(), 30);
 
             that.config[param] = $("#" + param).val();
             site_config[param] = that.config[param];
@@ -231,7 +231,7 @@ Model.prototype.getRCPolling = function (view) {
 };
 Model.prototype.getRCOnce = function (view, callback) {
     view.displayBar(50);
-    this.getDataPolling(view, 'rc', {from: 0, gtz: 0, last_rcid: 0}, function() {
+    this.getDataPolling(view, 'rc', {from: 0, gtz: 0, last_rcid: 0}, function () {
         if (typeof callback === "function") {
             callback(view);
         }
@@ -423,52 +423,32 @@ Model.prototype.canRun = function () {
     return 2;
 };
 /**
- * Model: Others: createCookie
- * @author Peter-Paul Koch, http://www.quirksmode.org/js/cookies.html
+ * Model: Others: setStorage
  * @param  {String} name
  * @param  {String|Number} value
  * @param  {Number} days
  * @return {None}
  */
-Model.prototype.createCookie = function (name, value, days) {
+Model.prototype.setStorage = function (name, value, days) {
     localStorage.setItem(name, value);
-    // var expires, date;
-    // if (days) {
-    //     date = new Date();
-    //     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-    //     expires = "; expires=" + date.toGMTString();
-    // } else {
-    //     expires = "";
-    // }
-    // document.cookie = escape(name) + "=" + escape(value) + expires + "; path=/";
 };
 
 /**
- * Model: Others: readCookie
- * @author Peter-Paul Koch, http://www.quirksmode.org/js/cookies.html
+ * Model: Others: getStorage
  * @param  {String} name
  * @return {None}
  */
-Model.prototype.readCookie = function (name) {
+Model.prototype.getStorage = function (name) {
     return localStorage.getItem(name);
-    // var nameEQ = escape(name) + "=", ca = document.cookie.split(';'), i, c;
-    // for (i = 0; i < ca.length; i++) {
-    //     c = ca[i];
-    //     while (c.charAt(0) === ' ') {c = c.substring(1, c.length); }
-    //     if (c.indexOf(nameEQ) === 0) {return unescape(c.substring(nameEQ.length, c.length)); }
-    // }
-    // return null;
 };
 
 /**
- * Model: Others: eraseCookie
- * @author Peter-Paul Koch, http://www.quirksmode.org/js/cookies.html
+ * Model: Others: removeStorage
  * @param  {String} name
  * @return {None}
  */
-Model.prototype.eraseCookie = function (name) {
+Model.prototype.removeStorage = function (name) {
     localStorage.removeItem(name);
-    // this.createCookie(name, "", -1);
 };
 
 
@@ -486,6 +466,7 @@ Model.prototype.eraseCookie = function (name) {
  * 
  */
 function View() {
+    var that = this;
     // Twitter Bootstrap keep-open class
     $('.dropdown-menu').click(function (event) {
         if ($(this).hasClass('keep-open')) {
@@ -507,6 +488,13 @@ function View() {
     if (parseInt(force.language, 10) === 0 || parseInt(force.project, 10) === 0 || parseInt(force.locale, 10) === 0) {
         $("#landing").modal("show");
     }
+
+    // Show XX more new entries
+    $("#more_entries").hide();
+    $("#more_entries").click(function () {
+        that.displayRCStream();
+        $(this).hide();
+    });
 
     // // Statistics positioning on resize
     // function onresize() {
@@ -582,7 +570,7 @@ View.prototype.displayData = function (type, data) {
     case "rc":
         return this.displayRC(data);
     case "rcstream":
-        return this.displayRCStream(data);
+        return this.processRCStream(data);
     case "log":
         return this.displayLog(data);
     case "user":
@@ -866,8 +854,9 @@ View.prototype.stringCleaner = function (value) {
     value = value.toString().replace(lt, "&lt;").replace(gt, "&gt;").replace(ap, "&#39;").replace(ic, "&#34;");
     return value;
 };
-View.prototype.displayRCStream = function (data) {
-    // console.log(data);
+View.prototype.dataQueue = [];
+
+View.prototype.processRCStream = function (data) {
     if (data.type === "edit" || data.type === "new" || data.type === "redirect") {
         data.rcid = data.id;
         data.revid = data.revision.new;
@@ -883,25 +872,36 @@ View.prototype.displayRCStream = function (data) {
             data.anon = true;
         }
 
-        this.displaySingleRC(data);
-        setTimeout(function () {
-            $(".new-entry").removeClass("new-entry");
-            $("div[style*='100%'].nanobarbar").hide();
-            //update headroom on data display
-            this.headroom.init();
-        }.bind(this), 1000);
-        $("#main-table-loading").remove();
+        this.dataQueue.push(data);
+        $("#more_entries").slideDown();
+        $("#more_entries_number").text(this.dataQueue.length);
     }
 };
+
+View.prototype.displayRCStream = function () {
+    var data, i;
+    for (i = 0; i < this.dataQueue.length; i++) {
+        data = this.dataQueue[i];
+        this.displaySingleRC(data);
+    }
+    this.dataQueue = [];
+
+    setTimeout(function () {
+        $(".new-entry").removeClass("new-entry");
+        $("div[style*='100%'].nanobarbar").hide();
+        //update headroom on data display
+        this.headroom.init();
+    }.bind(this), 1000);
+    $("#main-table-loading").remove();
+};
+
 /**
  * View: displayRC
  * @description Parse RC data, constructs a nice row containing columns of namespace, time, page title, page editor, diffs, label, edit summary, and tags.
  * @param  {Object} data
  * @return {None}
- * @todo  Method is too long: separate this into more modular!
  */
 View.prototype.displayRC = function (data) {
-    // console.log(data);
     this.displayBar(100);
 
     var base_site = "//" + data.config.language + "." + data.config.project + ".org/";
@@ -950,6 +950,7 @@ View.prototype.displayORES = function (data, revid) {
         // Icon
         var oresIcon = document.createElement("span");
         oresIcon.setAttribute("class", "glyphicon glyphicon-fire");
+        oresIcon.setAttribute("title", locale_msg('ores_score'));
 
         var oresElem = document.createElement("span");
         oresElem.textContent = Math.round(data.probability.true * 100) + "%";

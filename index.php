@@ -12,7 +12,7 @@ $locale = ""; $language = ""; $project = "";
 $locale_force_get = false; $language_force_get = false; $project_force_get = false;
 $title_info = "";
 // [Need Krinkle/inuition to run: Remember to change it to correct path]
-$IntuitionStartFile = 'intuition/ToolStart.php';
+$IntuitionStartFile = '../intuition/ToolStart.php';
 $IntuitionStartFile = '/data/project/intuition/src/Intuition/ToolStart.php';
 
 // Intuition initialization
@@ -32,11 +32,7 @@ if (isset($_GET['language'])) {
     $language_force_get = true;
     $language = htmlspecialchars($_GET['language']);
 } else {
-    if (isset($_COOKIE['language'])) {
-        $language = htmlspecialchars($_COOKIE['language']);
-    } else {
-        $language = "id";
-    }
+    $language = "id";
 }
 
 // Decide the project
@@ -44,11 +40,7 @@ if (isset($_GET['project'])) {
     $project_force_get = true;
     $project = htmlspecialchars($_GET['project']);
 } else {
-    if (isset($_COOKIE['project'])) {
-        $project = htmlspecialchars($_COOKIE['project']);
-    } else {
-        $project = "wikipedia";
-    }
+    $project = "wikipedia";
 }
 
 // Decide the page title
@@ -57,11 +49,11 @@ ob_end_clean();
 ?><!doctype html>
 <html dir="<?php echo $I18N->getDir(); ?>" lang="<?php echo $locale; ?>">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--[if IE]>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <![endif]-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Raun: watch the recent changes of Wikimedia Foundation projects, live.">
     <meta name="author" content="Kenrick">
     <!-- <link rel="shortcut icon" href="img/favicon.png"> -->
@@ -249,8 +241,8 @@ if (stripos("tools.wmflabs.org", $_SERVER["SERVER_NAME"]) !== false) {
 
     <div id="main-container" class="container">
         <div id="main-table-loading"><img src='img/loading.gif' class="loading" alt="loading"></div>
+        <div id="more_entries" class="well well-sm text-muted col-xs-12 col-sm-12 col-md-12 col-lg-9"><?php echo $I18N->msg( 'more_entries' ,  array('variables' => array( '<span id="more_entries_number">XX</span>' ), 'parsemag' => true ) ); ?></div>
         <div class="main list-group col-xs-12 col-sm-12 col-md-12 col-lg-9">
-            
         </div>
         <footer>
             <b>ra&middot;un</b>&nbsp;<i><?php echo $I18N->msg( 'def_i' ); ?></i>&nbsp;<?php echo $I18N->msg( 'def_def' ); ?>
@@ -385,31 +377,22 @@ if (stripos("tools.wmflabs.org", $_SERVER["SERVER_NAME"]) !== false) {
                 </div>
                 <div class="modal-body">
                     <p class="lead"><b>ra&middot;un</b> <i><?php echo $I18N->msg( 'def_i' ); ?></i> <?php echo $I18N->msg( 'def_def' ); ?></p>
-                    <p><?php echo $I18N->msg( 'about_tool',  array('variables' => array( '<a href="http://ivan.lanin.org/ronda">Ronda</a>', 'Ivan Lanin', '<a href="http://kenrick95.org/">Kenrick</a> (<a href="http://en.wikipedia.org/wiki/User:Kenrick95">User:Kenrick95</a>)' ), 'parsemag' => true ) ); ?></p>
-                    <p><span class="label label-info"><?php echo $I18N->msg( 'information' ); ?></span> <?php echo $I18N->msg( 'about_cookie' ); ?></p>
+                    <p><?php echo $I18N->msg( 'about_tool',  array('variables' => array( '<a href="http://ivan.lanin.org/ronda">Ronda</a>', 'Ivan Lanin', '<a href="http://kenrick95.org/">Kenrick</a> (<a href="//en.wikipedia.org/wiki/User:Kenrick95">User:Kenrick95</a>)' ), 'parsemag' => true ) ); ?></p>
+                    <p><span class="label label-info"><?php echo $I18N->msg( 'information' ); ?></span> <!-- currently does not use cookie; <?php echo $I18N->msg( 'about_cookie' ); ?>--></p>
                     <p><?php echo $I18N->msg( 'credit' ); ?>:
                     </p>
                         <ul>
                             <li>Bootstrap 3.1.1</li>
-                            <li>jQuery 2.1.1</li>
-                            <li>Wikimedia API</li>
+                            <li>jQuery 2.1.4</li>
+                            <li>Wikimedia's MediaWiki API</li>
                             <li>Nanobar 0.0.6</li>
                             <li>Headroom.js 0.7.0</li>
+                            <li>ORES</li>
                         </ul>
                     <p><?php echo $I18N->msg( 'about_license' ); ?></p>
-                    <p><?php echo $I18N->msg( 'about_github' ,  array('variables' => array( '<a href="https://github.com/kenrick95/Raun">github.com/kenrick95/Raun</a>' ), 'parsemag' => true ) ); ?></p>
-                    <p><a class="btn btn-info" href="https://id.wikipedia.org/w/index.php?action=edit&amp;preload=Pembicaraan_Pengguna%3AKenrick95%2FPreload%2Fen&amp;editintro=Pembicaraan_Pengguna%3AKenrick95%2FEditintro&amp;summary=&amp;nosummary=&amp;prefix=&amp;minor=&amp;section=new&amp;title=Pembicaraan+Pengguna%3AKenrick95&amp;userlang=en" target="_blank"><span class="glyphicon glyphicon-envelope"></span> <?php echo $I18N->msg( 'send_feedback' ); ?></a>
+                    <p><?php echo $I18N->msg( 'about_github' ,  array('variables' => array( '<a href="//github.com/kenrick95/Raun">github.com/kenrick95/Raun</a>' ), 'parsemag' => true ) ); ?></p>
+                    <p><a class="btn btn-info" href="//id.wikipedia.org/w/index.php?action=edit&amp;preload=Pembicaraan_Pengguna%3AKenrick95%2FPreload%2Fen&amp;editintro=Pembicaraan_Pengguna%3AKenrick95%2FEditintro&amp;summary=&amp;nosummary=&amp;prefix=&amp;minor=&amp;section=new&amp;title=Pembicaraan+Pengguna%3AKenrick95&amp;userlang=en" target="_blank"><span class="glyphicon glyphicon-envelope"></span> <?php echo $I18N->msg( 'send_feedback' ); ?></a>
                     </p>
-                    <!-- Donate -->
-                    <form class="pp-donate" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-                        <input type="hidden" name="cmd" value="_donations">
-                        <input type="hidden" name="business" value="kenrick95@gmail.com">
-                        <input type="hidden" name="item_name" value="Donation to Kenrick (@kenrick95)">
-                        <input type="hidden" name="no_note" value="0">
-                        <button name="submit" class="btn btn-primary"><img src="img/icon_pp.svg" alt="Donate"> Donate</button>
-                        <img alt="" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" style="width:1px;height:1px;border:0;">
-                    </form>
-                    <!-- /.Donate -->
                     <br>
                     <?php
                     // Translation promotion

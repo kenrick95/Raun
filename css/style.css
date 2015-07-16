@@ -21,8 +21,8 @@ body { font-family: 'Ubuntu', sans-serif; }
 .combined { background-color:#fff; cursor:pointer;}
 .combined-child { background-color:#f2f2f2; display:none;}
 
-#main-container { margin-top:50px; }
-.main { padding-top: 1em; }
+#main-container { margin-top:50px; padding-top: 1em; }
+.main { }
 .navbar-brand {min-width:6em; height:50px; font-weight: bold;}
 .navbar-nav>li>.dropdown-menu { min-width:250px; padding:1em;}
 .loading {width:20px; height:20px;}
@@ -55,6 +55,7 @@ body { font-family: 'Ubuntu', sans-serif; }
 #stat-content { padding:0 1em; }
 #time-wrapper { text-align:center; }
 
+#more_entries { text-align: center; margin-bottom: 0; cursor: pointer; }
 #main-table-loading { width: 100%; text-align: center; padding-top: 1em; }
 .card { margin: 10px; border-radius: 4px; }
 .link { }

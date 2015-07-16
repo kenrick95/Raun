@@ -597,7 +597,7 @@ View.prototype.displaySingleRC = function (data) {
         comment = '';
     }
 
-    data.pageid = data.title.hashCode(); // "stream" data does not have pageid, generate one from title
+    data.pageid = (data.server_url + data.title).hashCode(); // "stream" data does not have pageid, generate one from title
 
     // Attribute of the row
     var attr = "";

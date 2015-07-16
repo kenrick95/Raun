@@ -143,24 +143,31 @@ Model.prototype.init = function (view) {
     });
 
     this.data.user = [];
-    /*
-    Open issue:
-        there is a limit of 500 usernames listed as admin in one ajax call;
-        which means expect some edits not tagged as admin edits at big wikis like en.wikipedia.
-    */
-    this.getUserPolling(view, 'sysop', function (view) {
-        that.getUserPolling(view, 'editor', function (view) {
-            if (that.canRun() === 1) {
-                that.getRCOnce(view, function (view) {
-                    that.getRCStream(view);
-                });
-                that.getStatPolling(view);
-            } else if (that.canRun() === 2) {
-                that.getRCPolling(view);
-                that.getStatPolling(view);
-            }
+    if (this.config.language === "*") {
+        // Bypass sysop, editor filter
+        // No stats data
+        // Directly tap into RCStream without getting past data
+        that.getRCStream(view);
+    } else {
+        /*
+        Open issue:
+            there is a limit of 500 usernames listed as admin in one ajax call;
+            which means expect some edits not tagged as admin edits at big wikis like en.wikipedia.
+        */
+        this.getUserPolling(view, 'sysop', function (view) {
+            that.getUserPolling(view, 'editor', function (view) {
+                if (that.canRun() === 1) {
+                    that.getRCOnce(view, function (view) {
+                        that.getRCStream(view);
+                    });
+                    that.getStatPolling(view);
+                } else if (that.canRun() === 2) {
+                    that.getRCPolling(view);
+                    that.getStatPolling(view);
+                }
+            });
         });
-    });
+    }
     view.displayTime();
 
     this.tryORES(this.config.language + "wiki");
@@ -600,8 +607,8 @@ View.prototype.displaySingleRC = function (data) {
     if (data.hasOwnProperty('redirect') || data.type === "redirect") {attr += "redirect "; }
     if (data.hasOwnProperty('new') || data.type === "new") {attr += "new-art "; }
     if (data.userhidden === undefined) {
-        if (data.site.user.editor.hasOwnProperty(data.user.toLowerCase())) {attr += "editor "; }
-        if (data.site.user.sysop.hasOwnProperty(data.user.toLowerCase())) {attr += "admin "; }
+        if (data.site.user.editor !== undefined && data.site.user.editor.hasOwnProperty(data.user.toLowerCase())) {attr += "editor "; }
+        if (data.site.user.sysop !== undefined && data.site.user.sysop.hasOwnProperty(data.user.toLowerCase())) {attr += "admin "; }
     }
     if (attr === "") {attr = "others "; }
 
@@ -734,14 +741,18 @@ View.prototype.displaySingleRC = function (data) {
         cell[4].insertAdjacentHTML('beforeend', " ");
     }
     if (data.userhidden === undefined) {
-        if (data.site.user.editor.hasOwnProperty(data.user.toLowerCase())) {
+        if (data.site.user.editor !== undefined && data.site.user.editor.hasOwnProperty(data.user.toLowerCase())) {
             cell[4].appendChild(this.createLabel("label-default", locale_msg('settings_editor_edits'), locale_msg('editor')));
             cell[4].insertAdjacentHTML('beforeend', " ");
         }
-        if (data.site.user.sysop.hasOwnProperty(data.user.toLowerCase())) {
+        if (data.site.user.sysop !== undefined && data.site.user.sysop.hasOwnProperty(data.user.toLowerCase())) {
             cell[4].appendChild(this.createLabel("label-info", locale_msg('settings_admin_edits'), locale_msg('admin')));
             cell[4].insertAdjacentHTML('beforeend', " ");
         }
+    }
+    if (data.config.language === "*") {
+        cell[4].appendChild(this.createLabel("label-default", data.server_url.slice(2, data.server_url.length - 5), data.server_url.slice(2, data.server_url.length - 5)));
+        cell[4].insertAdjacentHTML('beforeend', " ");
     }
 
     // Show comments

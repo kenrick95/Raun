@@ -63,7 +63,6 @@ Model.prototype.data = {
     "stat": null,
     "filter": ["bot", "anon", "new", "minor", "redirect", "editor", "admin", "others"],
     "filter-class": ["bot", "anon", "new-art", "minor", "redirect", "editor", "admin", "others"],
-    "ores-language": ['en', 'pt', 'fa', 'tr'],
     "ores-supported": null
 };
 
@@ -292,43 +291,25 @@ Model.prototype.getStatPolling = function (view) {
 };
 
 Model.prototype.tryORES = function (project) {
-    // var that = this;
+    var that = this;
     if (this.data['ores-supported'] === null) {
-        /*$.ajax({
+        $.ajax({
             type: "GET",
-            url: "//ores.wmflabs.org/scores/" + project + "/reverted/",
+            url: "//ores.wmflabs.org/scores/" + project + "/",
             dataType: "jsonp",
             crossDomain: true,
             success: function (data) {
-                if (data.error.code === "not found") {
-                    that.data['ores-supported'] = false;
-                } else {
+                if (data.models !== undefined && data.models.indexOf("reverted") !== -1) {
                     that.data['ores-supported'] = true;
+                } else {
+                    that.data['ores-supported'] = false;
                 }
             },
             error: function (xhr, ajaxOptions, thrownError) {
-                // dunno why status code defaults to 404
-                if (xhr.status === 404) {
-                    that.data['ores-supported'] = false;
-                } else if (xhr.status === 400) {
-                    that.data['ores-supported'] = true;
-                }
+                that.data['ores-supported'] = false;
             }
-        });*/
-        if (this.data['ores-language'].indexOf(this.config.language) === -1) {
-            console.error("Not available on this language");
-            this.data['ores-supported'] = false;
-            return false;
-        }
-        if (this.config.project !== "wikipedia") {
-            console.error("Not available on this project");
-            this.data['ores-supported'] = false;
-            return false;
-        }
-        this.data['ores-supported'] = true;
-        return true;
+        });
     }
-    return this.data['ores-supported'];
 };
 
 Model.prototype.getORESOnce = function (view, revid) {

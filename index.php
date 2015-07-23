@@ -62,7 +62,7 @@ ob_end_clean();
 
     <!-- CSS -->
     <link href='//fonts.googleapis.com/css?family=Ubuntu:400,700' rel='stylesheet' type='text/css'>
-    <link href="//cdn.jsdelivr.net/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//tools-static.wmflabs.org/cdnjs/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
 <?php
@@ -407,7 +407,11 @@ if (stripos("tools.wmflabs.org", $_SERVER["SERVER_NAME"]) !== false) {
     </div><!-- /.modal -->
 
     <!-- JavaScript files -->
-    <script src="//cdn.jsdelivr.net/g/jquery@2.1.4,bootstrap@3.1.1,nanobar@0.0.6,headroomjs@0.7.0,socket.io-client@0.9.17"></script>
+    <script src="//tools-static.wmflabs.org/cdnjs/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//tools-static.wmflabs.org/cdnjs/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="//tools-static.wmflabs.org/cdnjs/ajax/libs/nanobar/0.0.6/nanobar.min.js"></script>
+    <script src="//tools-static.wmflabs.org/cdnjs/ajax/libs/headroom/0.7.0/headroom.min.js"></script>
+    <script src="//tools-static.wmflabs.org/cdnjs/ajax/libs/socket.io/0.9.17/socket.io.min.js"></script>
     <script src="//tools.wmflabs.org/intuition/load.php?env=standalone"></script>
     <script>
     intuition.load("raun", "<?php echo $locale; ?>");

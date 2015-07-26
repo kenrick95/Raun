@@ -4,24 +4,17 @@
  * Raun-streamlined.js
  *
  * @author Kenrick
- * @description
- * - One of most fundamental part of Raun: javascript.
- * - The data came and processed first here before being displayed.
  *
  * Some important notes:
  * - "project" refer to WMF wikis project
  * - "language" refer to the language WMF wikis project
  * - "locale" refer to the language used in Raun
- * 
+ *
  * - "data" consists of "rc", "user", and "stat"
  * -- "rc" is the entries of recent changes of the project
  * -- "user" is the user list
  * -- "stat" is the project statistics
  *
- * Current ISSUES:
- * - Reliance on DOM for storing/ getting data of entry (row) --> Slow performance
- * - User list is limited to 500 entries per API request
- * 
  */
 /**
  * Model
@@ -47,6 +40,9 @@ Model.prototype.config = {
         "admin": true,
         "others": true
     },
+    "tool": {
+        "more_entries": true
+    },
     "run": true,
     "project": "wikipedia",
     "language": "id",
@@ -61,8 +57,11 @@ Model.prototype.config = {
 Model.prototype.data = {
     "user": null,
     "stat": null,
-    "filter": ["bot", "anon", "new", "minor", "redirect", "editor", "admin", "others"],
-    "filter-class": ["bot", "anon", "new-art", "minor", "redirect", "editor", "admin", "others"],
+    "filter": ["bot", "anon", "new", "minor", "redirect", "editor", "admin",
+        "others"],
+    "filter-class": ["bot", "anon", "new-art", "minor", "redirect", "editor",
+        "admin", "others"],
+    "tool": ["more_entries"],
     "ores-supported": null
 };
 
@@ -73,7 +72,7 @@ Model.prototype.data = {
  *      - Get data from WMF API for filtering purposes
  * @param  {Object} view
  * @return {None}
- * 
+ *
  */
 Model.prototype.init = function (view) {
     var that = this;
@@ -429,6 +428,26 @@ Model.prototype.canRun = function () {
     }
     return 2;
 };
+
+/**
+ * Model: Others: updateTool
+ */
+Model.prototype.updateTool = function (view) {
+    var len = this.data.tool.length, j;
+    for (j = 0; j < len; j++) {
+        this.config.tool[this.data.tool[j]] = this.getFilter(this.data.tool[j]);
+    }
+    // more_entries
+    if (!this.config.tool.more_entries) {
+        view.displayRCStream();
+        $("#more_entries").hide();
+    }
+
+    // Store the data
+    localStorage.setItem("config", JSON.stringify(this.config));
+
+};
+
 /**
  * Model: Others: setStorage
  * @param  {String} name
@@ -461,7 +480,7 @@ Model.prototype.removeStorage = function (name) {
 
 /**
  * View
- * 
+ *
  * @class
  *
  * Constructor contains hacks on view:
@@ -470,7 +489,7 @@ Model.prototype.removeStorage = function (name) {
  * - Bind .combined to show individual entries
  * - Show landing modal on unforced config
  * - Bind header to Headroomjs
- * 
+ *
  */
 function View() {
     var that = this;
@@ -882,10 +901,19 @@ View.prototype.processRCStream = function (data) {
         if (this.isAnon(data.user)) {
             data.anon = true;
         }
-
-        this.dataQueue.push(data);
-        $("#more_entries").slideDown();
-        $("#more_entries_number").text(this.dataQueue.length);
+        if (data.config.tool.more_entries === true) {
+            this.dataQueue.push(data);
+            $("#more_entries").slideDown();
+            $("#more_entries_number").text(this.dataQueue.length);
+        } else {
+            this.displaySingleRC(data);
+            setTimeout(function () {
+                $(".new-entry").removeClass("new-entry");
+                $("div[style*='100%'].nanobarbar").hide();
+                //update headroom on data display
+                this.headroom.init();
+            }.bind(this), 1000);
+        }
     }
 };
 
@@ -1232,7 +1260,7 @@ View.prototype.formatnum = function (nStr) {
 /**
  * Controller
  * @class
- * 
+ *
  * @param {Object} model
  * @param {Object} view
  *
@@ -1257,6 +1285,9 @@ Controller.prototype.init = function () {
     $(".config").change(function () {
         that.model.updateFilter(that.view);
     });
+    $(".config_tool").change(function () {
+        that.model.updateTool(that.view);
+    });
 };
 
 String.prototype.hashCode = function () {
@@ -1268,7 +1299,7 @@ String.prototype.hashCode = function () {
         h |= 0; // Convert to 32bit integer
     }
     return h;
-    /*ignore jslint end*/ 
+    /*ignore jslint end*/
 };
 
 

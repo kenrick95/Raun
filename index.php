@@ -2,7 +2,7 @@
 /**
  * Raun
  * index.php
- * 
+ *
  * @author Kenrick <contact@kenrick95.org>
  * @license MIT License <http://opensource.org/licenses/MIT>
  */
@@ -196,6 +196,12 @@ if (stripos("tools.wmflabs.org", $_SERVER["SERVER_NAME"]) !== false) {
                                 <label for="locale"><?php echo $I18N->msg( 'language' ); ?></label>
                                 <input type="text" class="form-control config_right" name="userlang" id="locale" placeholder="<?php echo $I18N->msg( 'language' ); ?>" value="<?php echo $locale; ?>">
                             </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" id="show_more_entries" class="config_tool" value="true">
+                                    <span><?php echo $I18N->msg( 'settings_more_entries' ); ?></span>
+                                </label>
+                            </div>
 
                             <button type="submit" class="btn-primary btn"><?php echo $I18N->msg( 'save' ); ?></button>
                             </form>
@@ -235,7 +241,7 @@ if (stripos("tools.wmflabs.org", $_SERVER["SERVER_NAME"]) !== false) {
                     </li>
                 </ul>
             </div><!--/.nav-collapse -->
-            
+
         </div>
     </div>
 
@@ -247,7 +253,7 @@ if (stripos("tools.wmflabs.org", $_SERVER["SERVER_NAME"]) !== false) {
         <footer>
             <b>ra&middot;un</b>&nbsp;<i><?php echo $I18N->msg( 'def_i' ); ?></i>&nbsp;<?php echo $I18N->msg( 'def_def' ); ?>
             <br>
-            <?php echo $I18N->msg( 'about_github' ,  array('variables' => array( '<a href="https://github.com/kenrick95/Raun">github.com/kenrick95/Raun</a>' ), 'parsemag' => true ) ); ?>    
+            <?php echo $I18N->msg( 'about_github' ,  array('variables' => array( '<a href="https://github.com/kenrick95/Raun">github.com/kenrick95/Raun</a>' ), 'parsemag' => true ) ); ?>
         </footer>
     </div><!-- /.container -->
 
@@ -366,7 +372,7 @@ if (stripos("tools.wmflabs.org", $_SERVER["SERVER_NAME"]) !== false) {
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-    
+
     <!-- Modal: About -->
     <div class="modal fade" id="about" tabindex="-1" role="dialog" aria-labelledby="aboutLabel" aria-hidden="true">
         <div class="modal-dialog">

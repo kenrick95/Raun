@@ -126,6 +126,7 @@ Model.prototype.init = function (view) {
         }
     }
     view.displayFilter(disp);
+    $("#show_more_entries").prop("checked", this.config.tool.more_entries === true);
 
     // Quick hack to prevent error when user closes landing modal
     $('#landing').on('hide.bs.modal', function (e) {
@@ -440,7 +441,7 @@ Model.prototype.updateTool = function (view) {
     // more_entries
     if (!this.config.tool.more_entries) {
         view.displayRCStream();
-        $("#more_entries").hide();
+        $("#more_entries").css("visibility", "hidden");
     }
 
     // Store the data
@@ -516,10 +517,10 @@ function View() {
     }
 
     // Show XX more new entries
-    $("#more_entries").hide();
+    $("#more_entries").css("visibility", "hidden");
     $("#more_entries").click(function () {
         that.displayRCStream();
-        $(this).hide();
+        $(this).css("visibility", "hidden");
     });
 
     // // Statistics positioning on resize
@@ -903,7 +904,7 @@ View.prototype.processRCStream = function (data) {
         }
         if (data.config.tool.more_entries === true) {
             this.dataQueue.push(data);
-            $("#more_entries").slideDown();
+            $("#more_entries").css("visibility", "visible");
             $("#more_entries_number").text(this.dataQueue.length);
         } else {
             this.displaySingleRC(data);

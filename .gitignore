@@ -2,6 +2,9 @@
 raun.sublime-project
 raun.sublime-workspace
 intuition/
+vendor/
+composer.phar
+composer.lock
 
 #################
 ## Eclipse

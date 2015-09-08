@@ -12,12 +12,11 @@ $locale = ""; $language = ""; $project = "";
 $locale_force_get = false; $language_force_get = false; $project_force_get = false;
 $title_info = "";
 // [Need Krinkle/inuition to run: Remember to change it to correct path]
-$IntuitionStartFile = 'intuition/ToolStart.php';
-# $IntuitionStartFile = '/data/project/intuition/src/Intuition/ToolStart.php';
+$IntuitionStartFile = __DIR__ . '/vendor/autoload.php';
 
 // Intuition initialization
 require_once($IntuitionStartFile);
-$I18N = new TsIntuition(array(
+$I18N = new Intuition(array(
   'domain' => 'raun',
   'suppressbrackets' => true,
 ));

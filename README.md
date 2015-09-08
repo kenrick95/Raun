@@ -26,6 +26,9 @@ The tool calls MediaWiki API to get user list of admin rights and editor rights.
 ## Browser Support
 Browsers that supports jQuery 2 and Bootstrap 3.1.1
 
+## Dependencies
+* [krinkle/intuition](https://github.com/krinkle/intuition) for messages and localization
+
 ## Credits & License
 * [Bootstrap](https://github.com/twbs/bootstrap) 3.1.1
 * [jQuery](https://github.com/jquery/jquery) 2.1.4

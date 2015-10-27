@@ -306,7 +306,7 @@ Model.prototype.tryORES = function (project) {
             dataType: "jsonp",
             crossDomain: true,
             success: function (data) {
-                if (data.models !== undefined && data.models.indexOf("reverted") !== -1) {
+                if (data.models !== undefined && data.models.reverted !== undefined) {
                     that.data['ores-supported'] = true;
                 } else {
                     that.data['ores-supported'] = false;

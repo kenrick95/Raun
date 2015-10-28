@@ -303,7 +303,7 @@ Model.prototype.tryORES = function (project) {
         $.ajax({
             type: "GET",
             url: "//ores.wmflabs.org/scores/" + project + "/",
-            dataType: "jsonp",
+            dataType: "json",
             crossDomain: true,
             success: function (data) {
                 if (data.models !== undefined && data.models.reverted !== undefined) {
@@ -325,7 +325,7 @@ Model.prototype.getORESOnce = function (view, revid) {
     $.ajax({
         type: "GET",
         url: "//ores.wmflabs.org/scores/" + wiki + "/reverted/" + revid + "/",
-        dataType: "jsonp",
+        dataType: "json",
         crossDomain: true,
         success: function (data) {
             view.displayORES(data[revid], revid);

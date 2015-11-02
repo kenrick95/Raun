@@ -170,7 +170,12 @@ Model.prototype.init = function (view) {
     }
     view.displayTime();
 
-    this.tryORES(this.config.language + "wiki");
+    if (this.config.language === "www") {
+        this.tryORES(this.config.project + "wiki");
+    } else {
+        this.tryORES(this.config.language + "wiki");
+    }
+
 
     return;
 };
@@ -321,6 +326,9 @@ Model.prototype.tryORES = function (project) {
 
 Model.prototype.getORESOnce = function (view, revid) {
     var wiki = this.config.language + "wiki";
+    if (this.config.language === "www") {
+        wiki = this.config.project + "wiki";
+    }
 
     $.ajax({
         type: "GET",

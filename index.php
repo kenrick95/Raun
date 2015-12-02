@@ -6,20 +6,19 @@
  * @author Kenrick <contact@kenrick95.org>
  * @license MIT License <http://opensource.org/licenses/MIT>
  */
-
 ob_start();
+require_once __DIR__ . '/../vendor/autoload.php';
+
 $locale = ""; $language = ""; $project = "";
 $locale_force_get = false; $language_force_get = false; $project_force_get = false;
 $title_info = "";
-// [Need Krinkle/inuition to run: Remember to change it to correct path]
-$IntuitionStartFile = __DIR__ . '/vendor/autoload.php';
 
 // Intuition initialization
-require_once($IntuitionStartFile);
 $I18N = new Intuition(array(
   'domain' => 'raun',
   'suppressbrackets' => true,
 ));
+$I18N->registerDomain( 'raun', __DIR__ . '/../messages' );
 
 $locale = $I18N->getLang();
 if (isset($_GET['userlang'])) {

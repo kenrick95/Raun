@@ -22,6 +22,7 @@
 	"settings_editor_edits": "Suntingan editor",
 	"settings_admin_edits": "Suntingan pengurus",
 	"settings_other_edits": "Suntingan lainnya",
+	"settings_more_entries": "Jangan tampilkan entri baru secara otomatis",
 	"time_utc": "Waktu, dalam UTC",
 	"stat_articles": "Halaman konten",
 	"stat_pages": "Jumlah halaman",
@@ -47,11 +48,12 @@
 	"bot": "bot",
 	"editor": "editor",
 	"admin": "pengurus",
-	"help_p1": "Raun adalah alat untuk memantau perubahan terbaru Wikipedia bahasa Indonesia secara langsung (<i>live</i>). Setiap beberapa saat, Raun akan memuat perubahan terbaru tepat di depan Anda secara otomatis.",
+	"help_p1": "Raun adalah alat untuk memantau perubahan terbaru Wikipedia secara langsung (<i>live</i>). Setiap beberapa saat, Raun akan memuat perubahan terbaru tepat di depan Anda secara otomatis.",
 	"help_p2": "Anda dapat menjeda (menghentikan sementara) alat ini dengan mengeklik tombol \"Jeda\". Setelah itu, Anda dapat melanjutkan alat ini dengan mengeklik tombol \"Jalan!\".",
 	"help_p3": "Anda dapat menyaring suntingan yang Anda ingin lihat di \"Saringan\", dan pengaturan proyek wiki, bahasa wiki, dan bahasa alat ini di \"Setelan\"",
-	"help_p4": "Baris dengan tulisan berwarna abu-abu berarti terdapat suntingan lain yang lebih baru di halaman tersebut.",
+	"help_p4": "Suntingan dalam halaman yang sama akan digabung dalam satu entri. Jika proyek terpilih didukung ORES, alat ini akan menampilkan nilai ORES untuk mendeteksi vandalisme, dan akan berwarna merah muda untuk entri yang diyakini kuat merupakan vandalisme.",
 	"help_legend": "Legenda:",
+	"ores_score": "Nilai ORES",
 	"color": "Warna",
 	"about": "Tentang",
 	"about_tool": "Raun adalah alat untuk memantau perubahan terbaru Wikipedia bahasa Indonesia secara langsung (<i>live</i>). Alat ini terinspirasi dari $1, oleh $2. Proyek ini dimulai oleh $3.",
@@ -60,5 +62,6 @@
 	"credit": "Kredit",
 	"about_license": "Di luar lisensi kode dan ide yang telah disebutkan, kode proyek ini dilisensikan dengan lisensi MIT",
 	"about_github": "Kode tersedia di $1",
-	"send_feedback": "Kirim umpan balik"
+	"send_feedback": "Kirim umpan balik",
+	"more_entries": "Lihat $1 entri baru"
 }

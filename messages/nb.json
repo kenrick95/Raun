@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Chameleon222"
+			"Chameleon222",
+			"Danmichaelo"
 		]
 	},
 	"close": "Lukk",
@@ -54,7 +55,7 @@
 	"help_p1": "Raun er et verktøy for å patruljere de siste endringene på Wikimedia Foundation prosjektwikier i sanntid. Raun laster de siste endringene periodisk og viser dem til deg automatisk.",
 	"help_p2": "Du kan pause verktøyet ved å klikke på «Pause». Deretter kan du starte det igjen ved å klikke på «Kjør!».",
 	"help_p3": "Du kan filtrere redigeringene du ønsker under «Filter», og endre wikiprosjekt eller språk, eller språket for dette verktøyet, under «Innstillinger».",
-	"help_p4": "Rader med grå tekstfarge betyr at det er andre nyere redigeringer på den siden.",
+	"help_p4": "Rader med grå tekstfarge betyr at det finnes en eller flere nyere redigeringer på den siden.",
 	"help_legend": "Tegnforklaring:",
 	"color": "Farge",
 	"about": "Om",

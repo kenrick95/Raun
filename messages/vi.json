@@ -26,6 +26,7 @@
 	"settings_editor_edits": "Sửa đổi của người sửa đổi",
 	"settings_admin_edits": "Sửa đổi của bảo quản viên",
 	"settings_other_edits": "Sửa đổi khác",
+	"settings_more_entries": "Lấy mục mới thủ công",
 	"time_utc": "Giờ UTC",
 	"stat_articles": "Số trang nội dung",
 	"stat_pages": "Số trang",
@@ -54,8 +55,9 @@
 	"help_p1": "Raun là công cụ tuần tra các thay đổi gần đây trên các dự án trực thuộc Quỹ Wikimedia một cách trực tiếp. Raun tải các thay đổi gần đây một cách định kỳ và tự động hiển thị nó để bạn duyệt xem.",
 	"help_p2": "Bấm “Tạm ngừng” để dừng lại công cụ này và “Chạy!” để tiếp tục.",
 	"help_p3": "Lọc các sửa đổi dùng trình đơn “Bộ lọc”. Thay đổi dự án hay ngôn ngữ wiki hoặc ngôn ngữ giao diện của công cụ này dùng trình đơn “Tùy chọn”.",
-	"help_p4": "Các hàng có chữ màu xám là trang có sửa đổi mới hơn.",
+	"help_p4": "Các sửa đổi cùng trang được nhóm lại thành một mục. Nếu dự án được ORES hỗ trợ, nó sẽ hiển thị số điểm ORES để phát hiện phá hoại, và các mục chắc chắn sẽ được tô màu hồng.",
 	"help_legend": "Chú giải:",
+	"ores_score": "Số điểm ORES",
 	"color": "Màu",
 	"about": "Giới thiệu",
 	"about_tool": "Raun là công cụ để theo dõi các thay đổi gầy đây trên các dự án trực thuộc Quỹ Wikimedia một cách gần như trực tiếp. Công cụ này lấy cảm hứng từ $1 của $2. Dự án này do $3 bắt đầu.",
@@ -64,5 +66,6 @@
 	"credit": "Ghi công",
 	"about_license": "Nếu không được phủ nhận, mã nguồn của dự án này được phát hành dưới giấy phép MIT.",
 	"about_github": "Mã nguồn có sẵn trên $1",
-	"send_feedback": "Gửi phản hồi"
+	"send_feedback": "Gửi phản hồi",
+	"more_entries": "Xem $1 mục mới"
 }

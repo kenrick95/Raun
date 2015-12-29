@@ -4,7 +4,9 @@
 			"Alan ffm",
 			"Faren",
 			"Ty221",
-			"Wiochman"
+			"Wiochman",
+			"Chrumps",
+			"The Polish"
 		]
 	},
 	"close": "Zamknij",
@@ -54,11 +56,16 @@
 	"bot": "bot",
 	"editor": "redaktor",
 	"admin": "admin",
+	"help_p2": "Można wstrzymać narzędzie, naciskając na przycisk \"Pauza\". Po tym można go ponownie uruchomić, klikając na przycisk \"Start!\".",
+	"help_p3": "Możesz przefiltrować zmiany, które chcesz zobaczyć w dziale \"Filtr\", i zmienić Wiki-projekt lub język lub język w sekcji \"Ustawienia\".",
+	"help_p4": "Wiersze z szarym tekstem oznaczają, że na tej stronie istnieje inna nowsza edycja (lub edycje).",
 	"help_legend": "Legenda:",
 	"color": "Kolor",
 	"about": "O programie",
+	"about_cookie": "Ta strona wykorzystuje pliki cookies. Dane zapisane, będą automatycznie usuwane, jeśli nie będziesz wchodzić na stronę tego narzędzia w ciągu 30 dni.",
 	"information": "Informacja",
 	"credit": "Kredyt",
+	"about_license": "Jeśli nie podano inaczej, kod źródłowy tego projektu jest rozpowszechniany na licencji MIT.",
 	"about_github": "Kod źródłowy jest dostępny na $1",
 	"send_feedback": "Prześlij opinię"
 }

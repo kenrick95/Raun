@@ -28,6 +28,7 @@
 	"settings_editor_edits": "Ediciones de usuarios",
 	"settings_admin_edits": "Ediciones de administradores",
 	"settings_other_edits": "Otras ediciones",
+	"settings_more_entries": "No mostrar automáticamente las entradas nuevas",
 	"time_utc": "Hora, en UTC",
 	"stat_articles": "Páginas de contenido",
 	"stat_pages": "Páginas",
@@ -58,6 +59,7 @@
 	"help_p3": "Puedes filtrar las ediciones que quieres ver en \"Filtro\" y cambiar el proyecto wiki o idioma, o la configuración de esta herramienta en \"Ajustes\".",
 	"help_p4": "Las filas cuyo texto es gris indican que hay ediciones más recientes en la página respectiva.",
 	"help_legend": "Leyenda:",
+	"ores_score": "Puntuación ORES",
 	"color": "Color",
 	"about": "Acerca de",
 	"about_tool": "Raun es una herramienta para observar los cambios recientes de los proyectos de la Fundación Wikimedia, casi en tiempo real. Esta herramienta está inspirada en $1, de $2. $3 inició este proyecto.",
@@ -66,5 +68,6 @@
 	"credit": "Crédito",
 	"about_license": "A menos que se indique lo contrario, el código fuente de este proyecto está disponible bajo la licencia MIT.",
 	"about_github": "El código fuente está disponible en $1",
-	"send_feedback": "Enviar comentarios"
+	"send_feedback": "Enviar comentarios",
+	"more_entries": "Ver $1 entradas nuevas"
 }

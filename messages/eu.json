@@ -1,0 +1,33 @@
+{
+	"@metadata": {
+		"authors": [
+			"An13sa",
+			"Subi"
+		]
+	},
+	"close": "Itxi",
+	"help": "Laguntza",
+	"stat": "Estatistikak",
+	"settings_tool": "Tresna",
+	"language": "Hizkuntza",
+	"project": "Proiektua",
+	"save": "Gorde",
+	"settings_wiki": "Wiki",
+	"stat_pages": "Orrialdeak",
+	"stat_files": "Igotako fitxategiak",
+	"stat_depth": "Sakonera",
+	"stat_users": "Izena emandako erabiltzaileak",
+	"stat_active_users": "Erabiltzaile aktiboak",
+	"stat_admins": "Administratzaileak",
+	"separator_thousands": ",",
+	"separator_decimals": ".",
+	"def_i": "v conv",
+	"main_time_utc": "Ordua (UTC)",
+	"main_info": "Informazioa",
+	"new": "berria",
+	"minor": "txikia",
+	"bot": "bota",
+	"color": "Kolorea",
+	"about": "Honi buruz",
+	"information": "Informazioa"
+}

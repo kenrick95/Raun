@@ -27,6 +27,7 @@
 	"settings_editor_edits": "Ediciones d'editores",
 	"settings_admin_edits": "Ediciones d'alministradores",
 	"settings_other_edits": "Otres ediciones",
+	"settings_more_entries": "Nun amosar automáticamente les entraes nueves",
 	"time_utc": "Hora, en UTC",
 	"stat_articles": "Páxines de conteníu",
 	"stat_pages": "Páxines",
@@ -57,6 +58,7 @@
 	"help_p3": "Pues filtrar les ediciones que quies ver baxo \"Filtru\", y cambiar de proyeutu wiki o llingua, o la configuración llocal d'esta ferramienta baxo \"Preferencies\".",
 	"help_p4": "El color buxu nel testu de les fileres significa significa qu'hai otres ediciones más nueves nesa páxina.",
 	"help_legend": "Lleenda:",
+	"ores_score": "Puntuación ORES",
 	"color": "Color",
 	"about": "Tocante a",
 	"about_tool": "Raun ye una ferramienta pa vixilar los cambios recientes de los proyeutos de la Fundación Wikimedia en tiempu real (casi). Esta ferramienta ta inspirada por $1, de $2. Esti proyeutu principiólu $3.",
@@ -65,5 +67,6 @@
 	"credit": "Créditu",
 	"about_license": "Mentanto nun s'indique lo contrario, el códigu fonte d'esti proyeutu ta disponible baxo la llicencia MIT.",
 	"about_github": "El códigu fonte ta disponible en $1",
-	"send_feedback": "Unviar opiniones"
+	"send_feedback": "Unviar opiniones",
+	"more_entries": "Ver $1 entraes nueves"
 }

@@ -1,7 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Shirayuki"
+			"Shirayuki",
+			"Mahali syarifuddin",
+			"Otokoume",
+			"Sujiniku"
 		]
 	},
 	"close": "閉じる",
@@ -31,7 +34,9 @@
 	"stat_pages": "ページ",
 	"stat_files": "アップロードされたファイル",
 	"stat_edits": "ページの編集",
+	"stat_depth": "深さ",
 	"stat_users": "登録利用者",
+	"stat_active_users": "活動中のユーザー",
 	"stat_admins": "管理者",
 	"separator_thousands": ",",
 	"separator_decimals": ".",
@@ -48,13 +53,16 @@
 	"bot": "ボット",
 	"editor": "編集者",
 	"admin": "管理者",
+	"help_p1": "Raunはウィキメディアプロジェクト財団で最近更新ツールのリアルタイム検査です。 Raunは最近、定期的かつ自動的に更新ロードされます。",
 	"help_p2": "このツールを一時停止するには「一時停止」をクリックします。その後、実行を再開するには「実行!」をクリックします。",
 	"help_p3": "「フィルター」メニューで編集を絞り込むことができます。「設定」メニューで、ウィキ プロジェクトや言語を変更したり、このツールの表示言語を変更することができます。",
+	"help_p4": "ページ上の灰色のテキストは、比較的新しい編集であることを意味します。",
 	"help_legend": "凡例:",
 	"color": "色",
 	"about_cookie": "このサイトは Cookie を使用します。このツールを 30 日間使用しなかった場合、Cookie を紐付けて格納されたデータは自動的に削除されます。",
 	"information": "情報",
 	"credit": "クレジット",
+	"about_license": "特に明記しないかぎり、プロジェクトのソースコードはMITライセンスを使用することが許諾されています。",
 	"about_github": "ソース コードは $1 で入手できます",
 	"send_feedback": "フィードバックを送信"
 }

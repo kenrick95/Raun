@@ -29,6 +29,7 @@
 	"settings_editor_edits": "Redacteursbewerkingen",
 	"settings_admin_edits": "Beheerdersbewerkingen",
 	"settings_other_edits": "Andere bewerkingen",
+	"settings_more_entries": "Nieuwe items niet automatisch weergeven",
 	"time_utc": "Tijd in UTC",
 	"stat_articles": "Inhoudelijke pagina's",
 	"stat_pages": "Pagina's",
@@ -59,6 +60,7 @@
 	"help_p3": "U kunt de bewerkingen die u wilt zien filteren onder \"Filter\" en u kunt het wikiproject of de taal van dit programma wijzigen onder \"Instellingen\".",
 	"help_p4": "Als een rij grijze tekst heeft, betekent dat dat er nieuwere bewerkingen zijn voor die pagina.",
 	"help_legend": "Legenda:",
+	"ores_score": "ORES-score",
 	"color": "Kleur",
 	"about": "Over",
 	"about_tool": "Raun is een hulpmiddel om de recente wijzigingen op projecten van de Wikimedia Foundation te volgen in (bijna) realtime. Dit hulpmiddel is gemaakt door $2, met inspiratie van $1. Het project is gestart door $3.",
@@ -67,5 +69,6 @@
 	"credit": "Vermeldingen",
 	"about_license": "Tenzij anders vermeld, is de broncode van dit project gelicenseerd onder de MIT-licentie.",
 	"about_github": "Broncode is beschikbaar op $1",
-	"send_feedback": "Terugkoppeling verzenden"
+	"send_feedback": "Terugkoppeling verzenden",
+	"more_entries": "$1 nieuwe items bekijken"
 }

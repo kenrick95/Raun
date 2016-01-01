@@ -66,7 +66,7 @@
 	"about_cookie": "此站点使用cookie。由cookie存储的数据会在您不再访问30天后自动删除。",
 	"information": "信息",
 	"credit": "信用卡",
-	"about_license": "另外，此项目的源代码是使用麻省理工学院许可证（MIT）授权许可。",
+	"about_license": "除非另有声明，此项目的源代码是使用麻省理工学院许可证（MIT）授权许可。",
 	"about_github": "源代码可在$1找到",
 	"send_feedback": "发送反馈",
 	"more_entries": "查看$1条新记录"

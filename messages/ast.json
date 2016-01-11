@@ -56,7 +56,7 @@
 	"help_p1": "Raun ye una ferramienta pa patrullar los cambios recientes de las wikis del Proyeutu Fundación Wikimedia en tiempu real. Raun cargará periódicamente los cambios recientes y te los presentará automáticamente.",
 	"help_p2": "Pues posar esta ferramienta calcando \"Pausa\". Y dempués d'eso, pues volver a llanzala calcando \"¡Executar!\".",
 	"help_p3": "Pues filtrar les ediciones que quies ver baxo \"Filtru\", y cambiar de proyeutu wiki o llingua, o la configuración llocal d'esta ferramienta baxo \"Preferencies\".",
-	"help_p4": "El color buxu nel testu de les fileres significa significa qu'hai otres ediciones más nueves nesa páxina.",
+	"help_p4": "Les ediciones na mesma páxina combínense nuna entrada. Sil proyeutu tien l'encontu d'ORES, amosará la puntuación ORES pa deteutar vandalismu y tien fondu rosa pa les entraes d'altu enfotu.",
 	"help_legend": "Lleenda:",
 	"ores_score": "Puntuación ORES",
 	"color": "Color",
@@ -65,7 +65,7 @@
 	"about_cookie": "Este sitiu utiliza «cookies». Los datos almacenaos pola «cookie» desaniciaránse automáticamente si nun visites esta ferramienta en 30 díes.",
 	"information": "Información",
 	"credit": "Créditu",
-	"about_license": "Mentanto nun s'indique lo contrario, el códigu fonte d'esti proyeutu ta disponible baxo la llicencia MIT.",
+	"about_license": "Mentanto nun s'indique lo contrario, el códigu fonte d'esti proyeutu ta disponible baxo la Llicencia MIT.",
 	"about_github": "El códigu fonte ta disponible en $1",
 	"send_feedback": "Unviar opiniones",
 	"more_entries": "Ver $1 entraes nueves"

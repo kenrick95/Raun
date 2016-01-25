@@ -1,0 +1,37 @@
+{
+	"@metadata": {
+		"authors": [
+			"Vrhnje"
+		]
+	},
+	"close": "Zatvori",
+	"help": "Pomoć",
+	"filter": "Filtriraj",
+	"settings": "Postavke",
+	"fork": "Izvorni kod",
+	"stat": "Statistički podaci",
+	"settings_tool": "Alati",
+	"settings_redirects": "Stranice za preusmjeravanje",
+	"settings_new_pages": "Nove stranice",
+	"settings_editor_edits": "Izmjene urednika",
+	"settings_admin_edits": "Izmjene administratora",
+	"settings_other_edits": "Ostale izmjene",
+	"settings_more_entries": "Ne pokazuj automatski nove izmjene",
+	"time_utc": "Vrijeme (UTC)",
+	"stat_articles": "Stranice sa sadržajem",
+	"stat_users": "Registrirani korisnici",
+	"stat_active_users": "Aktivni suradnici",
+	"stat_admins": "Administratori",
+	"main_time_utc": "Vrijeme (UTC)",
+	"main_page": "Stranica",
+	"main_user": "Suradnik",
+	"main_info": "Informacije",
+	"new": "novo",
+	"color": "Boja",
+	"about": "O nama",
+	"about_tool": "Raun je alat za praćenje najnovijih promjena projekata Wikimedia Foundationa u realnom vremenu. Ovaj alat je inspiriran od $1, od $2. Ovaj projekt je pokrenut od $3.",
+	"about_cookie": "Ova stranica koristi kolačiće. Podaci pohranjeni u njima biti će automatski izbrisani ako ne posjetite stranicu ovog alata u roku od 30 dana.",
+	"information": "Informacije",
+	"about_github": "Izvorni kod je dostupan na $1",
+	"send_feedback": "Pošalji komentar"
+}

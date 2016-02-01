@@ -26,6 +26,7 @@
 	"settings_editor_edits": "সম্পাদনের সম্পাদনা",
 	"settings_admin_edits": "প্রশাসক সম্পাদনা",
 	"settings_other_edits": "অন্য সম্পাদনা",
+	"settings_more_entries": "স্বয়ংক্রিয়ভাবে নতুন ভুক্তি দেখাবেন না",
 	"time_utc": "সময়, ইউটিসিতে",
 	"stat_articles": "বিষয়বস্তুর পাতা",
 	"stat_pages": "পাতা",
@@ -37,10 +38,12 @@
 	"stat_admins": "প্রশাসক",
 	"separator_thousands": ",",
 	"separator_decimals": ".",
+	"def_def": "নিয়ন্ত্রণ; যাচাই; পরীক্ষা;",
 	"main_time_utc": "সময় (ইউটিসি)",
 	"main_page": "পাতা",
 	"main_user": "ব্যবহারকারী",
 	"main_info": "তথ্য",
+	"combined_entries": "মিলিত ভুক্তি",
 	"new": "নতুন",
 	"minor": "অনুল্লেখ্য",
 	"anon": "বেনামী",
@@ -52,5 +55,6 @@
 	"about": "পরিচিতি",
 	"information": "তথ্য",
 	"credit": "কৃতিত্ব",
-	"send_feedback": "প্রতিক্রিয়া জানান"
+	"send_feedback": "প্রতিক্রিয়া জানান",
+	"more_entries": "$1টি নতুন ভুক্তি দেখুন"
 }

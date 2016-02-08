@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Chameleon222",
-			"Danmichaelo"
+			"Danmichaelo",
+			"SuperPotato"
 		]
 	},
 	"close": "Lukk",
@@ -27,6 +28,7 @@
 	"settings_editor_edits": "Bidragsyterredigeringer",
 	"settings_admin_edits": "Administratorredigeringer",
 	"settings_other_edits": "Andre redigeringer",
+	"settings_more_entries": "Ikke vis nye innlegg automatisk",
 	"time_utc": "Tid, i UTC",
 	"stat_articles": "Innholdssider",
 	"stat_pages": "Sider",
@@ -55,8 +57,9 @@
 	"help_p1": "Raun er et verktøy for å patruljere de siste endringene på Wikimedia Foundation prosjektwikier i sanntid. Raun laster de siste endringene periodisk og viser dem til deg automatisk.",
 	"help_p2": "Du kan pause verktøyet ved å klikke på «Pause». Deretter kan du starte det igjen ved å klikke på «Kjør!».",
 	"help_p3": "Du kan filtrere redigeringene du ønsker under «Filter», og endre wikiprosjekt eller språk, eller språket for dette verktøyet, under «Innstillinger».",
-	"help_p4": "Rader med grå tekstfarge betyr at det finnes en eller flere nyere redigeringer på den siden.",
+	"help_p4": "Redigeringer på den samme siden er kombinert til et innlegg. Hvis prosjektet støttes av ORES, vil det vises en sum av funnet vandalisering og har rosa bakgrunn for innlegg av høy tillit.",
 	"help_legend": "Tegnforklaring:",
+	"ores_score": "ORES poengsum",
 	"color": "Farge",
 	"about": "Om",
 	"about_tool": "Raun er et verktøy for å overvåke de siste endringene på Wikimedia Foundation prosjektwikier i (nær) sanntid. Dette verktøyet er inspirert av $1 av $2. Dette prosjektet er startet av $3.",
@@ -65,5 +68,6 @@
 	"credit": "Kreditering",
 	"about_license": "Om ikke annet er angitt er kildekoden til dette prosjektet lisensiert under MIT-lisensen.",
 	"about_github": "Kildekode er tilgjengelig på $1",
-	"send_feedback": "Send tilbakemelding"
+	"send_feedback": "Send tilbakemelding",
+	"more_entries": "Vis $1 nye innlegg"
 }

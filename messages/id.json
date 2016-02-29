@@ -1,5 +1,9 @@
 {
-	"@metadata": [],
+	"@metadata": {
+		"authors": [
+			"Mahali syarifuddin"
+		]
+	},
 	"close": "Tutup",
 	"help": "Bantuan",
 	"filter": "Saringan",
@@ -11,7 +15,7 @@
 	"project": "Proyek",
 	"save": "Simpan",
 	"settings_pause": "Jeda",
-	"settings_run": "Jalan!",
+	"settings_run": "Jalankan!",
 	"settings_show": "Tampilkan",
 	"settings_wiki": "Wiki",
 	"settings_bot_edits": "Suntingan bot",
@@ -23,7 +27,7 @@
 	"settings_admin_edits": "Suntingan pengurus",
 	"settings_other_edits": "Suntingan lainnya",
 	"settings_more_entries": "Jangan tampilkan entri baru secara otomatis",
-	"time_utc": "Waktu, dalam UTC",
+	"time_utc": "Waktu dalam UTC",
 	"stat_articles": "Halaman konten",
 	"stat_pages": "Jumlah halaman",
 	"stat_files": "Jumlah berkas",

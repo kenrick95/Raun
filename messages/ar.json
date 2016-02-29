@@ -29,5 +29,7 @@
 	"stat_depth": "العمق",
 	"stat_users": "المستخدمون المسجلون",
 	"stat_active_users": "المستخدمون النشطون",
-	"stat_admins": "الإداريون"
+	"stat_admins": "الإداريون",
+	"main_info": "معلومات",
+	"combined_entries": "مدخلات مجمعة"
 }

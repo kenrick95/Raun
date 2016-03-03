@@ -38,6 +38,7 @@
 	"stat_admins": "Administradores",
 	"separator_thousands": "&nbsp;",
 	"separator_decimals": ",",
+	"main_time_utc": "Hora (UTC)",
 	"main_page": "Páxina",
 	"main_user": "Usuario",
 	"main_info": "Información",
@@ -48,8 +49,11 @@
 	"editor": "editor",
 	"admin": "administrador",
 	"help_legend": "Lenda:",
+	"ores_score": "Puntuación ORES",
 	"color": "Cor",
 	"about": "Acerca de",
 	"information": "Información",
-	"credit": "Crédito"
+	"credit": "Crédito",
+	"about_github": "O código fonte está dispoñible en $1",
+	"send_feedback": "Enviar comentarios"
 }

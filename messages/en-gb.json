@@ -1,8 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Shirayuki"
+			"Shirayuki",
+			"Andibing"
 		]
 	},
-	"about_license": "Otherwise stated, this project source code is licenced under MIT Licence."
+	"about_license": "Unless otherwise stated, this project source code is licenced under MIT Licence."
 }

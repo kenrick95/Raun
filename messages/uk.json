@@ -5,7 +5,8 @@
 			"Alex Blokha",
 			"Lxlalexlxl",
 			"Base",
-			"Green Zero"
+			"Green Zero",
+			"Visem"
 		]
 	},
 	"close": "Закрити",
@@ -67,5 +68,6 @@
 	"information": "Інформація",
 	"credit": "Кредит",
 	"about_github": "Вихідний код доступний на $1",
-	"send_feedback": "Надіслати відгук"
+	"send_feedback": "Надіслати відгук",
+	"more_entries": "Переглянути $1 нові записи"
 }

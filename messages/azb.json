@@ -1,0 +1,43 @@
+{
+	"@metadata": {
+		"authors": [
+			"Alp Er Tunqa"
+		]
+	},
+	"close": "باغلا",
+	"help": "کؤمک",
+	"filter": "سۆزگَج",
+	"settings": "تنظیملر",
+	"fork": "قایناق کوْد",
+	"stat": "آمار",
+	"settings_tool": "آلتلر",
+	"language": "دیل",
+	"project": "پروژه",
+	"save": "ذخیره ائت",
+	"settings_pause": "دۇر",
+	"settings_run": "چالیشدیر!",
+	"settings_show": "گؤستر",
+	"settings_wiki": "ویکی",
+	"settings_bot_edits": "روْبات دَییشدیرمه‌لری",
+	"settings_anon_edits": "تانیلماز دَییشدیرمه‌لر",
+	"settings_minor_edits": "کیچیک دَییشدیرمه‌لر",
+	"settings_redirects": "یوْللاندیرما صفحه‌‌لری",
+	"settings_new_pages": "يئنی صفحه‌لر",
+	"settings_admin_edits": "ایداره‌چی دَییشدیرمه‌لری",
+	"settings_other_edits": "آیری دَییشدیرمه‌لر",
+	"stat_pages": "صفحه‌لر",
+	"stat_files": "یوکلنمیش فایللار",
+	"stat_depth": "درینلیک",
+	"separator_thousands": "،",
+	"separator_decimals": ".",
+	"def_i": "v conv",
+	"main_page": "صفحه",
+	"main_user": "ایشلدن",
+	"new": "یئنی",
+	"minor": "کیچیک",
+	"bot": "روْبات",
+	"editor": "دَییشدیرن",
+	"admin": "ایداره‌چی",
+	"color": "بوْیا",
+	"about": "گؤره"
+}

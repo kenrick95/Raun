@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Banjo",
-			"Macofe"
+			"Macofe",
+			"Chairego apc"
 		]
 	},
 	"close": "Pechar",
@@ -27,6 +28,7 @@
 	"settings_editor_edits": "Edicións de usuarios confirmados",
 	"settings_admin_edits": "Edicións de administradores",
 	"settings_other_edits": "Outras edicións",
+	"settings_more_entries": "Non amosar as novas entradas automaticamente",
 	"time_utc": "Tempo, en UTC",
 	"stat_articles": "Páxinas de contido",
 	"stat_pages": "Páxinas",
@@ -42,6 +44,7 @@
 	"main_page": "Páxina",
 	"main_user": "Usuario",
 	"main_info": "Información",
+	"combined_entries": "Entradas combinadas",
 	"new": "nova",
 	"minor": "menor",
 	"redirect": "redirección",

@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Alp Er Tunqa"
+			"Alp Er Tunqa",
+			"Ilğım"
 		]
 	},
 	"close": "باغلا",
@@ -13,8 +14,8 @@
 	"settings_tool": "آلتلر",
 	"language": "دیل",
 	"project": "پروژه",
-	"save": "ذخیره ائت",
-	"settings_pause": "دۇر",
+	"save": "قئید ائت",
+	"settings_pause": "دایان",
 	"settings_run": "چالیشدیر!",
 	"settings_show": "گؤستر",
 	"settings_wiki": "ویکی",
@@ -24,7 +25,7 @@
 	"settings_redirects": "یوْللاندیرما صفحه‌‌لری",
 	"settings_new_pages": "يئنی صفحه‌لر",
 	"settings_admin_edits": "ایداره‌چی دَییشدیرمه‌لری",
-	"settings_other_edits": "آیری دَییشدیرمه‌لر",
+	"settings_other_edits": "باشقا دَییشدیرمه‌لر",
 	"stat_pages": "صفحه‌لر",
 	"stat_files": "یوکلنمیش فایللار",
 	"stat_depth": "درینلیک",

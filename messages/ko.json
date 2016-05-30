@@ -2,13 +2,28 @@
 	"@metadata": {
 		"authors": [
 			"아라",
-			"Hwangjy9"
+			"Hwangjy9",
+			"Ykhwong"
 		]
 	},
+	"close": "닫기",
+	"help": "도움말",
 	"filter": "필터",
 	"settings": "설정",
+	"fork": "소스 코드",
 	"stat": "통계",
+	"settings_tool": "도구",
+	"language": "언어",
+	"project": "프로젝트",
+	"save": "저장",
+	"settings_pause": "일시 정지",
+	"separator_thousands": ",",
+	"separator_decimals": ".",
 	"main_info": "정보",
+	"help_legend": "범례:",
+	"color": "색",
 	"about": "정보",
-	"information": "정보"
+	"information": "정보",
+	"about_github": "소스 코드는 $1에서 이용할 수 있습니다",
+	"send_feedback": "의견 보내기"
 }

@@ -65,7 +65,7 @@
 	"about_tool": "Raun是一个在维基计划基金会下用于接近实时巡查最近更新的工具。这个工具其发自$2的$1，由$3开启。",
 	"about_cookie": "此站点使用cookie。由cookie存储的数据会在您不再访问30天后自动删除。",
 	"information": "信息",
-	"credit": "信用卡",
+	"credit": "署名",
 	"about_license": "除非另有声明，此项目的源代码是使用麻省理工学院许可证（MIT）授权许可。",
 	"about_github": "源代码可在$1找到",
 	"send_feedback": "发送反馈",

@@ -307,7 +307,7 @@ Model.prototype.tryORES = function (project) {
     if (this.data['ores-supported'] === null) {
         $.ajax({
             type: "GET",
-            url: "//ores.wmflabs.org/scores/" + project + "/",
+            url: "//ores.wikimedia.org/scores/" + project + "/",
             dataType: "json",
             crossDomain: true,
             success: function (data) {

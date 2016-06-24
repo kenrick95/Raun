@@ -19,6 +19,7 @@
 	"settings_run": "تشغيل!",
 	"settings_show": "أظهر",
 	"settings_wiki": "ويكي",
+	"settings_minor_edits": "تعديلات طفيفة",
 	"settings_new_pages": "الصفحات الجديدة",
 	"settings_editor_edits": "تعديلات المحررين",
 	"settings_admin_edits": "تعديلات الإداريين",
@@ -29,5 +30,7 @@
 	"stat_depth": "العمق",
 	"stat_users": "المستخدمون المسجلون",
 	"stat_active_users": "المستخدمون النشطون",
-	"stat_admins": "الإداريون"
+	"stat_admins": "الإداريون",
+	"main_info": "معلومات",
+	"combined_entries": "مدخلات مجمعة"
 }

@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"Olwe519"
+		]
+	},
+	"settings_tool": "lo tutci",
+	"language": "lo bangu",
+	"project": "lo gungunma",
+	"settings_wiki": "lo .uitki",
+	"settings_new_pages": "lo cnino papri",
+	"stat_pages": "papri",
+	"separator_thousands": " ki'o",
+	"separator_decimals": " pi",
+	"main_page": "lo papri",
+	"new": "cnino"
+}

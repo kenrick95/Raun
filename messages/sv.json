@@ -28,6 +28,7 @@
 	"settings_editor_edits": "Mindre redigeringar",
 	"settings_admin_edits": "Administratörredigeringar",
 	"settings_other_edits": "Andra redigeringar",
+	"settings_more_entries": "Visa inte automatiskt nya poster",
 	"time_utc": "Tid i UTC",
 	"stat_articles": "Innehållssidor",
 	"stat_pages": "Sidor",
@@ -56,7 +57,7 @@
 	"help_p1": "Raun är ett verktyg för att patrullera de senaste ändringarna på Wikimedia Foundations projektwikis i realtid. Raun kommer att ladda in den senaste tidens ändringar med jämna mellanrum och visa det för dig automatiskt.",
 	"help_p2": "Du kan pausa detta verktyg genom att klicka på \"Paus\". Och efter det, kan du köra det igen genom att klicka på \"Kör!\".",
 	"help_p3": "Du kan filtrera de redigeringar du vill se under \"Filter\". Där kan du ändra vilket wiki-projekt eller språk av den här redskap under \"Inställningar\".",
-	"help_p4": "Rader med grå textfärg innebär att det finns en eller flera andra nyare redigeringar på den sidan.",
+	"help_p4": "Redigeringar på samma sida kombineras till en post. Om projektet stöds av ORES kommer det att visa ORES-poäng för att upptäcka vandalism och har rosa bakgrund på poster med högt förtroende.",
 	"help_legend": "Teckenförklaring:",
 	"ores_score": "ORES-poäng",
 	"color": "Färg",
@@ -67,5 +68,6 @@
 	"credit": "Erkännanden",
 	"about_license": "Om inte annat anges är detta projekts källkod licensierat under MIT License.",
 	"about_github": "Källkoden finns tillgänglig på $1",
-	"send_feedback": "Skicka återkoppling"
+	"send_feedback": "Skicka återkoppling",
+	"more_entries": "Visa $1 nya poster"
 }

@@ -58,7 +58,7 @@
 	"help_p1": "Raun is een hulpmiddel om de recente wijzigingen op projecten van de Wikimedia Foundation in realtime te volgen. Raun laadt de recente wijzigingen periodiek en laat ze automatisch aan u zien.",
 	"help_p2": "U kunt dit hulpmiddel pauzeren door op \"Pauzeren\" te klikken. Daarna kunt u het weer activeren door op \"Uitvoeren!\" te klikken.",
 	"help_p3": "U kunt de bewerkingen die u wilt zien filteren onder \"Filter\" en u kunt het wikiproject of de taal van dit programma wijzigen onder \"Instellingen\".",
-	"help_p4": "Als een rij grijze tekst heeft, betekent dat dat er nieuwere bewerkingen zijn voor die pagina.",
+	"help_p4": "Bewerkingen op dezelfde pagina worden gecombineerd in één regel. Als het project wordt ondersteund door ORES, wordt de ORES-score weergegeven voor het detecteren van vandalisme en heeft deze een roze achtergrondkleur voor scores met een hoge waarschijnlijkheid.",
 	"help_legend": "Legenda:",
 	"ores_score": "ORES-score",
 	"color": "Kleur",

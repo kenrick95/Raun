@@ -29,6 +29,7 @@
 	"settings_editor_edits": "編集者による編集",
 	"settings_admin_edits": "管理者による編集",
 	"settings_other_edits": "その他の編集",
+	"settings_more_entries": "新しいエントリを自動的に表示しません",
 	"time_utc": "日時 (UTC)",
 	"stat_articles": "本文ページ",
 	"stat_pages": "ページ",
@@ -46,6 +47,7 @@
 	"main_page": "ページ",
 	"main_user": "利用者",
 	"main_info": "情報",
+	"combined_entries": "組み合わせエントリー",
 	"new": "新規",
 	"minor": "細部",
 	"anon": "匿名",
@@ -62,7 +64,7 @@
 	"about_cookie": "このサイトは Cookie を使用します。このツールを 30 日間使用しなかった場合、Cookie を紐付けて格納されたデータは自動的に削除されます。",
 	"information": "情報",
 	"credit": "クレジット",
-	"about_license": "特に明記しないかぎり、プロジェクトのソースコードはMITライセンスを使用することが許諾されています。",
+	"about_license": "特に明記しないかぎり、このプロジェクトのソースコードのライセンスは、MITライセンスです。",
 	"about_github": "ソース コードは $1 で入手できます",
 	"send_feedback": "フィードバックを送信"
 }

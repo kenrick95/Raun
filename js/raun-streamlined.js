@@ -988,7 +988,7 @@ View.prototype.displayRC = function (data) {
 
 View.prototype.displayORES = function (data, revid) {
     if (!data.error) {
-        if (Math.round(data.probability.true * 100) >= 80 && data.prediction) {
+        if (Math.round(data.probability.true * 100) >= 45 && data.prediction) {
             $(".revid-" + revid + ":not(.combined)").addClass("ores-alert");
         }
 
@@ -1026,7 +1026,7 @@ View.prototype.displayORES = function (data, revid) {
                     }
                     // console.log(revid, pageid_class, total, number, average);
                 });
-                if (Math.round(average * 100) >= 80 && data.prediction) {
+                if (Math.round(average * 100) >= 45 && data.prediction) {
                     $(".revid-" + revid + ".combined").addClass("ores-alert");
                 }
 

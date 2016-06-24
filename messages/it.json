@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Beta16",
-			"Ontsed"
+			"Ontsed",
+			"Einreiher"
 		]
 	},
 	"close": "Chiudi",
@@ -21,13 +22,13 @@
 	"settings_wiki": "Wiki",
 	"settings_bot_edits": "Modifiche dei bot",
 	"settings_anon_edits": "Modifiche di utenti anonimi",
-	"settings_minor_edits": "Modifiche di minore importanza",
+	"settings_minor_edits": "Modifiche minori",
 	"settings_redirects": "Pagine di reindirizzamento",
 	"settings_new_pages": "Nuove pagine",
-	"settings_editor_edits": "Modifiche di editori",
-	"settings_admin_edits": "Modifiche di amministratori",
+	"settings_editor_edits": "Modifiche degli editori",
+	"settings_admin_edits": "Modifiche degli amministratori",
 	"settings_other_edits": "Altre modifiche",
-	"settings_more_entries": "Non mostrare automaticamente le nuove voci",
+	"settings_more_entries": "Non mostrare automaticamente nuove voci",
 	"time_utc": "Ora, in UTC",
 	"stat_articles": "Pagine di contenuti",
 	"stat_pages": "Pagine",

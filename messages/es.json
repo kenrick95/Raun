@@ -57,7 +57,7 @@
 	"help_p1": "Raun es una herramienta para patrullar los cambios recientes de los wikis de la Fundación Wikimedia en tiempo real. Raun cargará periódicamente los cambios recientes y los mostrará delante de ti automáticamente.",
 	"help_p2": "Puedes detener esta herramienta haciendo clic en \"Pausar\". Y después de eso, puedes ejecutarla otra vez haciendo clic en \"Ejecutar\".",
 	"help_p3": "Puedes filtrar las ediciones que quieres ver en \"Filtro\" y cambiar el proyecto wiki o idioma, o la configuración de esta herramienta en \"Ajustes\".",
-	"help_p4": "Las filas cuyo texto es gris indican que hay ediciones más recientes en la página respectiva.",
+	"help_p4": "Las ediciones en la misma página se combinan en una sola entrada. Si ORES soporta al proyecto, aparecerá la pantalla la puntuación ORES para la detección de vandalismo y tiene un fondo rosa para las entradas de alta confianza.",
 	"help_legend": "Leyenda:",
 	"ores_score": "Puntuación ORES",
 	"color": "Color",

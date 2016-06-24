@@ -27,6 +27,7 @@
 	"settings_editor_edits": "Suntingan editor",
 	"settings_admin_edits": "Suntingan penyelia",
 	"settings_other_edits": "Suntingan lain",
+	"settings_more_entries": "Jangan tunjukkan entri baru secara automatik.",
 	"time_utc": "Waktu, pada UTC",
 	"stat_articles": "Laman kandungan",
 	"stat_pages": "Laman",
@@ -55,15 +56,17 @@
 	"help_p1": "Raun ialah alat untuk meronda perubahan terkini pada wiki -wiki Projek Yayasan Wikimedia secara langsung. Raun akan memuatkan perubahan terkini dari masa ke semasa dan menunjukkannya di hadapan anda secara automatik.",
 	"help_p2": "Anda boleh menjedakan alat ini dengan mengklik \"Jeda\". Dan selepas itu, anda boleh menjalankannya lagi dengan mengklik \"Jalankan!\".",
 	"help_p3": "Anda boleh menapis suntingan yang anda ingin lihat di \"Penapis\", dan tetapan projek wiki, bahasa wiki, dan bahasa alat ini di \"Tetapan\".",
-	"help_p4": "Baris dengan teks berwarna kelabu bermakna terdapat suntingan lain yang lebih baru di laman tersebut.",
+	"help_p4": "Suntingan dalam laman yang sama akan digabung dalam satu entri. Jika projek terpilih disokong ORES, alat ini akan memaparkan markah ORES untuk mengesan vandalisme, dan akan berwarna merah muda untuk entri yang dipercayai kuat merupakan vandalisme.",
 	"help_legend": "Petunjuk:",
+	"ores_score": "Markah ORES",
 	"color": "Warna",
 	"about": "Perihal",
 	"about_tool": "Raun ialah alat untuk meronda perubahan terkini dari projek Yayasan Wikimedia secara langsung. Alat ini diilhamkan daripada $1, oleh $2. Projek ini dimulakan oleh $3.",
 	"about_cookie": "Laman web ini menggunakan cookies. Data yang disimpan oleh cookie akan dihapuskan secara automatik jika anda tidak melawat alat ini dalam 30 hari.",
 	"information": "Maklumat",
 	"credit": "Kredit",
-	"about_license": "Dinyatakan sebaliknya, kod sumber projek ini dilesenkan di bawah Lesen MIT.",
+	"about_license": "Di luar lesen yang telah disebutkan, kod sumber projek ini dilesenkan di bawah Lesen MIT.",
 	"about_github": "Kod sumber boleh didapati pada $1",
-	"send_feedback": "Kirim maklum balas"
+	"send_feedback": "Kirim maklum balas",
+	"more_entries": "Lihat 92 entri baru"
 }

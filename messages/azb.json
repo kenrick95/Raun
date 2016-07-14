@@ -28,13 +28,17 @@
 	"settings_other_edits": "آیری دَییشدیرمه‌لر",
 	"stat_pages": "صفحه‌لر",
 	"stat_files": "یوکلنمیش فایللار",
+	"stat_edits": "صفحه‌نین دییشیک‌لیک‌لری",
 	"stat_depth": "درینلیک",
 	"stat_users": "یازیلمیش ایشلدنلر",
+	"stat_active_users": "چالیشقان ایشلدنلر",
+	"stat_admins": "ایداره‌چیلر",
 	"separator_thousands": "،",
 	"separator_decimals": ".",
 	"def_i": "v conv",
 	"main_page": "صفحه",
 	"main_user": "ایشلدن",
+	"main_info": "بیلگیلر",
 	"new": "یئنی",
 	"minor": "کیچیک",
 	"redirect": "یوللاندیرما",
@@ -42,5 +46,8 @@
 	"editor": "دَییشدیرن",
 	"admin": "ایداره‌چی",
 	"color": "بوْیا",
-	"about": "گؤره"
+	"about": "گؤره",
+	"information": "بیلگیلر",
+	"credit": "اعتیبار",
+	"send_feedback": "دؤنوت گؤندر"
 }

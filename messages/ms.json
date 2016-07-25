@@ -7,7 +7,7 @@
 	},
 	"close": "Tutup",
 	"help": "Bantuan",
-	"filter": "Penapis",
+	"filter": "Tapisan",
 	"settings": "Tetapan",
 	"fork": "Kod sumber",
 	"stat": "Statistik",
@@ -55,7 +55,7 @@
 	"admin": "penyelia",
 	"help_p1": "Raun ialah alat untuk meronda perubahan terkini pada wiki -wiki Projek Yayasan Wikimedia secara langsung. Raun akan memuatkan perubahan terkini dari masa ke semasa dan menunjukkannya di hadapan anda secara automatik.",
 	"help_p2": "Anda boleh menjedakan alat ini dengan mengklik \"Jeda\". Dan selepas itu, anda boleh menjalankannya lagi dengan mengklik \"Jalankan!\".",
-	"help_p3": "Anda boleh menapis suntingan yang anda ingin lihat di \"Penapis\", dan tetapan projek wiki, bahasa wiki, dan bahasa alat ini di \"Tetapan\".",
+	"help_p3": "Anda boleh menapis suntingan yang anda ingin lihat di \"Tapisan\", dan tetapan projek wiki, bahasa wiki, dan bahasa alat ini di \"Tetapan\".",
 	"help_p4": "Suntingan dalam laman yang sama akan digabung dalam satu entri. Jika projek terpilih disokong ORES, alat ini akan memaparkan markah ORES untuk mengesan vandalisme, dan akan berwarna merah muda untuk entri yang dipercayai kuat merupakan vandalisme.",
 	"help_legend": "Petunjuk:",
 	"ores_score": "Markah ORES",
@@ -68,5 +68,5 @@
 	"about_license": "Di luar lesen yang telah disebutkan, kod sumber projek ini dilesenkan di bawah Lesen MIT.",
 	"about_github": "Kod sumber boleh didapati pada $1",
 	"send_feedback": "Kirim maklum balas",
-	"more_entries": "Lihat 92 entri baru"
+	"more_entries": "Lihat $1 entri baru"
 }

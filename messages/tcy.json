@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"VASANTH S.N."
+			"VASANTH S.N.",
+			"Vishwanatha Badikana"
 		]
 	},
 	"close": "ಮುಚ್ಚಿಲೆ",
@@ -26,12 +27,12 @@
 	"separator_decimals": ".",
 	"main_time_utc": "ಸಮಯ (UTC)",
 	"main_page": "ಪುಟೊ",
-	"main_user": "ಬಳಕೆದಾರೆರ್",
+	"main_user": "ಬಳಕೆದಾರೆ",
 	"main_info": "ಮಾಹಿತಿ",
 	"new": "ಪೊಸ",
 	"minor": "ಎಲ್ಯ",
 	"bot": "ಬಾಟ್‍",
-	"editor": "ಸಂಪಾದಕೆ",
+	"editor": "ಸಂಪೊದಕೆ",
 	"admin": "ನಿರ್ವಾಹಕೆ",
 	"color": "ಬಣ್ಣೊ",
 	"about": "ಎಂಕ್ಲೆನ ಬಗ್ಗೆ",

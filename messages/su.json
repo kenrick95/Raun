@@ -52,9 +52,13 @@
 	"editor": "éditor",
 	"admin": "kuncén",
 	"help_legend": "Legénda:",
+	"ores_score": "Skor ORES",
 	"color": "Warna",
 	"about": "Ngeunaan",
+	"about_tool": "Raun nyaéta pakakas kanggo ngawaskeun parobahan panganyarna proyék-proyék Yayasan Wikimédia sacara langsung. Pakakas ieu terinspirasi ti $1, ku $2. Proyek ieu dimulai ku $3.",
+	"about_cookie": "Loka ieu ngagunakeun kuki HTTP. Data anu disimpen kuki badé otomatis dihapus lamun Anjeun henteu ngadatangan situs ieu dina 30 dinten.",
 	"information": "Émbaran",
 	"credit": "Krédit",
-	"about_github": "Kode sadia di $1"
+	"about_github": "Kode sadia di $1",
+	"more_entries": "Tingal $1 éntri anyar"
 }

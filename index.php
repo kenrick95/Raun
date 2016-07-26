@@ -7,7 +7,7 @@
  * @license MIT License <http://opensource.org/licenses/MIT>
  */
 ob_start();
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 $locale = ""; $language = ""; $project = "";
 $locale_force_get = false; $language_force_get = false; $project_force_get = false;

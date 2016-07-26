@@ -2,7 +2,7 @@
     "name" : "raun",
     "title" : "Raun",
     "description" : "Tool to watch the recent changes of Wikimedia Foundation projects, live; with ORES score for supported projects.",
-    "url" : "http://tools.wmflabs.org/raun/",
+    "url" : "https://tools.wmflabs.org/raun/",
     "keywords" : "recent changes, vandalism, patrol",
     "author" : "Kenrick95",
     "repository" : "https://github.com/kenrick95/Raun.git"

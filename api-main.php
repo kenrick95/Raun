@@ -10,6 +10,7 @@ function httpRequest($url, $post="") {
 
     $ch = curl_init();
     //Change the user agent below suitably
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false );
     curl_setopt($ch, CURLOPT_USERAGENT, 'Kenrick-Tool/Raun');
     curl_setopt($ch, CURLOPT_URL, ($url));
     curl_setopt( $ch, CURLOPT_ENCODING, "UTF-8" );

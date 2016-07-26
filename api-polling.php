@@ -1,5 +1,5 @@
 <?php
-$settings['wikiroot'] = "http://id.wikipedia.org/";
+$settings['wikiroot'] = "https://id.wikipedia.org/";
 $settings['cookiefile'] = "cookies.tmp";
 include("api-main.php");
 try {
@@ -12,7 +12,7 @@ try {
     // check project & language
     if (isset($_POST['project']) && isset($_POST['language'])) {
         if (in_array($_POST['project'], array('wikipedia', 'wikinews', 'wikibooks', 'wiktionary', 'wikiquote', 'wikivoyage', 'wikidata', 'wikimedia', 'wikiversity', 'wikisource', 'mediawiki'))) {
-            $settings['wikiroot'] = "http://" . $_POST['language'] . "." . $_POST['project'] . ".org/";
+            $settings['wikiroot'] = "https://" . $_POST['language'] . "." . $_POST['project'] . ".org/";
         }
     }
     switch ($_POST['type']) {

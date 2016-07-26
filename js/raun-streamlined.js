@@ -332,7 +332,7 @@ Model.prototype.getORESOnce = function (view, revid) {
 
     $.ajax({
         type: "GET",
-        url: "//ores.wmflabs.org/scores/" + wiki + "/reverted/" + revid + "/",
+        url: "//ores.wikimedia.org/scores/" + wiki + "/reverted/" + revid + "/",
         dataType: "json",
         crossDomain: true,
         success: function (data) {

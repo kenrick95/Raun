@@ -18,7 +18,7 @@ $I18N = new Intuition(array(
   'domain' => 'raun',
   'suppressbrackets' => true,
 ));
-$I18N->registerDomain( 'raun', __DIR__ . '/../messages' );
+$I18N->registerDomain( 'raun', __DIR__ . '/messages' );
 
 $locale = $I18N->getLang();
 if (isset($_GET['userlang'])) {

@@ -58,5 +58,6 @@
 	"information": "Información",
 	"credit": "Crédito",
 	"about_github": "O código fonte está dispoñible en $1",
-	"send_feedback": "Enviar comentarios"
+	"send_feedback": "Enviar comentarios",
+	"more_entries": "Ver $1 novas entradas"
 }

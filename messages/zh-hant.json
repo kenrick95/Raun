@@ -24,7 +24,9 @@
 	"settings_minor_edits": "小修改",
 	"settings_redirects": "重定向頁面",
 	"settings_new_pages": "新頁面",
+	"settings_editor_edits": "編輯者編輯",
 	"settings_admin_edits": "管理者編輯",
+	"settings_other_edits": "其它編輯",
 	"time_utc": "UTC時間",
 	"stat_articles": "內容頁面",
 	"stat_pages": "頁面數",
@@ -49,7 +51,9 @@
 	"help_legend": "說明：",
 	"color": "色彩",
 	"about": "關於",
+	"about_cookie": "此站點使用cookies。由cookie儲存的資料若您在30天內未有存取查看動作將會被自動刪除。",
 	"information": "資訊",
 	"credit": "信用",
-	"send_feedback": "寄送回饋"
+	"send_feedback": "寄送回饋",
+	"more_entries": "查看$1新項目"
 }

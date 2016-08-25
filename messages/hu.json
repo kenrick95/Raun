@@ -27,6 +27,7 @@
 	"settings_editor_edits": "Szerkesztő szerkesztések",
 	"settings_admin_edits": "Admin szerkesztések",
 	"settings_other_edits": "Már szerkesztések",
+	"settings_more_entries": "Ne jelenítse meg automatikusan az új elemeket",
 	"time_utc": "Idő UTC-ben",
 	"stat_articles": "Tartalmi oldalak",
 	"stat_pages": "Lapok",

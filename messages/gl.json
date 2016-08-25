@@ -3,7 +3,8 @@
 		"authors": [
 			"Banjo",
 			"Macofe",
-			"Chairego apc"
+			"Chairego apc",
+			"Elisardojm"
 		]
 	},
 	"close": "Pechar",
@@ -40,6 +41,8 @@
 	"stat_admins": "Administradores",
 	"separator_thousands": "&nbsp;",
 	"separator_decimals": ",",
+	"def_i": "v conv",
+	"def_def": "inspeccionar; vixiar; patrullar;",
 	"main_time_utc": "Hora (UTC)",
 	"main_page": "Páxina",
 	"main_user": "Usuario",
@@ -47,6 +50,7 @@
 	"combined_entries": "Entradas combinadas",
 	"new": "nova",
 	"minor": "menor",
+	"anon": "anónima",
 	"redirect": "redirección",
 	"bot": "bot",
 	"editor": "editor",

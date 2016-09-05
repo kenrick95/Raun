@@ -39,17 +39,21 @@
 	"separator_decimals": ".",
 	"def_i": "v conv",
 	"main_time_utc": "Sehat (UTC)",
-	"main_page": "Per",
+	"main_page": "Pele",
 	"main_user": "Karber",
 	"main_info": "Melumat",
 	"new": "newe",
 	"minor": "qıcek",
 	"anon": "Anonim",
 	"redirect": "hetenayış",
+	"bot": "bot",
 	"editor": "editor",
 	"admin": "admin",
 	"help_legend": "Kıtabek:",
 	"ores_score": "ORES skor",
 	"color": "Reng",
-	"about": "Heqtê cı"
+	"about": "Heqtê cı",
+	"information": "Melumat",
+	"credit": "Teşekur",
+	"send_feedback": "Peydrıştış bırışê"
 }

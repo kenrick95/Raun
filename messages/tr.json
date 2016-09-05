@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Mavrikant",
-			"Uğurkent"
+			"Uğurkent",
+			"Alpkant"
 		]
 	},
 	"close": "Kapat",
@@ -23,5 +24,8 @@
 	"minor": "küçük",
 	"bot": "bot",
 	"editor": "editör",
-	"about": "Hakkında"
+	"about": "Hakkında",
+	"information": "Bilgi",
+	"credit": "Emeği geçenler",
+	"send_feedback": "Geri bildirim yolla"
 }

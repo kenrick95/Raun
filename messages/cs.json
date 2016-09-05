@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Aktron"
+			"Aktron",
+			"Walter Klosse"
 		]
 	},
 	"close": "Zavřít",
@@ -53,5 +54,6 @@
 	"help_p2": "Tento nástroj můžete pozastavit pomocí tlačítka \"Pozastavit\". Pomocí tlačítka \"Spustit\" jej můžete Spustit.",
 	"help_legend": "Vysvětlivky:",
 	"color": "Barva",
-	"about": "O projektu"
+	"about": "O projektu",
+	"credit": "Zásluhy"
 }

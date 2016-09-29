@@ -19,6 +19,8 @@
 	"settings_redirects": "Ohjaussivut",
 	"settings_new_pages": "Uudet sivut",
 	"stat_depth": "Syvyys",
+	"stat_active_users": "Aktiiviset käyttäjät",
+	"stat_admins": "Ylläpitäjät",
 	"separator_thousands": "&nbsp;",
 	"separator_decimals": ",",
 	"main_time_utc": "Aika (UTC)",

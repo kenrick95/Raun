@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Zygimantus"
+			"Zygimantus",
+			"Eitvys200"
 		]
 	},
 	"close": "Uždaryti",
@@ -41,6 +42,7 @@
 	"main_user": "Naudotojas",
 	"main_info": "Informacija",
 	"new": "naujas",
+	"minor": "smulkus",
 	"redirect": "nukreipimas",
 	"bot": "robotas",
 	"editor": "redaktorius",
@@ -51,5 +53,5 @@
 	"about": "Apie",
 	"information": "Informacija",
 	"send_feedback": "Siųsti atsiliepimus",
-	"more_entries": "Žiūrėti $1 naujus įrašus"
+	"more_entries": "Žiūrėti $1 naujų įrašų"
 }

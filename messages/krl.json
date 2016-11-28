@@ -4,5 +4,13 @@
 			"Likopiän tyttö"
 		]
 	},
-	"close": "Pane kiinni"
+	"close": "Pane kiinni",
+	"settings": "Ašetukšet",
+	"language": "Kieli",
+	"project": "Projekti",
+	"settings_wiki": "Wiki",
+	"stat_pages": "Šivut",
+	"stat_depth": "Šyvyš",
+	"main_page": "Šivu",
+	"new": "uuši"
 }

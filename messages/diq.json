@@ -3,7 +3,8 @@
 		"authors": [
 			"Mirzali",
 			"Kumkumuk",
-			"Asmen"
+			"Asmen",
+			"Gırd"
 		]
 	},
 	"close": "Racın",
@@ -28,6 +29,8 @@
 	"settings_editor_edits": "Vurriyayışê Editori",
 	"settings_admin_edits": "Vurriyayışê Admini",
 	"settings_other_edits": "Vurriyayışê bini",
+	"settings_more_entries": "Qeydanê newan otomatik memocne",
+	"time_utc": "Zeman, UTC dı",
 	"stat_articles": "Peley zerreki",
 	"stat_pages": "Peli",
 	"stat_files": "Dosyey bar biya",

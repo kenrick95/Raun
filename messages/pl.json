@@ -6,7 +6,8 @@
 			"Ty221",
 			"Wiochman",
 			"Chrumps",
-			"The Polish"
+			"The Polish",
+			"Woytecr"
 		]
 	},
 	"close": "Zamknij",
@@ -31,6 +32,7 @@
 	"settings_editor_edits": "Edycje edytora",
 	"settings_admin_edits": "Edycje admina",
 	"settings_other_edits": "Inne edycje",
+	"settings_more_entries": "Nie pokazuj automatycznie nowych wpisów",
 	"time_utc": "Czas, w UTC",
 	"stat_articles": "Strony w przestrzeni głównej",
 	"stat_pages": "Strony",
@@ -58,7 +60,7 @@
 	"admin": "admin",
 	"help_p2": "Można wstrzymać narzędzie, naciskając na przycisk \"Pauza\". Po tym można go ponownie uruchomić, klikając na przycisk \"Start!\".",
 	"help_p3": "Możesz przefiltrować zmiany, które chcesz zobaczyć w dziale \"Filtr\", i zmienić Wiki-projekt lub język lub język w sekcji \"Ustawienia\".",
-	"help_p4": "Wiersze z szarym tekstem oznaczają, że na tej stronie istnieje inna nowsza edycja (lub edycje).",
+	"help_p4": "Edycje z tych samych stron połączone zostały w jeden wpis. Jeżeli projekt jest wspierany przez ORES, wyświetlona zostanie ocena ORES dotycząca wykrywania wandalizmów, a wpisy o wysokiej pewności będą miały różowe tło.",
 	"help_legend": "Legenda:",
 	"color": "Kolor",
 	"about": "O programie",
@@ -67,5 +69,6 @@
 	"credit": "Kredyt",
 	"about_license": "Jeśli nie podano inaczej, kod źródłowy tego projektu jest rozpowszechniany na licencji MIT.",
 	"about_github": "Kod źródłowy jest dostępny na $1",
-	"send_feedback": "Prześlij opinię"
+	"send_feedback": "Prześlij opinię",
+	"more_entries": "Zobacz $1 {{PLURAL:$1|nowy wpis|nowych wpisów}}"
 }

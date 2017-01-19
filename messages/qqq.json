@@ -43,7 +43,7 @@
 	"stat_admins": "Number of Administrators.\n{{Identical|Administrator}}",
 	"separator_thousands": "Separator for thousands",
 	"separator_decimals": "Separator for decimals",
-	"def_i": "\"v\" means \"verb\", \"conv\" means conversation.\nTranslate this message with a similarly short abbreviation of \"verb\" and \"conversation\" in your language.",
+	"def_i": "\"v\" means \"verb\", \"conv\" means conversation.\nIf possible, translate this message with a similarly short abbreviation of \"verb\" and \"conversation\" in your language.\n\n----\n\nThe intention of this message was to make it look like an entry from dictionary, where usually an entry consists of:\n# The entry name (in bold). In this case, it is \"Raun\"\n# The entry's property (e.g. whether entry is a noun, adjective, verb, etc.), usually abbreviated. In this case, it is this translation message.\n# The entry's definition. In this case, it is [[Intuition:Raun-def def/qqq|another translation message]].",
 	"def_def": "If possible, please put three synonyms of \"patrol\" separated by semicolon.",
 	"main_time_utc": "Displayed for the header of the main table.\n{{Identical|Time}}",
 	"main_page": "Displayed for the header of the main table.\n{{Identical|Page}}",

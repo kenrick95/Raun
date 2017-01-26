@@ -61,9 +61,12 @@
 	"help_legend": "Alc'hwez :",
 	"color": "Liv",
 	"about": "Diwar-benn",
+	"about_tool": "Raun zo ur benveg a daol evezh ouzh ar c'hemmoù graet nevez zo e raktresoù an Diazezadur Wikimedia war amzer (hogos)real. Kemer a ra skouer ar benveg-mañ war $1, gant $2. Loc'het eo bet ar raktres-mañ gant $3.",
 	"about_cookie": "Gant al lec'hienn e vez implijet toupinoù. Lamet e vo ar roadennoù stoket enno en un doare emgefreek ma ne weladennit ket ar benveg a-benn 30 deiz.",
 	"information": "Titouroù",
 	"credit": "Kred",
+	"about_license": "Dindan aotre-implijout MIT emañ ar raktres kod mammenn-mañ, nemet kemennoù kontrol a vefe.",
 	"about_github": "Ar c'hod mammennoù a c'haller kaout e $1",
-	"send_feedback": "Kas un ali"
+	"send_feedback": "Kas un ali",
+	"more_entries": "Diskwel ar $1 monedone nevez"
 }

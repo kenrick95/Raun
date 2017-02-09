@@ -16,9 +16,12 @@
 	"save": "Tallenna",
 	"settings_show": "Näytä",
 	"settings_wiki": "Wiki",
+	"settings_bot_edits": "Bottimuokkaukset",
 	"settings_redirects": "Ohjaussivut",
 	"settings_new_pages": "Uudet sivut",
+	"stat_pages": "Sivut",
 	"stat_depth": "Syvyys",
+	"stat_users": "Rekisteröityneet käyttäjät",
 	"stat_active_users": "Aktiiviset käyttäjät",
 	"stat_admins": "Ylläpitäjät",
 	"separator_thousands": "&nbsp;",
@@ -28,5 +31,6 @@
 	"main_user": "Käyttäjä",
 	"new": "uusi",
 	"color": "Väri",
+	"about": "Tietoja",
 	"send_feedback": "Lähetä palautetta"
 }

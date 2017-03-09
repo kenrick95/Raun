@@ -1,12 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mahali syarifuddin"
+			"Mahali syarifuddin",
+			"Hidayatsrf"
 		]
 	},
 	"close": "Tutup",
 	"help": "Bantuan",
-	"filter": "Saringan",
+	"filter": "Penyaring",
 	"settings": "Setelan",
 	"fork": "Kode sumber",
 	"stat": "Statistik",
@@ -56,7 +57,7 @@
 	"help_p2": "Anda dapat menjeda (menghentikan sementara) alat ini dengan mengeklik tombol \"Jeda\". Setelah itu, Anda dapat melanjutkan alat ini dengan mengeklik tombol \"Jalan!\".",
 	"help_p3": "Anda dapat menyaring suntingan yang Anda ingin lihat di \"Saringan\", dan pengaturan proyek wiki, bahasa wiki, dan bahasa alat ini di \"Setelan\"",
 	"help_p4": "Suntingan dalam halaman yang sama akan digabung dalam satu entri. Jika proyek terpilih didukung ORES, alat ini akan menampilkan nilai ORES untuk mendeteksi vandalisme, dan akan berwarna merah muda untuk entri yang diyakini kuat merupakan vandalisme.",
-	"help_legend": "Legenda:",
+	"help_legend": "Keterangan:",
 	"ores_score": "Nilai ORES",
 	"color": "Warna",
 	"about": "Tentang",

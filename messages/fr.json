@@ -65,7 +65,7 @@
 	"color": "Couleur",
 	"about": "À propos",
 	"about_tool": "Raun est un outil qui surveille les modifications récentes sur les projets de la Fondation Wikimédia en temps (quasi) réel. Cet outil est inspiré de $1, par $2. Ce projet a été démarré par $3.",
-	"about_cookie": "Ce site utilise des cookies. Les données stockées dans ceux-ci seront supprimées automatiquement si vous n'utilisez pas cet outil dans les 30 jours.",
+	"about_cookie": "Ce site utilise des témoins (cookies). Les données stockées dans ceux-ci seront supprimées automatiquement si vous n’utilisez pas cet outil dans les 30 jours.",
 	"information": "Information",
 	"credit": "Crédit",
 	"about_license": "Sauf indication contraire, ce projet de code source est sous Licence MIT.",

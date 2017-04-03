@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80"
+			"Amire80",
+			"YaronSh"
 		]
 	},
 	"close": "סגירה",
@@ -66,6 +67,6 @@
 	"credit": "קרדיט",
 	"about_license": "אלא אם נאמר אחרת, קוד המקור של המיזם מתפרסם לפי רישיון MIT.",
 	"about_github": "קוד המקור זמין ב־$1",
-	"send_feedback": "המשוב נשלח",
+	"send_feedback": "שליחת משוב",
 	"more_entries": "הצגת $1 עיולים חדשים"
 }

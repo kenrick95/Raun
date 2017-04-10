@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mahali syarifuddin"
+			"Mahali syarifuddin",
+			"Uchup19"
 		]
 	},
 	"close": "Tutup",
@@ -30,7 +31,7 @@
 	"time_utc": "Waktu dina UTC",
 	"stat_articles": "Kaca eusi",
 	"stat_pages": "Kaca",
-	"stat_files": "Koropak nu geus dimuat",
+	"stat_files": "Berkas nu geus diunjal",
 	"stat_edits": "Éditan kaca",
 	"stat_depth": "Jero",
 	"stat_users": "Pamaké kadaptar",

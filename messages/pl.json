@@ -7,7 +7,8 @@
 			"Wiochman",
 			"Chrumps",
 			"The Polish",
-			"Woytecr"
+			"Woytecr",
+			"InternerowyGołąb"
 		]
 	},
 	"close": "Zamknij",
@@ -58,10 +59,12 @@
 	"bot": "bot",
 	"editor": "redaktor",
 	"admin": "admin",
+	"help_p1": "Raun to narzędzie do patrolowania ostatnich zmian w Wikipedii w czasie rzeczywistym. Raun załaduje ostatnie zmiany w określonych odstępach czasu, i automatycznie ci je pokaże.",
 	"help_p2": "Można wstrzymać narzędzie, naciskając na przycisk \"Pauza\". Po tym można go ponownie uruchomić, klikając na przycisk \"Start!\".",
 	"help_p3": "Możesz przefiltrować zmiany, które chcesz zobaczyć w dziale \"Filtr\", i zmienić Wiki-projekt lub język lub język w sekcji \"Ustawienia\".",
 	"help_p4": "Edycje z tych samych stron połączone zostały w jeden wpis. Jeżeli projekt jest wspierany przez ORES, wyświetlona zostanie ocena ORES dotycząca wykrywania wandalizmów, a wpisy o wysokiej pewności będą miały różowe tło.",
 	"help_legend": "Legenda:",
+	"ores_score": "wynik ORES",
 	"color": "Kolor",
 	"about": "O programie",
 	"about_cookie": "Ta strona wykorzystuje pliki cookies. Dane zapisane, będą automatycznie usuwane, jeśli nie będziesz wchodzić na stronę tego narzędzia w ciągu 30 dni.",

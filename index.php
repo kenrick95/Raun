@@ -415,7 +415,6 @@ if (stripos("tools.wmflabs.org", $_SERVER["SERVER_NAME"]) !== false) {
     <script src="//tools-static.wmflabs.org/cdnjs/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script src="//tools-static.wmflabs.org/cdnjs/ajax/libs/nanobar/0.0.6/nanobar.min.js"></script>
     <script src="//tools-static.wmflabs.org/cdnjs/ajax/libs/headroom/0.7.0/headroom.min.js"></script>
-    <script src="//tools-static.wmflabs.org/cdnjs/ajax/libs/socket.io/0.9.17/socket.io.min.js"></script>
     <script src="//tools.wmflabs.org/intuition/load.php?env=standalone"></script>
     <script>
     intuition.load("raun", "<?php echo $locale; ?>");

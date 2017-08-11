@@ -59,25 +59,9 @@ ob_end_clean();
     <title>ra&middot;un<?php echo $title_info; ?></title>
 
     <!-- CSS -->
-    <link href='//fonts.googleapis.com/css?family=Ubuntu:400,700' rel='stylesheet' type='text/css'>
+    <link href='//tools-static.wmflabs.org/fontcdn/css?family=Ubuntu:400,700' rel='stylesheet' type='text/css'>
     <link href="//tools-static.wmflabs.org/cdnjs/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-
-<?php
-// Google Analytics
-if (stripos("tools.wmflabs.org", $_SERVER["SERVER_NAME"]) !== false) {
-?>
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-49036729-2', 'wmflabs.org');
-        ga('send', 'pageview');
-    </script>
-<?php
-}
-?>
 </head>
 <body>
     <div id="header" class="navbar navbar-default navbar-fixed-top" role="navigation">

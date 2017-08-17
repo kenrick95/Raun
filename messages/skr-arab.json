@@ -1,0 +1,35 @@
+{
+	"@metadata": {
+		"authors": [
+			"Saraiki"
+		]
+	},
+	"close": "بند کرو",
+	"help": "مدد",
+	"filter": "فلٹر، نتارا",
+	"settings": "ترتیباں",
+	"fork": "سورس کوڈ",
+	"stat": "شماريات",
+	"settings_tool": "آوزار",
+	"language": "زبان",
+	"project": "منصوبہ",
+	"save": "بچاؤ",
+	"settings_pause": "جمبو، اجھکو",
+	"settings_run": "بھجو!",
+	"settings_show": "ݙِکھاؤ",
+	"settings_wiki": "وکی",
+	"settings_bot_edits": "ٻوٹ تبدیلیاں",
+	"settings_minor_edits": "معمولی تبدیلیاں",
+	"settings_redirects": "ورقے ریڈائریکٹ کرو",
+	"settings_new_pages": "نویں ورقے",
+	"stat_pages": "ورقے",
+	"main_page": "ورقہ",
+	"main_user": "ورتݨ آلا",
+	"main_info": "معلومات",
+	"new": "نواں",
+	"minor": "معمولی",
+	"bot": "بوٹ",
+	"editor": "ایڈیٹ کرݨ آلا",
+	"admin": "ایڈمن",
+	"color": "رنگ"
+}

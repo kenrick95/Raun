@@ -23,6 +23,8 @@
 	"settings_redirects": "ورقے ریڈائریکٹ کرو",
 	"settings_new_pages": "نویں ورقے",
 	"stat_pages": "ورقے",
+	"separator_thousands": "،",
+	"separator_decimals": "۔",
 	"main_page": "ورقہ",
 	"main_user": "ورتݨ آلا",
 	"main_info": "معلومات",
@@ -31,5 +33,6 @@
 	"bot": "بوٹ",
 	"editor": "ایڈیٹ کرݨ آلا",
 	"admin": "ایڈمن",
-	"color": "رنگ"
+	"color": "رنگ",
+	"information": "معلومات"
 }

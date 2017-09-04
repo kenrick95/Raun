@@ -1,14 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"Milicevic01"
+			"Milicevic01",
+			"Prevodim"
 		]
 	},
 	"close": "Затвори",
 	"help": "Помоћ",
 	"filter": "Филтер",
 	"settings": "Подешавања",
-	"fork": "Изворни код",
+	"fork": "Изворни кôд",
 	"stat": "Статистике",
 	"settings_tool": "Алатка",
 	"language": "Језик",

@@ -50,5 +50,12 @@
 	"redirect": "omdirigering",
 	"bot": "robot",
 	"editor": "redaktør",
-	"about": "Om"
+	"about": "Om",
+	"about_tool": "Raun er et værktøj til at se de seneste ændringer i Wikimedia Foundation-projekter i (næsten) realtid. Dette værktøj er inspireret af $1, udarbejdet af $2. Dette projekt er startet af $3.",
+	"about_cookie": "Denne side bruger cookier. Data lagret af cookien vil blive slettet automatisk, hvis du ikke besøger dette værktøj efter 30 dage.",
+	"information": "Information",
+	"about_license": "Med mindre andet er angivet, så er dette projekts kildekode udgivet under MIT License.",
+	"about_github": "Kildekoden er tilgængelig på $1",
+	"send_feedback": "Giv en tilbagemelding",
+	"more_entries": "Vis $1 nye indlæg"
 }

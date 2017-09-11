@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Bikarhêner",
-			"George Animal"
+			"George Animal",
+			"Cûndûllah el-Kurdî"
 		]
 	},
 	"close": "Bigre",
@@ -20,22 +21,28 @@
 	"settings_show": "Nîşan bide",
 	"settings_wiki": "Wîkî",
 	"settings_bot_edits": "Guherandina botan",
+	"settings_minor_edits": "Guhertina biçûk",
 	"settings_redirects": "Rûpelên beralîkirinê",
 	"settings_new_pages": "Rûpelên nû",
 	"settings_editor_edits": "Guherandinên editora",
 	"settings_admin_edits": "Guherandinên revebêra",
 	"settings_other_edits": "Guherandinên din",
+	"stat_articles": "Rûpelên naverokê",
 	"stat_pages": "Rûpel",
 	"stat_files": "Dosyeyên barkirî",
+	"stat_edits": "Sererastkirinên Rûpelê",
 	"stat_users": "Bikarhênerên tomarkirî",
 	"stat_active_users": "Bikarhênerên çalak",
 	"stat_admins": "Rêveber",
 	"separator_thousands": ",",
 	"separator_decimals": ".",
+	"def_i": "l gotûbêj",
+	"main_time_utc": "Dem (UTC)",
 	"main_page": "Rûpel",
 	"main_user": "Bikarhêner",
 	"main_info": "Agahî",
 	"new": "nû",
+	"minor": "biçûk",
 	"redirect": "beralîkirin",
 	"bot": "bot",
 	"editor": "edîtor",

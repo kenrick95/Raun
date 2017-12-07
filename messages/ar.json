@@ -37,7 +37,7 @@
 	"stat_users": "المستخدمون المسجلون",
 	"stat_active_users": "المستخدمون النشطون",
 	"stat_admins": "الإداريون",
-	"separator_thousands": "،",
+	"separator_thousands": "٬",
 	"separator_decimals": ",",
 	"main_info": "معلومات",
 	"combined_entries": "مدخلات مجمعة",

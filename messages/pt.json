@@ -51,9 +51,14 @@
 	"editor": "editor",
 	"admin": "administrador",
 	"help_p2": "Pode parar esta ferramenta clicando em \"Parar\". E depois disso, pode executá-la outra vez clicando em \"Executar!\".",
+	"help_legend": "Legenda:",
+	"ores_score": "Pontuação ORES",
 	"color": "Cor",
 	"about": "Sobre",
+	"information": "Informação",
 	"credit": "Crédito",
 	"about_license": "A não ser que indique-se o contrário, o código fonte deste projeto está disponível conforme a licença MIT.",
-	"about_github": "O código-fonte está disponível em $1"
+	"about_github": "O código-fonte está disponível em $1",
+	"send_feedback": "Enviar opinião",
+	"more_entries": "Ver $1 novas entradas"
 }

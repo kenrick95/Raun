@@ -23,6 +23,7 @@
 	"settings_redirects": "ورقے ریڈائریکٹ کرو",
 	"settings_new_pages": "نویں ورقے",
 	"stat_pages": "ورقے",
+	"stat_depth": "گہرائی",
 	"separator_thousands": "،",
 	"separator_decimals": "۔",
 	"main_page": "ورقہ",
@@ -30,9 +31,11 @@
 	"main_info": "معلومات",
 	"new": "نواں",
 	"minor": "معمولی",
+	"redirect": "ولدا رجوع",
 	"bot": "بوٹ",
 	"editor": "ایڈیٹ کرݨ آلا",
 	"admin": "ایڈمن",
 	"color": "رنگ",
+	"about": "تعارف",
 	"information": "معلومات"
 }

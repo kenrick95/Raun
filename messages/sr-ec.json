@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Milicevic01",
-			"Prevodim"
+			"Prevodim",
+			"Acamicamacaraca"
 		]
 	},
 	"close": "Затвори",
@@ -16,6 +17,7 @@
 	"project": "Пројекат",
 	"save": "Сачувај",
 	"settings_pause": "Паузирај",
+	"settings_run": "Покрени!",
 	"settings_show": "Прикажи",
 	"settings_wiki": "Вики",
 	"settings_bot_edits": "Ботовске измене",
@@ -23,7 +25,22 @@
 	"settings_minor_edits": "Мање измене",
 	"settings_redirects": "Преусмерења",
 	"settings_new_pages": "Нове странице",
+	"settings_editor_edits": "Уредничке измене",
+	"settings_admin_edits": "Администраторске измене",
+	"settings_other_edits": "Остале измене",
+	"time_utc": "Време, у UTC",
+	"stat_articles": "Странице са садржајем",
 	"stat_pages": "Странице",
+	"stat_files": "Отпремљене датотеке",
+	"stat_edits": "Измене страница",
+	"stat_depth": "Дубина",
+	"stat_users": "Регистровани корисници",
+	"stat_active_users": "Активни корисници",
+	"stat_admins": "Администратори",
+	"separator_thousands": ",",
+	"separator_decimals": ".",
+	"def_i": "разг.",
+	"main_time_utc": "Време (UTC)",
 	"main_page": "Страница",
 	"main_user": "Корисник",
 	"main_info": "Информације",
@@ -32,5 +49,16 @@
 	"anon": "анонимне",
 	"redirect": "преусмерење",
 	"bot": "бот",
-	"admin": "админ"
+	"editor": "Уредник",
+	"admin": "админ",
+	"help_p2": "Можете паузирати ову алатку кликом на \"Паузирај\". После тога, Ви је можете покренути поново кликом на \"Покрени!\".",
+	"help_legend": "Легенда:",
+	"ores_score": "ORES резултат",
+	"color": "Боја",
+	"about": "О",
+	"about_cookie": "Овај сајт користи кочачиће. Податци сачувани помоћу колачића ће бити обрисани аутоматски уколико Ви не посетите ову алатку за 30 дана.",
+	"information": "Информација",
+	"credit": "Заслуга",
+	"about_github": "Изворни код је доступан на $1",
+	"send_feedback": "Пошаљите повратну информацију"
 }

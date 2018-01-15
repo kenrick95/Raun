@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Glavkos"
+			"Glavkos",
+			"Nikosgranturismogt"
 		]
 	},
 	"close": "Κλείσιμο",
@@ -9,5 +10,33 @@
 	"filter": "Φίλτρο",
 	"settings": "Ρυθμίσεις",
 	"fork": "Πηγαίος κώδικας",
-	"stat": "Στατιστικά"
+	"stat": "Στατιστικά",
+	"settings_tool": "Εργαλείο",
+	"language": "Γλώσσα",
+	"project": "Εγχείρημα",
+	"save": "Αποθήκευση",
+	"settings_pause": "Παύση",
+	"settings_run": "Τρέξτε!",
+	"settings_show": "Εμφανίστε",
+	"settings_wiki": "Βίκι",
+	"settings_bot_edits": "Επεξεργασίες από ρομπότ",
+	"settings_anon_edits": "Ανώνυμες επεξεργασίες",
+	"settings_minor_edits": "Μικροεπεξεργασίες",
+	"settings_redirects": "Σελίδες ανακατεύθυνσης",
+	"settings_new_pages": "Νέες σελίδες",
+	"settings_editor_edits": "Επεξεργασίες συντακτών",
+	"settings_admin_edits": "Επεξεργασίες διαχειριστών",
+	"settings_other_edits": "Άλλες επεξεργασίες",
+	"settings_more_entries": "Να μην εμφανίζει νέες καταχωρήσεις αυτόματα",
+	"time_utc": "Ώρα, σε UTC",
+	"stat_articles": "Σελίδες περιεχομένου",
+	"stat_pages": "Σελίδες",
+	"stat_files": "Αρχεία που έχουν επιφορτωθεί",
+	"stat_edits": "Επεξεργασίες σελίδων",
+	"stat_depth": "Βάθος",
+	"stat_users": "Εγγεγραμμένοι χρήστες",
+	"stat_active_users": "Ενεργοί χρήστες",
+	"stat_admins": "Διαχειριστές",
+	"separator_thousands": ",",
+	"separator_decimals": "."
 }

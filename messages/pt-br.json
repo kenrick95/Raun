@@ -3,7 +3,8 @@
 		"authors": [
 			"Luckas",
 			"Fasouzafreitas",
-			"Araceletorres"
+			"Araceletorres",
+			"Eduardo Addad de Oliveira"
 		]
 	},
 	"close": "Fechar",
@@ -28,6 +29,7 @@
 	"settings_editor_edits": "Edições de usuários",
 	"settings_admin_edits": "Edições de administradores",
 	"settings_other_edits": "Outras edições",
+	"settings_more_entries": "Não mostrar as novas entradas automaticamente",
 	"time_utc": "Hora, em UTC",
 	"stat_articles": "Páginas de conteúdo",
 	"stat_pages": "Páginas",
@@ -53,11 +55,20 @@
 	"bot": "bot",
 	"editor": "editor",
 	"admin": "administrador",
+	"help_p1": "Raun é uma ferramenta que patrulha as wikis do Projeto da Fundação Wikimedia em tempo real. O Raun carregará periodicamente as mudanças recentes, e as mostrará para si automaticamente.",
+	"help_p2": "Pode parar esta ferramenta clicando em \"Parar\". E depois disso, pode executá-la outra vez clicando em \"Executar!\".",
+	"help_p3": "Pode filtrar as edições que deseja ver no \"Filtro\", e alterar o projeto wiki, a língua, ou a configuração regional desta ferramenta nas \"Configurações\".",
+	"help_p4": "As edições na mesma página são combinadas numa só entrada. Se o ORES tiver suporte para o proeto, aparecerá a pontuação ORES para detetar vandalismos com um fundo rosa para as entradas de alta confiança.",
 	"help_legend": "Legenda:",
+	"ores_score": "Pontuação ORES",
 	"color": "Cor",
 	"about": "Sobre",
+	"about_tool": "Raun é uma ferramenta feita para vigiar as mudanças recentes dos projetos da Fundação Wikimedia (quase) em tempo real. Esta ferramenta foi inspirada em $1, de $2. Este projeto foi iniciado por $3.",
+	"about_cookie": "Este site utiliza ''cookies''. Os dados armazenados pelo ''cookie'' serão apagados automaticamente se não visitar esta ferramenta em 30 dias.",
 	"information": "Informação",
 	"credit": "Crédito",
+	"about_license": "A não ser que indique-se o contrário, o código-fonte do projeto está disponível conforme a licença MIT.",
 	"about_github": "O código-fonte está disponível em $1",
-	"send_feedback": "Envie seu comentário"
+	"send_feedback": "Envie seu comentário",
+	"more_entries": "Ver $1 novas entradas"
 }

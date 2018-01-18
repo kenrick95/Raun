@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Veeven"
+		]
+	},
+	"close": "మూసివేయి",
+	"help": "సహాయం",
+	"settings": "అమరికలు",
+	"stat": "గణాంకాలు",
+	"language": "భాష",
+	"save": "భద్రపరచు",
+	"settings_show": "చూపించు",
+	"settings_wiki": "వికీ",
+	"settings_new_pages": "కొత్త పేజీలు",
+	"stat_pages": "పేజీలు",
+	"stat_users": "నమోదైన వాడుకరులు",
+	"stat_active_users": "క్రియాశీల వాడుకరులు",
+	"stat_admins": "నిర్వాహకులు",
+	"separator_thousands": ",",
+	"main_time_utc": "సమయం (UTC)",
+	"main_page": "పేజీ",
+	"main_user": "వాడుకరి",
+	"main_info": "సమాచారం",
+	"color": "రంగు",
+	"about": "గురించి",
+	"information": "సమాచారం"
+}

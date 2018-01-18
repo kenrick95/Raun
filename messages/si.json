@@ -3,8 +3,27 @@
 		"authors": [
 			"Susith Chandira Gts",
 			"SusithCM",
-			1100100
+			1100100,
+			"Chiran sadeep"
 		]
 	},
-	"main_user": "පරිශීලක"
+	"stat_pages": "පිටු",
+	"stat_files": "උඩුගත කරන ලද පිටු",
+	"stat_edits": "පිටු සංස්කරණය",
+	"stat_depth": "ගැබුර",
+	"stat_users": "ලියාපදිංචිකල පරිශීලක",
+	"stat_active_users": "ක්‍රියාශීලි පරිශීලකයන්",
+	"stat_admins": "පරිපාලකවරු",
+	"main_time_utc": "වෙලාව(UTC)",
+	"main_page": "පිටුව",
+	"main_user": "පරිශීලක",
+	"main_info": "තොරතුරු",
+	"combined_entries": "සයුක්ත ඇතුල්වීම්",
+	"new": "නව",
+	"minor": "සුළු",
+	"redirect": "යළියොමු",
+	"bot": "රොබෝ",
+	"editor": "සංස්කාරක",
+	"information": "තොරතුරු",
+	"credit": "බැර"
 }

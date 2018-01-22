@@ -38,5 +38,22 @@
 	"stat_active_users": "Ενεργοί χρήστες",
 	"stat_admins": "Διαχειριστές",
 	"separator_thousands": ",",
-	"separator_decimals": "."
+	"separator_decimals": ".",
+	"main_page": "Σελίδα",
+	"main_user": "Χρήστης",
+	"main_info": "Πληροφορία",
+	"new": "νέο",
+	"minor": "μικρή",
+	"anon": "ανώνυμος",
+	"redirect": "ανακατεύθυνση",
+	"bot": "ρομπότ",
+	"editor": "συντάκτης",
+	"admin": "διαχειριστής",
+	"help_legend": "Υπόμνημα:",
+	"ores_score": "Σκορ ORES",
+	"color": "Χρώμα",
+	"about": "Σχετικά",
+	"information": "Πληροφορία",
+	"credit": "Συντελεστές",
+	"about_github": "Ο κώδικας πηγής είναι διαθέσιμος στο $1"
 }

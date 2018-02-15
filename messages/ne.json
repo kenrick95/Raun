@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"सरोज कुमार ढकाल",
-			"राम प्रसाद जोशी"
+			"राम प्रसाद जोशी",
+			"Drjpoudel"
 		]
 	},
 	"close": "बन्द गर्नुहोस्",
@@ -25,7 +26,7 @@
 	"settings_redirects": "अनुप्रेषण पृष्ठहरू",
 	"settings_new_pages": "नयाँ पृष्ठहरू",
 	"settings_editor_edits": "सम्पादक सम्पादनहरू",
-	"settings_admin_edits": "प्रवन्धक सम्पादनहरू",
+	"settings_admin_edits": "प्रबन्धक सम्पादनहरू",
 	"settings_other_edits": "अरू सम्पादनहरू",
 	"stat_articles": "सामग्री पृष्ठहरू",
 	"stat_pages": "पृष्ठहरू",

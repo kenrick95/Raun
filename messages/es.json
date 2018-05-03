@@ -51,7 +51,7 @@
 	"minor": "menor",
 	"anon": "anónima",
 	"redirect": "redirección",
-	"bot": "bot",
+	"bot": "robot",
 	"editor": "editor",
 	"admin": "administrador",
 	"help_p1": "Raun es una herramienta para patrullar los cambios recientes de los wikis de la Fundación Wikimedia en tiempo real. Raun cargará periódicamente los cambios recientes y los mostrará delante de ti automáticamente.",

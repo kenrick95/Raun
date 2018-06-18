@@ -63,6 +63,7 @@
 	"help_p4": "Information about combined entries and ORES score.",
 	"help_legend": "Legend, Information about colour and namespace.\n{{Identical|Legend}}",
 	"color": "{{Identical|Color}}",
+	"ns": "{{Identical|Namespace}}",
 	"ns0": "{{Identical|Article}}",
 	"ns100": "{{Identical|Portal}}",
 	"about": "{{Identical|About}}",

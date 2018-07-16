@@ -3,14 +3,15 @@
 		"authors": [
 			"Milicevic01",
 			"Prevodim",
-			"Acamicamacaraca"
+			"Acamicamacaraca",
+			"Obsuser"
 		]
 	},
 	"close": "Затвори",
 	"help": "Помоћ",
 	"filter": "Филтер",
 	"settings": "Подешавања",
-	"fork": "Изворни кôд",
+	"fork": "Изворни код",
 	"stat": "Статистике",
 	"settings_tool": "Алатка",
 	"language": "Језик",

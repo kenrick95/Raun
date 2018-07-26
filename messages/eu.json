@@ -2,17 +2,27 @@
 	"@metadata": {
 		"authors": [
 			"An13sa",
-			"Subi"
+			"Subi",
+			"Amaia"
 		]
 	},
 	"close": "Itxi",
 	"help": "Laguntza",
+	"filter": "Iragazkia",
+	"settings": "Ezarpenak",
+	"fork": "Iturburu-kodea",
 	"stat": "Estatistikak",
 	"settings_tool": "Tresna",
 	"language": "Hizkuntza",
 	"project": "Proiektua",
 	"save": "Gorde",
+	"settings_pause": "Gelditu",
+	"settings_run": "Exekutatu!",
+	"settings_show": "Erakutsi",
 	"settings_wiki": "Wiki",
+	"settings_bot_edits": "Boten aldaketak",
+	"settings_anon_edits": "Aldaketa anonimoak",
+	"settings_minor_edits": "Aldaketa txikiak",
 	"stat_pages": "Orrialdeak",
 	"stat_files": "Igotako fitxategiak",
 	"stat_depth": "Sakonera",

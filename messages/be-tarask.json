@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Renessaince"
+		]
+	},
+	"fork": "Крынічны код",
+	"stat": "Статыстыка",
+	"settings_tool": "Інструмэнт",
+	"language": "Мова",
+	"project": "Праект",
+	"save": "Захаваць",
+	"settings_pause": "Паўза",
+	"settings_run": "Запусьціць!",
+	"settings_show": "Паказаць",
+	"settings_wiki": "Вікі",
+	"settings_bot_edits": "Рэдагаваньні робата",
+	"settings_anon_edits": "Ананімныя рэдагаваньні",
+	"settings_minor_edits": "Дробныя рэдагаваньні",
+	"settings_redirects": "Старонкі-перанакіраваньні",
+	"settings_new_pages": "Новыя старонкі",
+	"settings_editor_edits": "Рэдагаваньні рэдактараў",
+	"settings_admin_edits": "Рэдагаваньні адміністратараў",
+	"settings_other_edits": "Іншыя рэдагаваньні"
+}

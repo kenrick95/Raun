@@ -4,6 +4,10 @@
 			"Renessaince"
 		]
 	},
+	"close": "Закрыць",
+	"help": "Дапамога",
+	"filter": "Фільтар",
+	"settings": "Налады",
 	"fork": "Крынічны код",
 	"stat": "Статыстыка",
 	"settings_tool": "Інструмэнт",
@@ -21,5 +25,19 @@
 	"settings_new_pages": "Новыя старонкі",
 	"settings_editor_edits": "Рэдагаваньні рэдактараў",
 	"settings_admin_edits": "Рэдагаваньні адміністратараў",
-	"settings_other_edits": "Іншыя рэдагаваньні"
+	"settings_other_edits": "Іншыя рэдагаваньні",
+	"stat_pages": "Старонкі",
+	"stat_files": "Загружаныя файлы",
+	"stat_edits": "Рэдагаваньні старонкі",
+	"stat_depth": "Глыбіня",
+	"stat_users": "Зарэгістраваныя ўдзельнікі",
+	"stat_active_users": "Актыўныя ўдзельнікі",
+	"stat_admins": "Адміністратары",
+	"separator_thousands": ",",
+	"separator_decimals": ".",
+	"main_time_utc": "Час (UTC)",
+	"main_page": "Старонка",
+	"main_user": "Карыстальнік",
+	"main_info": "Інфармацыя",
+	"new": "новы"
 }

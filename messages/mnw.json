@@ -1,0 +1,41 @@
+{
+	"@metadata": {
+		"authors": [
+			"Aue Nai"
+		]
+	},
+	"close": "ကၟာတ်",
+	"help": "ရီု",
+	"filter": "ဖဍိုဟ်",
+	"settings": "ဒၞာဲမဖျေဟ်ဒၞာဲ",
+	"fork": " တမ်ရိုဟ် ခတ်",
+	"stat": "စရၚ်ဗ္ဒၚ်",
+	"settings_tool": "ကြိယာ",
+	"language": "အရေဝ်ဘာသာ",
+	"project": " ပရဝ်ဂျေတ်",
+	"save": "ဂိုင်သိပ်",
+	"settings_pause": "ဇူ",
+	"settings_show": "ထ္ၜး",
+	"settings_wiki": "ဝဳကဳ",
+	"settings_new_pages": "မုက်လိက် တၟိ",
+	"stat_pages": "မုက်လိက်ဂမၠိုင်",
+	"stat_files": "ပတိုန်ပၠောပ် ဝှာင်",
+	"stat_users": " ညးလွပ် မစၟတ်သမ္တီလဝ်တုဲဂမၠိုင်",
+	"stat_active_users": "ညးလွပ်မချဳဒရာၚ်",
+	"stat_admins": "မၞိဟ်မကောပ်ကာဲဂမၠိုင်",
+	"separator_thousands": ",",
+	"separator_decimals": ".",
+	"main_time_utc": "အခိၚ် (UTC)",
+	"main_page": "မုက်လိက်",
+	"main_user": "ညးလွပ်",
+	"main_info": "တင်ဂၞင်ပရိုင်",
+	"new": "တၟိ",
+	"bot": "ရုပ်စက်",
+	"editor": "ညဒါန်",
+	"admin": "ညးကောပ်ကာဲ",
+	"help_legend": "ဒဏ္ဍာရဳ:",
+	"ores_score": "စၟတ် ORES",
+	"color": "သာ်",
+	"about": "ပရူ",
+	"information": "တင်ဂၞင်ပရိုင်"
+}

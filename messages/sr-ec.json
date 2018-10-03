@@ -4,7 +4,8 @@
 			"Milicevic01",
 			"Prevodim",
 			"Acamicamacaraca",
-			"Obsuser"
+			"Obsuser",
+			"BadDog"
 		]
 	},
 	"close": "Затвори",
@@ -61,5 +62,5 @@
 	"information": "Информација",
 	"credit": "Заслуга",
 	"about_github": "Изворни код је доступан на $1",
-	"send_feedback": "Пошаљите повратну информацију"
+	"send_feedback": "Пошаљите повратне информације"
 }

@@ -6,7 +6,8 @@
 			"Krinkle",
 			"Liuxinyu970226",
 			"Shirayuki",
-			"Nemo bis"
+			"Nemo bis",
+			"Zoranzoki21"
 		]
 	},
 	"close": "Used as label for the Close button.\n{{Identical|Close}}",
@@ -57,7 +58,7 @@
 	"bot": "filter for information column.\n{{Identical|Bot}}",
 	"editor": "filter for information column.\n{{Identical|Editor}}",
 	"admin": "filter for information column.\n\n\"admin\" is short for \"administrator\".\n{{Identical|Admin}}",
-	"help_p1": "Definition of the tool",
+	"help_p1": "Definition of the Raun tool",
 	"help_p2": "Pausing or continuing the tool; currently disabled.\n\nThis message should be consistent with:\n* {{msg-intuition|Raun-settings pause}}\n* {{msg-intuition|Raun-settings run}}",
 	"help_p3": "What you can do with this tool: filtering under \"Filter\", change the project settings under \"Settings\".\n\nThis message should be consistent with:\n* {{msg-intuition|Raun-filter}}\n* {{msg-intuition|Raun-settings}}",
 	"help_p4": "Information about combined entries and ORES score.",

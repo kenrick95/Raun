@@ -1,14 +1,17 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mehtab ahmed"
+			"Mehtab ahmed",
+			"Tweety"
 		]
 	},
 	"close": "بند ڪريو",
 	"help": "مدد",
+	"filter": "ڇاڻي",
 	"settings": "ترتيبون",
 	"fork": "ذريعي جو ڪوڊ",
 	"stat": "انگ اکر",
+	"settings_tool": "اوزار",
 	"language": "ٻولي",
 	"project": "منصوبو",
 	"save": "سانڍيو",
@@ -19,6 +22,7 @@
 	"settings_bot_edits": "بوٽ ترميمون",
 	"settings_anon_edits": "گمنام ترميمون",
 	"settings_minor_edits": "معمولي ترميمون",
+	"settings_redirects": "چوريل صفحا",
 	"settings_new_pages": "نوان صفحا",
 	"settings_editor_edits": "ايڊيٽر جون ترميمون",
 	"settings_admin_edits": "منتظم جون ترميمون",
@@ -43,6 +47,7 @@
 	"new": "نئون",
 	"minor": "معمولي",
 	"anon": "گمنام",
+	"redirect": "چورڻا",
 	"bot": "بوٽ",
 	"editor": "ايڊيٽر",
 	"admin": "منتظم",

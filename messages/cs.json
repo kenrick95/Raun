@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Aktron",
-			"Walter Klosse"
+			"Walter Klosse",
+			"Patriccck"
 		]
 	},
 	"close": "Zavřít",
@@ -50,7 +51,7 @@
 	"bot": "robot",
 	"editor": "editor",
 	"admin": "správce",
-	"help_p1": "Raun je nástroj pro Wiki nadace Wikimedia Foundation, který pracuje v reálném čase. Periodicky načte poslední změny a automaticky Vám je zobrazí.",
+	"help_p1": "Raun je nástroj pro projekty nadace Wikimedia, který pracuje v reálném čase. Periodicky načte poslední změny a automaticky Vám je zobrazí.",
 	"help_p2": "Tento nástroj můžete pozastavit pomocí tlačítka \"Pozastavit\". Pomocí tlačítka \"Spustit\" jej můžete Spustit.",
 	"help_legend": "Vysvětlivky:",
 	"color": "Barva",

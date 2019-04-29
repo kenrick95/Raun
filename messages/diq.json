@@ -5,7 +5,8 @@
 			"Kumkumuk",
 			"Asmen",
 			"Gırd",
-			"1917 Ekim Devrimi"
+			"1917 Ekim Devrimi",
+			"Orbot707"
 		]
 	},
 	"close": "Kip ke",
@@ -43,6 +44,7 @@
 	"separator_thousands": ",",
 	"separator_decimals": ".",
 	"def_i": "v conv",
+	"def_def": "inspect; guard; patrol;",
 	"main_time_utc": "Sehat (UTC)",
 	"main_page": "Pele",
 	"main_user": "Karber",

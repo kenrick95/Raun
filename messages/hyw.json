@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Armeniki",
+			"Kareyac"
+		]
+	},
+	"close": "Գոցել",
+	"help": "Օգնութիւն",
+	"filter": "Քամոց",
+	"settings": "Կարգաւորումներ",
+	"stat": "Վիճակագրութիւն",
+	"settings_tool": "Գործիք",
+	"language": "Լեզու",
+	"project": "Առաջարկ",
+	"settings_run": "Կատարէ՛",
+	"settings_wiki": "Ուիքի",
+	"settings_new_pages": "Նոր էջեր",
+	"stat_pages": "Էջեր",
+	"stat_admins": "Վարիչներ",
+	"main_page": "Էջ",
+	"main_user": "Գործածող",
+	"main_info": "Տեղեկութիւն",
+	"new": "նոր",
+	"redirect": "վերայղում",
+	"editor": "խմբագրող",
+	"color": "Գոյն",
+	"about": "Ասոր մասին",
+	"information": "Տեղեկութիւն"
+}

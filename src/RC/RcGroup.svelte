@@ -1,6 +1,18 @@
 <script>
   import RcEvent from "./RcEvent.svelte";
   export let eventGroup = null;
+
+  let eventGroupInfo = null;
+  if (eventGroup && eventGroup.length > 0) {
+    eventGroupInfo = {
+      title: eventGroup[0].title,
+      href: `${eventGroup[0].server_url}w/index.php?title=${
+        eventGroup[0].title
+      }&diff=${eventGroup[0].revision.new}&oldid=${
+        eventGroup[eventGroup.length - 1].revision.old
+      }`
+    };
+  }
 </script>
 
 <style>
@@ -15,19 +27,19 @@
     /* box-shadow: 0 0 5px #ddd; */
   }
   .group-title {
-    
-  grid-column: 1 / span 1;
-  grid-row:1 / span 1;
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+    color: #05a;
   }
   .events {
   }
 </style>
 
-{#if eventGroup}
+{#if eventGroupInfo}
   <li class="group">
-  <div class="group-title">
-     {eventGroup[0].title}
-  </div>
+    <a class="group-title" href={eventGroupInfo.href}>
+       {eventGroupInfo.title}
+    </a>
     <ul class="events">
       {#each eventGroup.reverse() as event}
         <RcEvent {event} />

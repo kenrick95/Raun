@@ -1,18 +1,18 @@
-import { writable, readable } from 'svelte/store';
-import { StreamStore } from './index';
+import { readable } from 'svelte/store';
+import { RcStream } from './RcStream';
 
 /**
  * @var {Array<Array<RcEvent>>} eventGroups
  */
 let eventGroups = [];
 
-export const StreamGroups = readable(eventGroups, async (set) => {
-  StreamStore.subscribe((events) => {
+export const RcStreamGroups = readable(eventGroups, async (set) => {
+  RcStream.subscribe((events) => {
     if (!events || events.length < 1) {
       return;
     }
     const newEvent = events[0];
-    // TODO: These operations are expensive; O(N * 3); see if we can improve
+    // TODO: These operations are expensive; O(N) on every new event received; see if we can improve
 
 
     // Find in `eventGroups`

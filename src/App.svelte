@@ -1,6 +1,6 @@
 <script>
-  import { t } from "./i18n/index.js";
-  import { StreamGroups } from "./Stream/group.js";
+  import { t } from "./stores/I18n.js";
+  import { RcStreamGroups } from "./stores/RcStreamGroup.js";
   import RcGroup from "./RC/RcGroup.svelte";
 </script>
 
@@ -19,7 +19,7 @@
 
   <ul class="groups">
 
-    {#each $StreamGroups.reverse() as eventGroup}
+    {#each $RcStreamGroups.reverse() as eventGroup}
       <RcGroup {eventGroup} />
     {/each}
   </ul>

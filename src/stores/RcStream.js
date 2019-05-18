@@ -32,7 +32,7 @@ const ENDPOINT = 'https://stream.wikimedia.org/v2/stream/recentchange';
  */
 let events = [];
 
-export const StreamStore = readable(
+export const RcStream = readable(
   events,
   //@ts-ignore
   async (set) => {

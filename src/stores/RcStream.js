@@ -1,4 +1,5 @@
 import { readable } from 'svelte/store';
+import { ProjectName, ProjectSubdomain } from './GlobalConfig';
 const ENDPOINT = 'https://stream.wikimedia.org/v2/stream/recentchange';
 
 /**
@@ -32,22 +33,21 @@ const ENDPOINT = 'https://stream.wikimedia.org/v2/stream/recentchange';
  */
 let events = [];
 
-export const RcStream = readable(
-  events,
-  //@ts-ignore
-  async (set) => {
-    const eventSource = new EventSource(ENDPOINT);
-    eventSource.onmessage = function(event) {
-      const data = JSON.parse(event.data);
-      if (
-        data.server_name !==
-          window.PROJECT_SUBDOMAIN + '.' + window.PROJECT_NAME + '.org' ||
-        (data.type !== 'edit' && data.type !== 'new')
-      ) {
-        return;
-      }
-      events = [data, ...events];
-      set(events);
-    };
-  }
-);
+export const RcStream = readable(events, (set) => {
+  ProjectName.subscribe((projectName) => {
+    ProjectSubdomain.subscribe((projectSubdomain) => {
+      const eventSource = new EventSource(ENDPOINT);
+      eventSource.onmessage = function(event) {
+        const data = JSON.parse(event.data);
+        if (
+          data.server_name !== projectSubdomain + '.' + projectName + '.org' ||
+          (data.type !== 'edit' && data.type !== 'new')
+        ) {
+          return;
+        }
+        events = [data, ...events];
+        set(events);
+      };
+    });
+  });
+});

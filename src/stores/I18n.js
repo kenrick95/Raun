@@ -1,20 +1,13 @@
 import { readable } from 'svelte/store';
+import { Locale } from './GlobalConfig';
 
 const ENDPOINT = 'messages/{LOCALE}.json';
 let messages = {};
 
-function createT() {
-  const { subscribe } = readable(
-    {},
-    //@ts-ignore
-    async (set) => {
-      const response = await fetch(ENDPOINT.replace('{LOCALE}', window.LOCALE));
-      messages = await response.json();
-      set(messages);
-    }
-  );
-  return {
-    subscribe
-  };
-}
-export const t = createT();
+export const t = readable({}, (set) => {
+  Locale.subscribe(async (locale) => {
+    const response = await fetch(ENDPOINT.replace('{LOCALE}', locale));
+    messages = await response.json();
+    set(messages);
+  });
+});

@@ -49,7 +49,7 @@ ob_end_clean();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Patrolling wiki, enhanced!">
     <meta name="author" content="Kenrick">
-
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.min.css'>
     <link rel="stylesheet" href="dist/bundle.css">
 
     <title><?php echo $title; ?></title>

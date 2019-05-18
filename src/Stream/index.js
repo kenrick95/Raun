@@ -33,7 +33,7 @@ const ENDPOINT = 'https://stream.wikimedia.org/v2/stream/recentchange';
 let events = [];
 
 export const StreamStore = readable(
-  { events },
+  events,
   //@ts-ignore
   async (set) => {
     const eventSource = new EventSource(ENDPOINT);
@@ -46,11 +46,8 @@ export const StreamStore = readable(
       ) {
         return;
       }
-      console.log('data', data)
-      events = [...events, data];
-      set({
-        events
-      });
+      events = [data, ...events];
+      set(events);
     };
   }
 );

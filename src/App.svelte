@@ -19,7 +19,7 @@
 
   <ul class="groups">
 
-    {#each $RcStreamGroups.reverse() as eventGroup}
+    {#each $RcStreamGroups as eventGroup}
       <RcGroup {eventGroup} />
     {/each}
   </ul>

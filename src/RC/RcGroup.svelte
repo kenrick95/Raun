@@ -19,7 +19,7 @@
   .group {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 16px auto;
+    grid-template-rows: 16px repeat(auto);
     margin: 10px;
     border-radius: 4px;
     padding: 10px 15px;
@@ -32,16 +32,21 @@
     color: #05a;
   }
   .events {
+    padding-left: 28px;
   }
 </style>
 
 {#if eventGroupInfo}
   <li class="group">
-    <a class="group-title" href={eventGroupInfo.href}>
+    <a
+      class="group-title"
+      href={eventGroupInfo.href}
+      target="_blank"
+      rel="noreferrer noopener">
        {eventGroupInfo.title}
     </a>
     <ul class="events">
-      {#each eventGroup.reverse() as event}
+      {#each eventGroup as event}
         <RcEvent {event} />
       {/each}
 

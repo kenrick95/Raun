@@ -9,47 +9,58 @@
     }&oldid=${event.revision.old}`;
   }
   let eventScore = null;
-  Ores.subscribe(revids => {
-    if (revids[event.revision.new]) {
-      eventScore = Math.round(revids[event.revision.new] * 100);
-    }
-  });
+  $: eventScore = $Ores[event.revision.new]
+    ? Math.round($Ores[event.revision.new] * 100)
+    : null;
 </script>
 
 <style>
   .event {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 16px 12px 12px;
+    grid-template-columns: 1fr 1fr 1fr 36px;
+    grid-template-rows: 16px 14px 14px;
   }
   .title {
     color: #05a;
-    grid-column: 1 / span 3;
-    grid-row: 1 / span 3;
+    grid-column: 1 / span 4;
+    grid-row: 1 / span 4;
 
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
   .comment {
-    grid-column: 1 / span 1;
+    grid-column: 1 / span 4;
     grid-row: 3 / span 1;
-    
+
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+
+    font-size: 10px;
+    line-height: 14px;
   }
 
   .score {
-    grid-column: 3 / span 1;
+    grid-column: 4 / span 1;
     grid-row: 2 / span 1;
+
+    font-size: 10px;
+    line-height: 14px;
   }
 </style>
 
 <li class="event">
-  <a href={eventHref} class="title">{event.title}</a>
+  <a
+    href={eventHref}
+    class="title"
+    target="_blank"
+    rel="noreferrer noopener"
+    title={event.title}>
+     {event.title}
+  </a>
 
-  <div class="comment">{event.comment}</div>
+  <div class="comment" title={event.comment}>{event.comment}</div>
 
   {#if eventScore}
     <div class="score">{eventScore}%</div>

@@ -1,5 +1,6 @@
 import { readable } from 'svelte/store';
 import { RcStream } from './RcStream';
+import { OresQueue, Ores } from './Ores';
 
 /**
  * @var {Array<Array<RcEvent>>} eventGroups
@@ -13,7 +14,7 @@ export const RcStreamGroups = readable(eventGroups, async (set) => {
     }
     const newEvent = events[0];
     // TODO: These operations are expensive; O(N) on every new event received; see if we can improve
-
+    OresQueue.update((eventIds) => [...eventIds, newEvent.revision.new]);
 
     // Find in `eventGroups`
     const groupIndex = eventGroups.findIndex((group) => {

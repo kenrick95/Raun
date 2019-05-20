@@ -1,9 +1,21 @@
-export function debounce(fn, timeout) {
+export function debounce(fn, timeout, { maxDebounceCount }) {
   let timeoutId = null;
-  return function() {
+  let debounceCount = 0;
+  return function(...args) {
     if (timeoutId) {
-      clearTimeout(timeoutId);
+      if (maxDebounceCount != null) {
+        if (debounceCount < maxDebounceCount) {
+          debounceCount += 1;
+          clearTimeout(timeoutId);
+        } else {
+          debounceCount = 0;
+        }
+      } else {
+        clearTimeout(timeoutId);
+      }
     }
-    timeoutId = setTimeout(fn, timeout);
+    timeoutId = setTimeout(() => {
+      fn.apply(null, args);
+    }, timeout);
   };
 }

@@ -2,7 +2,7 @@ import { readable, writable } from 'svelte/store';
 import { ProjectName, ProjectSubdomain } from './GlobalConfig';
 import { debounce } from '../utils/debounce';
 
-const ENDPOINT = 'https://ores.wikimedia.org/v3/{PROJECT}/';
+const ENDPOINT = 'https://ores.wikimedia.org/v3/scores/{PROJECT}/';
 
 // ?models=damaging
 // ?revids = revid|revid
@@ -23,12 +23,21 @@ export const Ores = readable(revScores, (set) => {
           : projectSubdomain + 'wiki';
 
       async function flushQueue(revids) {
+        if (!revids || revids.length < 1) {
+          return;
+        }
         const revidsToQuery = [];
         for (const revid of revids) {
           if (!revScores.hasOwnProperty(revid)) {
             revidsToQuery.push(revid);
           }
         }
+        if (!revidsToQuery || revidsToQuery.length < 1) {
+          return;
+        }
+        // Flush the queue
+        OresQueue.set([]);
+
         const response = await fetch(
           ENDPOINT.replace('{PROJECT}', dbName) +
             '?models=damaging&revids=' +
@@ -36,15 +45,13 @@ export const Ores = readable(revScores, (set) => {
         );
         const data = await response.json();
         for (const revid of revidsToQuery) {
-          // TODO depend on `data` structure
-          revScores[revid] = data[revid].probability.true;
+          const value = data[dbName]['scores'][revid]['damaging']['score'];
+          revScores[revid] = value.probability.true;
         }
 
         set(revScores);
-        // Flush the queue
-        OresQueue.set([]);
       }
-      const handleQueueSubscribed = debounce(flushQueue, 200);
+      const handleQueueSubscribed = debounce(flushQueue, 2000, { maxDebounceCount: 10 });
       OresQueue.subscribe(handleQueueSubscribed);
     });
   });

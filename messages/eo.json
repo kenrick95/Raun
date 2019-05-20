@@ -1,11 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"KuboF"
+			"KuboF",
+			"Mirin"
 		]
 	},
 	"close": "Fermi",
 	"help": "Helpo",
+	"filter": "Filtri",
 	"settings": "Agordoj",
 	"fork": "Fontkodo",
 	"stat": "Statistikoj",
@@ -35,6 +37,7 @@
 	"stat_admins": "Administrantoj",
 	"separator_thousands": ",",
 	"separator_decimals": ".",
+	"def_i": "v konv",
 	"main_time_utc": "Tempo (UTC)",
 	"main_page": "Paĝo",
 	"main_user": "Uzanto",
@@ -46,6 +49,7 @@
 	"bot": "roboto",
 	"admin": "administranto",
 	"help_legend": "Klarigeto:",
+	"ores_score": "ORES-poentaro",
 	"color": "Koloro",
 	"about": "Pri",
 	"information": "Informo",

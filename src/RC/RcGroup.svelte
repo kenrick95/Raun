@@ -3,10 +3,10 @@
   export let eventGroup = null;
 
   let eventGroupInfo = null;
-  if (eventGroup && eventGroup.length > 0) {
+  $: if (eventGroup && eventGroup.length > 0) {
     eventGroupInfo = {
       title: eventGroup[0].title,
-      href: `${eventGroup[0].server_url}w/index.php?title=${
+      href: `${eventGroup[0].server_url}/w/index.php?title=${
         eventGroup[0].title
       }&diff=${eventGroup[0].revision.new}&oldid=${
         eventGroup[eventGroup.length - 1].revision.old
@@ -19,7 +19,7 @@
   .group {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 16px 12px;
+    grid-template-rows: 16px auto;
     margin: 10px;
     border-radius: 4px;
     padding: 10px 15px;

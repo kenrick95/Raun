@@ -3,7 +3,7 @@
   export let event = {};
 
   let eventHref = "#";
-  if (event) {
+  $: if (event) {
     eventHref = `${event.server_url}/w/index.php?title=${event.title}&diff=${
       event.revision.new
     }&oldid=${event.revision.old}`;

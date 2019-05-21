@@ -1,6 +1,6 @@
 import { readable } from 'svelte/store';
 import { RcStream } from './RcStream';
-import { OresQueue, Ores } from './Ores';
+import { OresQueue } from './Ores';
 
 /**
  * @var {Array<Array<RcEvent>>} eventGroups

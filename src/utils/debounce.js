@@ -19,3 +19,11 @@ export function debounce(fn, timeout, { maxDebounceCount }) {
     }, timeout);
   };
 }
+
+export function splitArrayIntoChunks(array, size) {
+  let chunkedArray = [];
+  for (let i = 0; i < array.length; i += size) {
+    chunkedArray.push(array.slice(i, i + size));
+  }
+  return chunkedArray;
+}

@@ -57,5 +57,9 @@ export const Ores = readable(revScores, (set) => {
   });
 });
 
-// Write revid here
+/**
+ * Write revid here
+ * 
+ * New events at the front
+ */
 export const OresQueue = writable([]);

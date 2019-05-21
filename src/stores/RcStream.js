@@ -1,5 +1,6 @@
-import { readable } from 'svelte/store';
+import { writable } from 'svelte/store';
 import { ProjectName, ProjectSubdomain } from './GlobalConfig';
+import { DeferImmediateCommitEvents } from './AppConfig';
 const ENDPOINT = 'https://stream.wikimedia.org/v2/stream/recentchange';
 
 /**
@@ -30,10 +31,12 @@ const ENDPOINT = 'https://stream.wikimedia.org/v2/stream/recentchange';
  */
 /**
  * @var {RcEvent[]} events
+ *
+ * This will be deleted once processed at RcStreamGroup
+ *
+ * New events at the back
  */
-let events = [];
-
-export const RcStream = readable(events, (set) => {
+export const RcStream = writable([], (set) => {
   ProjectName.subscribe((projectName) => {
     ProjectSubdomain.subscribe((projectSubdomain) => {
       const eventSource = new EventSource(ENDPOINT);
@@ -45,9 +48,48 @@ export const RcStream = readable(events, (set) => {
         ) {
           return;
         }
-        events = [data, ...events];
-        set(events);
+
+        UncommittedRcStream.update((uncommittedEvents) => {
+          return [...uncommittedEvents, data];
+        });
       };
+
+      let shouldDeferImmediateCommitEventsTemp = false;
+      let uncommittedEventsTemp = [];
+      UncommittedRcStream.subscribe((uncommittedEvents) => {
+        if (!uncommittedEvents || uncommittedEvents.length < 1) {
+          return;
+        }
+        uncommittedEventsTemp = uncommittedEvents;
+        if (!shouldDeferImmediateCommitEventsTemp) {
+          commitEvents();
+        }
+      });
+
+      function commitEvents() {
+        UncommittedRcStream.set([]);
+        set([...uncommittedEventsTemp]);
+      }
+      DeferImmediateCommitEvents.subscribe((shouldDeferImmediateCommitEvents) => {
+        shouldDeferImmediateCommitEventsTemp = shouldDeferImmediateCommitEvents;
+      });
+
+      FlushRcStream.subscribe((shouldFlushRcStream) => {
+        if (shouldFlushRcStream) {
+          commitEvents();
+          FlushRcStream.set(false);
+        }
+      });
     });
   });
 });
+export const FlushRcStream = writable(false);
+
+/**
+ * @var {RcEvent[]} uncommittedEvents
+ *
+ *
+ * Only when FlushRcStream=true, this will be "committed" to "events"
+ * New events at the back
+ */
+export const UncommittedRcStream = writable([]);

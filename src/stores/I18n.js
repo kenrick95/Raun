@@ -1,13 +1,17 @@
 import { readable } from 'svelte/store';
 import { Locale } from './GlobalConfig';
+import English from '../../messages/en.json';
 
 const ENDPOINT = 'messages/{LOCALE}.json';
 let messages = {};
+let currentLocale = 'en';
 
-export const t = readable({}, (set) => {
+export const t = readable(English, (set) => {
   Locale.subscribe(async (locale) => {
-    const response = await fetch(ENDPOINT.replace('{LOCALE}', locale));
-    messages = await response.json();
-    set(messages);
+    if (locale !== currentLocale) {
+      const response = await fetch(ENDPOINT.replace('{LOCALE}', locale));
+      messages = await response.json();
+      set(messages);
+    }
   });
 });

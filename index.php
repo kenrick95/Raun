@@ -22,8 +22,10 @@ class Main
         $this->language = $this->getParam('language', 'id');
         $this->project = $this->getParam('project', 'wikipedia');
         $this->title = "Raun: $this->language.$this->project ($this->locale)";
+
+        $this->dbname = $this->getParam('dbname');
     }
-    private function getParam($key, $default)
+    private function getParam($key, $default = NULL)
     {
         if (isset($_GET[$key])) {
             return htmlspecialchars($_GET[$key]);
@@ -53,8 +55,14 @@ class Main
         $requestFile = str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, $str);
         $fullPath = __DIR__ . '/dist' . $requestFile;
         $fileContent = file_get_contents($fullPath);
-        $mimeType = mime_content_type($fullPath);
-        header('Content-Type: ' . $mimeType);
+        $extension = pathinfo($fullPath, PATHINFO_EXTENSION);
+        if ($extension === 'js') {
+            header('Content-Type: application/javascript');
+        } else if ($extension === 'css') {
+            header('Content-Type: text/css');
+        } else {
+            header('Content-Type: text/plain');
+        }
         echo $fileContent;
     }
 
@@ -69,6 +77,10 @@ class Main
     public function router()
     {
         $requestUrl = $_SERVER['REQUEST_URI'];
+        if (isset($_SERVER['QUERY_STRING'])) {
+            $requestUrl = str_replace('?' . $_SERVER['QUERY_STRING'], '', $requestUrl);
+        }
+
         if (strpos($requestUrl, '/dist') === 0 && php_sapi_name() == 'cli-server') {
             $this->renderStatic();
         } else if ($requestUrl === '/api/sitematrix') {
@@ -76,6 +88,9 @@ class Main
         } else if ($requestUrl === '/') {
             $this->renderHome();
         } else {
+            
+            echo $requestUrl;
+            var_dump($_SERVER);
             return NULL;
         }
     }

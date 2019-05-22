@@ -11,28 +11,35 @@ if (ltrim($base, '/')) {
     $_SERVER['REQUEST_URI'] = substr($_SERVER['REQUEST_URI'], strlen($base));
 }
 
-
 require_once __DIR__ . '/vendor/autoload.php';
 
+class Main
+{
+    protected $I18N;
+    public function  __construct()
+    {
+        $this->I18N = new Intuition(array(
+            'domain' => 'raun',
+            'suppressbrackets' => true,
+        ));
+        $this->I18N->registerDomain('raun', __DIR__ . '/messages');
+        $this->locale = $this->I18N->getLang();
+        $this->language = $this->getParam('language', 'id');
+        $this->project = $this->getParam('project', 'wikipedia');
+        $this->title = "Raun: $this->language.$this->project ($this->locale)";
+    }
+    private function getParam($key, $default)
+    {
+        if (isset($_GET[$key])) {
+            return htmlspecialchars($_GET[$key]);
+        }
+        return $default;
+    }
 
-$klein = new \Klein\Klein();
-
-$I18N = new Intuition(array(
-    'domain' => 'raun',
-    'suppressbrackets' => true,
-));
-$I18N->registerDomain('raun', __DIR__ . '/messages');
-
-
-$klein->respond(function ($request, $response, $service, $app) use ($klein) {
-    global $base;
-    $service->base_url = $base;
-    global $I18N;
-    $service->I18N = $I18N;
-});
-
-
-
-$klein->with("/api", "controllers/api.php");
-$klein->with("", "controllers/home.php");
-$klein->dispatch();
+    public function renderHome()
+    {
+        require_once __DIR__ . '/views/home.phtml';
+    }
+}
+$main = new Main();
+$main->renderHome();

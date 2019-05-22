@@ -1,6 +1,5 @@
 {
     "require": {
-        "krinkle/intuition": "^1.2",
-        "klein/klein": "^2.1"
+        "krinkle/intuition": "^1.2"
     }
 }

@@ -6,12 +6,14 @@
  * @author Kenrick <contact@kenrick95.org>
  * @license MIT License <http://opensource.org/licenses/MIT>
  */
-$base  = dirname($_SERVER['PHP_SELF']);
-if (ltrim($base, '/')) {
-    $_SERVER['REQUEST_URI'] = substr($_SERVER['REQUEST_URI'], strlen($base));
-}
+// $base  = dirname($_SERVER['PHP_SELF']);
+// if (ltrim($base, '/')) {
+//     $_SERVER['REQUEST_URI'] = substr($_SERVER['REQUEST_URI'], strlen($base));
+// }
 
 require_once __DIR__ . '/vendor/autoload.php';
+
+use Raun\ApiSiteMatrix;
 
 class Main
 {
@@ -27,6 +29,9 @@ class Main
         $this->language = $this->getParam('language', 'id');
         $this->project = $this->getParam('project', 'wikipedia');
         $this->title = "Raun: $this->language.$this->project ($this->locale)";
+
+        // $this->apiSiteMatrix = new ApiSiteMatrix();
+        // var_dump($this->apiSiteMatrix->httpRequest());
     }
     private function getParam($key, $default)
     {

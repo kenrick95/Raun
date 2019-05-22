@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f486320b26b73a3f69a21cb726dc6d88",
+    "content-hash": "185c4bb326d055a66150e6a5549e8d8f",
     "packages": [
         {
             "name": "krinkle/intuition",

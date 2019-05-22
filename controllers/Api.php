@@ -27,7 +27,7 @@ class Api
         $fullGetParamsString = '?' . http_build_query($fullGetParams);
         $fullUrl = $this->baseUrl . $this->endpoint . $fullGetParamsString;
 
-        echo $fullUrl;
+        // echo $fullUrl;
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);

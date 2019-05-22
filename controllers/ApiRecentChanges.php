@@ -2,7 +2,7 @@
 
 namespace Raun;
 
-class ApiSiteMatrix extends Api
+class ApiRecentChanges extends Api
 {
     public function __construct($baseUrl)
     {

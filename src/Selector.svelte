@@ -47,10 +47,17 @@
     <select id="wiki" name="dbname" class="field" required>
       {#each $SiteMatrix as Site}
         {#if Site}
-          <option value={Site.dbName}>{Site.dbName} - {Site.url}</option>
+          {#if Site.dbName === 'enwiki'}
+            <!-- Still "choose" enwiki as default so that the selection isn't changed after loaded -->
+            <option value={Site.dbName} selected="selected">
+               {Site.dbName} - {Site.url}
+            </option>
+          {:else}
+            <option value={Site.dbName}>{Site.dbName} - {Site.url}</option>
+          {/if}
         {/if}
       {:else}
-        <option value="enwiki">enwiki - https://en.wikipedia.org/</option>
+        <option value="enwiki">enwiki - https://en.wikipedia.org</option>
       {/each}
     </select>
 

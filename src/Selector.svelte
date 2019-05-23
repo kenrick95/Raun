@@ -47,10 +47,10 @@
     <select id="wiki" name="dbname" class="field" required>
       {#each $SiteMatrix as Site}
         {#if Site}
-          <option>{Site.dbName}</option>
+          <option value={Site.dbName}>{Site.dbName} - {Site.url}</option>
         {/if}
       {:else}
-        <option>enwiki</option>
+        <option value="enwiki">enwiki - https://en.wikipedia.org/</option>
       {/each}
     </select>
 

@@ -41,7 +41,7 @@ export const Ores = readable(revScores, (set) => {
       if (value != null) {
         revScores[revid] = value.probability.true;
       } else {
-        console.warn('[ORES] error data value', data, value);
+        console.warn('[ORES] error data value', data, dbName, revid);
       }
     }
   }

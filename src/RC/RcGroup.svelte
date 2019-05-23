@@ -5,7 +5,8 @@
   let eventGroupInfo = null;
   $: if (eventGroup && eventGroup.length > 0) {
     eventGroupInfo = {
-      title: eventGroup[0].title,
+      ...eventGroup[0],
+
       href: `${eventGroup[0].server_url}/w/index.php?title=${
         eventGroup[0].title
       }&diff=${eventGroup[0].revision.new}&oldid=${
@@ -18,20 +19,32 @@
 <style>
   .group {
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 16px repeat(auto);
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 16px 14px repeat(auto);
     margin: 10px;
     border-radius: 4px;
     padding: 10px 15px;
     border: 1px solid #ddd;
-    /* box-shadow: 0 0 5px #ddd; */
+
+    row-gap: 4px;
+    column-gap: 4px;
   }
   .group-title {
-    grid-column: 1 / span 1;
+    grid-column: 1 / span 12;
     grid-row: 1 / span 1;
     color: #05a;
   }
+
+  .wiki {
+    grid-column: 1 / span 1;
+    grid-row: 2 / span 1;
+
+    font-size: 10px;
+    line-height: 14px;
+  }
   .events {
+    grid-column: 1 / span 12;
+    grid-row: 3 / span 1;
     padding-left: 28px;
   }
 </style>
@@ -45,6 +58,9 @@
       rel="noreferrer noopener">
        {eventGroupInfo.title}
     </a>
+
+    <div class="wiki" title={eventGroupInfo.wiki}>{eventGroupInfo.wiki}</div>
+
     <ul class="events">
       {#each eventGroup as event}
         <RcEvent {event} />

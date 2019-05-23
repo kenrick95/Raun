@@ -1,6 +1,7 @@
 <script>
   import { Ores } from "../stores/Ores";
   import { Locale } from "../stores/GlobalConfig";
+  import { t } from "../stores/I18n";
   export let event = {};
 
   let eventHref = "#";
@@ -33,6 +34,19 @@
   $: if (event.length) {
     diff = event.length.new - (event.length.old || 0);
   }
+
+  let revTags = [];
+  $: if (event.patrolled) {
+    revTags.push("patrolled");
+  }
+  $: if (event.minor) {
+    revTags.push("minor");
+  }
+
+  let userTags = [];
+  $: if (event.bot) {
+    userTags.push("bot");
+  }
 </script>
 
 <style>
@@ -51,7 +65,7 @@
   }
   .time {
     color: #05a;
-    grid-column: 1 / span 3;
+    grid-column: 1 / span 2;
     grid-row: 1 / span 1;
   }
   .comment {
@@ -76,12 +90,38 @@
   }
 
   .user {
-    grid-column: 6 / span 3;
+    grid-column: 6 / span 2;
     grid-row: 1 / span 1;
 
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+  }
+
+  .revtags {
+    grid-column: 3 / span 3;
+    grid-row: 1 / span 1;
+
+    display: flex;
+    align-items: center;
+  }
+  .usertags {
+    grid-column: 8 / span 4;
+    grid-row: 1 / span 1;
+
+    display: flex;
+    align-items: center;
+  }
+  .tag {
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 14px;
+    color: #999;
+    flex: 0 1 auto;
+  }
+
+  .tag + .tag {
+    margin-left: 12px;
   }
 
   .diff {
@@ -90,6 +130,9 @@
 
     font-weight: 500;
     font-size: 10px;
+    line-height: 14px;
+    display: flex;
+    align-items: center;
     color: #999;
   }
 
@@ -130,6 +173,22 @@
         .filter(Boolean)
         .join(' ')}>
       {#if diff > 0}+{diff}{:else}{diff}{/if}
+    </div>
+  {/if}
+
+  {#if revTags.length > 0}
+    <div class="revtags">
+      {#each revTags as tag}
+        <div class="tag">{$t[tag]}</div>
+      {/each}
+    </div>
+  {/if}
+
+  {#if userTags.length > 0}
+    <div class="usertags">
+      {#each userTags as tag}
+        <div class="tag">{$t[tag]}</div>
+      {/each}
     </div>
   {/if}
 

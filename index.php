@@ -24,8 +24,10 @@ class Main
 
         if (strpos($dbnameRaw, '|') !== FALSE) {
             $this->dbname = array($dbnameRaw);
-        } else {
+        } else if (!empty($dbnameRaw)) {
             $this->dbname = explode('|', $dbnameRaw);
+        } else {
+            $this->dbname = NULL;
         }
 
         // TODO: Get "language" and "project" from dbname

@@ -19,11 +19,22 @@ class Main
         ));
         $this->I18N->registerDomain('raun', __DIR__ . '/messages');
         $this->locale = $this->I18N->getLang();
+
+        $dbnameRaw = $this->getParam('dbname');
+
+        if (strpos($dbnameRaw, '|') !== FALSE) {
+            $this->dbname = array($dbnameRaw);
+        } else {
+            $this->dbname = explode('|', $dbnameRaw);
+        }
+
+        // TODO: Get "language" and "project" from dbname
         $this->language = $this->getParam('language', 'id');
         $this->project = $this->getParam('project', 'wikipedia');
-        $this->title = "Raun: $this->language.$this->project ($this->locale)";
 
-        $this->dbname = $this->getParam('dbname');
+
+
+        $this->title = "Raun: $this->locale";
     }
     private function getParam($key, $default = NULL)
     {
@@ -88,7 +99,7 @@ class Main
         } else if ($requestUrl === '/') {
             $this->renderHome();
         } else {
-            
+
             echo $requestUrl;
             var_dump($_SERVER);
             return NULL;

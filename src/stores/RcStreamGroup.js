@@ -16,8 +16,8 @@ export const RcStreamGroups = readable(eventGroups, async (set) => {
     }
     const newEventIds = [];
     for (const newEvent of events) {
-      newEventIds.push(newEvent.revision.new);
-    } 
+      newEventIds.push({ revid: newEvent.revision.new, dbName: newEvent.wiki });
+    }
     OresQueue.update((eventIds) => [...eventIds, ...newEventIds]);
     for (const newEvent of events) {
       // TODO: These operations are expensive; O(N) on every new event received; see if we can improve

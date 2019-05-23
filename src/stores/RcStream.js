@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import { ProjectName, ProjectSubdomain } from './GlobalConfig';
+import { DbNames } from './GlobalConfig';
 import { DeferImmediateCommitEvents } from './AppConfig';
 const ENDPOINT = 'https://stream.wikimedia.org/v2/stream/recentchange';
 
@@ -37,49 +37,47 @@ const ENDPOINT = 'https://stream.wikimedia.org/v2/stream/recentchange';
  * New events at the back
  */
 export const RcStream = writable([], (set) => {
-  ProjectName.subscribe((projectName) => {
-    ProjectSubdomain.subscribe((projectSubdomain) => {
-      const eventSource = new EventSource(ENDPOINT);
-      eventSource.onmessage = function(event) {
-        const data = JSON.parse(event.data);
-        if (
-          data.server_name !== projectSubdomain + '.' + projectName + '.org' ||
-          (data.type !== 'edit' && data.type !== 'new')
-        ) {
-          return;
-        }
-
-        UncommittedRcStream.update((uncommittedEvents) => {
-          return [...uncommittedEvents, data];
-        });
-      };
-
-      let shouldDeferImmediateCommitEventsTemp = false;
-      let uncommittedEventsTemp = [];
-      UncommittedRcStream.subscribe((uncommittedEvents) => {
-        if (!uncommittedEvents || uncommittedEvents.length < 1) {
-          return;
-        }
-        uncommittedEventsTemp = uncommittedEvents;
-        if (!shouldDeferImmediateCommitEventsTemp) {
-          commitEvents();
-        }
-      });
-
-      function commitEvents() {
-        UncommittedRcStream.set([]);
-        set([...uncommittedEventsTemp]);
+  DbNames.subscribe((dbNames) => {
+    const eventSource = new EventSource(ENDPOINT);
+    eventSource.onmessage = function(event) {
+      const data = JSON.parse(event.data);
+      if (
+        !dbNames.includes(data.wiki) ||
+        (data.type !== 'edit' && data.type !== 'new')
+      ) {
+        return;
       }
-      DeferImmediateCommitEvents.subscribe((shouldDeferImmediateCommitEvents) => {
-        shouldDeferImmediateCommitEventsTemp = shouldDeferImmediateCommitEvents;
-      });
 
-      FlushRcStream.subscribe((shouldFlushRcStream) => {
-        if (shouldFlushRcStream) {
-          commitEvents();
-          FlushRcStream.set(false);
-        }
+      UncommittedRcStream.update((uncommittedEvents) => {
+        return [...uncommittedEvents, data];
       });
+    };
+
+    let shouldDeferImmediateCommitEventsTemp = false;
+    let uncommittedEventsTemp = [];
+    UncommittedRcStream.subscribe((uncommittedEvents) => {
+      if (!uncommittedEvents || uncommittedEvents.length < 1) {
+        return;
+      }
+      uncommittedEventsTemp = uncommittedEvents;
+      if (!shouldDeferImmediateCommitEventsTemp) {
+        commitEvents();
+      }
+    });
+
+    function commitEvents() {
+      UncommittedRcStream.set([]);
+      set([...uncommittedEventsTemp]);
+    }
+    DeferImmediateCommitEvents.subscribe((shouldDeferImmediateCommitEvents) => {
+      shouldDeferImmediateCommitEventsTemp = shouldDeferImmediateCommitEvents;
+    });
+
+    FlushRcStream.subscribe((shouldFlushRcStream) => {
+      if (shouldFlushRcStream) {
+        commitEvents();
+        FlushRcStream.set(false);
+      }
     });
   });
 });

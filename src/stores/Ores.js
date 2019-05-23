@@ -37,8 +37,13 @@ export const Ores = readable(revScores, (set) => {
         );
         if (!response.ok) {
           console.warn('[ORES] error', response);
+          return;
         }
         const data = await response.json();
+        if (data.error) {
+          console.warn('[ORES] error data', data);
+          return;
+        }
         for (const revid of revidsToQuery) {
           const value = data[dbName]['scores'][revid]['damaging']['score'];
           if (value != null) {

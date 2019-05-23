@@ -54,11 +54,10 @@ class Main
     /**
      * NOTE: For usage in development server only
      */
-    private function renderStatic()
+    private function renderStatic($prefix = '/dist')
     {
         // Get file name
         $requestUrl = $_SERVER['REQUEST_URI'];
-        $prefix = '/dist';
         $str = $requestUrl;
 
         if (substr($str, 0, strlen($prefix)) == $prefix) {
@@ -66,7 +65,7 @@ class Main
         }
 
         $requestFile = str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, $str);
-        $fullPath = __DIR__ . '/dist' . $requestFile;
+        $fullPath = __DIR__ . $prefix . $requestFile;
         $fileContent = file_get_contents($fullPath);
         $extension = pathinfo($fullPath, PATHINFO_EXTENSION);
         if ($extension === 'js') {
@@ -94,8 +93,12 @@ class Main
             $requestUrl = str_replace('?' . $_SERVER['QUERY_STRING'], '', $requestUrl);
         }
 
-        if (strpos($requestUrl, '/dist') === 0 && php_sapi_name() == 'cli-server') {
-            $this->renderStatic();
+        if (php_sapi_name() == 'cli-server'  && (strpos($requestUrl, '/dist') === 0 || strpos($requestUrl, '/messages') === 0)) {
+            if (strpos($requestUrl, '/dist') === 0) {
+                $this->renderStatic('/dist');
+            } else if (strpos($requestUrl, '/messages') === 0) {
+                $this->renderStatic('/messages');
+            }
         } else if ($requestUrl === '/api/sitematrix') {
             $this->renderApiSiteMatrix();
         } else if ($requestUrl === '/') {

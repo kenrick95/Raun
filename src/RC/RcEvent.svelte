@@ -2,7 +2,7 @@
   import { Ores } from "../stores/Ores";
   import { Locale } from "../stores/GlobalConfig";
   import { t } from "../stores/I18n";
-  import { isAnon } from "../utils/user";
+  import { getUserTags, getRevTags } from "../utils/event";
   import { getScoreColor } from "../utils/score";
 
   export let event = {};
@@ -38,21 +38,8 @@
     diff = event.length.new - (event.length.old || 0);
   }
 
-  let revTags = [];
-  $: if (event.patrolled) {
-    revTags.push("patrolled");
-  }
-  $: if (event.minor) {
-    revTags.push("minor");
-  }
-
-  let userTags = [];
-  $: if (event.bot) {
-    userTags.push("bot");
-  }
-  $: if (isAnon(event.user)) {
-    userTags.push("anon");
-  }
+  $: revTags = getRevTags(event);
+  $: userTags = getUserTags(event);
 
   function getStyle(eventScore) {
     if (eventScore >= 45) {

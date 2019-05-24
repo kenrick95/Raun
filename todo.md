@@ -11,11 +11,16 @@
 - [ ] Filter design
 - [x] Limit request to ORES; too much revids will result in error 503, split into multiple request if too many revids
 - [x] Banana i18n
-- [ ] Support for Plural i18n https://github.com/kenrick95/Raun/issues/26
+- [x] Support for Plural i18n https://github.com/kenrick95/Raun/issues/26
 - [ ] Rework i18n so that it is reactive. Current issue: Once loaded, unless the component is updated, old translation is used. This is because the real locale messages are loaded much later than the 1st render.
 - [ ] Filter: Save config at URL
 - [ ] RcStreamGroup: Refactor expensive operations. Need something that has O(1) RcStreamGroup look up; also O(1) RcStreamGroup bubbling
 - [ ] RcStreamGroup: Seems like not so useful to group many events together, only from same users. Need to explore if useful or not.
+- [ ] Selector: Update UI to support multiple wiki selections
+
+# Random notes
+
+- `dbname` query params internal to this tool can hold >=1 dbname, separated by `|`. Example: Accessing Raun via `?dbname=idwiki|enwiki` will make Raun run in crosswiki.
 
 # Current data architecture
 

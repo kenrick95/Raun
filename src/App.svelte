@@ -2,9 +2,13 @@
   import { t } from "./stores/I18n.js";
   import { RcStreamGroups } from "./stores/RcStreamGroup.js";
   import { FlushRcStream, UncommittedRcStream } from "./stores/RcStream.js";
+  import Header from "./views/Header.svelte";
+  import Footer from "./views/Footer.svelte";
   import RcGroup from "./views/RcGroup.svelte";
   import Settings from "./views/Settings.svelte";
+
   import { slide } from "svelte/transition";
+
   let isSettingsActive = true;
   function toggleFilter() {
     isSettingsActive = !isSettingsActive;
@@ -40,14 +44,13 @@
   .more-entries-show {
     visibility: visible;
   }
+
+  :global(a) {
+    color: #05a;
+  }
 </style>
 
-<header>
-  <h1>
-    Raun
-    <small>{t('def_def')}</small>
-  </h1>
-</header>
+<Header />
 
 <aside class="settings">
   <button class="settings-button" on:click={toggleFilter}>
@@ -75,4 +78,4 @@
     {/each}
   </ul>
 </main>
-<footer />
+<Footer />

@@ -1,5 +1,7 @@
 <script>
   import { t } from "./stores/I18n.js";
+  import Header from "./views/Header.svelte";
+  import Footer from "./views/Footer.svelte";
   import { SiteMatrix } from "./stores/SiteMatrix.js";
 </script>
 
@@ -31,18 +33,16 @@
   #submit {
     margin-bottom: 6px;
   }
+  :global(a) {
+    color: #05a;
+  }
 </style>
 
-<header>
-  <h1>
-    Raun
-    <small>{t('def_def')}</small>
-  </h1>
-</header>
+<Header />
 
 <main>
   <form action="/" method="GET" class="form">
-    <label for="wiki" class="label">Wiki</label>
+    <label for="wiki" class="label">{t('tool_wikis')}</label>
 
     <select id="wiki" name="dbname" class="field" required>
       {#each $SiteMatrix as Site}
@@ -61,7 +61,7 @@
       {/each}
     </select>
 
-    <label for="locale" class="label">User interface language</label>
+    <label for="locale" class="label">{t('tool_language')}</label>
 
     <input
       type="text"
@@ -72,8 +72,8 @@
       required
       value="en" />
     <div id="submit-container">
-      <input id="submit" type="submit" value={t('save')} />
+      <input id="submit" type="submit" value={t('submit')} />
     </div>
   </form>
 </main>
-<footer />
+<Footer />

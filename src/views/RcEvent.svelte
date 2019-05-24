@@ -71,12 +71,11 @@
     margin-top: 8px;
   }
   .time {
-    color: #05a;
     grid-column: 1 / span 2;
     grid-row: 1 / span 1;
   }
   .comment {
-    grid-column: 1 / span 11;
+    grid-column: 1 / span 12;
     grid-row: 2 span 1;
 
     overflow: hidden;

@@ -33,7 +33,6 @@
   .group-title {
     grid-column: 1 / span 12;
     grid-row: 1 / span 1;
-    color: #05a;
   }
 
   .wiki {

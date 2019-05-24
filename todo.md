@@ -15,6 +15,7 @@
 - [ ] Rework i18n so that it is reactive. Current issue: Once loaded, unless the component is updated, old translation is used. This is because the real locale messages are loaded much later than the 1st render.
 - [ ] Filter: Save config at URL
 - [ ] RcStreamGroup: Refactor expensive operations. Need something that has O(1) RcStreamGroup look up; also O(1) RcStreamGroup bubbling
+- [ ] RcStreamGroup: Seems like not so useful to group many events together, only from same users. Need to explore if useful or not.
 
 # Current data architecture
 

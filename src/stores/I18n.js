@@ -1,17 +1,41 @@
-import { readable } from 'svelte/store';
 import { Locale } from './GlobalConfig';
 import English from '../../messages/en.json';
+import Banana from 'banana-i18n';
 
 const ENDPOINT = 'messages/{LOCALE}.json';
-let messages = {};
 let currentLocale = 'en';
 
-export const t = readable(English, (set) => {
-  Locale.subscribe(async (locale) => {
-    if (locale !== currentLocale) {
-      const response = await fetch(ENDPOINT.replace('{LOCALE}', locale));
-      messages = await response.json();
-      set(messages);
-    }
-  });
+class I18n {
+  constructor(locale) {
+    this.banana = new Banana(locale, {
+      messages: English
+    });
+    this.t = this.t.bind(this);
+  }
+  async init(locale) {
+    this.banana.setLocale(locale);
+    const response = await fetch(ENDPOINT.replace('{LOCALE}', locale));
+    const messages = await response.json();
+    this.banana.load(messages, locale);
+  }
+
+  t(...args) {
+    return this.banana.i18n(...args);
+  }
+}
+
+let i18n = new I18n(currentLocale);
+
+function createTFactory(locale) {
+  i18n.init(locale);
+  return i18n.t;
+}
+
+export let t = createTFactory(currentLocale);
+
+Locale.subscribe((locale) => {
+  if (locale !== currentLocale) {
+    t = createTFactory(locale);
+    currentLocale = locale;
+  }
 });

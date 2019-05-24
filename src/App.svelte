@@ -18,20 +18,20 @@
 <header>
   <h1>
     Raun
-    <small>{$t.def_def}</small>
+    <small>{t('def_def')}</small>
   </h1>
 </header>
 
 <aside>
   {#if $DeferImmediateCommitEvents}
     <button on:click={handleFlush}>
-       {$t.more_entries.replace('$1', $UncommittedRcStream.length)}
+       {t('more_entries', $UncommittedRcStream.length)}
     </button>
   {/if}
   <form>
     <label>
       <input type="checkbox" bind:checked={$DeferImmediateCommitEvents} />
-       {$t.settings_more_entries}
+       {t('settings_more_entries')}
     </label>
 
   </form>

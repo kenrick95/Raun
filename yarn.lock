@@ -187,6 +187,13 @@ balanced-match@^1.0.0:
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
   integrity sha1-ibTRmasr7kneFk6gK4nORi1xt2c=
 
+banana-i18n@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/banana-i18n/-/banana-i18n-1.0.2.tgz#88fa336dabd94f579578b7d699fc5043caed7ea8"
+  integrity sha512-/eLb+G4QZbgM9BUB/pSDvIUZsx/66kotNZoYIvpTwtjrX4VfxxlVYS3iTwVuSNafY8LAC1WlI3rfQE7oOjmSjg==
+  dependencies:
+    cldrpluralruleparser "^1.3.1"
+
 base@^0.11.1:
   version "0.11.2"
   resolved "https://registry.yarnpkg.com/base/-/base-0.11.2.tgz#7bde5ced145b6d551a90db87f83c558b4eb48a8f"
@@ -312,6 +319,11 @@ class-utils@^0.3.5:
     define-property "^0.2.5"
     isobject "^3.0.0"
     static-extend "^0.1.1"
+
+cldrpluralruleparser@^1.3.1:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/cldrpluralruleparser/-/cldrpluralruleparser-1.3.2.tgz#1475c5de6b8f68c571e33f10086d5f90f46f938c"
+  integrity sha512-z+/RRFz5oMy7nglARs8D+uQhqOIwobNHJwdGBp0nDFpQXVUbVEf80VDQ8xW0ifiEldyWdpylJxLNMcQCAq2esg==
 
 cli-cursor@^2.1.0:
   version "2.1.0"

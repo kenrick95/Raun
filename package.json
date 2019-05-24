@@ -28,5 +28,7 @@
     "start": "php -S localhost:8080 index.php",
     "lint": "eslint src/**/*.js"
   },
-  "dependencies": {}
+  "dependencies": {
+    "banana-i18n": "^1.0.2"
+  }
 }

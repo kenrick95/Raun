@@ -36,7 +36,7 @@
 <header>
   <h1>
     Raun
-    <small>{$t.def_def}</small>
+    <small>{t('def_def')}</small>
   </h1>
 </header>
 
@@ -72,7 +72,7 @@
       required
       value="en" />
     <div id="submit-container">
-      <input id="submit" type="submit" value={$t.save} />
+      <input id="submit" type="submit" value={t('save')} />
     </div>
   </form>
 </main>

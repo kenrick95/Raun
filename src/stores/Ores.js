@@ -11,7 +11,23 @@ import { debounce, splitArrayIntoChunks } from '../utils/debounce';
  * - models=damaging
  * - revids=revid|revid
  */
-const ENDPOINT = 'https://ores.wikimedia.org/v3/scores/{PROJECT}/';
+const ENDPOINT_SCORES = 'https://ores.wikimedia.org/v3/scores/{PROJECT}/';
+
+const ENPOINT_MODELS = 'https://ores.wikimedia.org/v3/scores/';
+
+const modelsToUse = {};
+
+async function initModels() {
+  const response = await fetch(ENPOINT_MODELS);
+  const data = await response.json();
+  for (const dbName in data) {
+    if (data[dbName]['models']['damaging']) {
+      modelsToUse[dbName] = 'damaging';
+    } else if (data[dbName]['models']['reverted']) {
+      modelsToUse[dbName] = 'reverted';
+    }
+  }
+}
 
 /**
  * @var {Object} revScores
@@ -20,11 +36,19 @@ const ENDPOINT = 'https://ores.wikimedia.org/v3/scores/{PROJECT}/';
  * }
  */
 let revScores = {};
-export const Ores = readable(revScores, (set) => {
+export const Ores = readable(revScores, async (set) => {
+  await initModels();
+
   async function processQueueChunk(dbName, revidsToQuery) {
+    const model = modelsToUse[dbName];
+    if (!model) {
+      console.warn('[ORES] dbName is not supported by ORES', dbName);
+    }
     const response = await fetch(
-      ENDPOINT.replace('{PROJECT}', dbName) +
-        '?models=damaging&revids=' +
+      ENDPOINT_SCORES.replace('{PROJECT}', dbName) +
+        '?models=' +
+        model +
+        '&revids=' +
         revidsToQuery.join('|')
     );
     if (!response.ok) {
@@ -37,7 +61,7 @@ export const Ores = readable(revScores, (set) => {
       return;
     }
     for (const revid of revidsToQuery) {
-      const value = data[dbName]['scores'][revid]['damaging']['score'];
+      const value = data[dbName]['scores'][revid][modelsToUse[dbName]]['score'];
       if (value != null) {
         revScores[revid] = value.probability.true;
       } else {

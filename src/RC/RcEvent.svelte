@@ -11,7 +11,10 @@
   $: if (event.revision) {
     eventHref = `${event.server_url}/w/index.php?title=${event.title}&diff=${
       event.revision.new
-    }&oldid=${event.revision.old}`;
+    }`;
+    if (event.revision.old) {
+      eventHref = eventHref + `&oldid=${event.revision.old}`;
+    }
   }
 
   $: eventScore = $Ores[event.revision.new]
@@ -90,6 +93,7 @@
 
     display: flex;
     align-items: center;
+    justify-content: right;
   }
 
   .user {
@@ -137,6 +141,7 @@
     display: flex;
     align-items: center;
     color: #999;
+    justify-content: right;
   }
 
   .diff-pos {
@@ -168,6 +173,7 @@
 
   {#if diff != null}
     <div
+      dir="ltr"
       class={[
         'diff',
         diff > 0 ? 'diff-pos' : null,
@@ -199,6 +205,7 @@
 
   {#if eventScore}
     <div
+      dir="ltr"
       class="score"
       style={`color: ${getScoreColor(eventScore)}`}
       title={t('ores_score')}>

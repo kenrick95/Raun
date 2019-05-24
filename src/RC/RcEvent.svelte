@@ -2,7 +2,8 @@
   import { Ores } from "../stores/Ores";
   import { Locale } from "../stores/GlobalConfig";
   import { t } from "../stores/I18n";
-  import { isAnon } from '../utils/user';
+  import { isAnon } from "../utils/user";
+  import { getScoreColor } from "../utils/score";
 
   export let event = {};
 
@@ -52,6 +53,13 @@
   $: if (isAnon(event.user)) {
     userTags.push("anon");
   }
+
+  function getStyle(eventScore) {
+    if (eventScore >= 45) {
+      return "background-color: #ffd3bd";
+    }
+    return "";
+  }
 </script>
 
 <style>
@@ -87,11 +95,14 @@
 
   .score {
     grid-column: 12 / span 1;
-    grid-row: 2 span 1;
+    grid-row: 1 / span 1;
 
     font-weight: 500;
     font-size: 10px;
     line-height: 14px;
+
+    display: flex;
+    align-items: center;
   }
 
   .user {
@@ -111,7 +122,7 @@
     align-items: center;
   }
   .usertags {
-    grid-column: 8 / span 4;
+    grid-column: 8 / span 3;
     grid-row: 1 / span 1;
 
     display: flex;
@@ -130,7 +141,7 @@
   }
 
   .diff {
-    grid-column: 12 / span 1;
+    grid-column: 11 / span 1;
     grid-row: 1 / span 1;
 
     font-weight: 500;
@@ -149,7 +160,7 @@
   }
 </style>
 
-<li class="event">
+<li class="event" style={getStyle(eventScore)}>
   <a
     href={eventHref}
     class="time"
@@ -200,6 +211,11 @@
   <div class="comment" title={event.comment}>{event.comment}</div>
 
   {#if eventScore}
-    <div class="score">{eventScore}%</div>
+    <div
+      class="score"
+      style={`color: ${getScoreColor(eventScore)}`}
+      title={$t.ores_score}>
+       {eventScore}%
+    </div>
   {/if}
 </li>

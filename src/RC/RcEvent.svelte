@@ -4,6 +4,7 @@
   import { t } from "../stores/I18n";
   import { getUserTags, getRevTags } from "../utils/event";
   import { getScoreColor } from "../utils/score";
+  import { Admins, Editors } from "../stores/Users";
 
   export let event = {};
 
@@ -42,7 +43,10 @@
   }
 
   $: revTags = getRevTags(event);
-  $: userTags = getUserTags(event);
+  $: userTags = getUserTags(event, {
+    admins: $Admins[event.wiki],
+    editors: $Editors[event.wiki]
+  });
 
   function getStyle(eventScore) {
     if (eventScore >= 45) {

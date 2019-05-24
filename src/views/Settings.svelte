@@ -1,7 +1,7 @@
 <script>
   import {
     DeferImmediateCommitEvents,
-    FilterBotEvents
+    DisplayEventsFromBot
   } from "../stores/AppConfig.js";
   import { t } from "../stores/I18n.js";
 </script>
@@ -15,6 +15,14 @@
     font-size: 16px;
     margin-bottom: 4px;
   }
+
+  .description {
+    font-size: 12px;
+  }
+
+  label {
+    cursor: pointer;
+  }
 </style>
 
 <h1 class="h1">{t('settings')}</h1>
@@ -26,10 +34,12 @@
 
   <h2 class="h2">{t('filter')}</h2>
 
+  <div class="description">{t('filter_description')}</div>
+
   <fieldset>
     <legend>{t('settings_show')}</legend>
     <label>
-      <input type="checkbox" bind:checked={$FilterBotEvents} />
+      <input type="checkbox" bind:checked={$DisplayEventsFromBot} />
        {t('settings_bot_edits')}
     </label>
   </fieldset>

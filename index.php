@@ -8,6 +8,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use Raun\ApiSiteMatrix;
 use Raun\SiteMatrixHardcoded;
+use Raun\ApiUsers;
 
 class Main
 {
@@ -31,13 +32,10 @@ class Main
         $this->dbNameMap = new SiteMatrixHardcoded();
 
         $dbNameRaw = $this->getParam('dbname');
+        $dbNames = NULL;
 
-        if (strpos($dbNameRaw, '|') !== FALSE) {
-            $dbNames = array($dbNameRaw);
-        } else if (!empty($dbNameRaw)) {
+        if (!empty($dbNameRaw)) {
             $dbNames = explode('|', $dbNameRaw);
-        } else {
-            $dbNames = NULL;
         }
         return $dbNames;
     }
@@ -99,9 +97,20 @@ class Main
 
     private function renderApiSiteMatrix()
     {
-        $this->apiSiteMatrix = new ApiSiteMatrix();
+        $apiSiteMatrix = new ApiSiteMatrix();
         header('Content-Type: application/json');
-        echo json_encode($this->apiSiteMatrix->request());
+        echo json_encode($apiSiteMatrix->request());
+    }
+
+    private function renderApiUsers($group = 'sysop')
+    {
+        $result = array();
+        foreach ($this->apiBaseUrlMap as $dbName => $baseUrl) {
+            $apiUsers = new ApiUsers($baseUrl, $group);
+            $result[$dbName] = $apiUsers->request();
+        }
+        header('Content-Type: application/json');
+        echo json_encode($result);
     }
 
 
@@ -120,6 +129,10 @@ class Main
             }
         } else if ($requestUrl === '/api/sitematrix') {
             $this->renderApiSiteMatrix();
+        } else if ($requestUrl === '/api/get_sysops') {
+            $this->renderApiUsers();
+        } else if ($requestUrl === '/api/get_editors') {
+            $this->renderApiUsers('editor');
         } else if ($requestUrl === '/') {
             $this->renderHome();
         } else {

@@ -68,6 +68,7 @@ export const RcStream = writable([], (set) => {
     function commitEvents() {
       UncommittedRcStream.set([]);
       set([...uncommittedEventsTemp]);
+      uncommittedEventsTemp = [];
     }
     DeferImmediateCommitEvents.subscribe((shouldDeferImmediateCommitEvents) => {
       shouldDeferImmediateCommitEventsTemp = shouldDeferImmediateCommitEvents;

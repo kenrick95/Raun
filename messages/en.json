@@ -51,5 +51,5 @@
 	"ns100": "Portal",
 	"ns101": "Portal talk",
 	"about_github": "Source code is available on $1",
-	"more_entries": "View $1 new entries"
+	"more_entries": "View $1 new {{PLURAL:$1|entry|entries}}"
 }

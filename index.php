@@ -7,6 +7,7 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 use Raun\ApiSiteMatrix;
+use Raun\SiteMatrixHardcoded;
 
 class Main
 {
@@ -19,25 +20,43 @@ class Main
         ));
         $this->I18N->registerDomain('raun', __DIR__ . '/messages');
         $this->locale = $this->I18N->getLang();
+        $this->dbNames = $this->getDbNames();
+        $this->apiBaseUrlMap = $this->getApiBaseUrlMap();
 
-        $dbnameRaw = $this->getParam('dbname');
-
-        if (strpos($dbnameRaw, '|') !== FALSE) {
-            $this->dbname = array($dbnameRaw);
-        } else if (!empty($dbnameRaw)) {
-            $this->dbname = explode('|', $dbnameRaw);
-        } else {
-            $this->dbname = NULL;
-        }
-
-        // TODO: Get "language" and "project" from dbname
-        $this->language = $this->getParam('language', 'id');
-        $this->project = $this->getParam('project', 'wikipedia');
-
-
-
-        $this->title = "Raun: $this->locale";
+        $def = $this->I18N->msg('def_def');
+        $this->title = "Raun: $def ($this->locale)";
     }
+    private function getDbNames()
+    {
+        $this->dbNameMap = new SiteMatrixHardcoded();
+
+        $dbNameRaw = $this->getParam('dbname');
+
+        if (strpos($dbNameRaw, '|') !== FALSE) {
+            $dbNames = array($dbNameRaw);
+        } else if (!empty($dbNameRaw)) {
+            $dbNames = explode('|', $dbNameRaw);
+        } else {
+            $dbNames = NULL;
+        }
+        return $dbNames;
+    }
+
+    private function getApiBaseUrlMap()
+    {
+        $apiBaseUrlMap = array();
+        if (
+            !empty($this->dbNames) &&
+            !empty($this->dbNameMap->data)
+        ) {
+            foreach ($this->dbNames as $dbName) {
+                $projectData = $this->dbNameMap->data[$dbName];
+                $apiBaseUrlMap[$dbName] = $projectData['url'];
+            }
+        }
+        return $apiBaseUrlMap;
+    }
+
     private function getParam($key, $default = NULL)
     {
         if (isset($_GET[$key])) {

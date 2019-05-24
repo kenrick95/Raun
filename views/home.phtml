@@ -15,11 +15,9 @@
     <title><?php echo $this->title; ?></title>
     <script>
         var LOCALE = '<?php echo $this->locale; ?>' || 'en';
-        var PROJECT_SUBDOMAIN = '<?php echo $this->language; ?>' || 'en';
-        var PROJECT_NAME = '<?php echo $this->project; ?>' || 'wikipedia';
         var DBNAMES = <?php
-                        if (isset($this->dbname)) {
-                            echo "'" . json_encode($this->dbname) . "'";
+                        if (isset($this->dbNames)) {
+                            echo "'" . json_encode($this->dbNames) . "'";
                         } else {
                             echo "null";
                         }

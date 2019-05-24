@@ -29,11 +29,13 @@ class ApiSiteMatrix extends Api
          * }>
          */
         $wikis = [];
+        // $wikiMap = array();
+
         // Flatten
         foreach ($data['sitematrix'] as $key => $value) {
             if ($key === 'specials') {
                 foreach ($value as $siteData) {
-                    array_push($wikis, array(
+                    $data = array(
                         'languageName' => $siteData['sitename'],
                         'languageCode' => $siteData['lang'],
                         'languageDir' => 'ltr',
@@ -42,12 +44,13 @@ class ApiSiteMatrix extends Api
                         'dbName' => $siteData['dbname'],
                         'wikiCode' => $siteData['code'],
                         'localSiteName' => $siteData['sitename'],
-                    ));
+                    );
+                    // $wikiMap[$siteData['dbname']] = $data;
+                    array_push($wikis, $data);
                 }
             } else if (is_numeric($key)) {
                 foreach ($value['site'] as $siteData) {
-
-                    array_push($wikis, array(
+                    $data = array(
                         'languageName' => $value['name'],
                         'languageCode' => $value['code'],
                         'languageDir' => $value['dir'],
@@ -56,7 +59,9 @@ class ApiSiteMatrix extends Api
                         'dbName' => $siteData['dbname'],
                         'wikiCode' => $siteData['code'],
                         'localSiteName' => $siteData['sitename'],
-                    ));
+                    );
+                    // $wikiMap[$siteData['dbname']] = $data;
+                    array_push($wikis, $data);
                 }
             }
         }

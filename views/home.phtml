@@ -17,7 +17,7 @@
         var LOCALE = '<?php echo $this->locale; ?>' || 'en';
         var DBNAMES = <?php
                         if (isset($this->dbNames)) {
-                            echo "'" . json_encode($this->dbNames) . "'";
+                            echo json_encode($this->dbNames);
                         } else {
                             echo "null";
                         }

@@ -2,6 +2,8 @@
   import { Ores } from "../stores/Ores";
   import { Locale } from "../stores/GlobalConfig";
   import { t } from "../stores/I18n";
+  import { isAnon } from '../utils/user';
+
   export let event = {};
 
   let eventHref = "#";
@@ -46,6 +48,9 @@
   let userTags = [];
   $: if (event.bot) {
     userTags.push("bot");
+  }
+  $: if (isAnon(event.user)) {
+    userTags.push("anon");
   }
 </script>
 

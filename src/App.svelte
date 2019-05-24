@@ -12,6 +12,26 @@
 
 <style>
   .groups {
+    padding-left: 0;
+  }
+  .settings {
+    position: fixed;
+    right: 0;
+    top: 0;
+    padding: 10px 15px;
+    background: white;
+  }
+  .settings-header {
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+
+  .more-entries {
+    visibility: hidden;
+    margin-left: 10px;
+  }
+  .more-entries-show {
+    visibility: visible;
   }
 </style>
 
@@ -22,12 +42,8 @@
   </h1>
 </header>
 
-<aside>
-  {#if $DeferImmediateCommitEvents}
-    <button on:click={handleFlush}>
-       {t('more_entries', $UncommittedRcStream.length)}
-    </button>
-  {/if}
+<aside class="settings">
+  <h1 class="settings-header">{t('settings')}</h1>
   <form>
     <label>
       <input type="checkbox" bind:checked={$DeferImmediateCommitEvents} />
@@ -39,6 +55,12 @@
 </aside>
 
 <main>
+
+  <button
+    on:click={handleFlush}
+    class={'more-entries' + ($UncommittedRcStream.length > 0 ? ' more-entries-show' : '')}>
+     {t('more_entries', $UncommittedRcStream.length)}
+  </button>
 
   <ul class="groups">
 

@@ -2,9 +2,13 @@
   import { t } from "./stores/I18n.js";
   import { RcStreamGroups } from "./stores/RcStreamGroup.js";
   import { FlushRcStream, UncommittedRcStream } from "./stores/RcStream.js";
-  import { DeferImmediateCommitEvents } from "./stores/AppConfig.js";
-  import RcGroup from "./RC/RcGroup.svelte";
-
+  import RcGroup from "./views/RcGroup.svelte";
+  import Settings from "./views/Settings.svelte";
+  import { slide } from "svelte/transition";
+  let isSettingsActive = true;
+  function toggleFilter() {
+    isSettingsActive = !isSettingsActive;
+  }
   function handleFlush() {
     FlushRcStream.set(true);
   }
@@ -20,10 +24,13 @@
     top: 0;
     padding: 10px 15px;
     background: white;
+    text-align: right;
   }
-  .settings-header {
-    font-size: 16px;
-    margin-bottom: 4px;
+  .settings-button {
+    display: inline-block;
+  }
+  .settings-container {
+    text-align: initial;
   }
 
   .more-entries {
@@ -43,15 +50,14 @@
 </header>
 
 <aside class="settings">
-  <h1 class="settings-header">{t('settings')}</h1>
-  <form>
-    <label>
-      <input type="checkbox" bind:checked={$DeferImmediateCommitEvents} />
-       {t('settings_more_entries')}
-    </label>
-
-  </form>
-
+  <button class="settings-button" on:click={toggleFilter}>
+     {isSettingsActive ? t('hide_settings') : t('show_settings')}
+  </button>
+  {#if isSettingsActive}
+    <div class="settings-container" transition:slide={{ duration: 200 }}>
+      <Settings />
+    </div>
+  {/if}
 </aside>
 
 <main>

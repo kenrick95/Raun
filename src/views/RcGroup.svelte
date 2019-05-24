@@ -1,5 +1,6 @@
 <script>
   import RcEvent from "./RcEvent.svelte";
+  import { t } from "../stores/I18n";
   export let eventGroup = null;
 
   let eventGroupInfo = null;
@@ -41,6 +42,17 @@
 
     font-size: 10px;
     line-height: 14px;
+    color: #999;
+  }
+  .namespace {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+
+    font-size: 10px;
+    line-height: 14px;
+
+    text-transform: lowercase;
+    color: #999;
   }
   .events {
     grid-column: 1 / span 12;
@@ -60,6 +72,8 @@
     </a>
 
     <div class="wiki" title={eventGroupInfo.wiki}>{eventGroupInfo.wiki}</div>
+    <div class="namespace">{t('ns' + eventGroupInfo.namespace)}</div>
+
 
     <ul class="events">
       {#each eventGroup as event}

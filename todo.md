@@ -8,11 +8,11 @@
 - [x] Defer commit events to store
 - [x] Crosswiki events https://github.com/kenrick95/Raun/issues/5
 - [x] Use WMF sitematrix: https://github.com/kenrick95/Raun/issues/17
-- [ ] Filter design
+- [x] Filter design
 - [x] Limit request to ORES; too much revids will result in error 503, split into multiple request if too many revids
 - [x] Banana i18n
 - [x] Support for Plural i18n https://github.com/kenrick95/Raun/issues/26
-- [ ] Rework i18n so that it is reactive. Current issue: Once loaded, unless the component is updated, old translation is used. This is because the real locale messages are loaded much later than the 1st render.
+- [x] Rework i18n so that it is reactive. Current issue: Once loaded, unless the component is updated, old translation is used. This is because the real locale messages are loaded much later than the 1st render.
 - [ ] Filter: Save config at URL
 - [ ] RcStreamGroup: Refactor expensive operations. Need something that has O(1) RcStreamGroup look up; also O(1) RcStreamGroup bubbling
 - [ ] RcStreamGroup: Seems like not so useful to group many events together, only from same users. Need to explore if useful or not.

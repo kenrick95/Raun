@@ -42,7 +42,7 @@
 
 <main>
   <form action="/" method="GET" class="form">
-    <label for="wiki" class="label">{t('tool_wikis')}</label>
+    <label for="wiki" class="label">{$t('tool_wikis')}</label>
 
     <select id="wiki" name="dbname" class="field" required>
       {#each $SiteMatrix as Site}
@@ -61,7 +61,7 @@
       {/each}
     </select>
 
-    <label for="locale" class="label">{t('tool_language')}</label>
+    <label for="locale" class="label">{$t('tool_language')}</label>
 
     <input
       type="text"
@@ -72,7 +72,7 @@
       required
       value="en" />
     <div id="submit-container">
-      <input id="submit" type="submit" value={t('submit')} />
+      <input id="submit" type="submit" value={$t('submit')} />
     </div>
   </form>
 </main>

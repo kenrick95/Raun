@@ -191,7 +191,7 @@
   {#if revTags.length > 0}
     <div class="revtags">
       {#each revTags as tag}
-        <div class="tag">{t(tag)}</div>
+        <div class="tag">{$t(tag)}</div>
       {/each}
     </div>
   {/if}
@@ -199,7 +199,7 @@
   {#if userTags.length > 0}
     <div class="usertags">
       {#each userTags as tag}
-        <div class="tag">{t(tag)}</div>
+        <div class="tag">{$t(tag)}</div>
       {/each}
     </div>
   {/if}
@@ -211,7 +211,7 @@
       dir="ltr"
       class="score"
       style={`color: ${getScoreColor(eventScore)}`}
-      title={t('ores_score')}>
+      title={$t('ores_score')}>
        {eventScore}%
     </div>
   {/if}

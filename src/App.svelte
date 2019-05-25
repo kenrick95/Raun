@@ -54,7 +54,7 @@
 
 <aside class="settings">
   <button class="settings-button" on:click={toggleFilter}>
-     {isSettingsActive ? t('hide_settings') : t('show_settings')}
+     {isSettingsActive ? $t('hide_settings') : $t('show_settings')}
   </button>
   {#if isSettingsActive}
     <div class="settings-container" transition:slide={{ duration: 200 }}>
@@ -68,7 +68,7 @@
   <button
     on:click={handleFlush}
     class={'more-entries' + ($UncommittedRcStream.length > 0 ? ' more-entries-show' : '')}>
-     {t('more_entries', $UncommittedRcStream.length)}
+     {$t('more_entries', $UncommittedRcStream.length)}
   </button>
 
   <ul class="groups">

@@ -11,6 +11,6 @@
 <header>
   <h1>
     Raun
-    <small class="subtitle">{t('def_def')}</small>
+    <small class="subtitle">{$t('def_def')}</small>
   </h1>
 </header>

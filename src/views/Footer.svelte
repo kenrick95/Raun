@@ -14,5 +14,5 @@
 </style>
 
 <footer class="footer">
-  {@html t('about_github', '<a href="https://github.com/kenrick95/Raun" target="_blank" rel="noreferrer noopener">github.com/kenrick95/Raun</a>')}
+  {@html $t('about_github', '<a href="https://github.com/kenrick95/Raun" target="_blank" rel="noreferrer noopener">github.com/kenrick95/Raun</a>')}
 </footer>

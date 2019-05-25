@@ -71,7 +71,7 @@
     </a>
 
     <div class="wiki" title={eventGroupInfo.wiki}>{eventGroupInfo.wiki}</div>
-    <div class="namespace">{t('ns' + eventGroupInfo.namespace)}</div>
+    <div class="namespace">{$t('ns' + eventGroupInfo.namespace)}</div>
 
 
     <ul class="events">

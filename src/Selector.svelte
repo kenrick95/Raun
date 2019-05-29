@@ -41,7 +41,7 @@
 <Header />
 
 <main>
-  <form action="/" method="GET" class="form">
+  <form action="" method="GET" class="form">
     <label for="wiki" class="label">{$t('tool_wikis')}</label>
 
     <select id="wiki" name="dbname" class="field" required>

@@ -45,7 +45,7 @@
     <label for="wiki" class="label">{$t('tool_wikis')}</label>
 
     <select id="wiki" name="dbname" class="field" required>
-      {#each $SiteMatrix as Site}
+      {#each $SiteMatrix as Site, i (Site.dbName)}
         {#if Site}
           {#if Site.dbName === 'enwiki'}
             <!-- Still "choose" enwiki as default so that the selection isn't changed after loaded -->

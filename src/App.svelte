@@ -73,7 +73,7 @@
 
   <ul class="groups">
 
-    {#each $RcStreamGroups as eventGroup}
+    {#each $RcStreamGroups as eventGroup, i (eventGroup[0].server_url + eventGroup[0].title)}
       <RcGroup {eventGroup} />
     {/each}
   </ul>

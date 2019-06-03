@@ -1,9 +1,10 @@
 <?php
 
+$base = '/';
 if (php_sapi_name() !== 'cli-server') {
     // Since "raun" will be hosted under a folder name, this "hack" is necessary for the routing to work; disable this hack on local dev server
     // @see https://github.com/klein/klein.php/wiki/Sub-Directory-Installation
-    $base  = dirname($_SERVER['PHP_SELF']);
+    $base = dirname($_SERVER['PHP_SELF']);
     if (ltrim($base, '/')) {
         $_SERVER['REQUEST_URI'] = substr($_SERVER['REQUEST_URI'], strlen($base));
     }
@@ -29,6 +30,8 @@ class Main
         $this->locale = $this->I18N->getLang();
         $this->dbNames = $this->getDbNames();
         $this->apiBaseUrlMap = $this->getApiBaseUrlMap();
+        global $base;
+        $this->basePath = $base;
 
         $def = $this->I18N->msg('def_def');
         $this->title = "Raun: $def ($this->locale)";

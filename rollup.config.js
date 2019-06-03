@@ -3,6 +3,7 @@ import svelte from 'rollup-plugin-svelte';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
+import replace from 'rollup-plugin-replace';
 import json from 'rollup-plugin-json';
 import { terser } from 'rollup-plugin-terser';
 
@@ -22,6 +23,12 @@ export default {
       preferConst: true,
       compact: true,
       namedExports: false
+    }),
+
+    replace({
+      'process.env.NODE_ENV': production
+        ? JSON.stringify('production')
+        : JSON.stringify('development')
     }),
 
     svelte({

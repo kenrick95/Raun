@@ -2,10 +2,12 @@
   import { t } from "./stores/I18n.js";
   import { RcStreamGroups } from "./stores/RcStreamGroup.js";
   import { FlushRcStream, UncommittedRcStream } from "./stores/RcStream.js";
+  import { bindHistoryWithAppConfigs } from "./stores/AppConfig.js";
   import Header from "./views/Header.svelte";
   import Footer from "./views/Footer.svelte";
   import RcGroup from "./views/RcGroup.svelte";
   import Settings from "./views/Settings.svelte";
+  import { onMount } from "svelte";
 
   import { slide } from "svelte/transition";
 
@@ -16,6 +18,10 @@
   function handleFlush() {
     FlushRcStream.set(true);
   }
+
+  onMount(() => {
+    bindHistoryWithAppConfigs();
+  });
 </script>
 
 <style>

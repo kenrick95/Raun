@@ -1,4 +1,57 @@
-import { writable } from "svelte/store";
+import { writable, get } from 'svelte/store';
+
+import { history } from '../history/index.js';
 
 export const DeferImmediateCommitEvents = writable(true);
 export const DisplayEventsFromBot = writable(false);
+
+const SearchParamMap = {
+  defer_events: {
+    store: DeferImmediateCommitEvents,
+    type: Boolean
+  },
+  show_bots: {
+    store: DisplayEventsFromBot,
+    type: Boolean
+  }
+};
+function checkUrl() {
+  const urlSearchParams = new URLSearchParams(history.location.search);
+  const newUrlSearchParams = new URLSearchParams(history.location.search);
+  for (const key in SearchParamMap) {
+    const { store, type } = SearchParamMap[key];
+    if (urlSearchParams.has(key)) {
+      // Set store
+      const value = type(JSON.parse(urlSearchParams.get(key)));
+      store.set(value);
+    } else {
+      // Set query param
+      newUrlSearchParams.set(key, get(store));
+    }
+  }
+  history.replace(
+    history.location.pathname + '?' + newUrlSearchParams.toString()
+  );
+}
+
+function initSubscriptions() {
+  for (const key in SearchParamMap) {
+    const { store, type } = SearchParamMap[key];
+    store.subscribe((storeValue) => {
+
+      const urlSearchParams = new URLSearchParams(history.location.search);
+      const valueAtHistory = type(JSON.parse(urlSearchParams.get(key)));
+      if (valueAtHistory !== storeValue) {
+        urlSearchParams.set(key, storeValue);
+        history.replace(
+          history.location.pathname + '?' + urlSearchParams.toString()
+        );
+      }
+    });
+  }
+}
+
+export function bindHistoryWithAppConfigs() {
+  checkUrl();
+  initSubscriptions();
+}

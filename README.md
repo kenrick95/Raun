@@ -1,6 +1,8 @@
 Raun
 ====
 
+[![Codeship Status for kenrick95/Raun](https://app.codeship.com/projects/cad13e30-62c1-0137-c8c0-4a6df6554575/status?branch=master)](https://app.codeship.com/projects/344440)
+
 See it running at [Toolforge](https://tools.wmflabs.org/raun/).
 
 **Raun** inspect; guard; patrol;

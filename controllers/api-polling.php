@@ -44,4 +44,3 @@ try {
 } catch (Exception $e) {
     die("FAILED: " . $e->getMessage());
 }
-?>

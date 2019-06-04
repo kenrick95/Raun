@@ -226,3 +226,6 @@ access.log
 replica.my.cnf
 .bash_profile
 .description
+
+
+node_modules/

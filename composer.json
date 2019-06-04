@@ -1,5 +1,14 @@
 {
-    "require": {
-        "Krinkle/intuition": "^1.2"
+  "name": "kenrick95/raun",
+  "description": "Wikipedia patrol helper",
+  "type": "project",
+  "license": "MIT",
+  "require": {
+    "krinkle/intuition": "^1.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Raun\\": "controllers"
     }
+  }
 }

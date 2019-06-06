@@ -4,28 +4,14 @@
 			"ArslanX"
 		]
 	},
-	"close": "Япмакъ",
-	"help": "Кёмек",
 	"filter": "Сюзгюч",
 	"settings": "Кюйлевлер",
-	"fork": "Эник код",
-	"stat": "Истатистик",
 	"settings_tool": "Къурал",
 	"language": "Тил",
 	"project": "Проект",
-	"save": "Сакъламакъ",
 	"settings_show": "Гёрсетмек",
-	"settings_wiki": "Вики",
 	"settings_new_pages": "Янгы сагьифалар",
-	"stat_pages": "Сагьифалар",
-	"separator_thousands": ",",
-	"separator_decimals": ".",
-	"main_page": "Сагьифа",
-	"main_user": "Къоллавчу",
-	"main_info": "Маълумат",
 	"new": "янгы",
 	"minor": "гиччи",
-	"editor": "тюзлевчю",
-	"about": "Тасвир",
-	"information": "Маълумат"
+	"editor": "тюзлевчю"
 }

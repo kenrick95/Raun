@@ -5,10 +5,16 @@
 		]
 	},
 	"filter": "Филтер",
+	"filter_description": "Промените во филтерските поставки важат само за нови настани",
 	"settings": "Нагодувања",
 	"settings_tool": "Алатка",
+	"tool_language": "Јазик на посредникот",
+	"tool_wikis": "Вики(ја)",
 	"language": "Јазик",
 	"project": "Проект",
+	"submit": "Поднеси",
+	"hide_settings": "Скриј поставки",
+	"show_settings": "Прикажи поставки",
 	"settings_show": "Прикажи",
 	"settings_bot_edits": "Уредувања на бот",
 	"settings_anon_edits": "Анонимни уредувања",
@@ -27,7 +33,8 @@
 	"bot": "ботск.",
 	"editor": "уредник",
 	"admin": "админ",
+	"patrolled": "проверено",
 	"ores_score": "Оценка по ORES",
 	"about_github": "Изворниот код ќе го најдете на $1",
-	"more_entries": "Погл. $1 нови ставки"
+	"more_entries": "Погл. $1 {{PLURAL:$1|нова ставка|нови ставки}}"
 }

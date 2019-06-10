@@ -9,6 +9,8 @@
 	"settings_tool": "ကိရိယာ",
 	"language": "ဘာသာစကား",
 	"project": "ပရောဂျက်",
+	"hide_settings": "အပြင်အဆင်များကို ဝှက်ရန်",
+	"show_settings": "အပြင်အဆင်များ ပြသရန်",
 	"settings_show": "ပြ",
 	"settings_bot_edits": "ဘော တည်းဖြတ်မှုများ",
 	"settings_anon_edits": "အမည်မသိ တည်းဖြတ်မှုများ",

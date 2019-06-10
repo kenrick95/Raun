@@ -2,14 +2,21 @@
 	"@metadata": {
 		"authors": [
 			"Mahali syarifuddin",
-			"Hidayatsrf"
+			"Hidayatsrf",
+			"Kenrick95"
 		]
 	},
 	"filter": "Penyaring",
+	"filter_description": "Perubahan di pengaturan saringan hanya berlaku untuk entri baru",
 	"settings": "Setelan",
 	"settings_tool": "Alat",
+	"tool_language": "Bahasa antarmuka pengguna",
+	"tool_wikis": "Wiki",
 	"language": "Bahasa",
 	"project": "Proyek",
+	"submit": "Kirim",
+	"hide_settings": "Sembunyikan pengaturan",
+	"show_settings": "Tampilkan pengaturan",
 	"settings_show": "Tampilkan",
 	"settings_bot_edits": "Suntingan bot",
 	"settings_anon_edits": "Suntingan anon",
@@ -28,7 +35,8 @@
 	"bot": "bot",
 	"editor": "editor",
 	"admin": "pengurus",
+	"patrolled": "telah dipatroli",
 	"ores_score": "Nilai ORES",
 	"about_github": "Kode tersedia di $1",
-	"more_entries": "Lihat $1 entri baru"
+	"more_entries": "Lihat $1 {{PLURAL:$1|entri|entri}} baru"
 }

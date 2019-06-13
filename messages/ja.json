@@ -4,14 +4,17 @@
 			"Shirayuki",
 			"Mahali syarifuddin",
 			"Otokoume",
-			"Sujiniku"
+			"Sujiniku",
+			"Omotecho"
 		]
 	},
 	"filter": "フィルター",
 	"settings": "設定",
 	"settings_tool": "ツール",
+	"tool_language": "お使いのインターフェース言語",
 	"language": "言語",
 	"project": "プロジェクト",
+	"show_settings": "設定を表示",
 	"settings_show": "表示する項目",
 	"settings_bot_edits": "ボットによる編集",
 	"settings_anon_edits": "匿名利用者による編集",
@@ -32,5 +35,5 @@
 	"admin": "管理者",
 	"ores_score": "ORESのスコア",
 	"about_github": "ソース コードは $1 で入手できます",
-	"more_entries": "$1新しいレコードを表示します。"
+	"more_entries": "$1新しいレコード{{PLURAL:$1|件|件}}を表示します。"
 }

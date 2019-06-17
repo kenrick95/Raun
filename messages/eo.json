@@ -6,10 +6,16 @@
 		]
 	},
 	"filter": "Filtri",
+	"filter_description": "Ŝanĝoj de agordoj pri filtrado afektas nur novajn eventojn",
 	"settings": "Agordoj",
 	"settings_tool": "Ilo",
+	"tool_language": "Lingvo por fasado",
+	"tool_wikis": "Vikio(j)",
 	"language": "Lingvo",
 	"project": "Projekto",
+	"submit": "Sendi",
+	"hide_settings": "Kaŝi agordojn",
+	"show_settings": "Montri agordojn",
 	"settings_show": "Montri",
 	"settings_bot_edits": "Robotaj redaktoj",
 	"settings_anon_edits": "Anonimulaj redaktoj",
@@ -28,7 +34,8 @@
 	"bot": "roboto",
 	"editor": "redaktinto",
 	"admin": "administranto",
+	"patrolled": "pripatrolita",
 	"ores_score": "ORES-poentaro",
 	"about_github": "Fontokodo estas havebla ĉe $1",
-	"more_entries": "Vidi $1 novajn erojn"
+	"more_entries": "Vidi $1 {{PLURAL:$1|novan eron|novajn erojn}}"
 }

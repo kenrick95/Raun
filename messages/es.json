@@ -9,8 +9,12 @@
 	"filter": "Filtro",
 	"settings": "Ajustes",
 	"settings_tool": "Herramienta",
+	"tool_language": "Idioma de interfaz de usuario",
 	"language": "Idioma",
 	"project": "Proyecto",
+	"submit": "Enviar",
+	"hide_settings": "Ocultar configuración",
+	"show_settings": "Mostrar configuración",
 	"settings_show": "Mostrar",
 	"settings_bot_edits": "Ediciones de bots",
 	"settings_anon_edits": "Ediciones anónimas",
@@ -31,5 +35,5 @@
 	"admin": "administrador",
 	"ores_score": "Puntuación ORES",
 	"about_github": "El código fuente está disponible en $1",
-	"more_entries": "Ver $1 entradas nuevas"
+	"more_entries": "Ver $1 {{PLURAL:$1|entrada nueva|entradas nuevas}}"
 }

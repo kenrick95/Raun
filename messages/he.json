@@ -2,14 +2,21 @@
 	"@metadata": {
 		"authors": [
 			"Amire80",
-			"YaronSh"
+			"YaronSh",
+			"Steeve815"
 		]
 	},
 	"filter": "מסנן",
+	"filter_description": "שינויים בהגדרות המסנן תקפים רק לאירועים חדשים",
 	"settings": "הגדרות",
 	"settings_tool": "כלי",
+	"tool_language": "שפת ממשק המשתמש",
+	"tool_wikis": "אתר(י) ויקי",
 	"language": "שפה",
 	"project": "מיזם",
+	"submit": "שליחה",
+	"hide_settings": "להסתיר הגדרות",
+	"show_settings": "להציג הגדרות",
 	"settings_show": "הצגה",
 	"settings_bot_edits": "עריכות בוטים",
 	"settings_anon_edits": "עריכות אלמוניות",
@@ -28,7 +35,8 @@
 	"bot": "בוט",
 	"editor": "עורך",
 	"admin": "מפעיל",
+	"patrolled": "בדוקות",
 	"ores_score": "דירוג ORES",
 	"about_github": "קוד המקור זמין ב־$1",
-	"more_entries": "הצגת $1 עיולים חדשים"
+	"more_entries": "הצגת $1 {{PLURAL:$1|עיול|עיולים}} {{PLURAL:$1|חדש|חדשים}}"
 }

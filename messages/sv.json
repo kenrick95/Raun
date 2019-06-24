@@ -31,5 +31,5 @@
 	"admin": "administratör",
 	"ores_score": "ORES-poäng",
 	"about_github": "Källkoden finns tillgänglig på $1",
-	"more_entries": "Visa $1 nya poster"
+	"more_entries": "Visa $1 {{PLURAL:$1|ny post|nya poster}}"
 }

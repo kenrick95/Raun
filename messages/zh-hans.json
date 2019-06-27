@@ -3,14 +3,20 @@
 		"authors": [
 			"Cwek",
 			"Impersonator 1",
-			"Liuxinyu970226"
+			"Liuxinyu970226",
+			"神樂坂秀吉"
 		]
 	},
 	"filter": "过滤器",
 	"settings": "设置",
 	"settings_tool": "工具",
+	"tool_language": "用户界面语言",
+	"tool_wikis": "Wiki",
 	"language": "语言",
 	"project": "项目",
+	"submit": "提交",
+	"hide_settings": "隐藏设置",
+	"show_settings": "显示设置",
 	"settings_show": "显示",
 	"settings_bot_edits": "机器人编辑",
 	"settings_anon_edits": "匿名编辑",
@@ -29,6 +35,7 @@
 	"bot": "机器人",
 	"editor": "编辑者",
 	"admin": "管理员",
+	"patrolled": "已巡查",
 	"ores_score": "ORES分数",
 	"about_github": "源代码可在$1找到",
 	"more_entries": "查看$1条新记录"

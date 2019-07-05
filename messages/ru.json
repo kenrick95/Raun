@@ -5,7 +5,8 @@
 			"Okras",
 			"INS Pirat",
 			"Mahali syarifuddin",
-			"Irus"
+			"Irus",
+			"Alexander Istomin"
 		]
 	},
 	"filter": "Фильтр",
@@ -33,5 +34,5 @@
 	"admin": "админ",
 	"ores_score": "ORES результат",
 	"about_github": "Исходный код доступен на $1",
-	"more_entries": "Просмотреть $1 новые записи"
+	"more_entries": "Просмотреть $1 {{PLURAL:$1|новую запись|новые записи}}"
 }

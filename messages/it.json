@@ -3,10 +3,12 @@
 		"authors": [
 			"Beta16",
 			"Ontsed",
-			"Einreiher"
+			"Einreiher",
+			"Joetaras"
 		]
 	},
 	"filter": "Filtra",
+	"filter_description": "I cambiamenti nelle impostazioni del filtro sono applicati solamente ai nuovi eventi",
 	"settings": "Impostazioni",
 	"settings_tool": "Strumento",
 	"tool_language": "Lingua dell'interfaccia utente",

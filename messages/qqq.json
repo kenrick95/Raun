@@ -13,6 +13,7 @@
 	"filter": "Text displayed at settings box.\n{{Identical|Filter}}",
 	"filter_description": "Text displayed at settings box. User can check/uncheck filters, and this notice is to inform users that the filters only applies to new events and not to the existing ones.",
 	"settings": "Text displayed at settings box.\n{{Identical|Settings}}",
+	"settings_tool": "The noun used to refer to this (the Raun program itself).\n{{Identical|Tool}}",
 	"tool_language": "Text displayed as form label to select the tool's language",
 	"tool_wikis": "Text displayed as form label to select the wikis for the tool to display",
 	"language": "Project's language which is currently used at the tool.\n{{Identical|Language}}",
@@ -42,7 +43,6 @@
 	"ns": "{{Identical|Namespace}}",
 	"ns0": "{{Identical|Article}}",
 	"ns100": "{{Identical|Portal}}",
-	"about_license": "License of the project; \"MIT License\" is the name of the license",
 	"about_github": "Availability of source code. Parameters:\n* $1 - a link pointing to [http://github.com/kenrick95/Raun github.com/kenrick95/Raun]",
 	"more_entries": "$1 - arbitary number of new entry/entries."
 }

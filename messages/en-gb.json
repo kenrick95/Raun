@@ -5,20 +5,12 @@
 			"Andibing"
 		]
 	},
-	"close": "Close",
-	"help": "Help",
 	"filter": "Filter",
 	"settings": "Settings",
-	"fork": "Source code",
-	"stat": "Statistics",
 	"settings_tool": "Tool",
 	"language": "Language",
 	"project": "Project",
-	"save": "Save",
-	"settings_pause": "Pause",
-	"settings_run": "Run!",
 	"settings_show": "Show",
-	"settings_wiki": "Wiki",
 	"settings_bot_edits": "Bot edits",
 	"settings_anon_edits": "Anon edits",
 	"settings_minor_edits": "Minor edits",
@@ -27,10 +19,5 @@
 	"settings_editor_edits": "Editor edits",
 	"settings_admin_edits": "Admin edits",
 	"settings_other_edits": "Other edits",
-	"settings_more_entries": "Don't automatically show new entries",
-	"time_utc": "Time, in UTC",
-	"stat_articles": "Content pages",
-	"stat_pages": "Pages",
-	"stat_files": "Uploaded files",
-	"about_license": "Unless otherwise stated, this project source code is licenced under MIT Licence."
+	"settings_more_entries": "Don't automatically show new entries"
 }

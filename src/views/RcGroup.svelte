@@ -75,7 +75,7 @@
 
 
     <ul class="events">
-      {#each eventGroup as event, i (event.title)}
+      {#each eventGroup as event, i (event.timestamp)}
         <RcEvent {event} />
       {/each}
 

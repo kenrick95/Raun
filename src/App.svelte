@@ -2,7 +2,7 @@
   import { t } from "./stores/I18n.js";
   import { RcStreamGroups } from "./stores/RcStreamGroup.js";
   import { FlushRcStream, UncommittedRcStream } from "./stores/RcStream.js";
-  import { bindHistoryWithAppConfigs } from "./stores/AppConfig.js";
+  import { bindHistoryWithAppConfigs, filterEvents } from "./stores/AppConfig.js";
   import Header from "./views/Header.svelte";
   import Footer from "./views/Footer.svelte";
   import RcGroup from "./views/RcGroup.svelte";
@@ -18,6 +18,11 @@
   function handleFlush() {
     FlushRcStream.set(true);
   }
+
+  let filteredEvents = [];
+  UncommittedRcStream.subscribe(events => {
+    filteredEvents = filterEvents(events);
+  });
 
   onMount(() => {
     bindHistoryWithAppConfigs();
@@ -73,8 +78,8 @@
 
   <button
     on:click={handleFlush}
-    class={'more-entries' + ($UncommittedRcStream.length > 0 ? ' more-entries-show' : '')}>
-     {$t('more_entries', $UncommittedRcStream.length)}
+    class={'more-entries' + (filteredEvents.length > 0 ? ' more-entries-show' : '')}>
+     {$t('more_entries', filteredEvents.length)}
   </button>
 
   <ul class="groups">

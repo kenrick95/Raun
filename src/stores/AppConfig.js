@@ -4,6 +4,27 @@ import { history } from '../history/index.js';
 
 export const DeferImmediateCommitEvents = writable(true);
 export const DisplayEventsFromBot = writable(false);
+const filters = {
+  hideBot: {
+    fn: (event) => {
+      return !event.bot;
+    },
+    active: true
+  }
+};
+DisplayEventsFromBot.subscribe((show) => {
+  filters.hideBot.active = !show;
+});
+
+export function filterEvents(events) {
+  let filteredEvents = events;
+  for (const filterName in filters) {
+    if (filters[filterName].active) {
+      filteredEvents = filteredEvents.filter(filters[filterName].fn);
+    }
+  }
+  return filteredEvents;
+}
 
 const SearchParamMap = {
   defer_events: {
@@ -55,3 +76,4 @@ export function bindHistoryWithAppConfigs() {
   checkUrl();
   initSubscriptions();
 }
+

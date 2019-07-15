@@ -1,7 +1,7 @@
 import { readable } from 'svelte/store';
 import { RcStream } from './RcStream';
 import { OresQueue } from './Ores';
-import { DisplayEventsFromBot } from './AppConfig';
+import { filterEvents } from './AppConfig';
 
 /**
  * @var {Array<Array<RcEvent>>} eventGroups
@@ -10,30 +10,8 @@ import { DisplayEventsFromBot } from './AppConfig';
  */
 let eventGroups = [];
 
-const filters = {
-  hideBot: {
-    fn: (event) => {
-      return !event.bot;
-    },
-    active: true
-  }
-};
-
-function filterEvents(events) {
-  let filteredEvents = events;
-  for (const filterName in filters) {
-    if (filters[filterName].active) {
-      filteredEvents = filteredEvents.filter(filters[filterName].fn);
-    }
-  }
-  return filteredEvents;
-}
 
 export const RcStreamGroups = readable(eventGroups, async (set) => {
-  DisplayEventsFromBot.subscribe((show) => {
-    filters.hideBot.active = !show;
-  });
-
   RcStream.subscribe((events) => {
     if (!events || events.length < 1) {
       return;

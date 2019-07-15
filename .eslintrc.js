@@ -13,6 +13,7 @@ module.exports = {
     sourceType: 'module'
   },
   rules: {
-    'no-console': ['error', { allow: ['warn', 'error'] }]
+    'no-console': ['error', { allow: ['warn', 'error'] }],
+    'no-prototype-builtins': 'off'
   }
 };

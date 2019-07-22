@@ -6,10 +6,16 @@
 		]
 	},
 	"filter": "Filter",
+	"filter_description": "Promjene u filterskima postavkama važe samo za nove događaje",
 	"settings": "Podešavanja",
 	"settings_tool": "Alatka",
+	"tool_language": "Jezik interfejsa",
+	"tool_wikis": "Wiki(je)",
 	"language": "Jezik",
 	"project": "Projekat",
+	"submit": "Unesi",
+	"hide_settings": "Sakrij postavke",
+	"show_settings": "Prikaži postavke",
 	"settings_show": "Prikaži",
 	"settings_bot_edits": "Botovske izmjene",
 	"settings_anon_edits": "Anonimne izmjene",
@@ -28,7 +34,8 @@
 	"bot": "bot",
 	"editor": "urednik",
 	"admin": "admin",
+	"patrolled": "provjereno",
 	"ores_score": "ORES rezultat",
 	"about_github": "Izvorni kod naći ćete na $1",
-	"more_entries": "Pogl. $1 novih stavki"
+	"more_entries": "Pogl. $1 {{PLURAL:$1|novu stavku|nove stavke|novih stavki}}"
 }

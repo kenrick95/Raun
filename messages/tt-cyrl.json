@@ -1,0 +1,31 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ерней"
+		]
+	},
+	"filter": "Сөзгеч",
+	"settings": "Көйләнмәләр",
+	"settings_tool": "Корал",
+	"tool_language": "Интерфейс теле",
+	"language": "Тел",
+	"project": "Проект",
+	"submit": "Җибәрү",
+	"hide_settings": "Көйләнмәләрне яшерү",
+	"show_settings": "Көйләнмәләрне күрсәтү",
+	"settings_show": "Күрсәтү",
+	"settings_bot_edits": "Бот төзәтмәләре",
+	"settings_anon_edits": "Аноним төзәтмәләр",
+	"settings_minor_edits": "Кече төзәтмәләр",
+	"settings_new_pages": "Яңа битләр",
+	"settings_editor_edits": "Төзәтүче төзәтмәләре",
+	"settings_admin_edits": "Идарәче төзәтмәләре",
+	"settings_other_edits": "Башка төзәтмәләр",
+	"new": "яңа",
+	"minor": "кече",
+	"anon": "аноним",
+	"redirect": "юнәлтү",
+	"bot": "бот",
+	"admin": "идарәче",
+	"patrolled": "тикшерелгән"
+}

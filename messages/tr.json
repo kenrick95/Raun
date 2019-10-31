@@ -4,14 +4,21 @@
 			"Mavrikant",
 			"Uğurkent",
 			"Alpkant",
-			"Hedda"
+			"Hedda",
+			"BaRaN6161 TURK"
 		]
 	},
 	"filter": "Filtre",
+	"filter_description": "Filtre ayarlarındaki değişiklikler yalnızca yeni etkinlikler için geçerlidir",
 	"settings": "Ayarlar",
 	"settings_tool": "Araç",
+	"tool_language": "Kullanıcı arayüzü dili",
+	"tool_wikis": "Wiki",
 	"language": "Dil",
 	"project": "Proje",
+	"submit": "Gönder",
+	"hide_settings": "Ayarları gizle",
+	"show_settings": "Ayarları göster",
 	"settings_show": "Göster",
 	"settings_bot_edits": "Bot değişiklikleri",
 	"settings_anon_edits": "Anonim değişiklikleri",
@@ -30,7 +37,8 @@
 	"bot": "bot",
 	"editor": "editör",
 	"admin": "hizmetli",
+	"patrolled": "devriye",
 	"ores_score": "ORES puanı",
 	"about_github": "Kaynak koduna $1 sayfasından ulaşılabilir.",
-	"more_entries": "$1 yeni girdiyi göster"
+	"more_entries": "$1 yeni {{PLURAL:$1|girişi|girişi}} göster"
 }

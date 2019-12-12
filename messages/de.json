@@ -1,14 +1,18 @@
 {
 	"@metadata": {
 		"authors": [
-			"Metalhead64"
+			"Metalhead64",
+			"Tobi 406"
 		]
 	},
 	"filter": "Filter",
 	"settings": "Einstellungen",
 	"settings_tool": "Werkzeug",
+	"tool_language": "Benutzeroberflächensprache",
 	"language": "Sprache",
 	"project": "Projekt",
+	"hide_settings": "Einstellungen verstecken",
+	"show_settings": "Einstellungen anzeigen",
 	"settings_show": "Anzeigen",
 	"settings_bot_edits": "Botbearbeitungen",
 	"settings_anon_edits": "Anonyme Bearbeitungen",
@@ -29,5 +33,5 @@
 	"admin": "Administrator",
 	"ores_score": "ORES-Score",
 	"about_github": "Der Quellcode ist verfügbar auf $1",
-	"more_entries": "$1 neue Einträge ansehen"
+	"more_entries": "$1 {{PLURAL:$1|neuen Eintrag|neue Einträge}} ansehen"
 }

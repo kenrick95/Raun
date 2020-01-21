@@ -1,10 +1,12 @@
 <?php
 
+/**
+ * Since Raun will be hosted under "/raun" folder, this "hack" is necessary for the routing to work
+ * @see https://github.com/klein/klein.php/wiki/Sub-Directory-Installation
+ */
 $base = '/';
 if (php_sapi_name() !== 'cli-server') {
-    // Since "raun" will be hosted under a folder name, this "hack" is necessary for the routing to work; disable this hack on local dev server
-    // @see https://github.com/klein/klein.php/wiki/Sub-Directory-Installation
-    $base = dirname($_SERVER['PHP_SELF']);
+    $base = '/raun';
     if (ltrim($base, '/')) {
         $_SERVER['REQUEST_URI'] = substr($_SERVER['REQUEST_URI'], strlen($base));
     }

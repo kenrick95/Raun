@@ -4,14 +4,21 @@
 			"Imperadeiro98",
 			"Jkb8",
 			"MokaAkashiyaPT",
-			"Athena in Wonderland"
+			"Athena in Wonderland",
+			"Hamilton Abreu"
 		]
 	},
 	"filter": "Filtro",
+	"filter_description": "As alterações às configurações de filtragem só se aplicam a eventos novos",
 	"settings": "Configurações",
 	"settings_tool": "Ferramenta",
+	"tool_language": "Língua da interface do utilizador",
+	"tool_wikis": "Wiki(s)",
 	"language": "Idioma",
 	"project": "Projeto",
+	"submit": "Enviar",
+	"hide_settings": "Ocultar configurações",
+	"show_settings": "Mostrar configurações",
 	"settings_show": "Mostrar",
 	"settings_bot_edits": "Edições de robô",
 	"settings_anon_edits": "Edições anónimas",
@@ -21,7 +28,7 @@
 	"settings_editor_edits": "Edições de utilizadores",
 	"settings_admin_edits": "Edições de administradores",
 	"settings_other_edits": "Outras edições",
-	"settings_more_entries": "Não mostrar as novas entradas automaticamente",
+	"settings_more_entries": "Não mostrar automaticamente as entradas novas",
 	"def_def": "inspecionar; guardar; patrulhar;",
 	"new": "novo",
 	"minor": "menor",
@@ -30,7 +37,8 @@
 	"bot": "robô",
 	"editor": "editor",
 	"admin": "administrador",
+	"patrolled": "patrulhadas",
 	"ores_score": "Pontuação ORES",
 	"about_github": "O código-fonte está disponível em $1",
-	"more_entries": "Ver $1 novas entradas"
+	"more_entries": "Ver $1 {{PLURAL:$1|entrada nova|entradas novas}}"
 }

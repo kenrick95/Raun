@@ -3,14 +3,21 @@
 		"authors": [
 			"Chameleon222",
 			"Danmichaelo",
-			"SuperPotato"
+			"SuperPotato",
+			"Jon Harald Søby"
 		]
 	},
 	"filter": "Filter",
+	"filter_description": "Endringer i filterinnstillinger gjelder kun nye hendelser",
 	"settings": "Innstillinger",
 	"settings_tool": "Verktøy",
+	"tool_language": "Grensesnittspråk",
+	"tool_wikis": "Wiki(er)",
 	"language": "Språk",
 	"project": "Prosjekt",
+	"submit": "Send",
+	"hide_settings": "Skjul innstillinger",
+	"show_settings": "Vis innstillinger",
 	"settings_show": "Vis",
 	"settings_bot_edits": "Robotredigeringer",
 	"settings_anon_edits": "Anonyme redigeringer",
@@ -29,7 +36,8 @@
 	"bot": "bot",
 	"editor": "bidragsyter",
 	"admin": "admin",
+	"patrolled": "patruljert",
 	"ores_score": "ORES poengsum",
 	"about_github": "Kildekode er tilgjengelig på $1",
-	"more_entries": "Vis $1 nye innlegg"
+	"more_entries": "Vis {{PLURAL:$1|ett nytt|$1 nye}} innlegg"
 }

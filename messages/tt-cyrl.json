@@ -1,0 +1,40 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ерней"
+		]
+	},
+	"filter": "Сөзгеч",
+	"filter_description": "Сөзгечне көйләү яңа вакыйгаларга гына тәэсир итәчәк",
+	"settings": "Көйләнмәләр",
+	"settings_tool": "Корал",
+	"tool_language": "Интерфейс теле",
+	"tool_wikis": "Вики(лар)",
+	"language": "Тел",
+	"project": "Проект",
+	"submit": "Җибәрү",
+	"hide_settings": "Көйләнмәләрне яшерү",
+	"show_settings": "Көйләнмәләрне күрсәтү",
+	"settings_show": "Күрсәтү",
+	"settings_bot_edits": "Бот төзәтмәләре",
+	"settings_anon_edits": "Аноним төзәтмәләр",
+	"settings_minor_edits": "Кече төзәтмәләр",
+	"settings_redirects": "Юнәлтү битләре",
+	"settings_new_pages": "Яңа битләр",
+	"settings_editor_edits": "Төзәтүче төзәтмәләре",
+	"settings_admin_edits": "Идарәче төзәтмәләре",
+	"settings_other_edits": "Башка төзәтмәләр",
+	"settings_more_entries": "Яңа язмаларны үзеннән-үзе күрсәтмәскә",
+	"def_def": "тикшерү; саклау; патрульлек итү;",
+	"new": "яңа",
+	"minor": "кече",
+	"anon": "аноним",
+	"redirect": "юнәлтү",
+	"bot": "бот",
+	"editor": "төзәтүче",
+	"admin": "идарәче",
+	"patrolled": "тикшерелгән",
+	"ores_score": "ORES хисап",
+	"about_github": "Чыгыш коды $1 да табарга була",
+	"more_entries": "$1 яңа {{PLURAL:$1|язманы}} карау"
+}

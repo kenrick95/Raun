@@ -1,12 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Robby"
+			"Robby",
+			"Les Meloures"
 		]
 	},
 	"filter": "Filter",
 	"settings": "Astellungen",
-	"settings_tool": "Geschir (Tool)",
+	"settings_tool": "Geschier (Tool)",
 	"tool_wikis": "Wiki(en)",
 	"language": "Sprooch",
 	"project": "Projet",

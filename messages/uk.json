@@ -7,7 +7,8 @@
 			"Base",
 			"Green Zero",
 			"Visem",
-			"Piramidion"
+			"Piramidion",
+			"Movses"
 		]
 	},
 	"filter": "Фільтр",
@@ -35,5 +36,5 @@
 	"admin": "адміністратор",
 	"ores_score": "ORES-рахунок",
 	"about_github": "Вихідний код доступний на $1",
-	"more_entries": "Переглянути $1 нові записи"
+	"more_entries": "Переглянути $1 {{PLURAL:$1|новий запис|нових записів}}"
 }

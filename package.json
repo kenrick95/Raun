@@ -31,5 +31,8 @@
     "banana-i18n": "^1.2.1",
     "history": "^4.10.1",
     "rollup-plugin-replace": "^2.2.0"
+  },
+  "resolutions": {
+    "minimist": "^1.2.2"
   }
 }

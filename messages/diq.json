@@ -10,10 +10,16 @@
 		]
 	},
 	"filter": "Parzûn",
+	"filter_description": "Vurnayışê eyaranê parzûni de teyna serameyanê neweyan rê  ravêrdeyo",
 	"settings": "Eyari",
 	"settings_tool": "Xecet",
+	"tool_language": "Mabênrıyê zıwanê karberi",
+	"tool_wikis": "Wiki(y)",
 	"language": "Zıwan",
 	"project": "Proce",
+	"submit": "Bırışe",
+	"hide_settings": "Eyara bınımnê",
+	"show_settings": "Eyara bımocne",
 	"settings_show": "Bımocne",
 	"settings_bot_edits": "Vırnayışê boti",
 	"settings_anon_edits": "Anon vurnayışi",
@@ -32,5 +38,8 @@
 	"bot": "bot",
 	"editor": "vurnayoğ",
 	"admin": "idarekar",
-	"ores_score": "ORES skor"
+	"patrolled": "Dewriye",
+	"ores_score": "ORES skor",
+	"about_github": "Kodê çımey rê pela $1 ra resıyeno .",
+	"more_entries": "$1 {{PLURAL:$1|dekewtışê neweyi|dekewtışanê newan }} bımocne"
 }

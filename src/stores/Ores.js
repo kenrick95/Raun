@@ -101,7 +101,7 @@ export const Ores = readable(revScores, async (set) => {
         revidsToQuery.push({ revid, dbName });
       }
     }
-    if (!revidsToQuery || revidsToQuery.length < 1) {
+    if (revidsToQuery.length < 1) {
       return;
     }
     // Flush the queue
@@ -112,7 +112,7 @@ export const Ores = readable(revScores, async (set) => {
     set(revScores);
   }
   const handleQueueSubscribed = debounce(flushQueue, 2000, {
-    maxDebounceCount: 10
+    maxDebounceCount: 10,
   });
   OresQueue.subscribe(handleQueueSubscribed);
 });

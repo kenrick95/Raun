@@ -4,6 +4,7 @@
 			"Beta16",
 			"Einreiher",
 			"Joetaras",
+			"Nemo bis",
 			"Ontsed"
 		]
 	},
@@ -34,7 +35,7 @@
 	"anon": "anonimo",
 	"redirect": "redirect",
 	"bot": "bot",
-	"editor": "editore",
+	"editor": "utente",
 	"admin": "amministratore",
 	"patrolled": "verificate",
 	"ores_score": "Punteggio ORES",

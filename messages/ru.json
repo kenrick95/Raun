@@ -1,13 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Alexandr Efremov",
-			"Okras",
-			"INS Pirat",
-			"Mahali syarifuddin",
-			"Irus",
 			"Alexander Istomin",
-			"Movses"
+			"Alexandr Efremov",
+			"INS Pirat",
+			"Irus",
+			"Mahali syarifuddin",
+			"Movses",
+			"Okras"
 		]
 	},
 	"filter": "Фильтр",

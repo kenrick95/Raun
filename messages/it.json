@@ -2,9 +2,10 @@
 	"@metadata": {
 		"authors": [
 			"Beta16",
-			"Ontsed",
 			"Einreiher",
-			"Joetaras"
+			"Joetaras",
+			"Nemo bis",
+			"Ontsed"
 		]
 	},
 	"filter": "Filtra",
@@ -34,7 +35,7 @@
 	"anon": "anonimo",
 	"redirect": "redirect",
 	"bot": "bot",
-	"editor": "editore",
+	"editor": "utente",
 	"admin": "amministratore",
 	"patrolled": "verificate",
 	"ores_score": "Punteggio ORES",

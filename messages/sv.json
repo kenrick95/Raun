@@ -3,14 +3,17 @@
 		"authors": [
 			"Jopparn",
 			"Lokal Profil",
+			"Sabelöga",
 			"WikiPhoenix"
 		]
 	},
 	"filter": "Filter",
 	"settings": "Inställningar",
 	"settings_tool": "Verktyg",
+	"tool_wikis": "Wiki(er)",
 	"language": "Språk",
 	"project": "Projekt",
+	"submit": "Skicka",
 	"settings_show": "Visa",
 	"settings_bot_edits": "Botredigeringar",
 	"settings_anon_edits": "Anonyma redigeringar",

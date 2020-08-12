@@ -1,21 +1,27 @@
 {
 	"@metadata": {
 		"authors": [
-			"Andriykopanytsia",
 			"Alex Blokha",
-			"Lxlalexlxl",
+			"Andriykopanytsia",
 			"Base",
 			"Green Zero",
-			"Visem",
+			"Lxlalexlxl",
+			"Movses",
 			"Piramidion",
-			"Movses"
+			"Visem"
 		]
 	},
 	"filter": "Фільтр",
+	"filter_description": "Зміни налаштувань фільтру стосуються тільки нових подій",
 	"settings": "Налаштування",
 	"settings_tool": "Інструмент",
+	"tool_language": "Мова інтерфейсу",
+	"tool_wikis": "Вікі",
 	"language": "Мова",
 	"project": "Проект",
+	"submit": "Надіслати",
+	"hide_settings": "Сховати налаштування",
+	"show_settings": "Показати налаштування",
 	"settings_show": "Показати",
 	"settings_bot_edits": "Редагування ботів",
 	"settings_anon_edits": "Анонімні правки",
@@ -34,6 +40,7 @@
 	"bot": "бот",
 	"editor": "редактор",
 	"admin": "адміністратор",
+	"patrolled": "перевірені",
 	"ores_score": "ORES-рахунок",
 	"about_github": "Вихідний код доступний на $1",
 	"more_entries": "Переглянути $1 {{PLURAL:$1|новий запис|нових записів}}"

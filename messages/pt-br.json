@@ -1,10 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Luckas",
-			"Fasouzafreitas",
 			"Araceletorres",
-			"Eduardo Addad de Oliveira"
+			"Eduardo Addad de Oliveira",
+			"Fasouzafreitas",
+			"Luckas"
 		]
 	},
 	"filter": "Filtro",

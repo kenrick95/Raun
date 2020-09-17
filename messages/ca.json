@@ -3,27 +3,41 @@
 		"authors": [
 			"F3RaN",
 			"Fitoschido",
-			"Macofe"
+			"Macofe",
+			"Mguix"
 		]
 	},
 	"filter": "Filtra",
+	"filter_description": "Els canvis en la configuració del filtre només s'apliquen als esdeveniments nous",
 	"settings": "Paràmetres",
 	"settings_tool": "Eina",
+	"tool_language": "Llengua de la interfície d'usuari",
+	"tool_wikis": "Wiki(s)",
 	"language": "Idioma",
 	"project": "Projecte",
+	"submit": "Envia",
+	"hide_settings": "Amaga la configuració",
+	"show_settings": "Mostra la configuració",
 	"settings_show": "Mostra",
 	"settings_bot_edits": "edicions de Bot",
 	"settings_anon_edits": "edicions anònimes",
 	"settings_minor_edits": "Edicions menors",
 	"settings_redirects": "Pàgines de redirecció",
 	"settings_new_pages": "Pàgines noves",
+	"settings_editor_edits": "Modificacions de l'editor",
 	"settings_admin_edits": "edicions d'administradors",
 	"settings_other_edits": "Altres edicions",
+	"settings_more_entries": "No mostrar automàticament entrades noves",
 	"def_def": "inspeccionar; guardar; patrullar;",
 	"new": "nou",
 	"minor": "menor",
+	"anon": "anònim",
 	"redirect": "redirecció",
 	"bot": "robot",
 	"editor": "editor",
-	"about_github": "El codi font és disponible a $1"
+	"admin": "administrador",
+	"patrolled": "patrullat",
+	"ores_score": "Puntuació ORES",
+	"about_github": "El codi font és disponible a $1",
+	"more_entries": "Visualitza $1 {{PLURAL:$1|entrada|entrades}} noves"
 }

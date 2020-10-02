@@ -1,8 +1,21 @@
 {
 	"@metadata": {
 		"authors": [
+			"Kareyac",
 			"Աշոտ1997"
 		]
 	},
-	"stat_users": "Գրանցված մասնակիցներ"
+	"filter": "Զտիչ",
+	"settings": "Կարգավորումներ",
+	"settings_tool": "Գործիք",
+	"tool_wikis": "Վիքի(ներ)",
+	"language": "Լեզու",
+	"project": "Նախագիծ",
+	"submit": "Ուղարկել",
+	"hide_settings": "Թագցնել կարգավորումներ",
+	"settings_show": "Ցուցադրել",
+	"settings_new_pages": "Նոր էջեր",
+	"bot": "բոտ",
+	"editor": "խմբագիր",
+	"admin": "ադմին"
 }

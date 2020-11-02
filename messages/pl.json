@@ -7,6 +7,7 @@
 			"InternerowyGołąb",
 			"The Polish",
 			"Ty221",
+			"WTM",
 			"Wiochman",
 			"Woytecr"
 		]
@@ -36,5 +37,5 @@
 	"admin": "admin",
 	"ores_score": "wynik ORES",
 	"about_github": "Kod źródłowy jest dostępny na $1",
-	"more_entries": "Zobacz $1 {{PLURAL:$1|nowy wpis|nowych wpisów}}"
+	"more_entries": "Zobacz $1 {{PLURAL:$1|nowy wpis|nowe wpisy|nowych wpisów}}"
 }

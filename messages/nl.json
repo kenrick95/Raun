@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Krinkle",
+			"Optilete",
 			"SPQRobin",
 			"Siebrand",
 			"Southparkfan"
@@ -32,5 +33,5 @@
 	"admin": "beheerder",
 	"ores_score": "ORES-score",
 	"about_github": "Broncode is beschikbaar op $1",
-	"more_entries": "$1 nieuwe items bekijken"
+	"more_entries": "Toon $1 nieuwew {{PLURAL:$1|entry|entries}}"
 }

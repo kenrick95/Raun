@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Aefgh39622",
+			"Karit"
+		]
+	},
+	"filter": "ตัวกรอง",
+	"settings": "การตั้งค่า",
+	"settings_tool": "เครื่องมือ",
+	"language": "ภาษา",
+	"project": "โครงการ",
+	"hide_settings": "ช้อนการตั้งค่า",
+	"settings_show": "แสดง",
+	"settings_bot_edits": "การแก้ไขโดยบอต",
+	"settings_minor_edits": "การแก้ไขเล็กน้อย",
+	"settings_redirects": "หน้าเปลี่ยนทาง",
+	"settings_new_pages": "หน้าใหม่",
+	"about_github": "รหัสต้นฉบับมีอยู่บน $1"
+}

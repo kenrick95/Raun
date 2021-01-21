@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"ManuelFranz",
 			"Metalhead64",
 			"Tobi 406"
 		]
@@ -9,8 +10,10 @@
 	"settings": "Einstellungen",
 	"settings_tool": "Werkzeug",
 	"tool_language": "Benutzeroberflächensprache",
+	"tool_wikis": "Wiki(s)",
 	"language": "Sprache",
 	"project": "Projekt",
+	"submit": "Speichern",
 	"hide_settings": "Einstellungen verstecken",
 	"show_settings": "Einstellungen anzeigen",
 	"settings_show": "Anzeigen",

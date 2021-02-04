@@ -4,6 +4,10 @@
 			"StanProg"
 		]
 	},
-	"save": "Съхраняване",
-	"main_user": "Потребител"
+	"settings": "Настройки",
+	"language": "Език",
+	"project": "Проект",
+	"settings_new_pages": "Нови страници",
+	"new": "нов",
+	"editor": "редактор"
 }

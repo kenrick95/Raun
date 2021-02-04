@@ -1,9 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Papuass"
+			"Papuass",
+			"Peridot Nation"
 		]
 	},
 	"settings": "Iestatījumi",
-	"stat_pages": "Lapas"
+	"submit": "Iesniegt",
+	"hide_settings": "Slēpt iestatījumus",
+	"show_settings": "Rādīt iestatījumus"
 }

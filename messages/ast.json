@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Taxandru",
+			"Tokvo",
 			"Xuacu"
 		]
 	},
@@ -30,5 +31,5 @@
 	"admin": "alministrador",
 	"ores_score": "Puntuación ORES",
 	"about_github": "El códigu fonte ta disponible en $1",
-	"more_entries": "Ver $1 entraes nueves"
+	"more_entries": "Ver $1 {{PLURAL:$1|entrada nueva|entraes nueves}}"
 }

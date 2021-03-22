@@ -1,12 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
+			"FF11",
 			"ManuelFranz",
 			"Metalhead64",
 			"Tobi 406"
 		]
 	},
 	"filter": "Filter",
+	"filter_description": "Änderungen in den Filtereinstelungen werden nur auf neue Ereignisse angewendet.",
 	"settings": "Einstellungen",
 	"settings_tool": "Werkzeug",
 	"tool_language": "Benutzeroberflächensprache",
@@ -34,6 +36,7 @@
 	"bot": "Bot",
 	"editor": "Sichter",
 	"admin": "Administrator",
+	"patrolled": "Kontrolliert",
 	"ores_score": "ORES-Score",
 	"about_github": "Der Quellcode ist verfügbar auf $1",
 	"more_entries": "$1 {{PLURAL:$1|neuen Eintrag|neue Einträge}} ansehen"

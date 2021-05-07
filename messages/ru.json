@@ -7,7 +7,8 @@
 			"Irus",
 			"Mahali syarifuddin",
 			"Movses",
-			"Okras"
+			"Okras",
+			"Rivka Silinsky"
 		]
 	},
 	"filter": "Фильтр",
@@ -39,6 +40,7 @@
 	"bot": "бот",
 	"editor": "редактор",
 	"admin": "админ",
+	"patrolled": "патрулировали",
 	"ores_score": "ORES результат",
 	"about_github": "Исходный код доступен на $1",
 	"more_entries": "Просмотреть $1 {{PLURAL:$1|новую запись|новые записи}}"

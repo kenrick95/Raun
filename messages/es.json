@@ -3,13 +3,16 @@
 		"authors": [
 			"Fitoschido",
 			"Kingpowl",
+			"Luna Brillante 12",
 			"Macofe"
 		]
 	},
 	"filter": "Filtro",
+	"filter_description": "Los cambios en la configuración del filtro solo se aplican a eventos nuevos",
 	"settings": "Ajustes",
 	"settings_tool": "Herramienta",
 	"tool_language": "Idioma de interfaz de usuario",
+	"tool_wikis": "Wiki (s)",
 	"language": "Idioma",
 	"project": "Proyecto",
 	"submit": "Enviar",
@@ -33,6 +36,7 @@
 	"bot": "robot",
 	"editor": "editor",
 	"admin": "administrador",
+	"patrolled": "patrullado",
 	"ores_score": "Puntuación ORES",
 	"about_github": "El código fuente está disponible en $1",
 	"more_entries": "Ver $1 {{PLURAL:$1|entrada nueva|entradas nuevas}}"

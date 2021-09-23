@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Olve Utne"
+		]
+	},
+	"filter": "Filltir",
+	"settings_tool": "Räjjdo",
+	"language": "Giella",
+	"project": "Prosjäkkta",
+	"submit": "Säddi",
+	"settings_show": "Vuoseda",
+	"settings_minor_edits": "Unna rävvdadime",
+	"settings_editor_edits": "Rävdadäjjerävvdadime",
+	"settings_other_edits": "Ietjá rävvdadime",
+	"new": "åđđå",
+	"editor": "rävvdadäjje"
+}

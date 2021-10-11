@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"JSantos",
+			"Joao Xavier"
+		]
+	},
+	"settings": "Parametri",
+	"submit": "Sendez",
+	"settings_show": "Montrez",
+	"settings_bot_edits": "Redakturi da ''bot'' (automatala)",
+	"settings_anon_edits": "Redakturi da anonima uzeri",
+	"settings_minor_edits": "Mikra chanji",
+	"settings_redirects": "Ridirektar pagini",
+	"minor": "minora",
+	"anon": "anonimo",
+	"redirect": "ridirekto",
+	"patrolled": "vigilata"
+}

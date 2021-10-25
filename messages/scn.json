@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ajeje Brazorf"
+		]
+	},
+	"settings": "Mpustazzioni",
+	"settings_tool": "Strummentu",
+	"tool_language": "Lingua dâ ntirfaccia utenti",
+	"tool_wikis": "Wiki",
+	"language": "Lingua",
+	"project": "Pruggettu",
+	"hide_settings": "Ammuccia li mpustazzioni",
+	"show_settings": "Ammustra li mpustazzioni",
+	"settings_show": "Ammustra",
+	"settings_bot_edits": "Canciamenti dî bot",
+	"settings_minor_edits": "Canciamenti nichi",
+	"settings_redirects": "Pàggini di rimannu",
+	"settings_new_pages": "Pàggini novi",
+	"settings_admin_edits": "Canciamenti di l'amministratura",
+	"settings_other_edits": "Àutri canciamenti",
+	"new": "novu",
+	"minor": "nicu",
+	"anon": "anònimu",
+	"redirect": "rimannu",
+	"bot": "bot",
+	"admin": "amministraturi"
+}

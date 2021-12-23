@@ -24,5 +24,7 @@
 	"anon": "anònimu",
 	"redirect": "rimannu",
 	"bot": "bot",
-	"admin": "amministraturi"
+	"admin": "amministraturi",
+	"about_github": "Lu còdici surgenti è dispunìbbili supra $1",
+	"more_entries": "Talìa $1 {{PLURAL:$1|nova|novi}} vuci"
 }

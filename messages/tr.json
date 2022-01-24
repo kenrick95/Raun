@@ -5,6 +5,7 @@
 			"BaRaN6161 TURK",
 			"Hedda",
 			"Mavrikant",
+			"SaldırganSincap",
 			"Uncitoyen",
 			"Uğurkent"
 		]
@@ -26,7 +27,7 @@
 	"settings_minor_edits": "Küçük değişiklikler",
 	"settings_redirects": "Yönlendirme sayfaları",
 	"settings_new_pages": "Yeni sayfalar",
-	"settings_editor_edits": "Editör değişiklikleri",
+	"settings_editor_edits": "Düzenleyici düzenlemeleri",
 	"settings_admin_edits": "Hizmetli değişiklikleri",
 	"settings_other_edits": "Diğer değişiklikler",
 	"settings_more_entries": "Yeni girdileri otomatik olarak gösterme",
@@ -36,7 +37,7 @@
 	"anon": "anon",
 	"redirect": "yönlendirme",
 	"bot": "bot",
-	"editor": "editör",
+	"editor": "düzenleyici",
 	"admin": "hizmetli",
 	"patrolled": "devriye",
 	"ores_score": "ORES puanı",

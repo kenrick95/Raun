@@ -1,26 +1,41 @@
 {
 	"@metadata": {
 		"authors": [
-			"NehalDaveND"
+			"NehalDaveND",
+			"Saurmandal"
 		]
 	},
 	"filter": "छानें",
-	"settings": "पसंद",
+	"filter_description": "फ़िल्टर की सेटिंग्स में बदलाव सिर्फ नई घटनाओं पर ही लागू होते हैं",
+	"settings": "सेटिंग्स",
 	"settings_tool": "उपकरण",
+	"tool_language": "सदस्य इंटरफ़ेस की भाषा",
+	"tool_wikis": "विकि(याँ)",
 	"language": "भाषा",
 	"project": "परियोजना",
+	"submit": "प्रस्तुत करें",
+	"hide_settings": "सेटिंग्स छिपाएँ",
+	"show_settings": "सेटिंग्स दिखाएँ",
 	"settings_show": "दिखाएँ",
 	"settings_bot_edits": "बॉट संपादन",
-	"settings_minor_edits": "छोटा संपादन",
-	"settings_redirects": "पृष्ठ पुनर्निर्देशित करें",
+	"settings_anon_edits": "गुमनाम संपादन",
+	"settings_minor_edits": "छोटे संपादन",
+	"settings_redirects": "अनुप्रेषण पृष्ठ",
 	"settings_new_pages": "नए पृष्ठ",
 	"settings_editor_edits": "सदस्य के संपादन",
-	"settings_admin_edits": "प्रबंधक के सम्पादन",
-	"settings_other_edits": "अन्य सम्पादन",
-	"new": "नया",
-	"minor": "छोटा",
-	"redirect": "पुनर्निर्देशन",
+	"settings_admin_edits": "प्रबंधक के संपादन",
+	"settings_other_edits": "दूसरे संपादन",
+	"settings_more_entries": "अपने आप नई एंट्रियाँ न दिखाएँ",
+	"def_def": "जाँचें; देखें; परीक्षित करें",
+	"new": "नए",
+	"minor": "छोटे",
+	"anon": "गुमनाम",
+	"redirect": "अनुप्रेषण",
 	"bot": "बॉट",
 	"editor": "संपादक",
-	"admin": "प्रबन्धक"
+	"admin": "प्रबंधक",
+	"patrolled": "परीक्षित",
+	"ores_score": "ORES स्कोर",
+	"about_github": "स्रोत कोड $1 पर उपलब्ध है",
+	"more_entries": "{{PLURAL:$1|एक नई एंट्री|$1 नई एंट्रियाँ}} देखें"
 }

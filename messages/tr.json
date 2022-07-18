@@ -6,6 +6,7 @@
 			"Hedda",
 			"Mavrikant",
 			"SaldırganSincap",
+			"ToprakM",
 			"Uncitoyen",
 			"Uğurkent"
 		]
@@ -37,7 +38,7 @@
 	"anon": "anon",
 	"redirect": "yönlendirme",
 	"bot": "bot",
-	"editor": "düzenleyici",
+	"editor": "editör",
 	"admin": "hizmetli",
 	"patrolled": "devriye",
 	"ores_score": "ORES puanı",

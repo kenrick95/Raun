@@ -15,6 +15,8 @@
 	"settings_tool": "Алатка",
 	"language": "Језик",
 	"project": "Пројекат",
+	"hide_settings": "Сакриј подешавања",
+	"show_settings": "Прикажи подешавања",
 	"settings_show": "Прикажи",
 	"settings_bot_edits": "Ботовске измене",
 	"settings_anon_edits": "Анонимне измене",
@@ -32,6 +34,7 @@
 	"bot": "бот",
 	"editor": "Уредник",
 	"admin": "админ",
+	"patrolled": "патролирано",
 	"ores_score": "ORES резултат",
 	"about_github": "Изворни код је доступан на $1"
 }

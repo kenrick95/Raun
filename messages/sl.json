@@ -6,10 +6,16 @@
 		]
 	},
 	"filter": "Filter",
+	"filter_description": "Spremembe nastavitev filtra veljajo samo za nove dogodke",
 	"settings": "Nastavitve",
 	"settings_tool": "Orodje",
+	"tool_language": "Jezik uporabniškega vmesnika",
+	"tool_wikis": "Viki(ji)",
 	"language": "Jezik",
 	"project": "Projekt",
+	"submit": "Shrani",
+	"hide_settings": "Skrij nastavitve",
+	"show_settings": "Prikaži nastavitve",
 	"settings_show": "Prikaži",
 	"settings_bot_edits": "Urejanja bota",
 	"settings_anon_edits": "Anonimna urejanja",
@@ -19,6 +25,8 @@
 	"settings_editor_edits": "Urejanja urednikov",
 	"settings_admin_edits": "Administratorska urejanja",
 	"settings_other_edits": "Druga urejanja",
+	"settings_more_entries": "Ne prikaži samodejno novih vnosov",
+	"def_def": "preveri; opazuj; preglej",
 	"new": "novo",
 	"minor": "manjše",
 	"anon": "anonimno",
@@ -26,5 +34,8 @@
 	"bot": "bot",
 	"editor": "urejevalec",
 	"admin": "administrator",
-	"about_github": "Izvorna koda je na voljo na $1"
+	"patrolled": "pregledano",
+	"ores_score": "Točke ORES",
+	"about_github": "Izvorna koda je na voljo na $1",
+	"more_entries": "Ogled $1 {{PLURAL:$1|novega vnosa|novih vnosov}}"
 }

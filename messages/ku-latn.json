@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Balyozxane",
 			"Bikarhêner",
 			"Cûndûllah el-Kurdî",
 			"George Animal"
@@ -13,7 +14,7 @@
 	"project": "Proje",
 	"settings_show": "Nîşan bide",
 	"settings_bot_edits": "Guherandinên botan",
-	"settings_minor_edits": "Guhertina biçûk",
+	"settings_minor_edits": "Guhartina biçûk",
 	"settings_redirects": "Rûpelên beralîkirinê",
 	"settings_new_pages": "Rûpelên nû",
 	"settings_editor_edits": "Guherandinên editora",

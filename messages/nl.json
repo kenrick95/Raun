@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Bdijkstra",
 			"Krinkle",
 			"Optilete",
 			"SPQRobin",
@@ -11,6 +12,8 @@
 	"filter": "Filteren",
 	"settings": "Instellingen",
 	"settings_tool": "Hulpmiddel",
+	"tool_language": "Taal van de gebruikersinterface",
+	"tool_wikis": "Wiki('s)",
 	"language": "Taal",
 	"project": "Project",
 	"settings_show": "Weergeven",

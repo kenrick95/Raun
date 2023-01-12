@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"פוילישער"
+		]
+	},
+	"filter": "פֿילטער",
+	"settings": "איינשטעלונגען",
+	"settings_tool": "געצייג",
+	"tool_language": "באַניצער אויבערפלאַך־שפּראַך",
+	"tool_wikis": "וויקי(ס)",
+	"language": "שפראַך",
+	"project": "פראיעקט",
+	"submit": "איינגעבן",
+	"hide_settings": "באַהאַלטן שטעלונגען",
+	"show_settings": "ווייזן שטעלונגען",
+	"settings_show": "ווייזן",
+	"settings_bot_edits": "באט רעדאקטירונגען",
+	"settings_other_edits": "אנדערע רעדאקטירונגען"
+}

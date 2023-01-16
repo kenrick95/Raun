@@ -1,0 +1,40 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"filter": "Filtrar",
+	"filter_description": "Le cambiamentos in le parametros de filtros solmente se applica a nove eventos",
+	"settings": "Parametros",
+	"settings_tool": "Instrumento",
+	"tool_language": "Lingua del interfacie de usator",
+	"tool_wikis": "Wiki(s)",
+	"language": "Lingua",
+	"project": "Projecto",
+	"submit": "Submitter",
+	"hide_settings": "Celar parametros",
+	"show_settings": "Monstrar parametros",
+	"settings_show": "Monstrar",
+	"settings_bot_edits": "Modificationes per robot",
+	"settings_anon_edits": "Modificationes anonyme",
+	"settings_minor_edits": "Modificationes minor",
+	"settings_redirects": "Paginas de redirection",
+	"settings_new_pages": "Nove paginas",
+	"settings_editor_edits": "Modificationes de redactores",
+	"settings_admin_edits": "Modificationes de administratores",
+	"settings_other_edits": "Altere modificationes",
+	"settings_more_entries": "Non monstrar automaticamente nove entratas",
+	"def_def": "inspectar; guardar; patruliar;",
+	"new": "nove",
+	"minor": "minor",
+	"anon": "anonyme",
+	"redirect": "redirection",
+	"bot": "robot",
+	"editor": "redactor",
+	"admin": "administrator",
+	"patrolled": "patruliate",
+	"ores_score": "Score ORES",
+	"about_github": "Le codice fonte es disponibile sur $1",
+	"more_entries": "Vider $1 nove entrata{{PLURAL:$1||s}}"
+}

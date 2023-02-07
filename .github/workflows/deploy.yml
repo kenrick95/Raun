@@ -1,0 +1,40 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: ['master']
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16]
+        php-version: ['7.4']
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup PHP with tools
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          tools: composer
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+      - name: Install PHP dependencies
+        run: composer install --no-interaction
+      - name: Install Node dependencies
+        run: yarn install --frozen-lockfile
+      - name: Build
+        run: yarn build
+      - uses: up9cloud/action-rsync@v1.3
+        env:
+          HOST: login.tools.wmflabs.org
+          KEY: ${{secrets.DEPLOY_SSH_KEY}}
+          TARGET: /data/project/raun/public_html
+          MODE: push
+          VERBOSE: true
+          USER: kenrick95
+          ARGS: -avz --delete --no-perms --no-owner --omit-dir-times -e "ssh" --exclude-from=.gitignore --exclude=.git --exclude=node_modules/ --exclude=composer.phar --exclude=cookies.tmp

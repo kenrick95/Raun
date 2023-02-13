@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL ^ (E_NOTICE | E_WARNING | E_DEPRECATED));
 
 $base = '/';
 
@@ -135,8 +136,8 @@ class Main
             $this->renderApiUsers('editor');
         } else if ($requestUrl === '/') {
             $this->renderHome();
-        } else {
-
+        } else if (php_sapi_name() == 'cli-server') {
+            error_reporting(E_ALL);
             echo $requestUrl;
             var_dump($_SERVER);
             return NULL;

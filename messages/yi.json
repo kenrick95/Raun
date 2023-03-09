@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Pacha Tchernof",
 			"פוילישער"
 		]
 	},
@@ -9,12 +10,15 @@
 	"settings_tool": "געצייג",
 	"tool_language": "באַניצער אויבערפלאַך־שפּראַך",
 	"tool_wikis": "וויקי(ס)",
-	"language": "שפראַך",
+	"language": "שפּראַך",
 	"project": "פראיעקט",
 	"submit": "איינגעבן",
 	"hide_settings": "באַהאַלטן שטעלונגען",
 	"show_settings": "ווייזן שטעלונגען",
 	"settings_show": "ווייזן",
 	"settings_bot_edits": "באט רעדאקטירונגען",
-	"settings_other_edits": "אנדערע רעדאקטירונגען"
+	"settings_other_edits": "אנדערע רעדאקטירונגען",
+	"bot": "באָט",
+	"editor": "רעדאַקטאָר",
+	"admin": "אַדמיניסטראַטאָר"
 }

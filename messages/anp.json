@@ -1,0 +1,40 @@
+{
+	"@metadata": {
+		"authors": [
+			"Proabscorp!"
+		]
+	},
+	"filter": "फ़िल्टर",
+	"filter_description": "फ़िल्टर क सेटिंग्स मँ बदलाव केवल नैके घटना प लागू होय छै",
+	"settings": "सेटिंग्स",
+	"settings_tool": "उपकरण",
+	"tool_language": "सदस्य इंटरफ़ेस क भाषा",
+	"tool_wikis": "विकि(सिनी)",
+	"language": "भाषा",
+	"project": "परियोजना",
+	"submit": "जमा करौ",
+	"hide_settings": "सेटिंग्स नुकाबौ",
+	"show_settings": "सेटिंग्स देखाबौ",
+	"settings_show": "देखाबौ",
+	"settings_bot_edits": "बॉट संपादन",
+	"settings_anon_edits": "गुमनाम संपादन",
+	"settings_minor_edits": "लघु संपादन",
+	"settings_redirects": "पुन: निर्देशित पन्ना",
+	"settings_new_pages": "नया पन्ना",
+	"settings_editor_edits": "सदस्य केरौ संपादन",
+	"settings_admin_edits": "प्रबंधक केरौ संपादन",
+	"settings_other_edits": "अन्य संपादन",
+	"settings_more_entries": "अपने आप नैका एंट्री नाय देखाबौ",
+	"def_def": "जाँचौ; देखौ; परीक्षित करौ",
+	"new": "नैका",
+	"minor": "लघु",
+	"anon": "गुमनाम",
+	"redirect": "पुनर्निर्देशन",
+	"bot": "बॉट",
+	"editor": "संपादक",
+	"admin": "प्रबंधक",
+	"patrolled": "परीक्षित",
+	"ores_score": "ORES स्कोर",
+	"about_github": "स्रोत कोड $1 प उपलब्ध छौं",
+	"more_entries": "{{PLURAL:$1|एगो नैका एंट्री|$1 नैका एंट्री}} देखें"
+}

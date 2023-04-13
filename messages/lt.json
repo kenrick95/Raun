@@ -7,10 +7,16 @@
 		]
 	},
 	"filter": "Filtras",
+	"filter_description": "Filtro nustatymų pakeitimai taikomi tik naujiems įvykiams",
 	"settings": "Nustatymai",
 	"settings_tool": "Įrankis",
+	"tool_language": "Naudotojo sąsajos kalba",
+	"tool_wikis": "Viki",
 	"language": "Kalba",
 	"project": "Projektas",
+	"submit": "Siųsti",
+	"hide_settings": "Slėpti nustatymus",
+	"show_settings": "Rodyti nustatymus",
 	"settings_show": "Rodyti",
 	"settings_bot_edits": "Botų keitimai",
 	"settings_anon_edits": "Anon keitimai",
@@ -19,6 +25,7 @@
 	"settings_new_pages": "Naujausi puslapiai",
 	"settings_admin_edits": "Administratorių keitimai",
 	"settings_other_edits": "Kiti keitimai",
+	"settings_more_entries": "Automatiškai nerodyti naujų įrašų",
 	"new": "naujas",
 	"minor": "smulkus",
 	"redirect": "nukreipimas",
@@ -26,5 +33,6 @@
 	"editor": "redaktorius",
 	"admin": "administratorius",
 	"ores_score": "ORES rezultatas",
-	"more_entries": "Žiūrėti $1 naujų įrašų"
+	"about_github": "Šaltinio kodas prieinamas $1",
+	"more_entries": "Žiūrėti $1 {{PLURAL:$1|naują įrašą|naujus įrašus}}"
 }

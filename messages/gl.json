@@ -4,21 +4,28 @@
 			"Banjo",
 			"Chairego apc",
 			"Elisardojm",
-			"Macofe"
+			"Macofe",
+			"Toliño"
 		]
 	},
 	"filter": "Filtro",
+	"filter_description": "Os cambios na configuración do filtro só se aplican aos novos eventos",
 	"settings": "Configuracións",
 	"settings_tool": "Ferramenta",
+	"tool_language": "Lingua da interface de usuario",
+	"tool_wikis": "Wiki(s)",
 	"language": "Lingua",
 	"project": "Proxecto",
+	"submit": "Enviar",
+	"hide_settings": "Agochar as configuracións",
+	"show_settings": "Mostrar as configuracións",
 	"settings_show": "Mostrar",
-	"settings_bot_edits": "Edicións de Bots",
+	"settings_bot_edits": "Edicións de bots",
 	"settings_anon_edits": "Edicións anónimas",
 	"settings_minor_edits": "Edicións menores",
-	"settings_redirects": "Páxinas de redireccións",
+	"settings_redirects": "Páxinas de redirección",
 	"settings_new_pages": "Páxinas novas",
-	"settings_editor_edits": "Edicións de usuarios confirmados",
+	"settings_editor_edits": "Edicións de editores",
 	"settings_admin_edits": "Edicións de administradores",
 	"settings_other_edits": "Outras edicións",
 	"settings_more_entries": "Non amosar as novas entradas automaticamente",
@@ -30,7 +37,8 @@
 	"bot": "bot",
 	"editor": "editor",
 	"admin": "administrador",
+	"patrolled": "patrullada",
 	"ores_score": "Puntuación ORES",
 	"about_github": "O código fonte está dispoñible en $1",
-	"more_entries": "Ver $1 novas entradas"
+	"more_entries": "Ver {{PLURAL:$1|$1 nova entrada|$1 novas entradas}}"
 }

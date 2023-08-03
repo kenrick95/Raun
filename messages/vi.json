@@ -6,16 +6,10 @@
 		]
 	},
 	"filter": "Bộ lọc",
-	"filter_description": "Các thay đổi trong cài đặt bộ lọc chỉ áp dụng cho các sự kiện mới",
 	"settings": "Tùy chọn",
 	"settings_tool": "Công cụ",
-	"tool_language": "Ngôn ngữ giao diện người dùng",
-	"tool_wikis": "Wiki",
 	"language": "Ngôn ngữ",
 	"project": "Dự án",
-	"submit": "Gửi",
-	"hide_settings": "Cài đặt video",
-	"show_settings": "Lưu tùy chọn",
 	"settings_show": "Hiện",
 	"settings_bot_edits": "Sửa đổi bot",
 	"settings_anon_edits": "Sửa đổi vô danh",
@@ -34,8 +28,7 @@
 	"bot": "bot",
 	"editor": "người sửa đổi",
 	"admin": "bảo quản viên",
-	"patrolled": "Chưa được tuần tra",
 	"ores_score": "Số điểm ORES",
 	"about_github": "Mã nguồn có sẵn trên $1",
-	"more_entries": "$1 {{PLURAL:$1}}mục"
+	"more_entries": "Xem $1 mục mới"
 }

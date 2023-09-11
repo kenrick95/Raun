@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"TerranBoy"
+		]
+	},
+	"filter": "پاڵیار",
+	"settings": "ڕیکخستنەگان",
+	"settings_tool": "ئامراز",
+	"tool_wikis": "ویکی(‍ەیل)",
+	"language": "زوان",
+	"project": "پرۆژە",
+	"submit": "ناردن",
+	"hide_settings": "شاردنەوەێ ڕیکخستنەگان",
+	"settings_bot_edits": "دەسکاریەگان بۆت",
+	"settings_new_pages": "پەڕەێل نوو",
+	"settings_editor_edits": "دەسکاریەگان دەسکاریکەر",
+	"settings_admin_edits": "دەسکاریەگان وەڕێەوبەر",
+	"settings_other_edits": "دەسکاریەیل تر",
+	"new": "نوو",
+	"bot": "بۆت",
+	"editor": "دەسکاریکەر",
+	"admin": "وەڕێیەوبەر"
+}

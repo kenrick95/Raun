@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Alifakoor",
+			"Arian Ar",
 			"Huji",
 			"Mohammad ebz",
 			"Reza1615"
@@ -10,9 +11,13 @@
 	"filter": "پالایه",
 	"settings": "تنظیمات",
 	"settings_tool": "ابزار",
+	"tool_language": "زبان رابط کاربری",
 	"tool_wikis": "ویکی(ها)",
 	"language": "زبان",
 	"project": "پروژه",
+	"submit": "ثبت",
+	"hide_settings": "پنهان‌کردن تنظیمات",
+	"show_settings": "نمایش تنظیمات",
 	"settings_show": "نمایش",
 	"settings_bot_edits": "ویرایش‌های ربات",
 	"settings_anon_edits": "ویرایش‌های ناشناس",
@@ -31,6 +36,7 @@
 	"bot": "ربات",
 	"editor": "ویرایشگر",
 	"admin": "مدیر",
+	"patrolled": "گشت‌خورده",
 	"ores_score": "امتیاز ساعن",
 	"about_github": "کد منبع در $1 دسترس است"
 }

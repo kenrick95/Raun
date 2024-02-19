@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Adriendelucca",
 			"Fohanno",
 			"Gwenn-Ael",
 			"Y-M D"
@@ -9,8 +10,12 @@
 	"filter": "Sil",
 	"settings": "Arventennoù",
 	"settings_tool": "Ostilh",
+	"tool_wikis": "Wiki(où)",
 	"language": "Yezh",
 	"project": "Raktres",
+	"submit": "Kas",
+	"hide_settings": "Kuzhat an arventennoù",
+	"show_settings": "Diskouez an arventennoù",
 	"settings_show": "Diskouez",
 	"settings_bot_edits": "Aozadennoù gant robotoù",
 	"settings_anon_edits": "Aozadennoù gant tud dizanv",
@@ -30,5 +35,5 @@
 	"editor": "aozer",
 	"admin": "merour",
 	"about_github": "Ar c'hod mammennoù a c'haller kaout e $1",
-	"more_entries": "Diskwel ar $1 monedone nevez"
+	"more_entries": "Diskwel {{PLURAL:$1|1=an|2=an $1|3=an $1|ar/an $1}} enmont nevez"
 }

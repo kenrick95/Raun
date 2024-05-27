@@ -1,12 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
+			"Cabal",
 			"Tow"
 		]
 	},
 	"filter": "ਛਾਨਣੀ",
 	"settings": "ਸੈਟਿੰਗਾਂ",
 	"settings_tool": "ਸੰਦ",
+	"tool_wikis": "ਵਿਕੀ(ਆਂ)",
 	"language": "ਭਾਸ਼ਾ",
 	"project": "ਪ੍ਰੋਜੈਕਟ",
 	"settings_show": "ਵਿਖਾਓ",

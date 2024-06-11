@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Arystanbek"
+			"Arystanbek",
+			"Casserium"
 		]
 	},
 	"filter": "Сүзгі",
@@ -17,7 +18,7 @@
 	"settings_new_pages": "Жаңа беттер",
 	"settings_editor_edits": "Өңдеуші өңдемелері",
 	"settings_admin_edits": "Админ өңдемелері",
-	"settings_other_edits": "Басқада өңдемелер",
+	"settings_other_edits": "Басқа да өңдемелер",
 	"new": "жаңа",
 	"minor": "шағын",
 	"anon": "аноним",

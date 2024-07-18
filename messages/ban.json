@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Joseagush"
+		]
+	},
+	"filter": "Saring",
+	"settings": "Setélan",
+	"settings_tool": "piranti",
+	"tool_language": "Basa antarmuka anganggé",
+	"tool_wikis": "Wiki",
+	"language": "Basa",
+	"project": "Proyék",
+	"submit": "Kirim",
+	"hide_settings": "Engkebang setélan",
+	"show_settings": "Raksa setélan",
+	"settings_show": "Sinahang",
+	"settings_bot_edits": "Uahan bot",
+	"settings_anon_edits": "Suntingan anon",
+	"settings_minor_edits": "Uahan alit",
+	"settings_redirects": "Kaca gingsiran",
+	"settings_new_pages": "Kaca anyar",
+	"settings_editor_edits": "Uahan éditor",
+	"settings_admin_edits": "Uahan pengurus",
+	"settings_other_edits": "uahan liyanan",
+	"bot": "bot",
+	"editor": "panguah",
+	"admin": "Pangurus"
+}

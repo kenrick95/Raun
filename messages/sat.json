@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"ᱢᱩᱨᱢᱩ"
+		]
+	},
+	"settings_tool": "ᱥᱟᱯᱟᱯ",
+	"tool_language": "ᱵᱮᱵᱷᱟᱨᱤᱭᱟᱹ ᱤᱱᱴᱟᱨᱯᱷᱮᱥ ᱯᱟᱹᱨᱥᱤ",
+	"tool_wikis": "ᱣᱤᱠᱤ",
+	"language": "ᱯᱟᱹᱨᱥᱤ",
+	"hide_settings": "ᱥᱮᱴᱤᱝ ᱩᱠᱩᱭ ᱢᱮ",
+	"settings_show": "ᱫᱮᱠᱷᱟᱣ",
+	"settings_bot_edits": "ᱵᱚᱴ ᱥᱟᱯᱲᱟᱣ",
+	"settings_anon_edits": "ᱚᱠᱚᱭ ᱪᱚ ᱥᱟᱯᱲᱟᱣ ᱟᱠᱟᱫᱟᱭ",
+	"settings_minor_edits": "ᱦᱩᱰᱤᱧ ᱥᱟᱯᱲᱟᱣ",
+	"settings_new_pages": "ᱱᱟᱣᱟ ᱥᱟᱦᱴᱟ",
+	"settings_editor_edits": "ᱵᱮᱵᱷᱟᱨᱤᱭᱟᱹ ᱥᱟᱯᱲᱟᱣ",
+	"settings_other_edits": "ᱮᱴᱟᱜ ᱥᱟᱯᱲᱟᱣ",
+	"new": "ᱱᱟᱸᱣᱟ",
+	"anon": "ᱚᱠᱚᱭ ᱪᱚ"
+}

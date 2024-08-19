@@ -7,10 +7,16 @@
 		]
 	},
 	"filter": "Penapis",
+	"filter_description": "Perubahan dalam tetapan penapis hanya digunakan pada acara baharu",
 	"settings": "Tetapan",
 	"settings_tool": "Alatan",
+	"tool_language": "Bahasa antara muka pengguna",
+	"tool_wikis": "Wiki",
 	"language": "Bahasa",
 	"project": "Projek",
+	"submit": "Hantar",
+	"hide_settings": "Sembunyikan tetapan",
+	"show_settings": "Tunjukkan tetapan",
 	"settings_show": "Tunjukkan",
 	"settings_bot_edits": "Suntingan bot",
 	"settings_anon_edits": "Suntingan pengguna tanpa nama",
@@ -29,7 +35,8 @@
 	"bot": "bot",
 	"editor": "penyunting",
 	"admin": "penyelia",
+	"patrolled": "telah dironda",
 	"ores_score": "Markah ORES",
 	"about_github": "Kod sumber boleh didapati pada $1",
-	"more_entries": "Lihat $1 entri baru"
+	"more_entries": "Lihat $1 {{PLURAL:$1|entri}} baharu"
 }

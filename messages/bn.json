@@ -2,13 +2,16 @@
 	"@metadata": {
 		"authors": [
 			"Aftabuzzaman",
+			"AnonQuester",
 			"আজিজ",
 			"আফতাবুজ্জামান"
 		]
 	},
 	"filter": "ছাকনী",
+	"filter_description": "ফিল্টার সেটিংসে পরিবর্তন কেবল নতুন ইভেন্টগুলোর জন্য প্রযোজ্য।",
 	"settings": "সেটিং",
 	"settings_tool": "সরঞ্জাম",
+	"tool_language": "ব্যবহারকারীর ইন্টারফেসের ভাষা",
 	"tool_wikis": "উইকি(সমূহ)",
 	"language": "ভাষা",
 	"project": "প্রকল্প",

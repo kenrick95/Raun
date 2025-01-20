@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bosogo"
+		]
+	},
+	"filter": "Чыпка",
+	"settings": "Параметрлер",
+	"settings_tool": "Курал",
+	"project": "Долбоор",
+	"settings_show": "Көрсөтүү",
+	"settings_redirects": "Багыттама барактар",
+	"settings_new_pages": "Жаңы барактар",
+	"bot": "бот",
+	"editor": "түзөтүүчү"
+}

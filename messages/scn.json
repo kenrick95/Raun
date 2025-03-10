@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ajeje Brazorf"
+			"Ajeje Brazorf",
+			"GianAntonucci"
 		]
 	},
 	"settings": "Mpustazzioni",
@@ -12,13 +13,13 @@
 	"project": "Pruggettu",
 	"hide_settings": "Ammuccia li mpustazzioni",
 	"show_settings": "Ammustra li mpustazzioni",
-	"settings_show": "Ammustra",
+	"settings_show": "Fai vìdiri",
 	"settings_bot_edits": "Canciamenti dî bot",
-	"settings_minor_edits": "Canciamenti nichi",
+	"settings_minor_edits": "Canci nichi",
 	"settings_redirects": "Pàggini di rimannu",
 	"settings_new_pages": "Pàggini novi",
 	"settings_admin_edits": "Canciamenti di l'amministratura",
-	"settings_other_edits": "Àutri canciamenti",
+	"settings_other_edits": "Autri canci",
 	"new": "novu",
 	"minor": "nicu",
 	"anon": "anònimu",

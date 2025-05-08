@@ -3,12 +3,14 @@
 		"authors": [
 			"Alifakoor",
 			"Arian Ar",
+			"Darafsh",
 			"Huji",
 			"Mohammad ebz",
 			"Reza1615"
 		]
 	},
 	"filter": "پالایه",
+	"filter_description": "تغییرات در تنظیمات فیلتر فقط بر رویدادهای جدید اعمال می‌شود.",
 	"settings": "تنظیمات",
 	"settings_tool": "ابزار",
 	"tool_language": "زبان رابط کاربری",
@@ -38,5 +40,6 @@
 	"admin": "مدیر",
 	"patrolled": "گشت‌خورده",
 	"ores_score": "امتیاز ساعن",
-	"about_github": "کد منبع در $1 دسترس است"
+	"about_github": "کد منبع در $1 دسترس است",
+	"more_entries": "مشاهدهٔ $1 {{PLURAL:$1|ورودی جدید}}"
 }

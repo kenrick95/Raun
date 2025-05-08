@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Glavkos",
+			"Jimkats",
 			"NikosLikomitros",
 			"Nikosgranturismogt"
 		]
@@ -9,8 +10,12 @@
 	"filter": "Φίλτρο",
 	"settings": "Ρυθμίσεις",
 	"settings_tool": "Εργαλείο",
+	"tool_language": "Γλώσσα διεπαφής χρήστη",
 	"language": "Γλώσσα",
 	"project": "Εγχείρημα",
+	"submit": "Υποβολή",
+	"hide_settings": "Απόκρυψη ρυθμίσεων",
+	"show_settings": "Εμφάνιση ρυθμίσεων",
 	"settings_show": "Εμφανίστε",
 	"settings_bot_edits": "Επεξεργασίες από ρομπότ",
 	"settings_anon_edits": "Ανώνυμες επεξεργασίες",
@@ -30,5 +35,5 @@
 	"admin": "διαχειριστής",
 	"ores_score": "Σκορ ORES",
 	"about_github": "Ο κώδικας πηγής είναι διαθέσιμος στο $1",
-	"more_entries": "Προβολή $1 νέων καταχωρήσεων"
+	"more_entries": "Προβολή $1 {{PLURAL:$1|νέας καταχώρησης|νέων καταχωρήσεων}}"
 }

@@ -1,0 +1,40 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sahran"
+		]
+	},
+	"filter": "سۈزگۈچ",
+	"filter_description": "سۈزگۈچ تەڭشىكىدە ئۆزگەرتىلسە پەقەت يېڭى پائالىيەتتىلا قوللىنىلىدۇ",
+	"settings": "تەڭشەك",
+	"settings_tool": "قورال",
+	"tool_language": "ئىشلەتكۈچى ئارايۈز تىلى",
+	"tool_wikis": "Wiki",
+	"language": "تىل",
+	"project": "قۇرۇلۇش",
+	"submit": "تاپشۇر",
+	"hide_settings": "تەڭشەكنى يوشۇر",
+	"show_settings": "تەڭشەكنى كۆرسەت",
+	"settings_show": "كۆرسەت",
+	"settings_bot_edits": "ماشىنا ئادەم تەھرىرى",
+	"settings_anon_edits": "نامسىز تەھرىرلەش",
+	"settings_minor_edits": "ئازراق تەھرىرلەش",
+	"settings_redirects": "قايتا نىشانلانغان بەت",
+	"settings_new_pages": "يېڭى بەت",
+	"settings_editor_edits": "تەھرىرنىڭ تەھرىرى",
+	"settings_admin_edits": "باشقۇرغۇچى تەھرىرى",
+	"settings_other_edits": "باشقىلارنىڭ تەھرىرى",
+	"settings_more_entries": "يېڭى خاتىرىنى ئۆزلۈكىدىن كۆرسەتمەيدۇ",
+	"def_def": "تەكشۈرۈش؛ قاراۋۇل؛ چارلاش؛",
+	"new": "يېڭى",
+	"minor": "ئازراق",
+	"anon": "نامسىز",
+	"redirect": "قايتا نىشانلاش",
+	"bot": "ماشىنا ئادەم",
+	"editor": "تەھرىر",
+	"admin": "باشقۇرغۇچى",
+	"patrolled": "چارلاندى",
+	"ores_score": "ORES نومۇرى",
+	"about_github": "مەنبە كودى $1 دا بار",
+	"more_entries": "$1 يېڭى {{PLURAL:$1|تۈر}}نى كۆرسىتىدۇ"
+}

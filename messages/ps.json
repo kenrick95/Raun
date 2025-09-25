@@ -8,6 +8,7 @@
 	"filter": "چاڼگر",
 	"settings": "اوڼنې",
 	"settings_tool": "اوزارونه",
+	"tool_language": "د کارن مخبڼې ژبه",
 	"tool_wikis": "ويکي(گانې)",
 	"language": "ژبه",
 	"project": "پروژه",
@@ -31,5 +32,7 @@
 	"bot": "روبوټ",
 	"editor": "سمونگر",
 	"admin": "پازوال",
-	"patrolled": "لمېسل‌څار"
+	"patrolled": "لمېسل‌څار",
+	"about_github": "سرچينې کوډ په $1 کې د لاسرسي وړ دی",
+	"more_entries": "د $1 نوې {{PLURAL\n:$1|ننوتنه|ننوتنې}} کتل"
 }

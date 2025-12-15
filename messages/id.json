@@ -3,7 +3,8 @@
 		"authors": [
 			"Hidayatsrf",
 			"Kenrick95",
-			"Mahali syarifuddin"
+			"Mahali syarifuddin",
+			"Penyuwangi"
 		]
 	},
 	"filter": "Penyaring",
@@ -23,7 +24,7 @@
 	"settings_minor_edits": "Suntingan kecil",
 	"settings_redirects": "Halaman pengalihan",
 	"settings_new_pages": "Halaman baru",
-	"settings_editor_edits": "Suntingan editor",
+	"settings_editor_edits": "Suntingan penyunting",
 	"settings_admin_edits": "Suntingan pengurus",
 	"settings_other_edits": "Suntingan lainnya",
 	"settings_more_entries": "Jangan tampilkan entri baru secara otomatis",
@@ -33,7 +34,7 @@
 	"anon": "anon",
 	"redirect": "alih",
 	"bot": "bot",
-	"editor": "editor",
+	"editor": "penyunting",
 	"admin": "pengurus",
 	"patrolled": "telah dipatroli",
 	"ores_score": "Nilai ORES",

@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Tuwewanzi"
+		]
+	},
+	"filter": "Wínazeye",
+	"settings": "Wóigluštaŋ",
+	"settings_tool": "Wíkhičhaŋye",
+	"tool_wikis": "Wiki(s)",
+	"language": "Iyápi",
+	"project": "Wičhóȟ'aƞ",
+	"submit": "Iyéya {{GENDER:|yo|ye|yo/ye}}",
+	"hide_settings": "Wóigluštaŋ naȟmá {{GENDER:|yo|ye|yo/ye}}",
+	"show_settings": "Wóigluštaŋ pazó {{GENDER:|yo|ye|yo/ye}}",
+	"settings_show": "Pazó {{GENDER:|wo|we|wo/we}}",
+	"settings_minor_edits": "Čík'ala wóyutȟokča",
+	"settings_redirects": "Iglákapi-oyúblaye",
+	"settings_new_pages": "Oyúblaye tȟéča",
+	"new": "théča",
+	"anon": "čhažé-waníča",
+	"bot": "mas’wíčhaša",
+	"editor": "tuwá yutȟókeča kiƞ",
+	"admin": "oítȟaƞčhaƞ"
+}

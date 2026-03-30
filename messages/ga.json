@@ -1,0 +1,40 @@
+{
+	"@metadata": {
+		"authors": [
+			"Aindriu80"
+		]
+	},
+	"filter": "Scagaire",
+	"filter_description": "Ní bhaineann athruithe ar shocruithe scagaire ach le himeachtaí nua",
+	"settings": "Socruithe",
+	"settings_tool": "Uirlis",
+	"tool_language": "Teanga chomhéadain úsáideora",
+	"tool_wikis": "Vic(í)",
+	"language": "Teanga",
+	"project": "Tionscadal",
+	"submit": "Cuir isteach",
+	"hide_settings": "Folaigh socruithe",
+	"show_settings": "Taispeáin socruithe",
+	"settings_show": "Taispeáin",
+	"settings_bot_edits": "Eagarthóireacht bota",
+	"settings_anon_edits": "Eagarthóireacht gan ainm",
+	"settings_minor_edits": "Eagarthóireacht bheag",
+	"settings_redirects": "Leathanaigh a atreorú",
+	"settings_new_pages": "Leathanaigh nua",
+	"settings_editor_edits": "Eagarthóireacht an eagarthóra",
+	"settings_admin_edits": "Eagarthóireacht riarthóra",
+	"settings_other_edits": "Eagarthóireacht eile",
+	"settings_more_entries": "Ná taispeáin iontrálacha nua go huathoibríoch",
+	"def_def": "iniúchadh; garda; patról;",
+	"new": "nua",
+	"minor": "mionaoiseach",
+	"anon": "gan ainm",
+	"redirect": "atreorú",
+	"bot": "bota",
+	"editor": "eagarthóir",
+	"admin": "riarthóir",
+	"patrolled": "patrólaithe",
+	"ores_score": "Scór ORES",
+	"about_github": "Tá an cód foinse ar fáil ar $1",
+	"more_entries": "Féach ar $1 {{PLURAL:$1|iontráil|iontrálacha}} nua"
+}

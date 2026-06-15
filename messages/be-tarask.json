@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Renessaince"
+			"Renessaince",
+			"Ucukor"
 		]
 	},
 	"filter": "Фільтар",
@@ -9,8 +10,11 @@
 	"settings": "Налады",
 	"settings_tool": "Інструмэнт",
 	"tool_language": "Мова інтэрфэйсу",
+	"tool_wikis": "Вікі",
 	"language": "Мова",
 	"project": "Праект",
+	"hide_settings": "Схаваць налады",
+	"show_settings": "Паказаць налады",
 	"settings_show": "Паказаць",
 	"settings_bot_edits": "Рэдагаваньні робата",
 	"settings_anon_edits": "Ананімныя рэдагаваньні",
@@ -21,7 +25,10 @@
 	"settings_admin_edits": "Рэдагаваньні адміністратараў",
 	"settings_other_edits": "Іншыя рэдагаваньні",
 	"settings_more_entries": "Не паказваць новыя запісы аўтаматычна",
+	"def_def": "інспэкцыя; ахова; патруль;",
 	"new": "новы",
+	"editor": "рэдактар",
+	"admin": "адмін",
 	"ores_score": "Вынік ORES",
 	"more_entries": "Праглядзець $1 {{PLURAL:$1|новы запіс|новыя запісы|новых запісаў}}"
 }

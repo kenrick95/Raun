@@ -1,0 +1,40 @@
+{
+	"@metadata": {
+		"authors": [
+			"Wizzard"
+		]
+	},
+	"filter": "Filter",
+	"filter_description": "Zmeny v nastaveniach filtra sa vzťahujú iba na nové udalosti",
+	"settings": "Nastavenia",
+	"settings_tool": "Nástroj",
+	"tool_language": "Jazyk používateľského rozhrania",
+	"tool_wikis": "Wiki",
+	"language": "Jazyk",
+	"project": "Projekt",
+	"submit": "Odoslať",
+	"hide_settings": "Skryť nastavenia",
+	"show_settings": "Zobraziť nastavenia",
+	"settings_show": "Zobraziť",
+	"settings_bot_edits": "Úpravy botov",
+	"settings_anon_edits": "Úpravy anonymov",
+	"settings_minor_edits": "Drobné úpravy",
+	"settings_redirects": "Presmerovania",
+	"settings_new_pages": "Nové stránky",
+	"settings_editor_edits": "Úpravy editorov",
+	"settings_admin_edits": "Úpravy správcov",
+	"settings_other_edits": "Ostatné úpravy",
+	"settings_more_entries": "Automaticky nezobrazovať nové záznamy",
+	"def_def": "preskúmať; strážiť; hliadkovať;",
+	"new": "nová",
+	"minor": "drobná",
+	"anon": "anonym",
+	"redirect": "presmerovanie",
+	"bot": "bot",
+	"editor": "editor",
+	"admin": "správca",
+	"patrolled": "skontrolované",
+	"ores_score": "Skóre ORES",
+	"about_github": "Zdrojový kód je dostupný na $1",
+	"more_entries": "Zobraziť $1 {{PLURAL:$1|nový záznam|nové záznamy|nových záznamov}}"
+}

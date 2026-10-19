@@ -1,12 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"Saraiki"
+			"Saraiki",
+			"Tauqeerkhansurani"
 		]
 	},
 	"filter": "چھاݨاں",
+	"filter_description": "فلٹر دیاں سیٹنگز وچ تبدیلی صرف نویاں واقعیاں تے لاڳو تھیندی ہے۔",
 	"settings": "ترتیباں",
 	"settings_tool": "اوزار",
+	"tool_language": "انٹرفیس دی زبان",
 	"tool_wikis": "وکی(اں)",
 	"language": "زبان",
 	"project": "منصوبہ",
@@ -15,17 +18,24 @@
 	"show_settings": "ترتیباں ݙکھاؤ",
 	"settings_show": "ݙِکھاؤ",
 	"settings_bot_edits": "ٻوٹ تبدیلیاں",
+	"settings_anon_edits": "گمنام ترامیم",
 	"settings_minor_edits": "معمولی تبدیلیاں",
 	"settings_redirects": "ورقے ریڈائریکٹ کرو",
 	"settings_new_pages": "نویں ورقے",
 	"settings_editor_edits": "ایڈیٹر دیاں تبدیلیاں",
 	"settings_admin_edits": "ایڈمن تبدیلیاں",
 	"settings_other_edits": "ٻیاں تبدیلیاں",
+	"settings_more_entries": "نویاں انٹریز خودکار طور تے نہ ݙکھاؤ۔",
+	"def_def": "جاچ پڑتال؛ چوکیداری؛ گشت؛",
 	"new": "نواں",
 	"minor": "معمولی",
+	"anon": "گمنام",
 	"redirect": "ولدا رجوع",
 	"bot": "بوٹ",
 	"editor": "ایڈیٹ کرݨ آلا",
 	"admin": "ایڈمن",
-	"patrolled": "گشت تھیا"
+	"patrolled": "گشت تھیا",
+	"ores_score": "ORES اسکور",
+	"about_github": "سورس کوڈ $1 تے دستیاب ہے۔",
+	"more_entries": "{{PLURAL:$1|نویں انٹری|نویاں انٹریز}} $1 ݙکھاؤ"
 }
